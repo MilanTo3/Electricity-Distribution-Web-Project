@@ -1,0 +1,46 @@
+
+.MainLabela{
+
+    font-family: Helvetica, sans-serif;
+    font-weight:bold;
+    font-size: 24px;
+    color: #ec7729;
+
+}
+
+.SecondaryLabela{
+
+    font-family: Helvetica, sans-serif;
+    font-weight:bold;
+    font-size: 17px;
+    color: #DD612C;
+
+}
+
+.labela{
+
+    font-family: 'Georgia';
+    color: #699FA1
+
+}
+
+.inputpolja {
+    border-radius: 18px;
+    width: 170px;
+    color: #699FA1;
+    font-weight: bold;
+    background-color: rgba(137, 179, 228, 0.3);
+}
+
+.sekcija {
+    display: inline-block;
+    padding: 10px;
+}
+
+.LoginWrapper{
+
+    margin-left: 43px;
+    width: 350px;
+    text-align:center;
+
+}

@@ -1,0 +1,56 @@
+.MainLabela{
+    font-family: Helvetica, sans-serif;
+    font-weight:bold;
+    font-size: 22px;
+    color: #ec7729;
+    text-align:left;
+    margin-left: 23px;
+
+}
+
+.SecondaryLabela{
+
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: left;
+    font-size: 15px;
+    color: #dd612c;
+    margin-left: 23px;
+
+}
+
+.labela{
+
+    font-family: 'Georgia';
+    color: #699FA1
+
+}
+
+.inputpolja {
+    border-radius: 18px;
+    width: 123px;
+    color: #699FA1;
+    font-weight: bold;
+    background-color: rgba(137, 179, 228, 0.3);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 100px;
+    grid-column-gap: 5px;
+  }
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.RegisterWrapper{
+
+    margin-left: 43px;
+    width: 350px;
+    text-align:center;
+
+}

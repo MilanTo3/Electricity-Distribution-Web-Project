@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+  <div class="RegisterWrapper">
+    <p class="MainLabela">Registruj se!</p>
+    <p class="SecondaryLabela">Nemate nalog? Registrujte nalog za manje od minut.</p>
+    <img class="logo" src="/assets/Images/logo_transparent.png" height="100" />
+    <form>
+      <div class="container">
+        <div class="sekcija">
+          <p class="labela">Ime:</p>
+          <input class="inputpolja" type="text" id="name" name="Name" />
+        </div>
+        <div class="sekcija">
+          <p class="labela">Prezime:</p>
+          <input class="inputpolja" type="text" id="lastname" name="Lastname" />
+        </div>
+
+        <div class="sekcija">
+          <p class="labela">Korisničko ime:</p>
+          <input class="inputpolja" type="text" id="username" name="Username" />
+        </div>
+
+        <div>
+          <p class="labela">Korisnička lozinka:</p>
+          <input class="inputpolja" type="password" id="password" name="Password" />
+        </div>
+
+        <div class="sekcija">
+          <p class="labela">Potvrdite lozinku:</p>
+          <input class="inputpolja" type="password" id="confirmedpassword" name="ConfirmedPassword" />
+        </div>
+
+        <div>
+          <p class="labela">Datum rodjenja:</p>
+          <input class="inputpolja" type="date" id="birthday" name="Birthday" />
+        </div>
+      </div>
+
+      <div class="sekcija">
+        <p class="labela">Pol:</p>
+        <select class="inputpolja" name="Gender">
+          <option value="Muški">Muški</option>
+          <option value="Ženski">Ženski</option>
+          <option value="Ostalo">Ostalo</option>
+        </select>
+      </div>
+      <br/><br/>
+      <button class="inputpolja" type="submit">Registruj se</button>
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+	<div class="forms">
+		<app-login-component class="loginform" [ngClass]="{easingIn: show===true}"></app-login-component>
+		<app-register-component class="registerform" [ngClass]="{easingIn: show===false}"></app-register-component>
+		<div class="overlay-container" [ngClass]="{swipeLeftAnimation: show===false}">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left" [ngClass]="{loginAnimation: show===false}">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal info</p>
+					<button class="ghost" (click)="onclick2()" id="signIn">Prijavi se</button>
+				</div>
+				<div class="overlay-panel overlay-right" [ngClass]="{registerAnimation: show===false}">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your personal details and start journey with us</p>
+					<button class="ghost" (click)="onclick1()" id="signUp">Registruj se</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
