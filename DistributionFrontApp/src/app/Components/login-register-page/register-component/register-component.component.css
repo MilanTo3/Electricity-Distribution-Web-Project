@@ -27,20 +27,25 @@
 
 }
 
+.sekcija{
+    padding-top: 15px;
+}
+
 .inputpolja {
-    border-radius: 18px;
-    width: 123px;
+    height: 34px;
     color: #699FA1;
     font-weight: bold;
     background-color: rgba(137, 179, 228, 0.3);
 }
 
-.containerDiv {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 100px;
-    grid-column-gap: 5px;
-  }
+button{
+    border-radius: 18px;
+    height:34px;
+    width: 150px;
+    color: #699FA1;
+    font-weight: bold;
+    background-color: rgba(137, 179, 228, 0.3);
+}
 
 .logo {
     display: block;

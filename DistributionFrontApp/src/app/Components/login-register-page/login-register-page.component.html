@@ -7,23 +7,23 @@
 		<div class="row formsClass">
 			<div class="col loginform d-md-block" [hidden]="toggleFormsVisibility" [ngClass]="{easingIn: show===true}">
 				<app-login-component></app-login-component>
-				<a href="#" (click)="toggleForms()"><p>Niste registrovani? Registrujte se ovde!</p></a>
+				<a href="#" (click)="toggleForms()"><p class="labela">Niste registrovani? Registrujte se ovde!</p></a>
 			</div>
 			<div class="col registerform d-md-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">
 				<app-register-component></app-register-component>
 				<br/>
-				<a href="#" (click)="toggleForms()"><p>Imate nalog? Prijavite se ovde!</p></a>
+				<a href="#" (click)="toggleForms()" class="d-lg-none d-xl-none"><p class="labela">Imate nalog? Prijavite se ovde!</p></a>
 			</div>
 			<div class="overlay-container d-none d-md-block" [ngClass]="{swipeLeftAnimation: show===false}">
 				<div class="overlay">
 					<div class="overlay-panel overlay-left" [ngClass]="{loginAnimation: show===false}">
-						<h1>Welcome Back!</h1>
-						<p>To keep connected with us please login with your personal info</p>
+						<h1 class="text">Welcome Back!</h1>
+						<p class="text">To keep connected with us please login with your personal info</p>
 						<button class="ghost" (click)="toggleForms()" id="signIn">Prijavi se</button>
 					</div>
 					<div class="overlay-panel overlay-right" [ngClass]="{registerAnimation: show===false}">
-						<h1>Hello, Friend!</h1>
-						<p>Enter your personal details and start journey with us</p>
+						<h1 class="text">Dobrodošli,</h1>
+						<p class="text">Smart Energy omogućava vam brzo i jednostavno prijavljivanje elektroenergetskih kvarova.</p>
 						<button class="ghost" (click)="toggleForms()" id="signUp">Registruj se</button>
 					</div>
 				</div>

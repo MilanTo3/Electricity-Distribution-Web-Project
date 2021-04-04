@@ -21,15 +21,13 @@ body{
 }
 
 .labela{
-
+    padding-top: 15px;
     font-family: 'Georgia';
     color: #699FA1
 
 }
 
 .inputpolja {
-    border-radius: 18px;
-    width: 150px;
     color: #699FA1;
     font-weight: bold;
     background-color: rgba(137, 179, 228, 0.3);
@@ -46,4 +44,13 @@ body{
     width: 350px;
     text-align:center;
 
+}
+
+button{
+    border-radius: 18px;
+    height:34px;
+    width: 150px;
+    color: #699FA1;
+    font-weight: bold;
+    background-color: rgba(137, 179, 228, 0.3);
 }

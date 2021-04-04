@@ -18,17 +18,13 @@ body{
 .formsClass {
     border: 1px solid black;
     border-radius: 4px;
-    width: 950px;
-	height: 700px;
+    width: 995px;
+	height: 854px;
 	background: white;
     position: relative;
-	margin: 123px auto;
+	margin: 55px auto;
 	box-shadow: 5px 5px 10px black;
 
-}
-
-.hideForm{
-	visibility:collapse;
 }
 
 .overlay-container {
@@ -78,7 +74,7 @@ body{
 	font-family: 'Roboto';
 	font-weight: bold;
 	margin-left: 121px;
-	transform: translateX(-20%);
+	transform: translateX(-40%);
 }
 
 .overlay-right{
@@ -107,4 +103,16 @@ button{
     color: #dd612c;
     font-weight: bold;
     background-color: #C3E5E7;
+}
+
+.text{
+	text-shadow: 1px 0px black;
+
+}
+
+.labela{
+
+    font-family: 'Georgia';
+	color: #699fa1;
+
 }

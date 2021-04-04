@@ -6,51 +6,64 @@
   <div class="RegisterWrapper">
     <p class="MainLabela">Registruj se!</p>
     <p class="SecondaryLabela">Nemate nalog? Registrujte nalog za manje od minut.</p>
-    <img class="logo" src="/assets/Images/logo_transparent.png" height="100" />
     <form>
-      <div class="containerDiv">
-        <div class="sekcija">
-          <p class="labela">Ime:</p>
-          <input class="inputpolja" type="text" id="name" name="Name" />
-        </div>
-        <div class="sekcija">
-          <p class="labela">Prezime:</p>
-          <input class="inputpolja" type="text" id="lastname" name="Lastname" />
-        </div>
-
-        <div class="sekcija">
-          <p class="labela">Korisničko ime:</p>
-          <input class="inputpolja" type="text" id="username" name="Username" />
-        </div>
-
-        <div>
-          <p class="labela">Korisnička lozinka:</p>
-          <input class="inputpolja" type="password" id="password" name="Password" />
-        </div>
-
-        <div class="sekcija">
-          <p class="labela">Potvrdite lozinku:</p>
-          <input class="inputpolja" type="password" id="confirmedpassword" name="ConfirmedPassword" />
-        </div>
-
-        <div>
-          <p class="labela">Datum rodjenja:</p>
-          <input class="inputpolja" type="date" id="birthday" name="Birthday" />
+      <div class="container">
+        <img src="assets/Images/defimage3.jpg" height="104" style="border-radius: 50%;"/>
+        <p class="labela">Upload image</p>
+        <div class="row form-group">
+          <div class="col">
+            <div class="sekcija">
+              <p class="labela">Ime:</p>
+              <input class="inputpolja form-control" type="text" />
+            </div>
+            <div class="sekcija">
+              <p class="labela">Korisničko ime:</p>
+              <input class="inputpolja form-control" type="text" />
+            </div>
+            <div class="sekcija">
+              <p class="labela">Korisnička lozinka:</p>
+              <input class="inputpolja form-control" type="password" />
+            </div>
+            <div class="sekcija">
+              <p class="labela">Datum rodjenja:</p>
+              <input class="inputpolja form-control" type="date" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="sekcija">
+              <p class="labela">Prezime:</p>
+              <input class="inputpolja form-control" type="text" />
+            </div>
+            <div class="sekcija">
+              <p class="labela">Email:</p>
+              <input class="inputpolja form-control" type="text" />
+            </div>
+            <div class="sekcija">
+              <p class="labela">Potvrdite lozinku:</p>
+              <input class="inputpolja form-control" type="password" />
+            </div>
+            <div class="sekcija">
+              <p class="labela">Adresa:</p>
+              <input class="inputpolja form-control" type="text" />
+            </div>
+          </div>
+          <div class="sekcija">
+            <p class="labela">Tip korisnika:</p>
+            <select class="inputpolja form-control" name="Gender">
+              <option value="Potrošač">Redovni potrošač</option>
+              <option value="Član ekipe">Član ekipe</option>
+              <option value="Dispečer">Dispečer</option>
+              <option value="ZaposleniPregledac">Zaposleni(privilegije pregleda)</option>
+              <option value="Administrator">Administrator</option>
+            </select>
+          </div>
         </div>
       </div>
-
-      <div class="sekcija">
-        <p class="labela">Pol:</p>
-        <select class="inputpolja" name="Gender">
-          <option value="Muški">Muški</option>
-          <option value="Ženski">Ženski</option>
-          <option value="Ostalo">Ostalo</option>
-        </select>
-      </div>
-      <br/><br/>
-      <button class="inputpolja">Registruj se</button>
+      <br/>
+      <button>Registruj se</button>
     </form>
   </div>
+  <br/>
 </body>
 
 </html>
