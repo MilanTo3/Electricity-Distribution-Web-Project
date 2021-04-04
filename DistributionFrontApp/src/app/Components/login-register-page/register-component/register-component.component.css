@@ -1,3 +1,4 @@
+
 .MainLabela{
     font-family: Helvetica, sans-serif;
     font-weight:bold;
@@ -34,7 +35,7 @@
     background-color: rgba(137, 179, 228, 0.3);
 }
 
-.container {
+.containerDiv {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 100px;
@@ -49,8 +50,8 @@
 
 .RegisterWrapper{
 
-    margin-left: 43px;
-    width: 350px;
+    position:relative;
+    top: 33px;
     text-align:center;
 
 }

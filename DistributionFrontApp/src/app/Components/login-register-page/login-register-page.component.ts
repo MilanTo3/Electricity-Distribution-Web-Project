@@ -8,18 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class LoginRegisterPageComponent implements OnInit {
 
   show = true;
+  toggleFormsVisibility = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onclick1() {
-    this.show = false;
-  }
+  toggleForms(){
 
-  onclick2() {
-    this.show = true;
+    this.toggleFormsVisibility = !this.toggleFormsVisibility;
+    this.show = !this.show;
+
   }
 
 }

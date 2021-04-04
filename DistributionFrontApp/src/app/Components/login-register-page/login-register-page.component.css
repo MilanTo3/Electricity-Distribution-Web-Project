@@ -1,4 +1,4 @@
-html{
+body{
 	position: fixed;
 	top:0;
 	left: 0;
@@ -9,29 +9,26 @@ html{
 	background-size: cover;
 }
 
-.forms {
+.loginform, .registerform{
+
+	text-align: center;
+
+}
+
+.formsClass {
     border: 1px solid black;
     border-radius: 4px;
     width: 950px;
 	height: 700px;
-    background-color: white;
+	background: white;
     position: relative;
 	margin: 123px auto;
 	box-shadow: 5px 5px 10px black;
 
 }
 
-.registerform, .loginform{
-
-	display: inline-block;
-
-}
-
-.registerform{
-
-	float: right;
-	margin: 40px 43px 0px 0px;
-
+.hideForm{
+	visibility:collapse;
 }
 
 .overlay-container {
@@ -78,11 +75,15 @@ html{
 }
 
 .overlay-left {
+	font-family: 'Roboto';
+	font-weight: bold;
 	margin-left: 121px;
 	transform: translateX(-20%);
 }
 
 .overlay-right{
+	font-family: 'Roboto';
+	font-weight: bold;
 	right:0;
 }
 
