@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './Components/login-register-page/login-component/login-component.component';
 import { RegisterComponentComponent } from './Components/login-register-page/register-component/register-component.component';
 import { LoginRegisterPageComponent } from './Components/login-register-page/login-register-page.component';
+import { DashboardPageComponent } from './Components/dashboard-page/dashboard-page.component';
+import { MyIncidentsComponentComponent } from './Components/dashboard-page/my-incidents-component/my-incidents-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginRegisterPageComponent,
     LoginComponentComponent,
-    RegisterComponentComponent
+    RegisterComponentComponent,
+    DashboardPageComponent,
+    MyIncidentsComponentComponent
   ],
   imports: [
     BrowserModule,

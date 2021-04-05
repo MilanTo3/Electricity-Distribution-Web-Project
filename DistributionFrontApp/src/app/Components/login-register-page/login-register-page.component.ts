@@ -19,7 +19,12 @@ export class LoginRegisterPageComponent implements OnInit {
 
     this.toggleFormsVisibility = !this.toggleFormsVisibility;
     this.show = !this.show;
+ 
+  }
 
+  openNewIncident()
+  {
+    
   }
 
 }

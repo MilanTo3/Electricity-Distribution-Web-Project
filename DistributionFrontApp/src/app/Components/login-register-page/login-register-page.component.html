@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html>
 
 <body>
@@ -8,6 +6,9 @@
 			<div class="col loginform d-md-block" [hidden]="toggleFormsVisibility" [ngClass]="{easingIn: show===true}">
 				<app-login-component></app-login-component>
 				<a href="#" (click)="toggleForms()"><p class="labela">Niste registrovani? Registrujte se ovde!</p></a>
+				<div style="font-size:1.5em">
+					 <a href="#" (click)="openNewIncident()" class="buttonReport" style="background-color:#A5D6D9;">Prijavi kvar</a> 
+				</div>
 			</div>
 			<div class="col registerform d-md-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">
 				<app-register-component></app-register-component>
