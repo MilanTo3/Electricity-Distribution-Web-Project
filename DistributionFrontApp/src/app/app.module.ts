@@ -8,6 +8,7 @@ import { RegisterComponentComponent } from './Components/login-register-page/reg
 import { LoginRegisterPageComponent } from './Components/login-register-page/login-register-page.component';
 import { DashboardPageComponent } from './Components/dashboard-page/dashboard-page.component';
 import { MyIncidentsComponentComponent } from './Components/dashboard-page/my-incidents-component/my-incidents-component.component';
+import { SocialNetworksLoginComponentComponent } from './Components/login-register-page/social-networks-login-component/social-networks-login-component.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MyIncidentsComponentComponent } from './Components/dashboard-page/my-in
     LoginComponentComponent,
     RegisterComponentComponent,
     DashboardPageComponent,
-    MyIncidentsComponentComponent
+    MyIncidentsComponentComponent,
+    SocialNetworksLoginComponentComponent
   ],
   imports: [
     BrowserModule,
