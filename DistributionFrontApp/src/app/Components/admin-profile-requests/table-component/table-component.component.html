@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <table class="table nonBtTableClass">
+            <thead class="header">
+              <tr>
+                <th *ngFor="let item of keyNames" scope="col">{{item.charAt(0).toUpperCase() + item.slice(1) + ':'}}</th>
+                <th *ngIf="tableid===0">What to do?</th>
+              </tr>
+            </thead>
+            <tbody class="body">
+              <tr class="tablerow" *ngFor="let object of dataToPrint">
+                <td class="tablecell" *ngFor="let key of keyNames">{{object[key]}}</td>
+                <td *ngIf="tableid===0">
+                    <button class="adminButton btn btn-success">Approve</button>
+                    <button class="adminButton btn btn-danger">Block</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </body>
+</html>
