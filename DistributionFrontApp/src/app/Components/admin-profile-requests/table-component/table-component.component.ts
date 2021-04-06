@@ -12,9 +12,7 @@ export class TableComponentComponent implements OnInit {
   headerToPrint: string[] = [];
   dataToPrint: Array<any> = [];
 
-  constructor() {
-    this.addMockRequests();
-  }
+  constructor() { }
 
   addMockRequests(){
 
@@ -56,7 +54,8 @@ export class TableComponentComponent implements OnInit {
   }
 
   ngOnInit(): void{
-
+    this.addMockRequests();
+    
   }
 
 }
