@@ -7,7 +7,7 @@
 				<app-login-component></app-login-component>
 				<a href="#" (click)="toggleForms()"><p class="labela">Niste registrovani? Registrujte se ovde!</p></a>
 				<div style="font-size:1.5em">
-					 <a href="#" (click)="openNewIncident()" class="buttonReport" style="background-color:#A5D6D9;">Prijavi kvar</a> 
+					 <a href="/dashboard" (click)="openNewIncident()" class="buttonReport" style="background-color:#A5D6D9;">Prijavi kvar</a> 
 				</div>
 			</div>
 			<div class="col registerform d-md-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">

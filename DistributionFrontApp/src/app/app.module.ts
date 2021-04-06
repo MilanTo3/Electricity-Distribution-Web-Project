@@ -18,7 +18,7 @@ import { SocialNetworksLoginComponentComponent } from './Components/login-regist
     RegisterComponentComponent,
     DashboardPageComponent,
     MyIncidentsComponentComponent,
-    SocialNetworksLoginComponentComponent
+    SocialNetworksLoginComponentComponent,
   ],
   imports: [
     BrowserModule,
