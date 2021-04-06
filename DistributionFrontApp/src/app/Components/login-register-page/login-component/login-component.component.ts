@@ -16,5 +16,5 @@ export class LoginComponentComponent implements OnInit {
   openDashboard() {
     this.router.navigate(['/dashboard']);
   }
-  
+
 }

@@ -11,6 +11,8 @@ import { MyIncidentsComponentComponent } from './Components/dashboard-page/my-in
 import { SocialNetworksLoginComponentComponent } from './Components/login-register-page/social-networks-login-component/social-networks-login-component.component';
 import { AdminProfileRequestsComponent } from './Components/admin-profile-requests/admin-profile-requests.component';
 import { TableComponentComponent } from './Components/admin-profile-requests/table-component/table-component.component';
+import { TableDashboardComponent } from './Components/dashboard-page/table-dashboard/table-dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { TableComponentComponent } from './Components/admin-profile-requests/tab
     SocialNetworksLoginComponentComponent,
     AdminProfileRequestsComponent,
     TableComponentComponent,
+    TableDashboardComponent,
+    
   ],
   imports: [
     BrowserModule,

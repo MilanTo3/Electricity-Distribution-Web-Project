@@ -1,0 +1,56 @@
+body {
+    background-image: url(/assets/Images/orangebackground.jpg);
+    height: 750px;
+    
+}
+.container { 
+    display: flex;
+    margin-left: 5%;
+    margin-top: 100px;
+   
+}
+
+.child {
+    margin: 20px;
+    font-family: 'Helvetica';
+    color:darkslategrey;
+    line-height: 50px;
+    font-size: 1.5rem;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.container p {
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: left;
+    margin-left: 5%;
+    line-height: 30px;
+}
+#one {
+    background-color: #C3E3E7;
+  
+}
+
+#two {
+    background-color: #C3E3E7;
+}
+
+#three {
+    background-color: #C3E3E7;
+}
+
+#one:hover {
+    background-color: #A5D6D9;
+    cursor: pointer;
+}
+
+#two:hover {
+    background-color: #A5D6D9;
+}
+
+#three:hover {
+    background-color: #A5D6D9;
+}
