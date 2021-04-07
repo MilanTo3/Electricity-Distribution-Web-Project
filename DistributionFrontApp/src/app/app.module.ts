@@ -12,6 +12,7 @@ import { SocialNetworksLoginComponentComponent } from './Components/login-regist
 import { AdminProfileRequestsComponent } from './Components/admin-profile-requests/admin-profile-requests.component';
 import { TableComponentComponent } from './Components/admin-profile-requests/table-component/table-component.component';
 import { TableDashboardComponent } from './Components/dashboard-page/table-dashboard/table-dashboard.component';
+import { WorkRequestsPageComponent } from './Components/work-requests-page/work-requests-page.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { TableDashboardComponent } from './Components/dashboard-page/table-dashb
     AdminProfileRequestsComponent,
     TableComponentComponent,
     TableDashboardComponent,
+    WorkRequestsPageComponent,
     
   ],
   imports: [
