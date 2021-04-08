@@ -9,10 +9,12 @@ export class SideNavbarComponent implements OnInit {
 
   @Input('sidebarType') sidebarid:number = 0;
   contentTypes: string[][] = [
-    ["Basic Information", "History of State Changes", "Multimedia Attachments"]
+    ["Basic Information", "History of State Changes", "Multimedia Attachments"],
+    ["Basic Information", "Devices", "Resolution", "Calls", "Crew", "Multimedia Attachments", "Equipment"]
   ];
   contentRoutes: string[][] = [
-    ["basicInformation", "historyStateChanges", "multimediaAttachments"]
+    ["basicInformation", "historyStateChanges", "multimediaAttachments"],
+    ["£", "£", "£", "£", "£", "£", "£"]
   ];
   sidebarMap: Map<string, string> = new Map();
 

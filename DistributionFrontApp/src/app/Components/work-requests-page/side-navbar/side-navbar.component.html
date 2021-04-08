@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>This is a sidebar</title>
-        <meta charset="utf-8"/>
-    </head>
-    <body>
-        <div class="container">
-            <div *ngFor="let item of sidebarMap | keyvalue">
-                <a [routerLink]="item.value"><p>{{item.key}}</p></a>
-            </div>
+
+<head>
+    <title>This is a sidebar</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <div class="container sidebar">
+        <div class="list-group">
+            <a *ngFor="let item of sidebarMap | keyvalue" [routerLink]="item.value" class="list-group-item">
+                <p>{{item.key}}</p>
+            </a>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
