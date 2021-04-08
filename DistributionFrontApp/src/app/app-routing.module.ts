@@ -5,6 +5,7 @@ import { DashboardPageComponent } from './Components/dashboard-page/dashboard-pa
 import { AdminProfileRequestsComponent } from './Components/admin-profile-requests/admin-profile-requests.component';
 import { TableDashboardComponent } from './Components/dashboard-page/table-dashboard/table-dashboard.component';
 import { WorkRequestsPageComponent } from './Components/work-requests-page/work-requests-page.component';
+import { WorkRequestFormComponent } from './Components/work-requests-page/work-request-form/work-request-form.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: "dashboard", component: DashboardPageComponent },
   { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
   { path: "myIncidents", component:TableDashboardComponent},
-  { path: "workRequests", component: WorkRequestsPageComponent }
+  { path: "workRequests", component: WorkRequestsPageComponent },
+  { path: "workRequestForm", component: WorkRequestFormComponent }
 
 ];
 
