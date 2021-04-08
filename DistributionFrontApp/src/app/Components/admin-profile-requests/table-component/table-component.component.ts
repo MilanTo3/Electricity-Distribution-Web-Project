@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MyIncidents } from 'src/app/Models/MyIncidents.model';
 import { User } from '../../../Models/User.model';
 import { WorkRequest } from '../../../Models/WorkRequest.model';
 
@@ -21,7 +22,9 @@ export class TableComponentComponent implements OnInit {
     if(this.tableid === 0){
       this.loadProfileRequests();
     }else if(this.tableid === 1){
-      this.loadWorkRequests();
+      this.loadWorkRequests();    
+    }else if(this.tableid === 2){
+      this.loadMyIncidents();
     }
     
   }
@@ -47,6 +50,15 @@ export class TableComponentComponent implements OnInit {
     this.dataToPrint.push(request1, request2, request3);
     this.keyNames = Object.getOwnPropertyNames(request3);
 
+  }
+
+  loadMyIncidents() {
+    let myIncident1 = new MyIncidents('WR-1', new Date(2021, 9, 1, 5, 5, 4, 22), "3989-434-343", "Executing", "Koste Racina 23");
+    let myIncident2 = new MyIncidents('WR-1', new Date(2021, 10, 1, 11, 5, 4, 22), "3989-434-343", "Draft", "Cankareva 5");
+    let myIncident3 = new WorkRequest("WR-3", new Date(2021, 4, 23, 15, 50, 33), "349-553-855-12", "Draft", "Dragana Torbice 3");
+
+    this.dataToPrint.push(myIncident1, myIncident2, myIncident3);
+    this.keyNames = Object.getOwnPropertyNames(myIncident3);
   }
 
   ngOnInit(): void{
