@@ -9,6 +9,7 @@ import { WorkRequestFormComponent } from './Components/work-requests-page/work-r
 import { BasicInformationFPComponent } from './Components/work-requests-page/work-request-form/basic-information-fp/basic-information-fp.component';
 import { HistoryStateChangesComponent } from './Components/work-requests-page/work-request-form/history-state-changes/history-state-changes.component';
 import { MultimediaAttachmentsComponent } from './Components/work-requests-page/work-request-form/multimedia-attachments/multimedia-attachments.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -21,7 +22,9 @@ const routes: Routes = [
     { path: "basicInformation", component: BasicInformationFPComponent },
     { path: "historyStateChanges", component: HistoryStateChangesComponent },
     { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
-  ] }
+  ] },
+  { path: "profile", component: ProfileComponent }
+
 ];
 
 @NgModule({

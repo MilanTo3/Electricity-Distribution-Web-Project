@@ -34,10 +34,10 @@ export class TableComponentComponent implements OnInit {
 
   loadProfileRequests(){
 
-    let user1 = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Administrator");
-    let user2 = new User("Rukia", "Kuchiki", "kuchiki123@gmail.com", "Dispatcher");
-    let user3 = new User("Jordan", "Peterson", "jordanpeterson@gmail.com", "Consumer");
-    let user4 = new User("Petar" , "Bojovic", "petarbojovic@gmail.com", "Administrator");
+    let user1 = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Administrator", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
+    let user2 = new User("Rukia", "Kuchiki", "kuchiki123@gmail.com", "Dispatcher", "username1", "2019-01-16", "fejkadresfda", "/assets/Images/colorpattern.jpg");
+    let user3 = new User("Jordan", "Peterson", "jordanpeterson@gmail.com", "Consumer", "username3", "2019-01-16", "fejkfdadresa", "/assets/Images/colorpattern.jpg");
+    let user4 = new User("Petar" , "Bojovic", "petarbojovic@gmail.com", "Administrator", "username4", "2019-01-16", "fejkfadresa", "/assets/Images/colorpattern.jpg");
 
     this.dataToPrint.push(user1, user2, user3, user4);
     this.keyNames = Object.getOwnPropertyNames(user4);
