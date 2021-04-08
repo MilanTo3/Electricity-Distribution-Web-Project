@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MyIncidents } from 'src/app/Models/MyIncidents.model';
 import { User } from '../../../Models/User.model';
 import { WorkRequest } from '../../../Models/WorkRequest.model';
+import { HistoryStateChange } from '../../../Models/HistoryStateChange.model';
 
 @Component({
   selector: 'app-table-component',
@@ -25,6 +26,8 @@ export class TableComponentComponent implements OnInit {
       this.loadWorkRequests();    
     }else if(this.tableid === 2){
       this.loadMyIncidents();
+    }else if(this.tableid === 3){
+      this.loadHistoryStateChanges();
     }
     
   }
@@ -55,10 +58,20 @@ export class TableComponentComponent implements OnInit {
   loadMyIncidents() {
     let myIncident1 = new MyIncidents('WR-1', new Date(2021, 9, 1, 5, 5, 4, 22), "3989-434-343", "Executing", "Koste Racina 23");
     let myIncident2 = new MyIncidents('WR-1', new Date(2021, 10, 1, 11, 5, 4, 22), "3989-434-343", "Draft", "Cankareva 5");
-    let myIncident3 = new WorkRequest("WR-3", new Date(2021, 4, 23, 15, 50, 33), "349-553-855-12", "Draft", "Dragana Torbice 3");
+    let myIncident3 = new MyIncidents("WR-3", new Date(2021, 4, 23, 15, 50, 33), "349-553-855-12", "Draft", "Dragana Torbice 3");
 
     this.dataToPrint.push(myIncident1, myIncident2, myIncident3);
     this.keyNames = Object.getOwnPropertyNames(myIncident3);
+  }
+
+  loadHistoryStateChanges(){
+
+    let stateChange1 = new HistoryStateChange("Petar", "Bojovic", new Date(2021, 5, 25, 4, 33, 1, 20), "State changed to denied.");
+    let stateChange2 = new HistoryStateChange("Petar", "Bojovic", new Date(2021, 4, 21, 21, 23, 22, 30), "State changed to approved.");
+
+    this.dataToPrint.push(stateChange1, stateChange2);
+    this.keyNames = Object.getOwnPropertyNames(stateChange2);
+
   }
 
   ngOnInit(): void{

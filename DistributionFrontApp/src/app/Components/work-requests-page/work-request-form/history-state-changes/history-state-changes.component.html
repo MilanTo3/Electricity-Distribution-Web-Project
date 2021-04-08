@@ -1,1 +1,12 @@
-<p>history-state-changes works!</p>
+<div class="container">
+    <div class="row">
+        <h3 class="title">History of State Changes:</h3>
+        <p class="labela">Here, you can see the history of this work request denial or approval.</p>
+    </div>
+    <div>
+        <app-table-component [tableType]='3'></app-table-component>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+        <button type="button" class="btn btn-danger">Deny</button>
+        <button type="button" class="btn btn-success">Approve</button>
+    </div>
+</div>

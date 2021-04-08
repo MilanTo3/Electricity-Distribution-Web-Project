@@ -17,6 +17,7 @@ import { WorkRequestFormComponent } from './Components/work-requests-page/work-r
 import { HistoryStateChangesComponent } from './Components/work-requests-page/work-request-form/history-state-changes/history-state-changes.component';
 import { BasicInformationFPComponent } from './Components/work-requests-page/work-request-form/basic-information-fp/basic-information-fp.component';
 import { MultimediaAttachmentsComponent } from './Components/work-requests-page/work-request-form/multimedia-attachments/multimedia-attachments.component';
+import { SideNavbarComponent } from './Components/work-requests-page/side-navbar/side-navbar.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MultimediaAttachmentsComponent } from './Components/work-requests-page/
     HistoryStateChangesComponent,
     BasicInformationFPComponent,
     MultimediaAttachmentsComponent,
+    SideNavbarComponent,
     
   ],
   imports: [

@@ -1,1 +1,20 @@
-<p>multimedia-attachments works!</p>
+<div class="container">
+    <div class="row">
+        <h3 class="title">Multimedia attachments:</h3>
+        <p class="labela">Here, multimedia attachments can be added for a work request. Attachments such as diagrams,
+            drafts, images will be shared with team members who are working on an incident that this work request is
+            for.</p>
+    </div>
+    <div class="row col-md-11">
+        <div class="imageListClass">
+            <div>
+                <input id='fileid' type='file' #fileInput hidden />
+                <a (click)="fileInput.click()">
+                    <div class="uploadImage">
+                        <p class="uploadText">Upload</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

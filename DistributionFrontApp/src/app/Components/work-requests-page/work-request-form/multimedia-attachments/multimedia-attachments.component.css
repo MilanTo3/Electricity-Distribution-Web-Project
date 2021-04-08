@@ -1,0 +1,38 @@
+.title{
+    color: #ec7729;
+    font-weight: bold;
+    font-family: 'Roboto';
+}
+
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+    margin-bottom: 25px;
+}
+
+.uploadImage{
+    border: 1px solid #dd612c;
+    border-radius: 15px;
+    color:white;
+    font-family: 'Roboto';
+    font-weight: bold;
+    width: 125px;
+    height: 125px;
+    text-align:center;
+    background-image:url(/assets/Images/uploadImage.png);
+    background-size:cover;
+}
+
+.uploadImage:hover{
+    opacity: 0.7;
+}
+
+.uploadText{
+    margin-top: 86px;
+}
+
+.imageListClass{
+    border: 1px solid #699fa1;
+    border-radius: 10px;
+    padding: 4px;
+}
