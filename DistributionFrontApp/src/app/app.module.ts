@@ -18,6 +18,8 @@ import { HistoryStateChangesComponent } from './Components/work-requests-page/wo
 import { BasicInformationFPComponent } from './Components/work-requests-page/work-request-form/basic-information-fp/basic-information-fp.component';
 import { MultimediaAttachmentsComponent } from './Components/work-requests-page/work-request-form/multimedia-attachments/multimedia-attachments.component';
 import { SideNavbarComponent } from './Components/work-requests-page/side-navbar/side-navbar.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { ProfileDetailsComponent } from './Components/profile/profile-details/profile-details.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { SideNavbarComponent } from './Components/work-requests-page/side-navbar
     BasicInformationFPComponent,
     MultimediaAttachmentsComponent,
     SideNavbarComponent,
+    ProfileComponent,
+    ProfileDetailsComponent,
     
   ],
   imports: [
