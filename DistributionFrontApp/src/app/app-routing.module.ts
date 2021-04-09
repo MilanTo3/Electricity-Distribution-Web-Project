@@ -10,6 +10,8 @@ import { BasicInformationFPComponent } from './Components/work-requests-page/wor
 import { HistoryStateChangesComponent } from './Components/work-requests-page/work-request-form/history-state-changes/history-state-changes.component';
 import { MultimediaAttachmentsComponent } from './Components/work-requests-page/work-request-form/multimedia-attachments/multimedia-attachments.component';
 import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
+import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
+import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -18,12 +20,20 @@ const routes: Routes = [
   { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
   { path: "myIncidents", component:TableDashboardComponent},
   { path: "workRequests", component: WorkRequestsPageComponent },
-  { path: "workRequestForm", component: WorkRequestFormComponent, children: [
+  { path: "workRequestForm", component: WorkRequestFormComponent,
+     children: [
     { path: "basicInformation", component: BasicInformationFPComponent },
     { path: "historyStateChanges", component: HistoryStateChangesComponent },
     { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
   ] },
-  { path: "newIncident", component: NewIncidentComponent}
+  { path: "newIncident", component: NewIncidentComponent,
+    children: [
+      { path: "basicInformation", component: BasicInformationIncidentComponent },
+      { path: "devices", component: DevicesComponentComponent }
+    ]
+  }
+
+    
 ];
 
 @NgModule({

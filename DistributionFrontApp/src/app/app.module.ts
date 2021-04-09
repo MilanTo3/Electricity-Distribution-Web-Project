@@ -19,8 +19,8 @@ import { BasicInformationFPComponent } from './Components/work-requests-page/wor
 import { MultimediaAttachmentsComponent } from './Components/work-requests-page/work-request-form/multimedia-attachments/multimedia-attachments.component';
 import { SideNavbarComponent } from './Components/work-requests-page/side-navbar/side-navbar.component';
 import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
-import { LeftSidebarComponent } from './Components/dashboard-page/table-dashboard/new-incident/left-sidebar/left-sidebar.component';
-import { RightSideComponent } from './Components/dashboard-page/table-dashboard/new-incident/right-side/right-side.component';
+import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
+import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
 
 
 
@@ -43,12 +43,10 @@ import { RightSideComponent } from './Components/dashboard-page/table-dashboard/
     MultimediaAttachmentsComponent,
     SideNavbarComponent,
     NewIncidentComponent,
-    LeftSidebarComponent,
-    RightSideComponent,
-
-    
-
-    
+    BasicInformationIncidentComponent,
+    DevicesComponentComponent,
+  
+  
   ],
   imports: [
     BrowserModule,
