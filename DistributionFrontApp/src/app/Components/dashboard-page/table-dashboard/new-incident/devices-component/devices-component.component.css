@@ -1,0 +1,39 @@
+/*.requestsPage{
+    margin-top: 50px;
+}*/
+
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+}
+
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+    margin-bottom: 25px;
+}
+
+.filterbtn{
+    float:right;
+}
+
+.newbtn{
+    margin-right:24px;
+
+}
+
+.fas, .fa{
+    padding-right: 10px;
+}
+
+.newbtn, .filterbtn, .radiobtn{
+    background: #699fa1;
+    color: white;
+    font-weight: bold;
+}
+
+.newbtn:hover, .filterbtn:hover, .radiobtn:hover{
+    background: #dd612c;
+
+}
