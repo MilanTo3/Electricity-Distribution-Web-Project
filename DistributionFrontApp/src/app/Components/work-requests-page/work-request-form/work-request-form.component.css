@@ -3,3 +3,21 @@
     margin-top:50px;
     margin-left:50px;
 }
+
+.buttons {
+    display: inline-block; 
+    margin-left: 55%;
+    margin-top: 10px;
+}
+
+button{
+    background: #699fa1;
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+button:hover{
+    background: #dd612c;
+
+}
