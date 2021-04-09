@@ -11,6 +11,7 @@ export class ProfileDetailsComponent implements OnInit {
 
   currentUser = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Dispatcher", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
   rolesOptions = ["Administrator", "Dispatcher", "Team member", "Consumer", "Employed(data analyst)"];
+  selectedRole : string;
 
   profileForm = this.formBuilder.group({
     name: new FormControl(this.currentUser.name),
@@ -24,6 +25,8 @@ export class ProfileDetailsComponent implements OnInit {
   });
 
   constructor(private formBuilder: FormBuilder) {
+    this.rolesOptions = ["Administrator", "Dispatcher", "Team member", "Consumer", "Employed(data analyst)"];
+    this.selectedRole = this.currentUser.role;
   }
 
   ngOnInit(): void {

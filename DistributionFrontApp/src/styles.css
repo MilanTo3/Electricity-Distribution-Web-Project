@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --c-blue-100: #699FA1;
+    --c-blue-200: #A5D6D9;
+    --c-blue-300: #C3E5E7;
+  
+    --c-orange-100: #EC7729;
+    --c-orange-200: #DD612C;
+  }
+  
