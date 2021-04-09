@@ -27,7 +27,7 @@ const routes: Routes = [
     { path: "historyStateChanges", component: HistoryStateChangesComponent },
     { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
   ] },
-  { path: "profile", component: ProfileComponent }
+  { path: "profile", component: ProfileComponent },
 
   { path: "newIncident", component: NewIncidentComponent,
     children: [
