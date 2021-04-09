@@ -1,0 +1,198 @@
+<form class="profile-settings" action="" [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
+    <div class="container">
+        <div class= "row">
+			<div class= "col col-md-6 p-5">
+				<h2 class="h3 border-bottom pb-3 mb-5 section-title">User details</h2>
+							
+					<div class="row">
+                        <div class="col ">
+                            <div class="form-group">
+                                <label for="name"><h5>Username</h5></label>
+                                <div class="input-group ">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        id="username"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Username"
+                                        formControlName="username"
+                                        value="{{ currentUser != null ? currentUser.username : '' }}"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group" >
+                                <label for="name"><h5>Name</h5></label>
+                                <div class="input-group ">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            </svg>
+                                        </span>
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Name"
+                                            formControlName="name"
+                                            value="{{ currentUser != null ? currentUser.name : '' }}"
+                                        />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label for="address"><h5>Address</h5></label>
+                                <div class="input-group ">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        id="address"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Address"
+                                        formControlName="address"
+                                        value="{{ currentUser != null ? currentUser.address : '' }}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label for="oldPassword"><h5>Old password</h5></label>
+                                <div class="input-group ">                         
+                                    <input
+                                            id="oldPassword"
+                                            type="password"
+                                            class="form-control"
+                                            placeholder="Old password"
+                                            formControlName="oldPassword"
+                                            value="{{''}}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="role"><h5>Change role:</h5></label>
+                                <select  class="form-control" id="role" formControlName="role" value="{{ currentUser != null ? currentUser.role : '' }}">
+                                        <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
+                                </select>
+                            </div> 
+
+						</div>
+						<div class="col ">
+                            <div class="form-group">
+                                <label for="email"><h5>Email</h5></label>
+                                <div class="input-group ">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" >
+                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        class="form-control"
+                                        placeholder="Email"
+                                        formControlName="email"
+                                        value="{{ currentUser != null ? currentUser.email : '' }}"                                
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label for="lastname"><h5>Lastname</h5></label>
+                                <div class="input-group ">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        id="lastname"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Last name"
+                                        formControlName="lastname"
+                                        value="{{ currentUser != null ? currentUser.lastname : '' }}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label for="birthday"><h5>Birthday</h5></label>
+                                <div class="input-group ">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        id="birthday"
+                                        type="date"
+                                        class="form-control"
+                                        placeholder="Birthday"
+                                        formControlName="birthday"
+                                        value="{{ currentUser != null ? currentUser.birthday : '' }}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label for="newPassword"><h5>New password</h5></label>
+                                <div class="input-group ">                         
+                                    <input
+                                        id="newPassword"
+                                        type="password"
+                                        class="form-control"
+                                        placeholder="New password"
+                                        formControlName="newPassword"
+                                        value="{{''}}"
+                                    />
+                                </div>
+                            </div>
+
+				        </div>
+
+					</div> <!-- end row -->
+						
+                    <div class="row">
+                        <div class="col pt-3">
+                            <button class="btn btn-success overflow-hidden" type="submit">
+                                Save changes
+                            </button>
+                        </div>   
+                    </div>    
+						</div>
+
+			<div class="col col-md-6 p-5 user-profile-img-browse">
+                <h2 class="h3 border-bottom pb-3 mb-5 section-title">Profile picture</h2>
+                <div class="row">
+                        <div class="col ">
+                            <div class="form-group">
+                                <label class="row mb-4 user-profile-img-wrapper" for="browse-photo-btn">
+                                    <img
+                                        id="profileImg"
+                                        type="image"
+                                        class="user-profile-img"
+                                        formControlName="profileImg"
+                                        [src]="currentUser.profileImg"                                
+                                    />
+                                </label>
+                                                        
+                                <div class='row'>
+                                    <label class="btn btn-primary mx-auto">
+                                            Browse&hellip; 
+                                            <input type="file" id="browse-photo-btn" (change)="onFileChanged($event)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
+                                    </label>
+                                </div>
+                            </div>                   
+                        </div> 
+                </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+  

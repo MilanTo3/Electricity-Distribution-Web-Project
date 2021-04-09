@@ -1,0 +1,54 @@
+.profile-settings h2 {
+  color: var(--c-blue-100);
+  border-bottom: 1px solid;
+  border-color: var(--c-blue-300);
+}
+.profile-settings .btn {
+  width: 200px;
+}
+.profile-settings .form-group > label {
+  color: var(--c-blue-100);
+}
+.input-group-text{
+  border-color: var(--c-blue-100);
+  background: var(--c-blue-300);
+}
+.form-control {
+  border-color: var(--c-blue-100);
+}
+.user-profile-img-browse {
+  max-width: 400px;
+}
+
+.user-profile-img-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  background: var(--c-gray-1000);
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  cursor: pointer;
+}
+.user-profile-img-wrapper > img {
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  transition: 0.33s ease-in-out;
+}
+.user-profile-img-wrapper > img:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  filter: brightness(110%);
+}
+.btn{
+  border-radius: 18px;
+  height:34px;
+  width: 150px;
+  color: white;
+  font-weight: bold;
+  background-color: var(--c-orange-200);
+}

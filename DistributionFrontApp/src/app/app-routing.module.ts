@@ -9,6 +9,7 @@ import { WorkRequestFormComponent } from './Components/work-requests-page/work-r
 import { BasicInformationFPComponent } from './Components/work-requests-page/work-request-form/basic-information-fp/basic-information-fp.component';
 import { HistoryStateChangesComponent } from './Components/work-requests-page/work-request-form/history-state-changes/history-state-changes.component';
 import { MultimediaAttachmentsComponent } from './Components/work-requests-page/work-request-form/multimedia-attachments/multimedia-attachments.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
 import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
@@ -26,6 +27,8 @@ const routes: Routes = [
     { path: "historyStateChanges", component: HistoryStateChangesComponent },
     { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
   ] },
+  { path: "profile", component: ProfileComponent }
+
   { path: "newIncident", component: NewIncidentComponent,
     children: [
       { path: "basicInformation", component: BasicInformationIncidentComponent },
