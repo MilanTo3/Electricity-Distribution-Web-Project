@@ -25,6 +25,7 @@ import { ProfileDetailsComponent } from './Components/profile/profile-details/pr
 import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
 import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
+import { WorkPlansComponent } from './Components/work-plans/work-plans.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { DevicesComponentComponent } from './Components/dashboard-page/table-das
     NewIncidentComponent,
     BasicInformationIncidentComponent,
     DevicesComponentComponent,
+    WorkPlansComponent,
 
   
   ],
