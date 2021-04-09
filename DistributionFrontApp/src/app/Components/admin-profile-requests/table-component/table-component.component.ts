@@ -3,6 +3,8 @@ import { MyIncidents } from 'src/app/Models/MyIncidents.model';
 import { User } from '../../../Models/User.model';
 import { WorkRequest } from '../../../Models/WorkRequest.model';
 import { HistoryStateChange } from '../../../Models/HistoryStateChange.model';
+import { Device } from 'src/app/Models/Device.model';
+
 
 @Component({
   selector: 'app-table-component',
@@ -28,6 +30,8 @@ export class TableComponentComponent implements OnInit {
       this.loadMyIncidents();
     }else if(this.tableid === 3){
       this.loadHistoryStateChanges();
+    }else if(this.tableid === 4){
+      this.loadDevices();
     }
     
   }
@@ -73,6 +77,17 @@ export class TableComponentComponent implements OnInit {
     this.keyNames = Object.getOwnPropertyNames(stateChange2);
 
   }
+
+  loadDevices() {
+    let device1 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
+    let device2 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
+    let device3 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
+
+    this.dataToPrint.push(device1, device2, device3);
+    this.keyNames = Object.getOwnPropertyNames(device3);
+  }
+
+
 
   ngOnInit(): void{
     this.addMockRequests();

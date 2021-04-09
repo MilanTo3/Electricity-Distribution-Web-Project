@@ -1,12 +1,17 @@
+.container {
+    margin-top: 50px;
+}
+
 .workRequestForm{
     display: inline-flex;
     margin-top:50px;
     margin-left:50px;
 }
 
+
 .buttons {
     display: inline-block; 
-    margin-left: 55%;
+    margin-left: 48%;
     margin-top: 10px;
 }
 

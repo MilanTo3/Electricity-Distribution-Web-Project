@@ -22,6 +22,9 @@ import { MultimediaAttachmentsComponent } from './Components/work-requests-page/
 import { SideNavbarComponent } from './Components/work-requests-page/side-navbar/side-navbar.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ProfileDetailsComponent } from './Components/profile/profile-details/profile-details.component';
+import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
+import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
+import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
 
 
 @NgModule({
@@ -43,8 +46,12 @@ import { ProfileDetailsComponent } from './Components/profile/profile-details/pr
     MultimediaAttachmentsComponent,
     SideNavbarComponent,
     ProfileComponent,
-    ProfileDetailsComponent,
-    
+    ProfileDetailsComponent,    
+    NewIncidentComponent,
+    BasicInformationIncidentComponent,
+    DevicesComponentComponent,
+
+  
   ],
   imports: [
     BrowserModule,
