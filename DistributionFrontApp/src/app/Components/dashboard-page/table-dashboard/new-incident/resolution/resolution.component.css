@@ -1,0 +1,31 @@
+.formRow{
+    margin-top: 21px;
+    padding-right: 100px;
+}
+
+label{
+    color: #dd612c;
+    font-family: 'Georgia';
+   
+}
+
+.form-group input, select {
+    height: 34px;
+    color: #699FA1;
+    font-weight: bold;
+    background-color: rgba(137, 179, 228, 0.3);
+    border-radius: 4px;  
+}
+
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+}
+
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+    margin-bottom: 25px;
+}
+
