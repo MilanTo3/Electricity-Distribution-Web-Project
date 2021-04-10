@@ -26,6 +26,7 @@ import { NewIncidentComponent } from './Components/dashboard-page/table-dashboar
 import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
 import { WorkPlansComponent } from './Components/work-plans/work-plans.component';
+import { WorkPlanFormComponent } from './Components/work-plans/work-plan-form/work-plan-form.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { WorkPlansComponent } from './Components/work-plans/work-plans.component
     BasicInformationIncidentComponent,
     DevicesComponentComponent,
     WorkPlansComponent,
+    WorkPlanFormComponent,
 
   
   ],
