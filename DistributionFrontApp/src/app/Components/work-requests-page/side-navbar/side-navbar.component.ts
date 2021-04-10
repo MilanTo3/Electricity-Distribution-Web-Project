@@ -11,7 +11,7 @@ export class SideNavbarComponent implements OnInit {
   contentTypes: string[][] = [
     ["Basic Information", "History of State Changes", "Multimedia Attachments"],
     ["Basic Information", "Devices", "Resolution"],
-    ["Basic information", "History of state changes", "Multimedia attachments", "Equipement", "Switching instructions"]
+    ["Basic information", "History of state changes", "Multimedia attachments", "Equipement", "Switching instructions"],
     ["Basic Information", "Devices", "Resolution", "Calls"]
   ];
   contentRoutes: string[][] = [
