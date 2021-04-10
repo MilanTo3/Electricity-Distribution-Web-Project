@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { GoogleMapsModule } from '@angular/google-maps';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,8 @@ import { ProfileDetailsComponent } from './Components/profile/profile-details/pr
 import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
 import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
+import { MapPageComponent } from './Components/map-page/map-page.component';
+import { MapComponentComponent } from './Components/map-page/map-component/map-component.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { DevicesComponentComponent } from './Components/dashboard-page/table-das
     NewIncidentComponent,
     BasicInformationIncidentComponent,
     DevicesComponentComponent,
+    MapPageComponent,
+    MapComponentComponent,
 
   
   ],
@@ -57,7 +61,8 @@ import { DevicesComponentComponent } from './Components/dashboard-page/table-das
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
