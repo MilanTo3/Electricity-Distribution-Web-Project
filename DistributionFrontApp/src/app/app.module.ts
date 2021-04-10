@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './Components/login-register-page/login-component/login-component.component';
@@ -26,6 +25,8 @@ import { NewIncidentComponent } from './Components/dashboard-page/table-dashboar
 import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
 import { ResolutionComponent } from './Components/dashboard-page/table-dashboard/new-incident/resolution/resolution.component';
+import { MapPageComponent } from './Components/map-page/map-page.component';
+import { MapComponentComponent } from './Components/map-page/map-component/map-component.component';
 
 
 @NgModule({
@@ -52,6 +53,8 @@ import { ResolutionComponent } from './Components/dashboard-page/table-dashboard
     BasicInformationIncidentComponent,
     DevicesComponentComponent,
     ResolutionComponent,
+    MapPageComponent,
+    MapComponentComponent,
 
   
   ],
@@ -59,7 +62,7 @@ import { ResolutionComponent } from './Components/dashboard-page/table-dashboard
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
