@@ -27,6 +27,7 @@ import { DevicesComponentComponent } from './Components/dashboard-page/table-das
 import { ResolutionComponent } from './Components/dashboard-page/table-dashboard/new-incident/resolution/resolution.component';
 import { MapPageComponent } from './Components/map-page/map-page.component';
 import { MapComponentComponent } from './Components/map-page/map-component/map-component.component';
+import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { MapComponentComponent } from './Components/map-page/map-component/map-c
     ResolutionComponent,
     MapPageComponent,
     MapComponentComponent,
+    CallsComponent,
 
   
   ],

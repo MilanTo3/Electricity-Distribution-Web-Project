@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>This is a title.</title>
+    <meta charset="utf-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container requestsPage">
+        <h2 class="title">Calls:</h2>
+        <p class="labela">Received calls for specific devices.</p>
+        <button class="btn newbtn"><i class="fas fa-file"></i>New</button>   
+        <button class="btn filterbtn"><i class="fa fa-filter"></i>Filter</button>
+        <app-table-component [tableType]='5'></app-table-component>
+    </div>
+</body>
+
+</html>

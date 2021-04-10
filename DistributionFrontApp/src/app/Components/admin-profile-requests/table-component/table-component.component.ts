@@ -4,6 +4,7 @@ import { User } from '../../../Models/User.model';
 import { WorkRequest } from '../../../Models/WorkRequest.model';
 import { HistoryStateChange } from '../../../Models/HistoryStateChange.model';
 import { Device } from 'src/app/Models/Device.model';
+import { Call } from 'src/app/Models/Call.model';
 
 
 @Component({
@@ -32,7 +33,9 @@ export class TableComponentComponent implements OnInit {
       this.loadHistoryStateChanges();
     }else if(this.tableid === 4){
       this.loadDevices();
-    }
+    }else if(this.tableid === 5){
+      this.loadCalls();
+    };    
     
   }
 
@@ -87,6 +90,15 @@ export class TableComponentComponent implements OnInit {
     this.keyNames = Object.getOwnPropertyNames(device3);
   }
 
+  loadCalls() {
+    let call1 = new Call(2412421, "No electricity for...", "Strong wind", "");
+    let call2 = new Call(5555555, "No electricity for...", "Strong wind", "");
+    let call3 = new Call(1112334, "No electricity for...", "Strong wind", "");
+
+    this.dataToPrint.push(call1, call2, call3);
+    this.keyNames = Object.getOwnPropertyNames(call3);
+
+  }
 
 
   ngOnInit(): void{

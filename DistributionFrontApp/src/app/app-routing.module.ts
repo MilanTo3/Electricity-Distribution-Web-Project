@@ -15,6 +15,7 @@ import { BasicInformationIncidentComponent } from './Components/dashboard-page/t
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
 import { ResolutionComponent } from './Components/dashboard-page/table-dashboard/new-incident/resolution/resolution.component';
 import { MapPageComponent } from './Components/map-page/map-page.component';
+import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -35,8 +36,9 @@ const routes: Routes = [
     children: [
       { path: "basicInformation", component: BasicInformationIncidentComponent },
       { path: "devices", component: DevicesComponentComponent },
-      { path: "resolution", component: ResolutionComponent }
-      
+      { path: "resolution", component: ResolutionComponent },
+      { path: "calls", component: CallsComponent }
+        
     ]
   },
   { path: "map", component: MapPageComponent },
