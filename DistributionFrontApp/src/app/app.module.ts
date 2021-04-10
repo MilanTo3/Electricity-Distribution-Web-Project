@@ -28,6 +28,7 @@ import { DevicesComponentComponent } from './Components/dashboard-page/table-das
 import { WorkPlansComponent } from './Components/work-plans/work-plans.component';
 import { WorkPlanFormComponent } from './Components/work-plans/work-plan-form/work-plan-form.component';
 import { WorkPlanBasicInformationComponent } from './Components/work-plans/work-plan-form/work-plan-basic-information/work-plan-basic-information.component';
+import { SwitchingInstructionsComponent } from './Components/work-plans/work-plan-form/switching-instructions/switching-instructions.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { WorkPlanBasicInformationComponent } from './Components/work-plans/work-
     WorkPlansComponent,
     WorkPlanFormComponent,
     WorkPlanBasicInformationComponent,
+    SwitchingInstructionsComponent,
 
   
   ],

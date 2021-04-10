@@ -16,7 +16,7 @@ import { DevicesComponentComponent } from './Components/dashboard-page/table-das
 import { WorkPlansComponent } from './Components/work-plans/work-plans.component';
 import { WorkPlanFormComponent } from './Components/work-plans/work-plan-form/work-plan-form.component';
 import { WorkPlanBasicInformationComponent } from './Components/work-plans/work-plan-form/work-plan-basic-information/work-plan-basic-information.component';
-
+import { SwitchingInstructionsComponent } from './Components/work-plans/work-plan-form/switching-instructions/switching-instructions.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -44,7 +44,9 @@ const routes: Routes = [
      children: [
       { path: "basic-information", component: WorkPlanBasicInformationComponent},
       { path: "history-of-state-changes", component: HistoryStateChangesComponent },
-      { path: "multimedia-attachments", component: MultimediaAttachmentsComponent }
+      { path: "multimedia-attachments", component: MultimediaAttachmentsComponent },
+      { path: "switching-instructions", component: SwitchingInstructionsComponent }
+
       ] 
   }
 ];
