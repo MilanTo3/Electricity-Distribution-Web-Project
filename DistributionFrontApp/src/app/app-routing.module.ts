@@ -15,6 +15,7 @@ import { BasicInformationIncidentComponent } from './Components/dashboard-page/t
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
 import { WorkPlansComponent } from './Components/work-plans/work-plans.component';
 import { WorkPlanFormComponent } from './Components/work-plans/work-plan-form/work-plan-form.component';
+import { WorkPlanBasicInformationComponent } from './Components/work-plans/work-plan-form/work-plan-basic-information/work-plan-basic-information.component';
 
 
 const routes: Routes = [
@@ -39,8 +40,11 @@ const routes: Routes = [
     ]
   },
   { path: "workPlans", component: WorkPlansComponent },
-  { path: "newWorkPlan", component: WorkPlanFormComponent}
-    
+  { path: "newWorkPlan", component: WorkPlanFormComponent,
+     children: [
+      { path: "basic-information", component: WorkPlanBasicInformationComponent}
+      ] 
+  }
 ];
 
 @NgModule({
