@@ -1,1 +1,86 @@
-<p>work-plan-basic-information works!</p>
+<div class="row">
+<div class="col">
+<!-- <form class="plan-basic-info-form" [formGroup]="planBasicInfoForm" (ngSubmit)="onSubmit()"> -->
+    <div class="container">
+        <div class="row">
+            <h3 class="title">Basic information:</h3>
+            <p class="labela">Please fill out all necessary fields.</p> 
+       </div>
+        <div class="row">
+            <div class="col ">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Type:</label>
+                    <select class="col-sm-4 form-control">
+                        <option>Planned work</option>
+                        <option>Unplanned work</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Status:</label>
+                    <select class="col-sm-4 form-control">
+                        <option selected>Draft</option>
+                    </select>                
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Work request:</label>
+                    <label class="col-sm-4 " >ID work requesta</label>
+                    <!-- ubaci browse dugme -->
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Incident:</label>
+                    <label class="col-sm-4 " >Id incidenta</label>
+                    <!-- ubaci browse dugme -->
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Street:</label>
+                    <input class="col-sm-4 form-control" type="text" />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Start date/time:</label>
+                    <input class="col-sm-4 form-control" type="date" />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">End date/time:</label>
+                    <input class="col-sm-4 form-control" type="date" />
+                </div>
+            </div>
+            <div class="col ">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Field crew:</label>
+                    <label class="col-sm-4 " >ID ekipe</label>
+                    <!-- ubaci browse dugme -->
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Created by:</label>
+                    <label class="col-sm-4 " >Ime i prezime usera</label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Company:</label>
+                    <input class="col-sm-4 form-control" type="text" />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">PhoneNo:</label>
+                    <input class="col-sm-4 form-control" type="text" />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Date/time created:</label>
+                    <input class="col-sm-4 form-control" type="date" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Puprose:</label>
+                    <input class="col form-control" type="text" />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Notes:</label>
+                    <input class="col form-control" type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </form> -->
+</div>
+</div>

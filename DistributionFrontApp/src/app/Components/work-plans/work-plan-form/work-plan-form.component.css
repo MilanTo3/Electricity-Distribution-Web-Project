@@ -1,0 +1,14 @@
+.btn{
+    background: var(--c-blue-100);
+    color: white;
+    font-weight: bold;
+    border-color: var(--c-blue-100);
+    margin-left: 2px;
+}
+.btn:hover{
+    background: var(--c-orange-200);
+    border-color: var(--c-orange-200);
+}
+.work-plan-form{
+    margin-top:50px;
+}
