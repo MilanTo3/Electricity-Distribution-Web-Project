@@ -1,4 +1,4 @@
-import {Component, NgZone, AfterViewInit, Output, Input, EventEmitter, ChangeDetectorRef, OnInit, ɵresetJitOptions } from '@angular/core';
+import {Component, NgZone, AfterViewInit, Input, OnInit } from '@angular/core';
 import olMap from 'ol/Map';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
