@@ -34,7 +34,7 @@ export class TableComponentComponent implements OnInit {
       this.loadHistoryStateChanges();
     }else if(this.tableid === 4){
       this.loadDevices();
-    }else if(this.tableid ===5){
+    }else if(this.tableid ===6){
       this.loadWorkPlans();
     }
     
