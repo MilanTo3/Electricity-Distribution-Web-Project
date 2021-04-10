@@ -1,0 +1,9 @@
+#map{
+    position: absolute;
+    height: 500px;
+    width: 930px;
+    border: 2px solid #ec7729;
+    border-radius: 4px;
+    box-shadow: 3px 3px 5px 2px #699fa1;
+
+}

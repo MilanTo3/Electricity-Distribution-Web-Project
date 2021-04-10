@@ -17,6 +17,9 @@ import { WorkPlansComponent } from './Components/work-plans/work-plans.component
 import { WorkPlanFormComponent } from './Components/work-plans/work-plan-form/work-plan-form.component';
 import { WorkPlanBasicInformationComponent } from './Components/work-plans/work-plan-form/work-plan-basic-information/work-plan-basic-information.component';
 import { SwitchingInstructionsComponent } from './Components/work-plans/work-plan-form/switching-instructions/switching-instructions.component';
+import { ResolutionComponent } from './Components/dashboard-page/table-dashboard/new-incident/resolution/resolution.component';
+import { MapPageComponent } from './Components/map-page/map-page.component';
+import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -36,7 +39,10 @@ const routes: Routes = [
   { path: "newIncident", component: NewIncidentComponent,
     children: [
       { path: "basicInformation", component: BasicInformationIncidentComponent },
-      { path: "devices", component: DevicesComponentComponent }
+      { path: "devices", component: DevicesComponentComponent },
+      { path: "resolution", component: ResolutionComponent },
+      { path: "calls", component: CallsComponent }
+        
     ]
   },
   { path: "workPlans", component: WorkPlansComponent },
@@ -48,7 +54,9 @@ const routes: Routes = [
       { path: "switching-instructions", component: SwitchingInstructionsComponent }
 
       ] 
-  }
+  },
+  { path: "map", component: MapPageComponent }
+    
 ];
 
 @NgModule({

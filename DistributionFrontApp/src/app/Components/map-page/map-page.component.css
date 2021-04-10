@@ -1,0 +1,15 @@
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+}
+
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+    margin-bottom: 25px;
+}
+
+.mapContainer{
+    margin-top: 51px;
+}
