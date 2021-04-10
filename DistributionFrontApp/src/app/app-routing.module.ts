@@ -42,7 +42,9 @@ const routes: Routes = [
   { path: "workPlans", component: WorkPlansComponent },
   { path: "newWorkPlan", component: WorkPlanFormComponent,
      children: [
-      { path: "basic-information", component: WorkPlanBasicInformationComponent}
+      { path: "basic-information", component: WorkPlanBasicInformationComponent},
+      { path: "history-of-state-changes", component: HistoryStateChangesComponent },
+      { path: "multimedia-attachments", component: MultimediaAttachmentsComponent }
       ] 
   }
 ];

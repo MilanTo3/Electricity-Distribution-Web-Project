@@ -12,9 +12,6 @@
     font-family: 'Georgia';
     margin-bottom: 25px;
 }
-.btn-label{
-    padding-left:10px;
-}
 
 .radiobtn, .btn-primary{
     background: var(--c-blue-100);
