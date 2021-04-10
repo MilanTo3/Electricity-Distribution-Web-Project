@@ -1,0 +1,26 @@
+.work-plans{
+    margin-top: 50px;
+}
+
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: var(--c-orange-100);
+}
+.labela{
+    color: var(--c-blue-100);
+    font-family: 'Georgia';
+    margin-bottom: 25px;
+}
+
+.radiobtn, .btn-primary{
+    background: var(--c-blue-100);
+    color: white;
+    font-weight: bold;
+    border-color: var(--c-blue-100);
+    
+}
+.radiobtn:hover, .btn-primary:hover{
+    background: var(--c-orange-200);
+    border-color: var(--c-orange-200);
+}

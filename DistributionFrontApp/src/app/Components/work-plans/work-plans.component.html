@@ -1,0 +1,39 @@
+<div class="work-plans">
+    <div class="container">
+        <div class="row">
+            <h2 class="title">Work plans</h2>
+            <label class="labela" >Here, employees can view work plans. The table down is in experimental phase.</label>
+        </div>
+        <div class="row">
+            <div class="col col-lg-2">
+                <button class="btn btn-primary" (click)="createNewPlan()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-fill" viewBox="0 0 16 16">
+                        <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
+                      </svg>New
+                </button>
+            </div>
+            
+            <div class="col col-lg-2">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn radiobtn">
+                        <input type="radio" name="options" id="optionAll" autocomplete="off" checked/> All
+                    </label>
+                    <label class="btn radiobtn">
+                        <input type="radio" name="options" id="optionMine" autocomplete="off"> Mine
+                    </label>
+                </div>
+            </div>
+            <div class="col col-lg-2 ml-auto">
+                <button class="btn btn-primary float-right"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+                      </svg>Filter
+                </button>
+            </div>           
+        </div>
+        
+        <div class="row">
+            <app-table-component [tableType]='6'></app-table-component>
+        </div>
+    </div>
+</div>

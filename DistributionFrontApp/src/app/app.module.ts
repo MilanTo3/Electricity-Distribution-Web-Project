@@ -24,6 +24,10 @@ import { ProfileDetailsComponent } from './Components/profile/profile-details/pr
 import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
 import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
 import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
+import { WorkPlansComponent } from './Components/work-plans/work-plans.component';
+import { WorkPlanFormComponent } from './Components/work-plans/work-plan-form/work-plan-form.component';
+import { WorkPlanBasicInformationComponent } from './Components/work-plans/work-plan-form/work-plan-basic-information/work-plan-basic-information.component';
+import { SwitchingInstructionsComponent } from './Components/work-plans/work-plan-form/switching-instructions/switching-instructions.component';
 import { ResolutionComponent } from './Components/dashboard-page/table-dashboard/new-incident/resolution/resolution.component';
 import { MapPageComponent } from './Components/map-page/map-page.component';
 import { MapComponentComponent } from './Components/map-page/map-component/map-component.component';
@@ -53,6 +57,10 @@ import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-
     NewIncidentComponent,
     BasicInformationIncidentComponent,
     DevicesComponentComponent,
+    WorkPlansComponent,
+    WorkPlanFormComponent,
+    WorkPlanBasicInformationComponent,
+    SwitchingInstructionsComponent,
     ResolutionComponent,
     MapPageComponent,
     MapComponentComponent,

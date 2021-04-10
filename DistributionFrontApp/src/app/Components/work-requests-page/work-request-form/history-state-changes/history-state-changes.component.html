@@ -1,12 +1,17 @@
-<div class="container">
+<div >
     <div class="row">
         <h3 class="title">History of State Changes:</h3>
         <p class="labela">Here, you can see the history of this work request denial or approval.</p>
     </div>
     <div>
         <app-table-component [tableType]='3'></app-table-component>
-        <button type="button" class="btn btn-secondary">Cancel</button>
-        <button type="button" class="btn btn-danger">Deny</button>
-        <button type="button" class="btn btn-success">Approve</button>
+        <div class="row justify-content-end">
+            <div class="w-auto ml-auto">
+                <button type="button" class="btn btn-secondary ml-3">Cancel</button>
+                <button type="button" class="btn btn-danger ml-3">Deny</button>
+                <button type="button" class="btn btn-success ml-3">Approve</button>
+            </div>
+        </div>
+
     </div>
 </div>
