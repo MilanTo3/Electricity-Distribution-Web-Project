@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+    <head>
+      <title>This is a title component.</title>
+      <meta charset="utf-8"/>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+
+    </head>
     <body>
         <table class="table">
             <thead class="header">
               <tr>
                 <th *ngFor="let item of keyNames" scope="col">{{item.charAt(0).toUpperCase() + item.slice(1) + ':'}}</th>
-                <th *ngIf="tableid===0">What to do?</th>
+                <th *ngIf="tableid===0 || tableid===7">What to do?</th>
               </tr>
             </thead>
             <tbody class="body">
@@ -14,6 +20,10 @@
                 <td *ngIf="tableid===0">
                     <button class="adminButton btn btn-success">Approve</button>
                     <button class="adminButton btn btn-danger">Block</button>
+                </td>
+                <td *ngIf="tableid===7">
+                  <button class="teamButtons btn btn-primary">View Team</button>
+                  <button class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
                 </td>
               </tr>
             </tbody>

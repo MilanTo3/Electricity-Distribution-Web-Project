@@ -12,12 +12,14 @@ export class SideNavbarComponent implements OnInit {
     ["Basic Information", "History of State Changes", "Multimedia Attachments"],
     ["Basic Information", "Devices", "Resolution"],
     ["Basic information", "History of state changes", "Multimedia attachments", "Equipement", "Switching instructions"],
-    ["Basic Information", "Devices", "Resolution", "Calls"]
+    ["Basic Information", "Devices", "Resolution", "Calls"],
+    ["Browse and Manage Teams", "Create a Team"]
   ];
   contentRoutes: string[][] = [
     ["basicInformation", "historyStateChanges", "multimediaAttachments"],
     ["basicInformation", "devices", "resolution", "calls", "crew", "multimediAttachments", "equipment"],
-    ["basic-information", "history-of-state-changes", "multimedia-attachments", "equipement", "switching-instructions"]
+    ["basic-information", "history-of-state-changes", "multimedia-attachments", "equipement", "switching-instructions"],
+    ["browseandManageTeams", "createTeam"]
   ];
   sidebarMap: Map<string, string> = new Map();
 

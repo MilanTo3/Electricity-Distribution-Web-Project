@@ -34,3 +34,9 @@
 .tablecell{
     vertical-align: middle;
 }
+
+.teamButtons{
+    font-family: 'Roboto';
+    font-weight: bold;
+    margin-right: 4px;
+}

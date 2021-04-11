@@ -32,7 +32,8 @@ import { ResolutionComponent } from './Components/dashboard-page/table-dashboard
 import { MapPageComponent } from './Components/map-page/map-page.component';
 import { MapComponentComponent } from './Components/map-page/map-component/map-component.component';
 import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
-
+import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
+import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-
     MapPageComponent,
     MapComponentComponent,
     CallsComponent,
-
+    TeamsPageComponent,
+    CreateTeamComponent,
   
   ],
   imports: [

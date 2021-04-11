@@ -6,6 +6,7 @@ import { HistoryStateChange } from '../../../Models/HistoryStateChange.model';
 import { Device } from 'src/app/Models/Device.model';
 import { WorkPlan } from '../../../Models/WorkPlan.model';
 import { Call } from 'src/app/Models/Call.model';
+import { Team } from 'src/app/Models/Team.model';
 
 @Component({
   selector: 'app-table-component',
@@ -37,8 +38,21 @@ export class TableComponentComponent implements OnInit {
       this.loadCalls();
     }else if(this.tableid ===6){
       this.loadWorkPlans();
-    };    
+    }else if(this.tableid ===7){
+      this.loadTeams();
+    }
     
+  }
+
+  loadTeams(){
+
+    let team1 = new Team("Team-1", "Dispatch Team Telep");
+    let team2 = new Team("Team-2", "Dispatch Team Novo Naselje");
+    let team3 = new Team("Team-3", "Dispatch Team Satelit");
+
+    this.dataToPrint.push(team1, team2, team3);
+    this.keyNames = Object.getOwnPropertyNames(team3);
+
   }
 
   loadProfileRequests(){

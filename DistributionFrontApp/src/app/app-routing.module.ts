@@ -20,6 +20,8 @@ import { SwitchingInstructionsComponent } from './Components/work-plans/work-pla
 import { ResolutionComponent } from './Components/dashboard-page/table-dashboard/new-incident/resolution/resolution.component';
 import { MapPageComponent } from './Components/map-page/map-page.component';
 import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
+import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
+import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -55,7 +57,9 @@ const routes: Routes = [
 
       ] 
   },
-  { path: "map", component: MapPageComponent }
+  { path: "map", component: MapPageComponent },
+  { path: "teamsPage", component: TeamsPageComponent },
+  { path: "createTeam", component: CreateTeamComponent }
     
 ];
 

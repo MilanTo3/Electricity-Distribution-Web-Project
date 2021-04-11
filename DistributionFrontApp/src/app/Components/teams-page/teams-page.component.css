@@ -1,0 +1,29 @@
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+}
+
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+}
+
+.buttonClass{
+    background: #699fa1;
+    color:white;
+    font-weight:bold;
+    font-family: 'Roboto';
+}
+
+.buttonClass:hover{
+    background: #dd612c;
+}
+
+.searchBar{
+    margin-top: 24px;
+}
+
+.browseTeamsView{
+    margin-top: 50px;
+}
