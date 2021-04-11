@@ -61,7 +61,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="ModalLabel">Add new instruction</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal"  (click)="resetModal()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -70,8 +70,8 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Element</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="instructionElement">
-                  <option selected>Choose element...</option>
+                <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="instructionElement" >
+                  <option selected value="">Choose element...</option>
                   <option value="BREAKER_ID">BREAKER_ID</option>
                   <option value="FUSE_ID">FUSE_ID</option>
                   <option value="TRANSFORMER_ID">TRANSFORMER_ID</option>
@@ -85,7 +85,7 @@
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary buttons" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary buttons" (click)="resetModal()" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary buttons" (click)="createNewInstruction()" data-dismiss="modal">Save changes</button>
         </div>
       </div>

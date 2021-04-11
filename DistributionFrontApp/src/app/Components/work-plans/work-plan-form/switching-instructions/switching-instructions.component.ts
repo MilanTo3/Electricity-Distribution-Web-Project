@@ -32,6 +32,7 @@ export class SwitchingInstructionsComponent implements OnInit {
   }
   createNewInstruction(){
     this.instructions.push({id: 26, name: this.instructionText + " " + this.instructionElement, status: "UNEXECUTED"});
+    this.resetModal();
   }
   executeInstruction(){
     let item = this.instructions.find(i => i.id === this.selectedId);
@@ -53,5 +54,8 @@ export class SwitchingInstructionsComponent implements OnInit {
   onSelect(instructionId:number){
     this.selectedId = instructionId;
   }
-
+  resetModal(){
+    this.instructionElement = "";
+    this.instructionText = "";
+  }
 }
