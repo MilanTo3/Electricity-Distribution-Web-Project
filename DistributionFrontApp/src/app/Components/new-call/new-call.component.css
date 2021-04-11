@@ -1,0 +1,26 @@
+.btn{
+    background: var(--c-blue-100);
+    color: white;
+    font-weight: bold;
+    border-color: var(--c-blue-100);
+}
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: var(--c-orange-100);
+}
+
+.infoLabel{
+    color: var(--c-blue-100);
+    font-family: 'Georgia';
+    margin-bottom: 25px;
+}
+.col-form-label{
+    color: #dd612c;
+    font-family: 'Georgia';
+}
+.input-group-text, .form-control{
+    background-color: white;
+    font-family: 'Georgia';
+
+}

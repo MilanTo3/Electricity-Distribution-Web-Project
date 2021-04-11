@@ -34,6 +34,7 @@ import { MapComponentComponent } from './Components/map-page/map-component/map-c
 import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
 import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
 import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
+import { NewCallComponent } from './Components/new-call/new-call.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { CreateTeamComponent } from './Components/teams-page/create-team/create-
     CallsComponent,
     TeamsPageComponent,
     CreateTeamComponent,
+    NewCallComponent,
   
   ],
   imports: [
