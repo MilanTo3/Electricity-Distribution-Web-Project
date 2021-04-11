@@ -22,6 +22,8 @@ import { MapPageComponent } from './Components/map-page/map-page.component';
 import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
 import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
 import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
+import { NewCallComponent } from './Components/new-call/new-call.component';
+
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -59,7 +61,8 @@ const routes: Routes = [
   },
   { path: "map", component: MapPageComponent },
   { path: "teamsPage", component: TeamsPageComponent },
-  { path: "createTeam", component: CreateTeamComponent }
+  { path: "createTeam", component: CreateTeamComponent },
+  { path: "new-call", component: NewCallComponent}
     
 ];
 

@@ -7,7 +7,7 @@
 				<app-login-component></app-login-component>
 				<a href="#" (click)="toggleForms()"><p class="labela">Not registered? Register here!</p></a>
 				<div style="font-size:1.5em">
-					 <a href="/dashboard" (click)="openNewIncident()" class="buttonReport" style="background-color:#A5D6D9;">Submit a Call</a> 
+					 <a href="/new-call" (click)="openNewIncident()" class="buttonReport" style="background-color:#A5D6D9;">Submit a Call</a> 
 				</div>
 			</div>
 			<div class="col registerform d-md-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">
