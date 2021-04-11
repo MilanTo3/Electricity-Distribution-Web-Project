@@ -1,1 +1,83 @@
-<p>new-call works!</p>
+<div class="containter ml-3">
+    <h3 class="title">Submit a call</h3>
+    <p class="infoLabel">Please provide all necessary informations.</p> 
+    <div class="row ml-2">
+        <div class="col col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Reason:</label>
+                <input class="col-sm-8 form-control" type="text" />
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Comment:</label>
+                <input class="col-sm-8 form-control" type="text" />
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Hazard:</label>
+                <input class="col-sm-8 form-control" type="text" />
+            </div>
+        </div>   
+    </div>
+
+    <div class="row">
+        <div class="col col-lg-5 ">
+            <div class="border border-secondary rounded-lg">
+                <label class="infoLabel ml-2" for="customerInfo">Customer info:</label>
+                <button class="btn float-right mr-2 mt-1" data-toggle="modal" data-target="#selectCustomerModal">Select customer</button>
+                <div class="row ml-2" id="customerInfo">
+                    <div class="col">
+                        <div class="form-group row mt-3">
+                            <label class="col-sm-4 col-form-label">Name:</label>
+                            <input class="col-sm-6 form-control" type="text" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Last name:</label>
+                            <input class="col-sm-6 form-control" type="text" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Address:</label>
+                            <input class="col-sm-6 form-control" type="text" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row mt-3">
+                            <label class="col-sm-3 col-form-label">Account:</label>
+                            <input class="col-sm-6 form-control" type="text" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Priority:</label>
+                            <input class="col-sm-6 form-control" type="text" />
+                        </div>
+                    </div>
+                </div>
+              
+            </div>          
+        </div>
+    </div>
+    <div class="row" >
+        <div class="w-auto mt-5 ">
+            <button class="btn">Submit</button>
+        </div>   
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="selectCustomerModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Select customer</h5>
+          <button type="button" class="close" data-dismiss="modal"  (click)="resetModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Filter customers
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary buttons" (click)="resetModal()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary buttons" (click)="selectCustomer()" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>

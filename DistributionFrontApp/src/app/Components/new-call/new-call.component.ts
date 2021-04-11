@@ -12,4 +12,12 @@ export class NewCallComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  resetModal()
+  {
+
+  }
+  selectCustomer()
+  {
+    
+  }
 }
