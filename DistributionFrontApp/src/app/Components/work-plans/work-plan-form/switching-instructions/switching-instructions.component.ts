@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./switching-instructions.component.css']
 })
 export class SwitchingInstructionsComponent implements OnInit {
-
+  instructionText: string;
+  instructionElement: string;
+  
   instructions =  [
     { id: 11, name: 'ADD', status: "UNEXECUTED" },
     { id: 12, name: 'OPEN', status: "UNEXECUTED" },
@@ -21,13 +23,15 @@ export class SwitchingInstructionsComponent implements OnInit {
 
   constructor() {
     this.selectedId = -1;
+    this.instructionText="";
+    this.instructionElement="";
    }
 
   ngOnInit(): void {
 
   }
   createNewInstruction(){
-    this.instructions.push({id: 26, name: "nova instrukcija", status: "UNEXECUTED"});
+    this.instructions.push({id: 26, name: this.instructionText + " " + this.instructionElement, status: "UNEXECUTED"});
   }
   executeInstruction(){
     let item = this.instructions.find(i => i.id === this.selectedId);
