@@ -29,6 +29,7 @@ import { MySafetyDocsComponent } from './Components/dashboard-page/my-safety-doc
 import { NewSafetyDocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/new-safety-doc.component';
 import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/basic-information-mysfdoc/basic-information-mysfdoc.component';
 import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
+import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 
 
 const routes: Routes = [
@@ -68,7 +69,8 @@ const routes: Routes = [
     children: [
       { path: "basicInformation", component: BasicInformationMysfdocComponent },
       { path: "historyOfMyDocChanges", component: HistoryChangeMysfdcComponent },
-      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
+      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent },
+      { path: "checklist", component: ChecklistMysfdcComponent }
     ]
 
   },
