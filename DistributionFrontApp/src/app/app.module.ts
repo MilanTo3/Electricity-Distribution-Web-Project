@@ -43,6 +43,7 @@ import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my
 import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
+import { NavigationBarComponent } from './Components/dashboard-page/navigation-bar/navigation-bar.component';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new
     HistoryChangeMysfdcComponent,
     ChecklistMysfdcComponent,
     NewDeviceComponent,
+    NavigationBarComponent,
    
   
   ],
