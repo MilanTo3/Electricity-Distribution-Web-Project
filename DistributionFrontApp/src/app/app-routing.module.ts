@@ -30,6 +30,7 @@ import { NewSafetyDocComponent } from './Components/dashboard-page/my-safety-doc
 import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/basic-information-mysfdoc/basic-information-mysfdoc.component';
 import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
+import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
 
 
 const routes: Routes = [
@@ -61,10 +62,10 @@ const routes: Routes = [
       { path: "calls", component: CallsComponent },
       { path: "multimediaAttachments", component: MultimediaAttachmentsComponent },
       { path: "crew", component: TeamsPageComponent}
-      
-        
     ]
   },
+
+  { path: "newDevice", component: NewDeviceComponent },
   { path:"newMySafetyDoc", component: NewSafetyDocComponent,
     children: [
       { path: "basicInformation", component: BasicInformationMysfdocComponent },

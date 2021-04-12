@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-devices-component',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DevicesComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  addDevice() {
+    this.router.navigate(['/newDevice']);
+  }
 }
