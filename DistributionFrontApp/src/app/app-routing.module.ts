@@ -23,12 +23,17 @@ import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-
 import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
 import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
 import { NewCallComponent } from './Components/new-call/new-call.component';
+import { MyIncidentsComponentComponent } from './Components/dashboard-page/my-incidents-component/my-incidents-component.component';
 
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
   { path: "login-register", component: LoginRegisterPageComponent },
-  { path: "dashboard", component: DashboardPageComponent },
+  { path: "dashboard", component: DashboardPageComponent,
+    children: [
+      { path: "myIncidents", component: TableDashboardComponent},  
+    ]
+  },
   { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
   { path: "myIncidents", component:TableDashboardComponent},
   { path: "workRequests", component: WorkRequestsPageComponent },
