@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 })
 export class MySafetyDocsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  
+  openNewMySafetyDoc() {
+    this.router.navigate(['/newMySafetyDoc']);
+  }
 
 }

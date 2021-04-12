@@ -26,6 +26,9 @@ import { NewCallComponent } from './Components/new-call/new-call.component';
 import { CardDashboardComponent } from './Components/dashboard-page/card-dashboard/card-dashboard.component';
 import { MyIncidentsComponent } from './Components/dashboard-page/my-incidents/my-incidents.component';
 import { MySafetyDocsComponent } from './Components/dashboard-page/my-safety-docs/my-safety-docs.component';
+import { NewSafetyDocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/new-safety-doc.component';
+import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/basic-information-mysfdoc/basic-information-mysfdoc.component';
+import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
 
 
 const routes: Routes = [
@@ -60,6 +63,14 @@ const routes: Routes = [
       
         
     ]
+  },
+  { path:"newMySafetyDoc", component: NewSafetyDocComponent,
+    children: [
+      { path: "basicInformation", component: BasicInformationMysfdocComponent },
+      { path: "historyOfMyDocChanges", component: HistoryChangeMysfdcComponent },
+      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
+    ]
+
   },
   { path: "workPlans", component: WorkPlansComponent },
   { path: "newWorkPlan", component: WorkPlanFormComponent,
