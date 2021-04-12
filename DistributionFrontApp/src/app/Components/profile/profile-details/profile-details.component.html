@@ -20,7 +20,7 @@
                                         class="form-control"
                                         placeholder="Username"
                                         formControlName="username"
-                                        value="{{ currentUser != null ? currentUser.username : '' }}"
+                                        
                                     />
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                             class="form-control"
                                             placeholder="Name"
                                             formControlName="name"
-                                            value="{{ currentUser != null ? currentUser.name : '' }}"
+                                           
                                         />
                                 </div>
                             </div>
@@ -57,8 +57,7 @@
                                         type="text"
                                         class="form-control"
                                         placeholder="Address"
-                                        formControlName="address"
-                                        value="{{ currentUser != null ? currentUser.address : '' }}"
+                                        formControlName="address"                                       
                                     />
                                 </div>
                             </div>
@@ -70,14 +69,13 @@
                                             type="password"
                                             class="form-control"
                                             placeholder="Old password"
-                                            formControlName="oldPassword"
-                                            value="{{''}}"
+                                            formControlName="oldPassword"                                            
                                     />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="role"><h5>Change role:</h5></label>
-                                <select  class="form-control" id="role" formControlName="role" value="{{ currentUser != null ? currentUser.role : '' }}">
+                                <select  class="form-control" id="role" formControlName="role">
                                         <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
                                 </select>
                             </div> 
@@ -98,7 +96,7 @@
                                         class="form-control"
                                         placeholder="Email"
                                         formControlName="email"
-                                        value="{{ currentUser != null ? currentUser.email : '' }}"                                
+                                                                      
                                     />
                                 </div>
                             </div>
@@ -116,7 +114,7 @@
                                         class="form-control"
                                         placeholder="Last name"
                                         formControlName="lastname"
-                                        value="{{ currentUser != null ? currentUser.lastname : '' }}"
+                                        
                                     />
                                 </div>
                             </div>
@@ -135,7 +133,6 @@
                                         class="form-control"
                                         placeholder="Birthday"
                                         formControlName="birthday"
-                                        value="{{ currentUser != null ? currentUser.birthday : '' }}"
                                     />
                                 </div>
                             </div>
@@ -148,7 +145,7 @@
                                         class="form-control"
                                         placeholder="New password"
                                         formControlName="newPassword"
-                                        value="{{''}}"
+                                        
                                     />
                                 </div>
                             </div>
@@ -171,15 +168,17 @@
                 <div class="row">
                         <div class="col ">
                             <div class="form-group">
-                                <label class="row mb-4 user-profile-img-wrapper" for="browse-photo-btn">
+<!--                                  <label class="row mb-4 user-profile-img-wrapper" for="browse-photo-btn">
                                     <img
                                         id="profileImg"
                                         type="image"
                                         class="user-profile-img"
-                                        formControlName="profileImg"
-                                        [src]="currentUser.profileImg"                                
+                                        formControlName="profileImg"                                                                    
                                     />
-                                </label>
+                                </label>  -->
+                                <label class="row mb-4 user-profile-img-wrapper" for="browse-photo-btn">
+                                    <img [src]="currentUser.profileImg" formControlName="profileImg" *ngIf="currentUser.profileImg" class="user-profile-img" >                            
+                                </label> 
                                                         
                                 <div class='row'>
                                     <label class="btn btn-primary mx-auto">

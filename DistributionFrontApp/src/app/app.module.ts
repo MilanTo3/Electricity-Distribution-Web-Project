@@ -35,6 +35,7 @@ import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-
 import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
 import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
 import { NewCallComponent } from './Components/new-call/new-call.component';
+import { NotificationsComponent } from './Components/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { NewCallComponent } from './Components/new-call/new-call.component';
     TeamsPageComponent,
     CreateTeamComponent,
     NewCallComponent,
+    NotificationsComponent,
   
   ],
   imports: [
