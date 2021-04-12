@@ -46,7 +46,8 @@ const routes: Routes = [
       { path: "devices", component: DevicesComponentComponent },
       { path: "resolution", component: ResolutionComponent },  
       { path: "calls", component: CallsComponent },
-      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
+      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent },
+      { path: "crew", component: TeamsPageComponent}
       
         
     ]

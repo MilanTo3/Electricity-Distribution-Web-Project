@@ -10,14 +10,14 @@ export class SideNavbarComponent implements OnInit {
   @Input('sidebarType') sidebarid:number = 0;
   contentTypes: string[][] = [
     ["Basic Information", "History of State Changes", "Multimedia Attachments"],
-    ["Basic Information", "Devices", "Resolution", "Calls", "Multimedia Attachments"],
+    ["Basic Information", "Devices", "Resolution", "Calls", "Multimedia Attachments", "Crew"], //My Incidents sidebar
     ["Basic information", "History of state changes", "Multimedia attachments", "Equipement", "Switching instructions"],
     ["Basic Information", "Devices", "Resolution", "Calls"],
     ["Browse and Manage Teams", "Create a Team"]
   ];
   contentRoutes: string[][] = [
     ["basicInformation", "historyStateChanges", "multimediaAttachments"],
-    ["basicInformation", "devices", "resolution", "calls", "multimediaAttachments"],
+    ["basicInformation", "devices", "resolution", "calls", "multimediaAttachments", "crew"], //MY Incidents sidebar routes
     ["basic-information", "history-of-state-changes", "multimedia-attachments", "equipement", "switching-instructions"],
     ["browseandManageTeams", "createTeam"]
   ];

@@ -7,6 +7,7 @@ import { Device } from 'src/app/Models/Device.model';
 import { WorkPlan } from '../../../Models/WorkPlan.model';
 import { Call } from 'src/app/Models/Call.model';
 import { Team } from 'src/app/Models/Team.model';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-component',
@@ -20,7 +21,26 @@ export class TableComponentComponent implements OnInit {
   headerToPrint: string[] = [];
   dataToPrint: Array<any> = [];
 
-  constructor() { }
+  hideElement = false;
+  choose = false;
+
+  constructor(public router: Router) { 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/newIncident/crew') {
+          this.hideElement = true;
+        }  else {
+          this.hideElement = false;     
+        }
+        if ((event.url === '/teamsPage')) {
+          this.choose = true;
+        } else {
+          this.choose = false;
+        }
+
+      }
+    });
+  }
 
   addMockRequests(){
 

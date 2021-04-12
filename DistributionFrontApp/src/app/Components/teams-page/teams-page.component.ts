@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-teams-page',
@@ -7,7 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamsPageComponent implements OnInit {
 
-  constructor() { }
+  hideElement = false;
+
+  constructor(public router: Router) { 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/newIncident/crew') {
+          this.hideElement = true;
+        }  else {
+          this.hideElement = false;
+        }
+      }
+    });
+  }
+
+  
 
   ngOnInit(): void {
   }
