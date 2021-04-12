@@ -44,8 +44,10 @@ const routes: Routes = [
     children: [
       { path: "basicInformation", component: BasicInformationIncidentComponent },
       { path: "devices", component: DevicesComponentComponent },
-      { path: "resolution", component: ResolutionComponent },
-      { path: "calls", component: CallsComponent }
+      { path: "resolution", component: ResolutionComponent },  
+      { path: "calls", component: CallsComponent },
+      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
+      
         
     ]
   },
