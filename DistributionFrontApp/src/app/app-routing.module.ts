@@ -3,39 +3,43 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginRegisterPageComponent } from './Components/login-register-page/login-register-page.component';
 import { DashboardPageComponent } from './Components/dashboard-page/dashboard-page.component';
 import { AdminProfileRequestsComponent } from './Components/admin-profile-requests/admin-profile-requests.component';
-import { TableDashboardComponent } from './Components/dashboard-page/table-dashboard/table-dashboard.component';
+
 import { WorkRequestsPageComponent } from './Components/work-requests-page/work-requests-page.component';
 import { WorkRequestFormComponent } from './Components/work-requests-page/work-request-form/work-request-form.component';
 import { BasicInformationFPComponent } from './Components/work-requests-page/work-request-form/basic-information-fp/basic-information-fp.component';
 import { HistoryStateChangesComponent } from './Components/work-requests-page/work-request-form/history-state-changes/history-state-changes.component';
 import { MultimediaAttachmentsComponent } from './Components/work-requests-page/work-request-form/multimedia-attachments/multimedia-attachments.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { NewIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/new-incident.component';
-import { BasicInformationIncidentComponent } from './Components/dashboard-page/table-dashboard/new-incident/basic-information-incident/basic-information-incident.component';
-import { DevicesComponentComponent } from './Components/dashboard-page/table-dashboard/new-incident/devices-component/devices-component.component';
+import { NewIncidentComponent } from './Components/dashboard-page/my-incidents/new-incident/new-incident.component';
+import { BasicInformationIncidentComponent } from './Components/dashboard-page/my-incidents/new-incident/basic-information-incident/basic-information-incident.component';
+import { DevicesComponentComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/devices-component.component';
 import { WorkPlansComponent } from './Components/work-plans/work-plans.component';
 import { WorkPlanFormComponent } from './Components/work-plans/work-plan-form/work-plan-form.component';
 import { WorkPlanBasicInformationComponent } from './Components/work-plans/work-plan-form/work-plan-basic-information/work-plan-basic-information.component';
 import { SwitchingInstructionsComponent } from './Components/work-plans/work-plan-form/switching-instructions/switching-instructions.component';
-import { ResolutionComponent } from './Components/dashboard-page/table-dashboard/new-incident/resolution/resolution.component';
+import { ResolutionComponent } from './Components/dashboard-page/my-incidents/new-incident/resolution/resolution.component';
 import { MapPageComponent } from './Components/map-page/map-page.component';
-import { CallsComponent } from './Components/dashboard-page/table-dashboard/new-incident/calls/calls.component';
+import { CallsComponent } from './Components/dashboard-page/my-incidents/new-incident/calls/calls.component';
 import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
 import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
 import { NewCallComponent } from './Components/new-call/new-call.component';
-import { MyIncidentsComponentComponent } from './Components/dashboard-page/my-incidents-component/my-incidents-component.component';
+import { CardDashboardComponent } from './Components/dashboard-page/card-dashboard/card-dashboard.component';
+import { MyIncidentsComponent } from './Components/dashboard-page/my-incidents/my-incidents.component';
+import { MySafetyDocsComponent } from './Components/dashboard-page/my-safety-docs/my-safety-docs.component';
 
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
   { path: "login-register", component: LoginRegisterPageComponent },
   { path: "dashboard", component: DashboardPageComponent,
-    children: [
-      { path: "myIncidents", component: TableDashboardComponent},  
-    ]
+   /* children: [
+      { path: "myIncidents", component: MyIncidentsComponent},  
+      { path: "mySafetyDocs", component: MySafetyDocsComponent}
+    ]*/
   },
   { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
-  { path: "myIncidents", component:TableDashboardComponent},
+  { path: "myIncidents", component: MyIncidentsComponent},
+  { path: "mySafetyDocs", component: MySafetyDocsComponent},
   { path: "workRequests", component: WorkRequestsPageComponent },
   { path: "workRequestForm", component: WorkRequestFormComponent,
      children: [

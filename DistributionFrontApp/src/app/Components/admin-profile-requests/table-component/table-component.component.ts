@@ -8,6 +8,7 @@ import { WorkPlan } from '../../../Models/WorkPlan.model';
 import { Call } from 'src/app/Models/Call.model';
 import { Team } from 'src/app/Models/Team.model';
 import { NavigationEnd, Router } from '@angular/router';
+import { MySafetyDoc } from 'src/app/Models/MySafetyDoc.model';
 
 @Component({
   selector: 'app-table-component',
@@ -60,7 +61,10 @@ export class TableComponentComponent implements OnInit {
       this.loadWorkPlans();
     }else if(this.tableid ===7){
       this.loadTeams();
+    }else if(this.tableid === 8){
+      this.loadMySafetyDocs();
     }
+
     
   }
 
@@ -143,6 +147,15 @@ export class TableComponentComponent implements OnInit {
     this.dataToPrint.push(call1, call2, call3);
     this.keyNames = Object.getOwnPropertyNames(call3);
 
+  }
+
+  loadMySafetyDocs() {
+    let doc1 = new MySafetyDoc('WR-1', "2019-01-16", "3989-434-343", "Draft", "Jevrejska 12a");
+    let doc2 = new MySafetyDoc("WR-2", "2019-01-16", "323-35345-2343", "Draft", "Marka Kraljevica 15");
+    let doc3 = new MySafetyDoc("WR-3", "2019-01-16", "349-553-855-12", "Draft", "Dragana Torbice 3");
+
+    this.dataToPrint.push(doc1, doc2, doc3);
+    this.keyNames = Object.getOwnPropertyNames(doc3);
   }
 
   ngOnInit(): void{

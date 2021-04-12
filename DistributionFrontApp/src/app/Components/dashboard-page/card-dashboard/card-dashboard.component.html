@@ -7,20 +7,17 @@
     </head>
         <body>
             <div class="container">
-            <a *ngFor="let item of sidebarMap | keyvalue" (click)="openTable()" [routerLink]="item.value"  id="one" class="child">{{item.key}}
+            <div (click)="openMyIncidentsTable()" id="one" class="child">My Incidents
                 <div>
                     <p>Drafts</p>
                     <p>Canceled</p>
                     <p>Executing</p>
                     <p>Completed</p>
                 </div> 
-                
-            </a>  
-
-            
-               
+            </div>  
+                 
              
-          <!--   <div id="two" class="child">My Work Plans
+          <div id="two" class="child">My Work Plans
                 <div>
                     <p>Drafts</p>
                     <p>Canceled</p>
@@ -28,16 +25,14 @@
                     <p>Completed</p>
                 </div> 
             </div>
-            <div id="three" class="child">My Safety Docs
+            <div (click)="openMySafetyDocsTable()"  id="three" class="child">My Safety Docs
                 <div>
                     <p>Drafts</p>
                     <p>Canceled</p>
                     <p>Executing</p>
                     <p>Completed</p>
                 </div> 
-            </div>-->
-            
+            </div>
             </div> 
         </body>
-        
 </html>
