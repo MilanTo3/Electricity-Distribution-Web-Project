@@ -23,6 +23,7 @@ import { CallsComponent } from './Components/dashboard-page/my-incidents/new-inc
 import { TeamsPageComponent } from './Components/teams-page/teams-page.component';
 import { CreateTeamComponent } from './Components/teams-page/create-team/create-team.component';
 import { NewCallComponent } from './Components/new-call/new-call.component';
+import { NotificationsComponent } from './Components/notifications/notifications.component';
 import { CardDashboardComponent } from './Components/dashboard-page/card-dashboard/card-dashboard.component';
 import { MyIncidentsComponent } from './Components/dashboard-page/my-incidents/my-incidents.component';
 import { MySafetyDocsComponent } from './Components/dashboard-page/my-safety-docs/my-safety-docs.component';
@@ -31,6 +32,7 @@ import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my
 import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
+
 
 
 const routes: Routes = [
@@ -88,7 +90,8 @@ const routes: Routes = [
   { path: "map", component: MapPageComponent },
   { path: "teamsPage", component: TeamsPageComponent },
   { path: "createTeam", component: CreateTeamComponent },
-  { path: "new-call", component: NewCallComponent}
+  { path: "new-call", component: NewCallComponent},
+  { path: "notifications", component: NotificationsComponent}
     
 ];
 
