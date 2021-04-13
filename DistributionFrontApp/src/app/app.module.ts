@@ -44,6 +44,7 @@ import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-saf
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
 import { NavigationBarComponent } from './Components/dashboard-page/navigation-bar/navigation-bar.component';
+import { EmployedListComponent } from './Components/teams-page/employed-list/employed-list.component';
 
 
 @NgModule({
@@ -87,7 +88,7 @@ import { NavigationBarComponent } from './Components/dashboard-page/navigation-b
     ChecklistMysfdcComponent,
     NewDeviceComponent,
     NavigationBarComponent,
-   
+    EmployedListComponent
   
   ],
   imports: [
