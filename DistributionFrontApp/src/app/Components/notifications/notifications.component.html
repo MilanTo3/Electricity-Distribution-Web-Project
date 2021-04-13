@@ -2,27 +2,48 @@
     <div class="row">
         <div class="notifications-page">
             <div class="container notifications-content">
-                <div class="row">
-                    <div class="col">
+                <div class="row align-items-start">
+                    <div class="col col-lg-3">
                         <div class="container filters">
-                            <div class="list-group">
-                                <button class="list-group-item" *ngFor="let filter of filterOptions">{{filter}}</button>
+                            <div class="list-group" >
+                                <button class="list-group-item" *ngFor="let filter of filterOptions"
+                                ngSwitch = "{{ filter }}" aria-hidden="true" (click)="onClick(filter)">{{filter}}
+                                <ng-template [ngSwitchCase] = "'Errors'">
+                                    <i class="fa fa-ban "></i>
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'Info'" >
+                                    <i class="fa fa-info-circle "></i>
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'Success'">
+                                    <i class="fa fa-check"></i>
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'Warnings'">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                </ng-template>
+                            </button>
                             </div>
                         </div>
                     </div>  
-                    <div class="col">
-
-                    </div>                
+                    <div class="col ">
+                        <div class="row" *ngIf="notificationMessages.length<=0">
+                            <label class="label">No notifications.</label>
+                        </div>
+                        <div class="row " >
+                            <app-notification *ngFor="let notification of filter()" [type]='notification.type' 
+                             [content]="notification.content" [seen]="notification.seen" ></app-notification>   
+                        </div>
+                    </div>             
                 </div>
-            </div>
-            <div class="container">
-                <div class="row justify-content-end mt-5">
+                <div class="row">
+               
                     <div class="w-auto ml-auto">
-                            <button class="btn" >Mark as read</button>
-                            <button class="btn ml-3">Clear all</button>
+                        <button class="btn" (click)="markAsRead()">Mark as read</button>
+                        <button class="btn ml-3" (click)="clearAll()">Clear all</button>
                     </div>
-                </div>
-            </div>          
+                </div> 
+            </div>
+           
+       
         </div>
     </div>
 </div>
