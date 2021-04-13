@@ -19,7 +19,7 @@ export class NotificationsComponent implements OnInit {
     { type: "Error", content: 'Notification text', seen: true },
     { type: "Error", content: 'Notification text', seen: false },
     { type: "Info", content: 'Notification text', seen: false },
-    { type: "success", content: 'Notification text', seen: false}
+    { type: "Success", content: 'Notification text', seen: false}
   ];
   constructor() { }
 
