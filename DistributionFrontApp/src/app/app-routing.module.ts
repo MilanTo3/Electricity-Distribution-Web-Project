@@ -85,7 +85,7 @@ const routes: Routes = [
       { path: "multimedia-attachments", component: MultimediaAttachmentsComponent },
       { path: "switching-instructions", component: SwitchingInstructionsComponent }
 
-      ] 
+      ]
   },
   { path: "map", component: MapPageComponent },
   { path: "teamsPage", component: TeamsPageComponent },
