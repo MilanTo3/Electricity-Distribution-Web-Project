@@ -1,2 +1,24 @@
 <div class="container">
+    <h3 class="title">Create a team:</h3>
+    <p class="labela">Here, the administrator can create a dispatch team that solve incidents.</p>
+    <div class="form-group">
+        <div class="form-group row">
+            <label class="col-sm-4">Team name:</label>
+            <input class="col-sm-4 form-control" type="text" />
+        </div>
+        <div class="addingSection row">
+            <div class="col">
+                <p>Available Team members:</p>
+                <div class="form-group form-inline">
+                    <input type="text" class="searchInput form-control mr-1 col-md-6" />
+                    <button class="btn buttonClass"><i class="fas fa-search"></i> Search</button>
+                </div>
+                <app-employed-list></app-employed-list>
+            </div>
+            <div class="col">
+                <p>This teams members:</p>
+                <app-employed-list></app-employed-list>
+            </div>
+        </div>
+    </div>
 </div>

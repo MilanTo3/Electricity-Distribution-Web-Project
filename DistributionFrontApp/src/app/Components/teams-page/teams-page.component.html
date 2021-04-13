@@ -4,18 +4,17 @@
         <title>This is a title.</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     </head>
     <body>
         <div class="container browseTeamsView">
-            <div>
+            <div [hidden]="hideElement">
                 <h3 class="title">Browse and Manage Teams</h3>
                 <p class="labela">Here the administrator can search for a specific team, edit or delete that team.</p>
             </div>
-            <div>
+            <div [hidden]="hideElement">
                 <button class="btn buttonClass"><i class="fas fa-users"></i> New Team</button>
             </div>
-            <div class="searchBar form-group form-inline">
+            <div [hidden]="hideElement" class="searchBar form-group form-inline">
                 <input type="text" class="searchInput form-control mr-1 col-md-8"/>
                 <button class="btn buttonClass"><i class="fas fa-search"></i> Search</button>
             </div>

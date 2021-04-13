@@ -10,16 +10,20 @@ export class SideNavbarComponent implements OnInit {
   @Input('sidebarType') sidebarid:number = 0;
   contentTypes: string[][] = [
     ["Basic Information", "History of State Changes", "Multimedia Attachments"],
-    ["Basic Information", "Devices", "Resolution", "Calls", "Multimedia Attachments"],
-    ["Basic information", "History of state changes", "Multimedia attachments", "Switching instructions"],
-    ["Basic Information", "Devices", "Resolution", "Calls"],
-    ["Browse and Manage Teams", "Create a Team"]
+    ["Basic Information", "Devices", "Resolution", "Calls", "Multimedia Attachments", "Crew"], //My Incidents sidebar
+    ["Basic information", "History of state changes", "Multimedia attachments", "Equipement", "Switching instructions"],
+    ["Browse and Manage Teams", "Create a Team"],
+    ["Basic Information", "History of State Changes", "Multimedia Attachments", "Equipement", "Checklist"] //My Safety Docs
+    //["Basic Information", "Devices", "Resolution", "Calls"],
   ];
   contentRoutes: string[][] = [
     ["basicInformation", "historyStateChanges", "multimediaAttachments"],
-    ["basicInformation", "devices", "resolution", "calls", "multimediaAttachments"],
-    ["basic-information", "history-of-state-changes", "multimedia-attachments", "switching-instructions"],
-    ["browseandManageTeams", "createTeam"]
+    ["basicInformation", "devices", "resolution", "calls", "multimediaAttachments", "crew"], //MY Incidents sidebar routes
+    ["basic-information", "history-of-state-changes", "multimedia-attachments", "equipement", "switching-instructions"],
+    ["browseandManageTeams", "createTeam"],
+    ["basicInformation", "historyOfMyDocChanges", "multimediaAttachments", "equipement", "checklist"] //My Safety Docs
+    /////////////////////////////////////////////////////////
+    
   ];
   sidebarMap: Map<string, string> = new Map();
 

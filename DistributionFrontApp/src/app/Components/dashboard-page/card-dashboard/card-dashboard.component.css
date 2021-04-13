@@ -49,8 +49,10 @@ body {
 
 #two:hover {
     background-color: #A5D6D9;
+    cursor: pointer;
 }
 
 #three:hover {
     background-color: #A5D6D9;
+    cursor: pointer;
 }

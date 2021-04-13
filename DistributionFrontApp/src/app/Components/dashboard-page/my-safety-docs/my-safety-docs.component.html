@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>This is a title.</title>
+    <meta charset="utf-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container requestsPage">
+        <h2 class="title">My Safety Documents:</h2>
+        <p class="labela">Here, users can see their safety documents.</p>
+        <button (click)="openNewMySafetyDoc()" class="btn newbtn"><i class="fas fa-file"></i>New</button>
+        
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn active radiobtn">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> All
+            </label>
+            <label class="btn radiobtn">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Mine
+            </label>
+        </div>
+        <button class="btn filterbtn"><i class="fa fa-filter"></i>Filter</button>
+        <app-table-component [tableType]='8'></app-table-component>
+    </div>
+</body>
+
+</html>

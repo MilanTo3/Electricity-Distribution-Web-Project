@@ -21,9 +21,11 @@
                     <button class="adminButton btn btn-success">Approve</button>
                     <button class="adminButton btn btn-danger">Block</button>
                 </td>
+                
                 <td *ngIf="tableid===7">
-                  <button class="teamButtons btn btn-primary">View Team</button>
-                  <button class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
+                  <button [hidden]="hideElement" class="teamButtons btn btn-primary">View Team</button>
+                  <button [hidden]="hideElement" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
+                  <button [hidden]="choose" class="teamButtons btn btn-primary">Choose</button>             
                 </td>
               </tr>
             </tbody>
