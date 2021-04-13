@@ -2,37 +2,47 @@
 <!-- OVO JE KOMPONENTA KOJA SE MOZE KASNIJE KORISTITI I ZA MY WORK PLANS I MY SAFETY DOCS-->
 <!-- PROBATI SA JOS JEDNOM KOMPONENTOM ZA NABROJANE PARAGRAFE -->
 <html lang="en">
-    <head>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
-    </head>
-        <body>
-            <div class="container">
-            <div (click)="openMyIncidentsTable()" id="one" class="child">My Incidents
-                <div>
-                    <p>Drafts</p>
-                    <p>Canceled</p>
-                    <p>Executing</p>
-                    <p>Completed</p>
-                </div> 
-            </div>  
-                 
-             
-          <div (click)="openMyWorkPlans()" id="two" class="child">My Work Plans
-                <div>
-                    <p>Drafts</p>
-                    <p>Canceled</p>
-                    <p>Executing</p>
-                    <p>Completed</p>
-                </div> 
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div (click)="openMyIncidentsTable()" id="one" class="child">My Incidents
+            <div>
+                <p>Drafts</p>
+                <p>Canceled</p>
+                <p>Executing</p>
+                <p>Completed</p>
             </div>
-            <div (click)="openMySafetyDocsTable()"  id="three" class="child">My Safety Docs
-                <div>
-                    <p>Drafts</p>
-                    <p>Canceled</p>
-                    <p>Executing</p>
-                    <p>Completed</p>
-                </div> 
-            </div>
+        </div>
+        <div (click)="openMyWorkRequests()" id="two" class="child">My Work Requests
+            <div>
+                <p>Drafts</p>
+                <p>Canceled</p>
+                <p>Executing</p>
+                <p>Completed</p>
             </div> 
-        </body>
+        </div>
+
+        <div (click)="openMyWorkPlans()" id="two" class="child">My Work Plans
+            <div>
+                <p>Drafts</p>
+                <p>Canceled</p>
+                <p>Executing</p>
+                <p>Completed</p>
+            </div>
+        </div>
+        <div (click)="openMySafetyDocsTable()" id="three" class="child">My Safety Docs
+            <div>
+                <p>Drafts</p>
+                <p>Canceled</p>
+                <p>Executing</p>
+                <p>Completed</p>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

@@ -65,7 +65,6 @@ export class TableComponentComponent implements OnInit {
       this.loadMySafetyDocs();
     }
 
-    
   }
 
   loadTeams(){

@@ -1,0 +1,11 @@
+.list-group-item{
+    background-color: #c3e5e7;
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #dd612c;
+}
+
+.list-group-item:hover{
+    background-color: #699fa1;
+    color: #e0eaeb;
+}
