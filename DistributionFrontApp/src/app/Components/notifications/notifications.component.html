@@ -1,1 +1,28 @@
-<p>notifications works!</p>
+<div class="container">
+    <div class="row">
+        <div class="notifications-page">
+            <div class="container notifications-content">
+                <div class="row">
+                    <div class="col">
+                        <div class="container filters">
+                            <div class="list-group">
+                                <button class="list-group-item" *ngFor="let filter of filterOptions">{{filter}}</button>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="col">
+
+                    </div>                
+                </div>
+            </div>
+            <div class="container">
+                <div class="row justify-content-end mt-5">
+                    <div class="w-auto ml-auto">
+                            <button class="btn" >Mark as read</button>
+                            <button class="btn ml-3">Clear all</button>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </div>
+</div>

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationsComponent implements OnInit {
 
+  filterOptions = ["All notifications", "Unread notifications", "Errors", "Info", "Success", "Warnings"];
+
   constructor() { }
 
   ngOnInit(): void {
