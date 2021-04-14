@@ -9,11 +9,10 @@
 </head>
 
 <body>
-  <mat-table [dataSource]="dataToPrint" class="mat-elevation-z8 table">
-
+  <mat-table [dataSource]="dataBind" class="mat-elevation-z8 table" matSort>
     <div>
       <ng-container *ngFor="let col of keyNames" [matColumnDef]="col">
-        <mat-header-cell *matHeaderCellDef class="header">{{col.charAt(0).toUpperCase() + col.slice(1) + ':'}}
+        <mat-header-cell *matHeaderCellDef class="header" mat-sort-header>{{col.charAt(0).toUpperCase() + col.slice(1) + ':'}}
         </mat-header-cell>
         <mat-cell *matCellDef="let element" class="body"> {{element[col]}} </mat-cell>
       </ng-container>

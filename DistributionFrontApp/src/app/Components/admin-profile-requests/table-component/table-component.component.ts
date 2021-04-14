@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MyIncidents } from 'src/app/Models/MyIncidents.model';
 import { User } from '../../../Models/User.model';
 import { WorkRequest } from '../../../Models/WorkRequest.model';
@@ -9,6 +9,8 @@ import { Call } from 'src/app/Models/Call.model';
 import { Team } from 'src/app/Models/Team.model';
 import { NavigationEnd, Router } from '@angular/router';
 import { MySafetyDoc } from 'src/app/Models/MySafetyDoc.model';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-table-component',
@@ -16,12 +18,14 @@ import { MySafetyDoc } from 'src/app/Models/MySafetyDoc.model';
   styleUrls: ['./table-component.component.css']
 })
 
-export class TableComponentComponent implements OnInit {
+export class TableComponentComponent implements OnInit, AfterViewInit {
 
   @Input('tableType') tableid:number = 0;
+  @ViewChild(MatSort) sort: MatSort;
   keyNames: string[] = [];
   headerToPrint: string[] = [];
   dataToPrint: any = [];
+  dataBind = new MatTableDataSource([]);
 
   hideElement = false;
   choose = false;
@@ -164,8 +168,12 @@ export class TableComponentComponent implements OnInit {
     if(this.tableid === 0 || this.tableid === 7){
       this.headerToPrint.push("What to do?");
     }
-    
+    this.dataBind.data = this.dataToPrint;
 
+  }
+
+  ngAfterViewInit(){
+    this.dataBind.sort = this.sort;
   }
 
   copyArray(arr1: string[], arr2: string[]){

@@ -42,3 +42,17 @@
     font-weight: bold;
     margin-right: 4px;
 }
+
+.mat-cell, .mat-header-cell {
+    justify-content:center;
+
+}
+
+::ng-deep .mat-sort-header-container {
+    margin-left: 21px;
+    justify-content:center;
+}
+
+::ng-deep .mat-sort-header-arrow {
+    color: #699fa1; /*change color of arrow*/
+}

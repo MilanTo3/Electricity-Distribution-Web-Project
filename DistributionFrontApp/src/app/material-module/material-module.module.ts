@@ -5,6 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -12,7 +13,8 @@ const MaterialComponents = [
   MatSelectModule,
   MatInputModule,
   MatTabsModule,
-  MatTableModule
+  MatTableModule,
+  MatSortModule,
 ];
 
 @NgModule({
