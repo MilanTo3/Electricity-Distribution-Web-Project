@@ -6,7 +6,7 @@
                     <div class="col col-lg-3">
                         <div class="container filters">
                             <div class="list-group" >
-                                <button class="list-group-item" *ngFor="let filter of filterOptions"
+                                <button class="list-group-item" *ngFor="let filter of filterOptions" 
                                 ngSwitch = "{{ filter }}" aria-hidden="true" (click)="onClick(filter)">{{filter}}
                                 <ng-template [ngSwitchCase] = "'Errors'">
                                     <i class="fa fa-ban "></i>
@@ -41,8 +41,16 @@
                         <button class="btn ml-3" (click)="clearAll()">Clear all</button>
                     </div>
                 </div> 
+                <div class="row">
+               
+                    <div class="w-auto ml-auto mt-5">
+                        <button class="btn" (click)="showToastrInfo()">Info</button>
+                        <button class="btn ml-3" (click)="showToastrWarning()">Warning</button>
+                        <button  class="btn ml-3" (click) = "showToastrError()">Error</button>
+                        <button  class="btn ml-3" (click) = "showToastrSuccess()">Success</button>
+                    </div>
+                </div> 
             </div>
-           
        
         </div>
     </div>

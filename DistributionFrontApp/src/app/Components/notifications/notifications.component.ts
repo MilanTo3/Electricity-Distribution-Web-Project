@@ -1,6 +1,7 @@
 import { NotificationComponent } from './notification/notification.component';
 import { Component, OnInit } from '@angular/core';
 import { clearAllProjections } from 'ol/proj';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notifications',
@@ -21,7 +22,7 @@ export class NotificationsComponent implements OnInit {
     { type: "Info", content: 'Notification text', seen: false },
     { type: "Success", content: 'Notification text', seen: false}
   ];
-  constructor() { }
+  constructor( private toastr: ToastrService ) { }
 
   ngOnInit(): void {
     console.log(this.notificationMessages);
@@ -30,6 +31,7 @@ export class NotificationsComponent implements OnInit {
     this.selectedFilter = filter;
     console.log(this.selectedFilter);
   }
+
   filter(){
     switch(this.selectedFilter){
       case 'Success': 
@@ -64,5 +66,22 @@ export class NotificationsComponent implements OnInit {
   }
   clearAll(){
     this.notificationMessages = [];
+  }
+  
+  showToastrSuccess(){
+    this.toastr.success('superiska', 'yay');
+
+  }
+  showToastrInfo(){
+    this.toastr.info('hello', 'jako bitna informacija');
+
+  }
+  showToastrWarning(){
+    this.toastr.warning('ne to ', 'zasto bre');
+
+  }
+  showToastrError(){
+    this.toastr.error('oumajgad', 'ded');
+
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ToastrModule} from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -93,8 +94,7 @@ import { NotificationComponent } from './Components/notifications/notification/n
     NewDeviceComponent,
     NavigationBarComponent,
     EmployedListComponent,
-    NotificationComponent
-  
+    NotificationComponent  
   ],
   imports: [
     BrowserModule,
@@ -102,7 +102,12 @@ import { NotificationComponent } from './Components/notifications/notification/n
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModuleModule
+    MaterialModuleModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 1500
+      }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
