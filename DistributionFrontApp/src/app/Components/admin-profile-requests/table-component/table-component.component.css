@@ -34,7 +34,7 @@
 
 .tablerow:hover{
     background-color: #dd612c;
-    transition: 0.5s;
+    transition: 0.45s;
 }
 
 .teamButtons{
@@ -55,6 +55,7 @@
 
 ::ng-deep .mat-sort-header-arrow {
     color: #699fa1; /*change color of arrow*/
+    font-weight: bold;
 }
 
 .paginator{
@@ -67,6 +68,6 @@
 }
 
 .paginator:hover{
-    background-color: floralwhite;
-    
+    background-color: beige;
+    transition: 0.45s;
 }
