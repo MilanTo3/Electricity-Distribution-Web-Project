@@ -11,6 +11,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { MySafetyDoc } from 'src/app/Models/MySafetyDoc.model';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-table-component',
@@ -22,6 +23,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   @Input('tableType') tableid:number = 0;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) pagination: MatPaginator;
   keyNames: string[] = [];
   headerToPrint: string[] = [];
   dataToPrint: any = [];
@@ -129,8 +131,17 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     let device1 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
     let device2 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
     let device3 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
+    let device4 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
+    let device5 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
+    let device6 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
+    let device7 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
+    let device8 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
+    let device9 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
+    let device10 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
+    let device11 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
+    let device12 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
 
-    this.dataToPrint.push(device1, device2, device3);
+    this.dataToPrint.push(device1, device2, device3, device4, device5, device6, device7, device8, device9, device10, device11, device12);
     this.keyNames = Object.getOwnPropertyNames(device3);
   }
 
@@ -173,6 +184,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
+    this.dataBind.paginator = this.pagination;
+
     this.dataBind.sort = this.sort;
   }
 

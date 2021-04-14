@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -15,6 +16,7 @@ const MaterialComponents = [
   MatTabsModule,
   MatTableModule,
   MatSortModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

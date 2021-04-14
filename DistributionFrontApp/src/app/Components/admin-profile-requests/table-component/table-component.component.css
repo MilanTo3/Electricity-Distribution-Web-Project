@@ -56,3 +56,17 @@
 ::ng-deep .mat-sort-header-arrow {
     color: #699fa1; /*change color of arrow*/
 }
+
+.paginator{
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 15px;
+    height: 75px;
+    color: #ec7729;
+    background-color: #e0eaeb;
+}
+
+.paginator:hover{
+    background-color: floralwhite;
+    
+}

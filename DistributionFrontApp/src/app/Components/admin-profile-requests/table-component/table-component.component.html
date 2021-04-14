@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <mat-table [dataSource]="dataBind" class="mat-elevation-z8 table" matSort>
+  <div class="mat-elevation-z8 table">
+  <mat-table [dataSource]="dataBind" matSort>
     <div>
       <ng-container *ngFor="let col of keyNames" [matColumnDef]="col">
         <mat-header-cell *matHeaderCellDef class="header" mat-sort-header>{{col.charAt(0).toUpperCase() + col.slice(1) + ':'}}
@@ -35,7 +36,8 @@
     <mat-header-row *matHeaderRowDef="headerToPrint"></mat-header-row>
     <mat-row *matRowDef="let row; columns: headerToPrint;" class="tablerow"></mat-row>
   </mat-table>
-
+  <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
 </body>
 
 </html>
