@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~11.2.3",
     "@angular/platform-browser-dynamic": "~11.2.3",
     "@angular/router": "~11.2.3",
+    "@swimlane/ngx-charts": "^17.0.1",
     "@types/ol": "^6.4.2",
     "angularx-social-login": "^3.5.5",
     "bootstrap": "^4.6.0",

@@ -1,0 +1,38 @@
+.content{
+    margin-top: 15px;
+    color: #699fa1;
+    font-family: 'Georgia';
+}
+
+.card{
+    max-width: 800px;
+    max-height: 450px;
+    margin-top: 30px;
+    margin-left: 45px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #dd612c;
+}
+
+.title{
+    background: 
+    linear-gradient(to right, rgb(100, 127, 200), rgba(100, 200, 200, 1)),
+    linear-gradient(to right, rgb(241, 182, 20), rgb(255, 136, 0), rgb(238, 141, 30));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 300ms;
+}
+
+.title:hover,
+.title:focus {
+  background-size: 0 0.1em, 100% 0.1em;
+}
+
+.mat-card:hover {
+    background: linear-gradient(184deg, rgb(224, 234, 236) 0%, rgb(255, 255, 255) 82%, rgba(0,212,255,1) 100%);
+}

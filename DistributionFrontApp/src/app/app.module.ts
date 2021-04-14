@@ -49,6 +49,9 @@ import { EmployedListComponent } from './Components/teams-page/employed-list/emp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { NotificationComponent } from './Components/notifications/notification/notification.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { LineChartComponent } from './Components/dashboard-page/line-chart-kartica/line-chart/line-chart.component';
+import { LineChartKarticaComponent } from './Components/dashboard-page/line-chart-kartica/line-chart-kartica.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +96,9 @@ import { NotificationComponent } from './Components/notifications/notification/n
     NewDeviceComponent,
     NavigationBarComponent,
     EmployedListComponent,
-    NotificationComponent
+    NotificationComponent,
+    LineChartComponent,
+    LineChartKarticaComponent
   
   ],
   imports: [
@@ -102,7 +107,8 @@ import { NotificationComponent } from './Components/notifications/notification/n
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModuleModule
+    MaterialModuleModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
