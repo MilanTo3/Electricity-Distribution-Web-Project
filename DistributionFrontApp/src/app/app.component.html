@@ -3,7 +3,9 @@
 <body>
     <div>
         <app-navigation-bar [hidden]="checkPath()"></app-navigation-bar>
-        <router-outlet></router-outlet>
+        <main [@routeAnimations] = "prepareRoute(outlet)">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </main>
     </div>
 </body>
 </html>
