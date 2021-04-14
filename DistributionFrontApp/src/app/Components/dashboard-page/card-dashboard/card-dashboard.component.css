@@ -35,30 +35,51 @@ body {
     margin-left: 5%;
     line-height: 30px;
 }
-#one {
-    background-color: #C3E3E7;
-  
+
+.card{
+    margin-left: 50px;
+    max-width: 200px;
+    height: 300px;
+    display: inline-flex;
 }
 
-#two {
-    background-color: #C3E3E7;
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#three {
-    background-color: #C3E3E7;
+.title{
+    background: 
+    linear-gradient(to right, rgb(100, 127, 200), rgba(100, 200, 200, 1)),
+    linear-gradient(to right, rgb(241, 182, 20), rgb(255, 136, 0), rgb(238, 141, 30));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 300ms;
 }
 
-#one:hover {
-    background-color: #A5D6D9;
-    cursor: pointer;
+.title:hover,
+.title:focus {
+  background-size: 0 0.1em, 100% 0.1em;
 }
 
-#two:hover {
-    background-color: #A5D6D9;
-    cursor: pointer;
+.header{
+    color: #dd612c;
+    flex-direction: column;
 }
 
-#three:hover {
-    background-color: #A5D6D9;
-    cursor: pointer;
+.content{
+    margin-top: 15px;
+    color: #699fa1;
+    font-family: 'Georgia';
+    
+}
+
+.container{
+    display:block;
+}
+
+.mat-card:hover {
+    background: linear-gradient(170deg, rgb(224, 234, 236) 0%, rgb(255, 255, 255) 82%, rgba(0,212,255,1) 100%);
 }

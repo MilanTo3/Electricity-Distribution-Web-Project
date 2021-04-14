@@ -58,22 +58,22 @@ const routes: Routes = [
 
   { path: "newIncident", component: NewIncidentComponent,
     children: [
-      { path: "basicInformation", component: BasicInformationIncidentComponent, data: { animation: "isRight" } },
-      { path: "devices", component: DevicesComponentComponent, data: { animation: "isRight" } },
-      { path: "resolution", component: ResolutionComponent, data: { animation: "isRight" } },  
-      { path: "calls", component: CallsComponent, data: { animation: "isRight" } },
-      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent, data: { animation: "isRight" } },
-      { path: "crew", component: TeamsPageComponent, data: { animation: "isRight" } }
+      { path: "basicInformation", component: BasicInformationIncidentComponent},
+      { path: "devices", component: DevicesComponentComponent },
+      { path: "resolution", component: ResolutionComponent },  
+      { path: "calls", component: CallsComponent },
+      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent },
+      { path: "crew", component: TeamsPageComponent }
     ]
   },
 
   { path: "newDevice", component: NewDeviceComponent },
   { path:"newMySafetyDoc", component: NewSafetyDocComponent,
     children: [
-      { path: "basicInformation", component: BasicInformationMysfdocComponent, data: { animation: "isRight" } },
-      { path: "historyOfMyDocChanges", component: HistoryChangeMysfdcComponent, data: { animation: "isLeft" } },
-      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent, data: { animation: "isRight" } },
-      { path: "checklist", component: ChecklistMysfdcComponent, data: { animation: "isLeft" } }
+      { path: "basicInformation", component: BasicInformationMysfdocComponent},
+      { path: "historyOfMyDocChanges", component: HistoryChangeMysfdcComponent },
+      { path: "multimediaAttachments", component: MultimediaAttachmentsComponent },
+      { path: "checklist", component: ChecklistMysfdcComponent }
     ]
 
   },

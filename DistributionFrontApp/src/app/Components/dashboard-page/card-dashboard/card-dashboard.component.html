@@ -9,39 +9,65 @@
 
 <body>
     <div class="container">
-        <div (click)="openMyIncidentsTable()" id="one" class="child">My Incidents
-            <div>
-                <p>Drafts</p>
-                <p>Canceled</p>
-                <p>Executing</p>
-                <p>Completed</p>
-            </div>
-        </div>
-        <div (click)="openMyWorkRequests()" id="two" class="child">My Work Requests
-            <div>
-                <p>Drafts</p>
-                <p>Canceled</p>
-                <p>Executing</p>
-                <p>Completed</p>
-            </div> 
-        </div>
+        <mat-card (click)="openMyIncidentsTable()" matRipple class="mat-elevation-z7 card">
+            <mat-card-header class="header">
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title class="title">My Incidents</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div class="container text">
+                    <p>Drafts</p>
+                    <p>Canceled</p>
+                    <p>Executing</p>
+                    <p>Completed</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        
+        <mat-card (click)="openMyWorkRequests()" mat-ripple class="mat-elevation-z7 card">
+            <mat-card-header class="header">
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title class="title">My Work Requests</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div class="container text">
+                    <p>Drafts</p>
+                    <p>Canceled</p>
+                    <p>Executing</p>
+                    <p>Completed</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
 
-        <div (click)="openMyWorkPlans()" id="two" class="child">My Work Plans
-            <div>
+        <mat-card (click)="openMyWorkPlans()" class="mat-elevation-z7 card">
+            <mat-card-header class="header">
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title class="title">My Work Plans</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div class="container text">
                 <p>Drafts</p>
                 <p>Canceled</p>
                 <p>Executing</p>
                 <p>Completed</p>
-            </div>
-        </div>
-        <div (click)="openMySafetyDocsTable()" id="three" class="child">My Safety Docs
-            <div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card (click)="openMySafetyDocsTable()" class="mat-elevation-z7 card">
+            <mat-card-header class="header">
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title class="title">Safety Docs</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div class="container text">
                 <p>Drafts</p>
                 <p>Canceled</p>
                 <p>Executing</p>
                 <p>Completed</p>
-            </div>
-        </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
 </body>
 
