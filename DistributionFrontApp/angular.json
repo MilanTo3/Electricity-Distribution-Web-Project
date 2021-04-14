@@ -31,7 +31,8 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/ol/ol.css", "./node_modules/bootstrap/dist/css/bootstrap.css","src/styles.css"
+              "src/custom-theme.scss", "src/my-theme.scss", "node_modules/ol/ol.css","./node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

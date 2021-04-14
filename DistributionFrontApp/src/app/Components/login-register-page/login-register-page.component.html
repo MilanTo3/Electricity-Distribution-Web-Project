@@ -4,16 +4,15 @@
 	<div class="container-fluid row">
 		<div class="row formsClass">
 			<div class="col loginform d-md-block" [hidden]="toggleFormsVisibility" [ngClass]="{easingIn: show===true}">
-				<app-login-component></app-login-component>
-				<a (click)="toggleForms()"><p class="labela">Not registered? Register here!</p></a>
-				<div style="font-size:1.5em">
-					 <a href="/new-call" (click)="openNewIncident()" class="buttonReport" style="background-color:#A5D6D9;">Submit a Call</a> 
+				<div class="container">
+					<app-login-component></app-login-component>
 				</div>
 			</div>
 			<div class="col registerform d-md-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">
-				<app-register-component></app-register-component>
-				<br/>
-				<a (click)="toggleForms()" class="d-lg-none d-xl-none"><p class="labela">Have an account? Sign In here!</p></a>
+				<div>
+					<app-register-component></app-register-component>
+					<br/>
+				</div>
 			</div>
 			<div class="overlay-container d-none d-md-block" [ngClass]="{swipeLeftAnimation: show===false}">
 				<div class="overlay">

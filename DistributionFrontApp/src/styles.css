@@ -7,3 +7,5 @@
     --c-orange-100: #EC7729;
     --c-orange-200: #DD612C;
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

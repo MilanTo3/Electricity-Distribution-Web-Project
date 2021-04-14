@@ -7,13 +7,17 @@
 </head>
 
 <body> -->
-    <div class="container sidebar">
-        <div class="list-group">
-            <a *ngFor="let item of sidebarMap | keyvalue" [routerLink]="item.value" class="list-group-item">
-                <p>{{item.key}}</p>
-            </a>
+        <div class="wrapper">
+        <nav mat-tab-nav-bar class="tabGroup">
+            <a mat-tab-link class="tabItem"
+            *ngFor="let item of sidebarMap | keyvalue"
+            [routerLink]="item.value"
+            routerLinkActive #rla="routerLinkActive"
+            [active]="rla.isActive">
+            
+            {{item.key}}</a>
+            </nav>
         </div>
-    </div>
 <!-- </body>
 
 </html> -->

@@ -46,6 +46,8 @@ import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
 import { NavigationBarComponent } from './Components/dashboard-page/navigation-bar/navigation-bar.component';
 import { EmployedListComponent } from './Components/teams-page/employed-list/employed-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModuleModule } from './material-module/material-module.module';
 
 
 @NgModule({
@@ -98,6 +100,8 @@ import { EmployedListComponent } from './Components/teams-page/employed-list/emp
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MaterialModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

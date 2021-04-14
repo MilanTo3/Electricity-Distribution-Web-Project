@@ -9,11 +9,5 @@
     border-color: var(--c-orange-200);
 }
 .work-plan-form{
-    display: flex;
-    margin-top:50px;
     margin-left:50px;
-}
-.work-plan-form .work-plan-content{
-    flex: 1;
-    margin:0;
 }

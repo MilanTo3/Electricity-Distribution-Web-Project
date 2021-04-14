@@ -22,10 +22,6 @@ export class LoginRegisterPageComponent implements OnInit {
     this.show = !this.show;
  
   }
-
-  openNewIncident()
-  {
-    
-  }
+  
 
 }
