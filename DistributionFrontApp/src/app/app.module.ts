@@ -48,7 +48,7 @@ import { NavigationBarComponent } from './Components/dashboard-page/navigation-b
 import { EmployedListComponent } from './Components/teams-page/employed-list/employed-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module/material-module.module';
-
+import { NotificationComponent } from './Components/notifications/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +92,8 @@ import { MaterialModuleModule } from './material-module/material-module.module';
     ChecklistMysfdcComponent,
     NewDeviceComponent,
     NavigationBarComponent,
-    EmployedListComponent
+    EmployedListComponent,
+    NotificationComponent
   
   ],
   imports: [

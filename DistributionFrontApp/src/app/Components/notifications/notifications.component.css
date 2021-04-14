@@ -29,3 +29,10 @@
     font-weight: bold;
     border-color: var(--c-blue-100);
 }
+.label{
+  color: var(--c-blue-100);
+  font-family: 'Georgia';
+  margin-bottom: 25px;
+}
+  
+  

@@ -1,0 +1,46 @@
+
+<div class="container"  ngSwitch = "{{ type }}" >
+    <ng-template [ngSwitchCase]="'Info'">
+        <div  class="alert alert-info">
+            <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+                <div class="icon hidden-xs ">
+                    <i class="fa fa-info-circle"></i>
+                </div>
+                <strong>{{type}}</strong>
+                <Br /> {{content}}           
+        </div>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'Warning'">
+        <div  class="alert alert-warning">
+            <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+            <div class="icon hidden-xs">
+            <i class="fa fa-exclamation-circle"></i>
+            </div>
+            <strong>{{type}}</strong>
+            <Br /> {{content}}
+        </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'Success'">
+        <div  class="alert alert-success">
+            <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+            <div class="icon hidden-xs">
+            <i class="fa fa-check"></i>
+            </div>
+            <strong>{{type}}</strong>
+            <Br />{{content}}
+        </div>
+    </ng-template>
+    <ng-template [ngSwitchCase] = "'Error'">
+
+        <div  class="alert alert-danger">
+            <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+            <div class="icon hidden-xs">
+            <i class="fa fa-ban"></i>
+            </div>
+            <strong>{{type}}</strong>
+            <Br /> {{content}}
+        </div>
+    </ng-template>
+  
+</div>       
