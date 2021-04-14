@@ -13,7 +13,7 @@ export class SideNavbarComponent implements OnInit {
     ["Basic Information", "Devices", "Resolution", "Calls", "Multimedia Attachments", "Crew"], //My Incidents sidebar
     ["Basic information", "History of state changes", "Multimedia attachments", "Switching instructions"],
     ["Browse and Manage Teams", "Create a Team"],
-    ["Basic Information", "History of State Changes", "Multimedia Attachments", "Equipement", "Checklist"] //My Safety Docs
+    ["Basic Information", "History of State Changes", "Multimedia Attachments", "Checklist"] //My Safety Docs
     //["Basic Information", "Devices", "Resolution", "Calls"],
   ];
   contentRoutes: string[][] = [
@@ -21,7 +21,7 @@ export class SideNavbarComponent implements OnInit {
     ["basicInformation", "devices", "resolution", "calls", "multimediaAttachments", "crew"], //MY Incidents sidebar routes
     ["basic-information", "history-of-state-changes", "multimedia-attachments", "switching-instructions"],
     ["browseandManageTeams", "createTeam"],
-    ["basicInformation", "historyOfMyDocChanges", "multimediaAttachments", "equipement", "checklist"] //My Safety Docs
+    ["basicInformation", "historyOfMyDocChanges", "multimediaAttachments", "checklist"] //My Safety Docs
     /////////////////////////////////////////////////////////
     
   ];

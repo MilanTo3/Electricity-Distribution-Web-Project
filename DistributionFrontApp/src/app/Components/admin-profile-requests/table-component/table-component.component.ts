@@ -15,12 +15,13 @@ import { MySafetyDoc } from 'src/app/Models/MySafetyDoc.model';
   templateUrl: './table-component.component.html',
   styleUrls: ['./table-component.component.css']
 })
+
 export class TableComponentComponent implements OnInit {
 
   @Input('tableType') tableid:number = 0;
   keyNames: string[] = [];
   headerToPrint: string[] = [];
-  dataToPrint: Array<any> = [];
+  dataToPrint: any = [];
 
   hideElement = false;
   choose = false;
@@ -159,7 +160,20 @@ export class TableComponentComponent implements OnInit {
 
   ngOnInit(): void{
     this.addMockRequests();
+    this.copyArray(this.keyNames, this.headerToPrint);
+    if(this.tableid === 0 || this.tableid === 7){
+      this.headerToPrint.push("What to do?");
+    }
     
+
+  }
+
+  copyArray(arr1: string[], arr2: string[]){
+    let i;
+    for(i = 0; i < arr1.length; i++){
+      arr2.push(arr1[i]);
+    }
+
   }
 
 }
