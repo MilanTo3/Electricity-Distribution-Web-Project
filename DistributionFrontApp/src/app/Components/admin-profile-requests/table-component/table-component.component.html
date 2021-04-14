@@ -11,29 +11,30 @@
 <body>
   <mat-table [dataSource]="dataToPrint" class="mat-elevation-z8 table">
 
-    <ng-container *ngFor="let col of keyNames" [matColumnDef]="col">
-      <mat-header-cell *matHeaderCellDef class="header">{{col.charAt(0).toUpperCase() + col.slice(1) + ':'}}
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="body"> {{element[col]}} </mat-cell>
-    </ng-container>
+    <div>
+      <ng-container *ngFor="let col of keyNames" [matColumnDef]="col">
+        <mat-header-cell *matHeaderCellDef class="header">{{col.charAt(0).toUpperCase() + col.slice(1) + ':'}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="body"> {{element[col]}} </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="What to do?">
-      <mat-header-cell *matHeaderCellDef class="header">What to do?</mat-header-cell>
-      <mat-cell *matCellDef="let row" class="body">
-        <div *ngIf="tableid===0">
-          <button mat-button class="adminButton btn btn-success">Approve</button>
-          <button mat-button class="adminButton btn btn-danger">Block</button>
-        </div>
-        <div *ngIf="tableid===7">
-          <button [hidden]="hideElement" class="teamButtons btn btn-primary">View Team</button>
-          <button [hidden]="hideElement" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
-          <button [hidden]="choose" class="teamButtons btn btn-primary">Choose</button>
-        </div>
-      </mat-cell>
-    </ng-container>
-
+      <ng-container matColumnDef="What to do?">
+        <mat-header-cell *matHeaderCellDef class="header">What to do?</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="body">
+          <div *ngIf="tableid===0">
+            <button mat-button class="adminButton btn btn-success">Approve</button>
+            <button mat-button class="adminButton btn btn-danger">Block</button>
+          </div>
+          <div *ngIf="tableid===7">
+            <button [hidden]="hideElement" class="teamButtons btn btn-primary">View Team</button>
+            <button [hidden]="hideElement" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
+            <button [hidden]="choose" class="teamButtons btn btn-primary">Choose</button>
+          </div>
+        </mat-cell>
+      </ng-container>
+    </div>
     <mat-header-row *matHeaderRowDef="headerToPrint"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: headerToPrint;"></mat-row>
+    <mat-row *matRowDef="let row; columns: headerToPrint;" class="tablerow"></mat-row>
   </mat-table>
 
 </body>
