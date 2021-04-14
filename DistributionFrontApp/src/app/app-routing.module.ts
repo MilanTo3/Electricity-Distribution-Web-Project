@@ -32,6 +32,8 @@ import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my
 import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
+import { SettingsComponent } from './Components/settings/settings.component';
+
 
 
 
@@ -91,7 +93,8 @@ const routes: Routes = [
   { path: "teamsPage", component: TeamsPageComponent },
   { path: "createTeam", component: CreateTeamComponent },
   { path: "new-call", component: NewCallComponent},
-  { path: "notifications", component: NotificationsComponent}
+  { path: "notifications", component: NotificationsComponent},
+  { path: "settings", component: SettingsComponent},
     
 ];
 

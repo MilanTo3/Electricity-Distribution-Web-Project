@@ -1,0 +1,135 @@
+<form class="settings" action="" [formGroup]="settingsForm"  >
+
+<div class="container">
+    <div class="row border mt-5">
+      <label class="label h4 mt-2" for="notifications">Change password</label>  
+      <div class="col col-md-3">
+            <label class="label" for="currentPassword">Current password</label>
+            <input
+                    id="currentPassword"
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter current password"
+                    formControlName="currentPassword"                  
+            />
+        </div>
+        <div class="col col-md-3 mb-2">
+          <label class="label" for="newPassword">New password</label>
+            <input
+                    id="newPassword"
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter new password"
+                    formControlName="newPassword"                  
+            />
+        </div>
+    </div>
+  <div class=" admin-view mt-5" >
+      <div id="notifications" class="row notifications border">        
+        <label class="label h4 mt-2" for="notifications">Select visible notifications</label>  
+        <div class="ml-2">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" >Info
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" >Warnings
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" >Success
+        </div> 
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" >Errors
+        </div> 
+        </div>
+         
+      </div>
+
+      <div id="icons" class="row mt-5 icons border rounded"> 
+        <label class="label h4 mt-2 " for="icons">Manage icons</label>
+        <div class="row">
+          <div class="col col-md-3 p-5 icon-img-browse">
+            <h2 class="label border-bottom pb-3 mb-5">Calls</h2>
+            <div class="row">
+                    <div class="col ">
+                        <div class="form-group">
+                            <label class="row mb-4 icon-img-wrapper" for="call-photo-btn">
+                                <img [src]="callIcon" formControlName="iconCall" *ngIf="callIcon" class="icon-img" >                            
+                            </label> 
+                                                    
+                            <div class='row'>
+                                <label class="btn btn-primary mx-auto">
+                                        Browse
+                                        <input type="file" id="call-photo-btn" (change)="onFileChanged($event , 1)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
+                                </label>
+                            </div>
+                        </div>                   
+                    </div> 
+              </div>
+          </div>
+          <div class="col col-md-3 p-5 icon-img-browse">
+            <h2 class="h3 border-bottom pb-3 mb-5 section-title">Incidents icon</h2>
+            <div class="row">
+                    <div class="col ">
+                        <div class="form-group">
+                            <label class="row mb-4 icon-img-wrapper" for="incident-photo-btn">
+                                <img [src]="incidentIcon" formControlName="iconIncident" *ngIf="incidentIcon" class="icon-img" >                            
+                            </label> 
+                                                    
+                            <div class='row'>
+                                <label class="btn btn-primary mx-auto">
+                                        Browse
+                                        <input type="file" id="incident-photo-btn" (change)="onFileChanged($event , 2)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
+                                </label>
+                            </div>
+                        </div>                   
+                    </div> 
+              </div>
+          </div>            
+          <div class="col col-md-3 p-5 icon-img-browse">
+            <h2 class="h3 border-bottom pb-3 mb-5 section-title">Crews icon</h2>
+            <div class="row">
+                    <div class="col ">
+                        <div class="form-group">
+                            <label class="row mb-4 icon-img-wrapper" for="crew-photo-btn">
+                                <img [src]="crewIcon" formControlName="iconCrew" *ngIf="crewIcon" class="icon-img" >                            
+                            </label> 
+                                                    
+                            <div class='row'>
+                                <label class="btn btn-primary mx-auto">
+                                        Browse
+                                        <input type="file" id="crew-photo-btn" (change)="onFileChanged($event , 3)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
+                                </label>
+                            </div>
+                        </div>                   
+                    </div> 
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="other-settings" class="row mt-5 mb-5 border">
+        <label class="label h4 mt-2 " for="other-settings">Other settings</label>
+        <div class="ml-2">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" >Show only mandatory fields
+            </div>
+  
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" >Reset all settings
+            </div>         
+        </div>
+
+      </div>  
+  </div>
+
+  <div class="row justify-content-end">
+    <div class="w-auto ml-auto mb-5">
+        <button class="btn btn-success" type="submit">
+            Save changes
+        </button>
+    </div>
+</div>  
+
+</div>
+</form>

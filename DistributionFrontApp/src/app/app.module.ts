@@ -53,6 +53,8 @@ import { NotificationComponent } from './Components/notifications/notification/n
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LineChartComponent } from './Components/dashboard-page/line-chart-kartica/line-chart/line-chart.component';
 import { LineChartKarticaComponent } from './Components/dashboard-page/line-chart-kartica/line-chart-kartica.component';
+import { SettingsComponent } from './Components/settings/settings.component';
+
 
 @NgModule({
   declarations: [
@@ -99,7 +101,8 @@ import { LineChartKarticaComponent } from './Components/dashboard-page/line-char
     EmployedListComponent,
     NotificationComponent,
     LineChartComponent,
-    LineChartKarticaComponent
+    LineChartKarticaComponent,
+    SettingsComponent
   
   ],
   imports: [
