@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { menuList } from './menuList';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationBarComponent implements OnInit {
 
+  title = 'AngularMaterialGettingStarted';
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

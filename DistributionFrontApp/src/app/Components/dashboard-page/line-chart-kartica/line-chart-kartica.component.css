@@ -34,5 +34,5 @@
 }
 
 .mat-card:hover {
-    background: linear-gradient(184deg, rgb(224, 234, 236) 0%, rgb(255, 255, 255) 82%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(182deg, rgb(238, 243, 245) 0%, rgb(255, 255, 255) 82%, rgba(0,212,255,1) 100%);
 }

@@ -7,17 +7,17 @@
     left: 0;
     background-color: white;
     overflow-x: hidden;
-    padding-top: 50px;
+    padding-top: 100px;
     background-color: #a5d6d9;
     text-align: center;
 }
   
 #settings #search {
-    padding-top: 400px;
+    padding-top: 300px;
 }
 
 #search {
-    padding-top: 400px;
+    padding-top: 300px;
 }
 
 .sidebar a {
@@ -30,4 +30,23 @@
   
 .sidebar a:hover {
     color: #f1f1f1;
+}
+
+#toolbarMenu {
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+#mainToolbar .toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+#mainToolbar .toolbar-icon {
+    cursor: pointer;
+    margin: 0 8px;
+}
+
+.top-bar{
+    position: relative;
+    z-index: 2;
 }
