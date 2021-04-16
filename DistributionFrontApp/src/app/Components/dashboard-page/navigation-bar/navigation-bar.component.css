@@ -8,10 +8,10 @@
     background-color: white;
     overflow-x: hidden;
     padding-top: 100px;
-    background-color: #a5d6d9;
+    background-color: #ec7729;
     text-align: center;
 }
-  
+
 #settings #search {
     padding-top: 300px;
 }
@@ -24,7 +24,7 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 24px;
-    color: #ec7729;
+    color: #a3e5e7;
     display: block;
 }
   
@@ -49,4 +49,37 @@
 .top-bar{
     position: relative;
     z-index: 2;
+}
+
+.profilename{
+    color: #ce7729;
+    margin-top: 7px;
+    margin-right: 3px;
+}
+
+.profilepic{
+    height: 53px;
+    border-radius: 50%;
+    margin-right: 24px;
+    margin-left: 24px;
+}
+
+.profileSection{
+    display: inline-flex;
+    margin-top: 4px;
+
+}
+
+#mainToolbar{
+    height: 70px;
+}
+
+.profilepic:hover{
+    border: 2px solid #dd612c;
+    transition: 0.2s;
+}
+
+.profilename:hover{
+    color: #a3e5e7;
+    transition: 0.3s;
 }

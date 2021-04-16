@@ -38,7 +38,7 @@ import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
   { path: "login-register", component: LoginRegisterPageComponent },
-  { path: "dashboard", component: DashboardPageComponent,
+  { path: "dashboard", component: DashboardPageComponent
    /* children: [
       { path: "myIncidents", component: MyIncidentsComponent},  
       { path: "mySafetyDocs", component: MySafetyDocsComponent}

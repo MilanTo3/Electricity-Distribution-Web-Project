@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { menuList } from './menuList';
 
 @Component({
@@ -10,11 +11,21 @@ export class NavigationBarComponent implements OnInit {
 
   title = 'AngularMaterialGettingStarted';
 
-  constructor() { }
+  sideMenu = menuList;
+  collapse = false;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  
+  toggleSidebar() {
+    this.collapse = !this.collapse;
+
+  }
+
+  redirectToNotifications(){
+    this.router.navigateByUrl('/notifications');
+  }
 
 }

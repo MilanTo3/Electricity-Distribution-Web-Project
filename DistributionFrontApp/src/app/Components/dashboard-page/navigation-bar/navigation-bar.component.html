@@ -9,7 +9,11 @@
     <mat-icon id="toolbarMenu">subject</mat-icon>
     Smart Energy
     <span class="toolbar-spacer"></span>
-    <mat-icon class="toolbar-icon" matBadge="8" matBadgePosition="after" matBadgeColor="accent">notifications</mat-icon>
+    <div class="profileSection">
+      <a href="/profile"><p class="profilename">Ooooo Weeee</p></a>
+      <a href="/profile"><img src="/assets/Images/profilepic.jpg" class="profilepic"/></a>
+    </div>
+    <mat-icon (click)="redirectToNotifications()" class="toolbar-icon" matBadge="8" matBadgePosition="after" matBadgeColor="accent">notifications</mat-icon>
   </mat-toolbar>
 </div>
   <div class="container">
@@ -27,5 +31,4 @@
     </div>
   </div>
 </body>
-
 </html>
