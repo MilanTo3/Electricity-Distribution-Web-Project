@@ -1,21 +1,42 @@
 <div class="container pageContainer">
-    <h3 class="title"><i class="fas fa-users"></i> Create a team:</h3>
-    <p class="labela">Here, the administrator can create a dispatch team that solve incidents.</p>
+    <h3 class="title"><i class="fas fa-users"></i> Edit a team:</h3>
+    <p class="labela">Here, the administrator can edit an existing dispatch team that solve incidents.</p>
     <div class="form-group">
-        <div class="form-inline" style="padding: 30px;">
-            <label class="col-sm-2 labela">Team name:</label>
-            <input class="col-md-7 form-control inputPolja" type="text" placeholder="Enter a team name here"/>
+        <div class="form-group" style="margin-top: 30px;">
+            <label class="col title1">Team information:</label>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-inline" style="padding-bottom: 23px;">
+                    <label class="col-sm-3 labela">Team name:</label>
+                    <input class="col-sm-5 form-control inputPolja" type="text" placeholder="Enter a team name here" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 labela">Currently working on:</label>
+                    <label class="col-sm-4 labela1" style="font-weight: bold;">Incident-1</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label class="col-sm-5 labela">Team member count:</label>
+                    <label class="col-sm-4 labela1" style="font-weight: bold;">10</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 labela">Date formed:</label>
+                    <label class="col-sm-4 labela1" style="font-weight: bold;">23.07.2021</label>
+                </div>
+            </div>
         </div>
 
         <div cdkDropListGroup style="margin-top: 20px;">
             <div class="example-container" style="text-align: center;">
                 <h5 class="title">Available Team members ({{availableMem.length}}):</h5>
                 <div class="form-inline" style="margin-top: 23px;">
-                    <input class="form-control col-md-9 inputPolja" type="text"/>
+                    <input class="form-control col-md-9 inputPolja" type="text" />
                     <button class="btn buttonClass col-md-3"><i class="fas fa-search"></i> Search</button>
                 </div>
 
-                <cdk-virtual-scroll-viewport class="scrollbar" style="height: 400px" itemSize="3">
+                <cdk-virtual-scroll-viewport class="scrollbar" style="height: 350px" itemSize="3">
                     <div cdkDropList [cdkDropListData]="availableMem" class="example-list"
                         (cdkDropListDropped)="drop($event)">
                         <div class="example-box" *ngFor="let item of availableMem" cdkDrag>
@@ -31,12 +52,12 @@
             <div class="example-container" style="text-align: center;">
                 <h5 class="title">This teams members ({{usedMem.length}}):</h5>
                 <div class="form-inline" style="margin-top: 23px;">
-                    <input class="form-control col-md-9 inputPolja" type="text"/>
+                    <input class="form-control col-md-9 inputPolja" type="text" />
                     <button class="btn buttonClass col-md-3"><i class="fas fa-search"></i> Search</button>
                 </div>
 
                 <div cdkDropList [cdkDropListData]="usedMem" class="example-list" (cdkDropListDropped)="drop($event)">
-                    <cdk-virtual-scroll-viewport class="scrollbar" style="height: 400px" itemSize="3">
+                    <cdk-virtual-scroll-viewport class="scrollbar" style="height: 350px" itemSize="3">
                         <div class="example-box" *ngFor="let item of usedMem" cdkDrag>
                             <div class="userItem">
                                 <img src="{{item.profileImg}}" style="width:40px; border-radius:50%" />
@@ -45,7 +66,9 @@
                         </div>
                     </cdk-virtual-scroll-viewport>
                 </div>
-                <button class="btn buttonClass" style="margin-top: 12px; width: 200px;">Make team</button>
+                <button class="btn buttonClass" style="margin-top: 12px; width: 150px;">Submit change</button>
+                <button class="btn buttonClass" style="margin-top: 12px; width: 150px; margin-left: 4px;">Delete team</button>
+
             </div>
         </div>
     </div>

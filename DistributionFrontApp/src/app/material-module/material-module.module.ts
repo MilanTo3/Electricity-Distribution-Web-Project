@@ -14,6 +14,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling'
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -30,6 +32,8 @@ const MaterialComponents = [
   MatToolbarModule,
   MatListModule,
   MatTooltipModule,
+  DragDropModule,
+  ScrollingModule
 ];
 
 @NgModule({

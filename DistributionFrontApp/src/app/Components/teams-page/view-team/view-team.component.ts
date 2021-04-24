@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { User } from '../../../Models/User.model';
+import { User } from 'src/app/Models/User.model';
 
 @Component({
-  selector: 'app-create-team',
-  templateUrl: './create-team.component.html',
-  styleUrls: ['./create-team.component.css']
+  selector: 'app-view-team',
+  templateUrl: './view-team.component.html',
+  styleUrls: ['./view-team.component.css']
 })
-export class CreateTeamComponent implements OnInit {
+export class ViewTeamComponent implements OnInit {
 
-  availableMem: User[] = [];
   usedMem: User[] = [];
 
-  constructor(){
-    this.addMockUsers();
-  }
+  constructor() { this.addMockUsers() }
 
   addMockUsers(){
 
@@ -25,22 +21,10 @@ export class CreateTeamComponent implements OnInit {
     let user5 = new User("Zoe", "Castillo", "zoeDreamsCrow@gmail.com", "Consumer", "username4", "2021-2-15", "address", "/assets/Images/colorpattern.jpg");
     let user6 = new User("Corey", "Gil-Shuster", "coreyGilShuster@gmail.com", "Dispatcher", "username4", "2021-02-13", "address", "/assets/Images/colorpattern.jpg");
     
-    this.availableMem.push(user1, user2, user3, user4, user5, user6);
     this.usedMem.push(user1, user2, user3, user4, user5, user6);
   }
 
   ngOnInit(): void {
-  }
-
-  drop(event: CdkDragDrop<User[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
   }
 
 }
