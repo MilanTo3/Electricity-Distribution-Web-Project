@@ -6,7 +6,7 @@
 <body>
   <div class="top-bar">
   <mat-toolbar id="mainToolbar" color="primary">
-    <mat-icon id="toolbarMenu">subject</mat-icon>
+    <mat-icon id="toolbarMenu" (click)="toggleSidebar()">subject</mat-icon>
     Smart Energy
     <span class="toolbar-spacer"></span>
     <div class="profileSection">
@@ -17,17 +17,17 @@
   </mat-toolbar>
 </div>
   <div class="container">
-    <div class="sidebar">
-      <a href="http://localhost:4200/dashboard"><i class="fa fa-fw fa-home"></i></a>
-      <a href="http://localhost:4200/mySafetyDocs"><i class="fas fa-file-alt"></i></a>
-      <a href="http://localhost:4200/profile"><i class="fa fa-fw fa-user"></i></a>
-      <a href="#"><i class="fa fa-fw fa-envelope"></i></a>
-      <a href="http://localhost:4200/notifications"><i class="fa fa-fw fa-bell"></i></a>
-      <a href="http://localhost:4200/map"><i class="fa fa-fw fa-map-marker"></i></a>
-      <a href="http://localhost:4200/newDevice"><i class="fa fa-wrench"></i></a>
-      <a href="/teamsPage"><i class="fas fa-users"></i></a>
-      <a href="#"><i id="search" class="fa fa-fw fa-search"></i></a>
-      <a href="#"><i id="settings" class="fa fa-fw fa-cog"></i></a>
+    <div class="sidebar" [ngClass]="{sidebarAnimation: expand===true}">
+      <a href="http://localhost:4200/dashboard"><i class="fa fa-fw fa-home"></i><span *ngIf="showFields">Dashboard</span></a>
+      <a href="http://localhost:4200/mySafetyDocs"><i class="fas fa-file-alt"></i><span *ngIf="showFields">Safety Docs</span></a>
+      <a href="http://localhost:4200/profile"><i class="fa fa-fw fa-user"></i><span *ngIf="showFields">My Profile</span></a>
+      <a href="#"><i class="fa fa-fw fa-envelope"></i><span *ngIf="showFields">Idk what this is</span></a>
+      <a href="http://localhost:4200/notifications"><i class="fa fa-fw fa-bell"></i><span *ngIf="showFields">Notifications</span></a>
+      <a href="http://localhost:4200/map"><i class="fa fa-fw fa-map-marker"></i><span *ngIf="showFields">Map</span></a>
+      <a href="http://localhost:4200/newDevice"><i class="fa fa-wrench"></i><span *ngIf="showFields">New Device</span></a>
+      <a href="/teamsPage"><i class="fas fa-users"></i><span *ngIf="showFields">Teams</span></a>
+      <a href="#"><i id="search" class="fa fa-fw fa-search"></i><span *ngIf="showFields">Search</span></a>
+      <a href="#"><i id="settings" class="fa fa-fw fa-cog"></i><span *ngIf="showFields">Settings</span></a>
     </div>
   </div>
 </body>

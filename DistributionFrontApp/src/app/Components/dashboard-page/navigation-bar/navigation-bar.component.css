@@ -9,7 +9,8 @@
     overflow-x: hidden;
     padding-top: 100px;
     background-color: #ec7729;
-    text-align: center;
+    transition-duration: 0.3s;
+    transition-property: width;
 }
 
 #settings #search {
@@ -82,4 +83,32 @@
 .profilename:hover{
     color: #a3e5e7;
     transition: 0.3s;
+}
+
+.sidebarAnimation{
+    text-align: left;
+    width: 184px;
+    transition-timing-function: linear;
+}
+
+span{
+    display:inline-flex;
+    font-size: 15px;
+    font-family: 'Roboto';
+    margin-left: 11px;
+    animation: fadein 0.6s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+i{
+    width:30px;
+}
+
+.fa-file-alt{
+    margin-left:5px;
+    width: 27px;
 }

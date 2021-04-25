@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { menuList } from './menuList';
 
 @Component({
@@ -11,21 +11,44 @@ export class NavigationBarComponent implements OnInit {
 
   title = 'AngularMaterialGettingStarted';
 
-  sideMenu = menuList;
-  collapse = false;
+  events: string[] = [];
+  opened: boolean = true;
+  expand = false;
+  showFields = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  toggleSidebar() {
-    this.collapse = !this.collapse;
-
+  redirectToNotifications() {
+    this.router.navigateByUrl('/notifications');
   }
 
-  redirectToNotifications(){
-    this.router.navigateByUrl('/notifications');
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData;
+  }
+
+  checkPath() {
+
+    if (this.router.url === "/login-register") {
+      return true;
+    }
+
+    return false;
+  }
+
+  toggleSidebar() {
+    this.expand = !this.expand;
+    if (this.expand) {
+      setTimeout(() => { this.showFields = !this.showFields; }, 300);
+    } else {
+      this.showFields = false;
+    }
+  }
+
+  returnTrue() {
+    return true;
   }
 
 }
