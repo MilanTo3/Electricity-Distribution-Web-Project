@@ -52,6 +52,7 @@ import { NotificationComponent } from './Components/notifications/notification/n
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LineChartComponent } from './Components/dashboard-page/line-chart-kartica/line-chart/line-chart.component';
 import { LineChartKarticaComponent } from './Components/dashboard-page/line-chart-kartica/line-chart-kartica.component';
+import { SettingsComponent } from './Components/settings/settings.component';
 import { EditTeamComponent } from './Components/teams-page/edit-team/edit-team.component';
 import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.component';
 
@@ -100,6 +101,7 @@ import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.c
     NotificationComponent,
     LineChartComponent,
     LineChartKarticaComponent,
+    SettingsComponent,
     EditTeamComponent,
     ViewTeamComponent
   
