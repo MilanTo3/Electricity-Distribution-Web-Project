@@ -55,6 +55,8 @@ import { LineChartKarticaComponent } from './Components/dashboard-page/line-char
 import { SettingsComponent } from './Components/settings/settings.component';
 import { EditTeamComponent } from './Components/teams-page/edit-team/edit-team.component';
 import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.component';
+import { ConsumersComponent } from './Components/consumers/consumers.component';
+import { NewConsumerComponent } from './Components/consumers/new-consumer/new-consumer.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,9 @@ import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.c
     LineChartKarticaComponent,
     SettingsComponent,
     EditTeamComponent,
-    ViewTeamComponent
+    ViewTeamComponent,
+    ConsumersComponent,
+    NewConsumerComponent
   
   ],
   imports: [
