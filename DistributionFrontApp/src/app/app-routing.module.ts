@@ -35,6 +35,8 @@ import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new
 import { SettingsComponent } from './Components/settings/settings.component';
 import { EditTeamComponent } from './Components/teams-page/edit-team/edit-team.component';
 import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.component';
+import { ConsumersComponent } from './Components/consumers/consumers.component';
+import { NewConsumerComponent } from './Components/consumers/new-consumer/new-consumer.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -96,6 +98,8 @@ const routes: Routes = [
   { path: "settings", component: SettingsComponent},
   { path: "editTeam", component: EditTeamComponent },
   { path: "viewTeam", component: ViewTeamComponent },
+  { path: "consumers", component: ConsumersComponent },
+  { path: "new-consumer", component: NewConsumerComponent},
     
 ];
 

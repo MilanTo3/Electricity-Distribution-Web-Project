@@ -1,3 +1,4 @@
+import { Consumer } from './../../../Models/Consumer.model';
 import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MyIncidents } from 'src/app/Models/MyIncidents.model';
 import { User } from '../../../Models/User.model';
@@ -70,6 +71,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
       this.loadTeams();
     }else if(this.tableid === 8){
       this.loadMySafetyDocs();
+    }else if(this.tableid === 9){
+    this.loadAllConsumers();
     }
 
   }
@@ -172,7 +175,15 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataToPrint.push(doc1, doc2, doc3);
     this.keyNames = Object.getOwnPropertyNames(doc3);
   }
+  loadAllConsumers(){
+    let consumer1 = new Consumer("Erik", "Hoffstad", "grad, ulica i broj", "high", "065454215", "id naloga", "residential");
+    let consumer2 = new Consumer("Rukia", "Kuchiki", "grad, ulica i broj", "low", "065454215", "id naloga", "residential");
+    let consumer3 = new Consumer("Jordan", "Peterson", "grad, ulica i broj", "low", "065454215", "id naloga", "commertial");
+    let consumer4 = new Consumer("Petar" , "Bojovic", "grad, ulica i broj", "high", "065454215", "id naloga", "commertial");
 
+    this.dataToPrint.push(consumer1, consumer2, consumer3, consumer4);
+    this.keyNames = Object.getOwnPropertyNames(consumer4);
+  }
   ngOnInit(): void{
     this.addMockRequests();
     this.copyArray(this.keyNames, this.headerToPrint);

@@ -1,0 +1,91 @@
+<form class="profile-settings" action="" [formGroup]="consumerForm" (ngSubmit)="onSubmit()" >
+    <div class="container">
+    <h2 class="h3 border-bottom pb-3 mb-5 mt-5 section-title">Consumer details</h2>						
+        <div class="row">
+            <div class="col ">
+                <div class="form-group row" >
+                    <label class="col-sm-3 col-form-label" for="name">Name:</label>
+                    <input
+                        id="name"
+                        type="text"
+                        class="col-sm-6 form-control"
+                        placeholder="Name"
+                        formControlName="name"                                  
+                    />
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-3 col-form-label" for="location">Location:</label>
+                        <input
+                            id="location"
+                            type="text"
+                            class="col-sm-6 form-control"
+                            placeholder="Location"
+                            formControlName="location"                                       
+                        />
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-3 col-form-label" for="accountId">Account identifier:</label>
+                        <input
+                            id="accountId"
+                            type="text"
+                            class="col-sm-6 form-control"
+                            placeholder="Unique identifier"
+                            formControlName="accountId"                                       
+                        />
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-3 col-form-label" for="phone">Phone number:</label>
+                        <input
+                            id="phone"
+                            type="text"
+                            class="col-sm-6 form-control"
+                            placeholder="Phone"
+                            formControlName="phone"                                       
+                        />
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-3 col-form-label" for="lastname">Lastname:</label>
+                        <input
+                            id="lastname"
+                            type="text"
+                            class="col-sm-6 form-control"
+                            placeholder="Last name"
+                            formControlName="lastname"
+                            
+                        />
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-3 col-form-label" for="priority">Priority:</label>
+                        <input
+                            id="priority"
+                            type="text"
+                            class="col-sm-6 form-control"
+                            placeholder="Priority"
+                            formControlName="priority"
+                            readonly
+                        />
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-3 col-form-label" for="type">Set type:</label>
+                    <select                          
+                        class="col-sm-6 form-control"
+                        id="type" 
+                        formControlName="priority">
+                        <option *ngFor="let option of typeOptions" [value]="option" >{{ option }}</option> 
+                    </select>
+                </div>
+            </div>
+
+        </div> <!-- end row -->
+            
+        <div class="row justify-content-center">
+            <div class="w-auto">
+                <button class="btn btn-success overflow-hidden" type="submit">
+                    Save changes
+                </button>
+            </div>   
+        </div>    
+	</div>
+</form>
+    
+  

@@ -1,0 +1,28 @@
+.title, .h3{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: var(--c-orange-100);
+}
+label{
+    color: var(--c-orange-100);
+    font-family: 'Georgia';
+}
+
+.form-group input, select{
+    height: 34px;
+    color: var(--c-blue-100);
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.btn{
+    background: var(--c-blue-100);
+    color: white;
+    font-weight: bold;
+    border-color: var(--c-blue-100);
+    
+}
+.btn:hover{
+    background: var(--c-orange-200);
+    border-color: var(--c-orange-200);
+}
