@@ -59,11 +59,6 @@ body {
   transition: background-size 300ms;
 }
 
-.title:hover,
-.title:focus {
-  background-size: 0 0.1em, 100% 0.1em;
-}
-
 .header{
     color: #dd612c;
     flex-direction: column;
@@ -80,6 +75,15 @@ body {
     display:block;
 }
 
-.mat-card:hover {
+.mat-card:hover{
     background: linear-gradient(170deg, rgb(224, 234, 236) 0%, rgb(255, 255, 255) 82%, rgba(0,212,255,1) 100%);
+}
+
+.mat-card:hover .title {
+    background-size: 0 0.1em, 100% 0.1em;
+
+}
+
+.graphRow{
+    display: inline-flex;
 }

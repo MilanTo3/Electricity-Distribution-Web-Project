@@ -28,11 +28,11 @@
   transition: background-size 300ms;
 }
 
-.title:hover,
-.title:focus {
-  background-size: 0 0.1em, 100% 0.1em;
+.mat-card:hover{
+    background: linear-gradient(182deg, rgb(238, 243, 245) 0%, rgb(255, 255, 255) 82%, rgba(0,212,255,1) 100%);
 }
 
-.mat-card:hover {
-    background: linear-gradient(184deg, rgb(224, 234, 236) 0%, rgb(255, 255, 255) 82%, rgba(0,212,255,1) 100%);
+.mat-card:hover .title {
+    background-size: 0 0.1em, 100% 0.1em;
+
 }

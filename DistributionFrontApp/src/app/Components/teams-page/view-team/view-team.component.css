@@ -1,0 +1,95 @@
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+}
+  
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+}
+
+.labela1{
+    color: #ec7729;
+    font-family: 'Georgia';
+}
+
+.pageContainer{
+    margin-top: 50px;
+}
+
+.buttonClass{
+    background: #699fa1;
+    color:white;
+    font-weight:bold;
+    font-family: 'Roboto';
+}
+  
+.buttonClass:hover{
+    background: #dd612c;
+}
+
+.title1{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+    font-size: 21px;
+}
+
+.example-card {
+    padding-top: 24px;
+    border-bottom: solid 1px #ec7729;
+    background-color: #699fa1;
+    font-family: 'Georgia';
+    color: white;
+    text-align: center;
+}
+  
+.example-card:hover{
+    background-color: #dd612c;
+    transition: 0.45s;
+    color: #e0eaeb;
+}
+
+.example-box{
+    border: 1px solid #dd612c;
+}
+
+.listContainer{
+    column-count: 3;
+    column-gap:2px;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #699fa1;
+    background-color: #c3e5e7; 
+    border-radius: 11px;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ec7729; 
+    border-radius: 10px;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #dd612c; 
+}
+  
+* {
+    scrollbar-width: thin;          /* "Ovo je za scroll bar na mozilli, zato sto ovo gore sto ime prefiks -webkit- radi na Chrome, Edge, Safari pretrazivacima." */
+    scrollbar-color: #ec7729 #c3e5e7;   /* scroll thumb and track */
+    scrollbar-darkshadow-color: #dd612c;
+}
+
+.inputPolja {
+    color: #699FA1;
+    font-weight: bold;
+    background-color: rgba(137, 179, 228, 0.3);
+  }

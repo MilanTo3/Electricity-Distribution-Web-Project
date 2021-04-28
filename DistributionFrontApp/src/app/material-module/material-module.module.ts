@@ -8,6 +8,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling'
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -18,7 +26,14 @@ const MaterialComponents = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatCardModule
+  MatCardModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatListModule,
+  MatTooltipModule,
+  DragDropModule,
+  ScrollingModule
 ];
 
 @NgModule({

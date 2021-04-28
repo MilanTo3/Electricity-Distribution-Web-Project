@@ -26,8 +26,8 @@
             <button mat-button class="adminButton btn btn-danger">Block</button>
           </div>
           <div *ngIf="tableid===7">
-            <button [hidden]="hideElement" class="teamButtons btn btn-primary">View Team</button>
-            <button [hidden]="hideElement" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
+            <button [hidden]="hideElement" routerLink="/viewTeam" class="teamButtons btn btn-primary">View Team</button>
+            <button [hidden]="hideElement" routerLink="/editTeam" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
             <button [hidden]="choose" class="teamButtons btn btn-primary">Choose</button>
           </div>
         </mat-cell>

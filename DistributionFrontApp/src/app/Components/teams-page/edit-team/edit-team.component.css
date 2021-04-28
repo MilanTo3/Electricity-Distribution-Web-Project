@@ -123,3 +123,15 @@
   font-weight: bold;
   background-color: rgba(137, 179, 228, 0.3);
 }
+
+.title1{
+  font-family: 'Roboto';
+  font-weight: bold;
+  color: #ec7729;
+  font-size: 21px;
+}
+
+.labela1{
+  color: #ec7729;
+  font-family: 'Georgia';
+}

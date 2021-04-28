@@ -46,7 +46,6 @@ import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-saf
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
 import { NavigationBarComponent } from './Components/dashboard-page/navigation-bar/navigation-bar.component';
-import { EmployedListComponent } from './Components/teams-page/employed-list/employed-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { NotificationComponent } from './Components/notifications/notification/notification.component';
@@ -54,7 +53,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LineChartComponent } from './Components/dashboard-page/line-chart-kartica/line-chart/line-chart.component';
 import { LineChartKarticaComponent } from './Components/dashboard-page/line-chart-kartica/line-chart-kartica.component';
 import { SettingsComponent } from './Components/settings/settings.component';
-
+import { EditTeamComponent } from './Components/teams-page/edit-team/edit-team.component';
+import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.component';
 
 @NgModule({
   declarations: [
@@ -98,11 +98,12 @@ import { SettingsComponent } from './Components/settings/settings.component';
     ChecklistMysfdcComponent,
     NewDeviceComponent,
     NavigationBarComponent,
-    EmployedListComponent,
     NotificationComponent,
     LineChartComponent,
     LineChartKarticaComponent,
-    SettingsComponent
+    SettingsComponent,
+    EditTeamComponent,
+    ViewTeamComponent
   
   ],
   imports: [
