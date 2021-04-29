@@ -35,4 +35,21 @@
     border: 1px solid #699fa1;
     border-radius: 10px;
     padding: 4px;
+    display: inline-block;
+}
+
+.imageClass{
+    width: 125px;
+    height: 125px;
+    border: 1px solid #dd612c;
+    border-radius: 15px;
+    margin-left: 4px;
+}
+
+.galleryContainer{
+    display: inline-flex;
+}
+
+.image-list {
+    flex-wrap: wrap;
 }

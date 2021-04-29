@@ -7,14 +7,23 @@
     </div>
     <div class="row col-md-11">
         <div class="imageListClass">
-            <div>
-                <input id='fileid' type='file' #fileInput hidden />
-                <a (click)="fileInput.click()">
-                    <div class="uploadImage">
-                        <p class="uploadText">Upload</p>
+            <form name="multimediaForm">
+                <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)" accept="image/*"
+                    multiple />
+                <div class="galleryContainer">
+                    <a (click)="fileInput.click()">
+                        <div class="uploadImage">
+                            <p class="uploadText">Upload</p>
+                        </div>
+                    </a>
+                    <div class="image-list" fxLayout="row">
+                        <ng-container *ngFor="let item of filePaths">
+                            <img class="imageClass" src="{{item.picture}}" />
+                            <a (click)="fileDelete(filePaths.indexOf(item))">Delete img</a>
+                        </ng-container>
                     </div>
-                </a>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

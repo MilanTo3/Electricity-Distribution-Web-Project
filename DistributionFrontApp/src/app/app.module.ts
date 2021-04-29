@@ -124,7 +124,6 @@ import { NewConsumerComponent } from './Components/consumers/new-consumer/new-co
     ),
     NgxChartsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

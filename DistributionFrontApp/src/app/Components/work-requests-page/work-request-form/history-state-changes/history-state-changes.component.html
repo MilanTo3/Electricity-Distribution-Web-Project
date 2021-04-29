@@ -7,9 +7,9 @@
         <app-table-component [tableType]='3'></app-table-component>
         <div class="row justify-content-end">
             <div class="w-auto ml-auto">
-                <button type="button" class="btn btn-secondary ml-3">Cancel</button>
-                <button type="button" class="btn btn-danger ml-3">Deny</button>
-                <button type="button" class="btn btn-success ml-3">Approve</button>
+                <button type="button" class="btn btn-secondary ml-3" (click)="addState(0)">Cancel</button>
+                <button type="button" class="btn btn-danger ml-3" (click)="addState(1)">Deny</button>
+                <button type="button" class="btn btn-success ml-3" (click)="addState(2)">Approve</button>
             </div>
         </div>
 

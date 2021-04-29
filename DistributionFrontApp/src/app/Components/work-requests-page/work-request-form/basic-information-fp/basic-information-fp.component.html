@@ -1,74 +1,76 @@
 <div class="container basicInformationForm">
     <h3 class="title">Basic Information:</h3>
     <p class="labela">Form about basic info of a work request.</p>
-    <div class="row formRow">
-        <div class="col">
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Type:</label>
-                <select class="col-sm-4 form-control">
-                    <option>Planned work</option>
-                    <option>Unplanned work</option>
-                </select>
+    <form name="infoForm" [formGroup]="infoForm">
+        <div class="row formRow">
+            <div class="col">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Type:</label>
+                    <select class="col-sm-4 form-control" formControlName="type">
+                        <option>Planned work</option>
+                        <option>Unplanned work</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4">Status:</label>
+                    <label class="col-sm-4"><b>Draft</b></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Incident:</label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Street:</label>
+                    <input class="col-sm-4 form-control" type="text" formControlName="street"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Start date/time:</label>
+                    <input class="col-sm-4 form-control" type="date" formControlName="startDate"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">End date/time:</label>
+                    <input class="col-sm-4 form-control" type="date" formControlName="endDate"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4">Created by:</label>
+                    <label class="col-sm-4"><b>User</b></label>
+                </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4">Status:</label>
-                <label class="col-sm-4"><b>Draft</b></label>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Incident:</label>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Street:</label>
-                <input class="col-sm-4 form-control" type="text"/>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Start date/time:</label>
-                <input class="col-sm-4 form-control" type="date" />
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">End date/time:</label>
-                <input class="col-sm-4 form-control" type="date" />
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4">Created by:</label>
-                <label class="col-sm-4"><b>User</b></label>
+            <div class="col">
+                <div class="form-group row form-inline">
+                    <label class="col-sm-4 col-form-label">Emergency work:</label>
+                    <mat-slide-toggle class="col-sm-1" formControlName="emergency"></mat-slide-toggle>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Company:</label>
+                    <input class="col-sm-4 form-control" type="text" formControlName="company"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Incident:</label>
+                    <input class="col-sm-4" value="-" disabled />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Phone number:</label>
+                    <input class="col-sm-4 form-control" type="tel" formControlName="phoneNumber"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Date created:</label>
+                    <input class="col-sm-4 form-control" type="date" disabled />
+                </div>
             </div>
         </div>
-        <div class="col">
-            <div class="form-group row form-inline">
-                <label class="col-sm-4 col-form-label">Emergency work:</label>
-                <mat-slide-toggle class="col-sm-1"></mat-slide-toggle>
+        <div class="row formRow">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Purpose:</label>
+                <input class="col-sm-10 form-control" type="text" formControlName="purpose"/>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Company:</label>
-                <input class="col-sm-4 form-control" type="text" />
+                <label class="col-sm-2 col-form-label">Details:</label>
+                <input class="col-sm-10 form-control" type="text" formControlName="details"/>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Incident:</label>
-                <input class="col-sm-4" value="-" disabled />
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Phone number:</label>
-                <input class="col-sm-4 form-control" type="tel"/>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Date created:</label>
-                <input class="col-sm-4 form-control" type="date" disabled />
+                <label class="col-sm-2 col-form-label">Notes:</label>
+                <input class="col-sm-10 form-control" type="text" formControlName="notes"/>
             </div>
         </div>
-    </div>
-    <div class="row formRow">
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Purpose:</label>
-            <input class="col-sm-10 form-control" type="text"/>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Details:</label>
-            <input class="col-sm-10 form-control" type="text"/>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Notes:</label>
-            <input class="col-sm-10 form-control" type="text"/>
-        </div>
-    </div>
+    </form>
 </div>
