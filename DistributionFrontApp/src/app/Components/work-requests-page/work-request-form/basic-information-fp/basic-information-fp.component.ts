@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { customFormValidators } from '../../../../Models/customValidators';
 
 @Component({
   selector: 'app-basic-information-fp',
@@ -8,20 +9,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class BasicInformationFPComponent implements OnInit {
 
-  infoForm = new FormGroup({
-    type: new FormControl(''),
-    street: new FormControl('', Validators.required),
-    startDate: new FormControl('', Validators.required),
-    endDate: new FormControl('', Validators.required),
-    emergency: new FormControl('', Validators.required),
-    company: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
-    purpose: new FormControl('', Validators.required),
-    details: new FormControl('', Validators.required),
-    notes: new FormControl('', Validators.required)
-  })
+  infoForm = this.fb.group({
+    type: ['Planned work'],
+    street: ['', Validators.required],
+    startDate: [null, Validators.required],
+    endDate: [null, Validators.required],
+    emergency: ['false', Validators.required],
+    company: ['', Validators.required],
+    phoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
+    purpose: ['', Validators.required],
+    details: ['', Validators.required],
+    notes: [('')]
+  },
+    { //Custom validacija.
+      validator: Validators.compose([customFormValidators.dateLessThan('startDate', 'endDate', { 'dateError': true })])
+    });
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     if (sessionStorage.getItem("infoForm") !== null) {
@@ -35,8 +39,16 @@ export class BasicInformationFPComponent implements OnInit {
     this.infoForm.valueChanges.subscribe(val => {
       sessionStorage.setItem("infoForm", JSON.stringify(this.infoForm.value));
       sessionStorage.setItem("infoFormValid", JSON.stringify(this.infoForm.valid));
-
+      
     })
+  }
+
+  get endDateForm() {
+    return this.infoForm.get('endDate');
+  }
+
+  get phoneNumber(){
+    return this.infoForm.get('phoneNumber');
   }
 
 }

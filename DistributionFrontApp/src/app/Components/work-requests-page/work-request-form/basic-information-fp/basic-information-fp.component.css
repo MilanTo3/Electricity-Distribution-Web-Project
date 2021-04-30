@@ -26,3 +26,18 @@ label{
     font-family: 'Georgia';
     margin-bottom: 25px;
 }
+
+.row{
+    padding-top: 7px;
+}
+
+.text-danger{
+    font-weight: bold;
+    text-align: center;
+    animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
+}
