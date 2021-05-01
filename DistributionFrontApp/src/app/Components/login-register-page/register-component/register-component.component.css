@@ -1,3 +1,6 @@
+body{
+    background: transparent;
+}
 
 .MainLabela{
     font-family: Helvetica, sans-serif;
@@ -28,7 +31,7 @@
 }
 
 .sekcija{
-    padding-top: 15px;
+    padding-top: 12px;
 }
 
 .inputpolja {
@@ -59,4 +62,13 @@ button{
     top: 33px;
     text-align:center;
 
+}
+
+.text-danger{
+    animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
 }

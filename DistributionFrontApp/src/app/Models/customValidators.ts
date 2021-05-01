@@ -12,4 +12,16 @@ export class customFormValidators {
         };
     }
     
+    static passwordConfirmCheck(passwordField1: string, passwordField2: string, validatorField: { [key: string]: boolean }): ValidatorFn {
+
+        return (form: AbstractControl): { [key: string]: boolean } | null => {
+            
+            const pass1 = form.get(passwordField1).value;
+            const pass2 = form.get(passwordField2).value;
+            if((pass1 !== null && pass2 !== null) && pass1 !== pass2){
+                return validatorField;
+            }
+            return null;
+        };
+    }
 }

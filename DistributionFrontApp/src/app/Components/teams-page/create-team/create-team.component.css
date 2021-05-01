@@ -123,3 +123,15 @@
   font-weight: bold;
   background-color: rgba(137, 179, 228, 0.3);
 }
+
+.text-danger{
+  font-weight: bold;
+  margin-left: 45px;
+  padding-bottom: 4px;
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+  0%{ opacity: 0; }
+  100%{ opacity: 1; }
+}

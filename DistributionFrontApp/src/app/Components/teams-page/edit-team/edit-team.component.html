@@ -7,10 +7,13 @@
         </div>
         <div class="row">
             <div class="col">
+                <form [formGroup]="teamsForm">
                 <div class="form-inline" style="padding-bottom: 23px;">
                     <label class="col-sm-3 labela">Team name:</label>
-                    <input class="col-sm-5 form-control inputPolja" type="text" placeholder="Enter a team name here" />
+                    <input class="col-sm-5 form-control inputPolja" type="text" formControlName="name" placeholder="Enter a team name here" />
+                    <small *ngIf="teamsForm.get('name').invalid && teamsForm.get('name').touched" class="text-danger">Team name is a required field.</small>
                 </div>
+                </form>
                 <div class="form-group">
                     <label class="col-sm-5 labela">Currently working on:</label>
                     <label class="col-sm-4 labela1" style="font-weight: bold;">Incident-1</label>

@@ -19,7 +19,7 @@ export class BasicInformationFPComponent implements OnInit {
     phoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
     purpose: ['', Validators.required],
     details: ['', Validators.required],
-    notes: [('')]
+    notes: ['']
   },
     { //Custom validacija.
       validator: Validators.compose([customFormValidators.dateLessThan('startDate', 'endDate', { 'dateError': true })])

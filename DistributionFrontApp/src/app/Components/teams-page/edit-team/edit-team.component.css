@@ -135,3 +135,14 @@
   color: #ec7729;
   font-family: 'Georgia';
 }
+
+.text-danger{
+  font-weight: bold;
+  margin-left: 4px;
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+  0%{ opacity: 0; }
+  100%{ opacity: 1; }
+}

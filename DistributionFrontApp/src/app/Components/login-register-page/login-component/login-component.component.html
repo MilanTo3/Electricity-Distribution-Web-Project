@@ -10,25 +10,31 @@
     <br />
     <img class="logo" src="/assets/Images/logo_transparent.png" height="100" />
     <br />
-    <br/>
-    <form>
-      <div class="form-group">
-        <p class="labela">Username:</p>
-        <input class="inputpolja form-control" type="text" />
-        <p class="labela">Password:</p>
-        <input class="inputpolja form-control" type="password" />
-        <br /><br />
-        <button (click)="openDashboard()" class="inputpolja">Prijavi se</button>
+    <br />
+    <form name="loginForm" [formGroup]="loginForm">
+        <div class="form-group">
+          <p class="labela">Username:</p>
+          <input class="inputpolja form-control" type="text" formControlName="username" />
+          <small *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched"
+            class="text-danger">Username is a required field.</small>
+          <p class="labela">Password:</p>
+          <input class="inputpolja form-control" type="password" formControlName="password" />
+          <small *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched"
+            class="text-danger">Password is required field.</small>
+          <br /><br />
+          <button (click)="openDashboard()" class="inputpolja" style="padding-bottom:4px;">Prijavi se</button>
+        <app-social-networks-login-component></app-social-networks-login-component>
       </div>
     </form>
-   <app-social-networks-login-component></app-social-networks-login-component>
-   <br/>
-   <div style="font-size:1.5em">
-     <a href="/new-call" class="buttonReport" style="background-color:#A5D6D9;">Submit a Call</a> 
+    <br />
+    <div style="font-size:1.5em">
+       <a href="/new-call" class="buttonReport" style="background-color:#A5D6D9;"><i class="fas fa-phone-alt"></i> Submit a Call</a> 
+    </div>
+    <a>
+      <p class="labela">Not registered? Register here!</p>
+    </a>
   </div>
-  <a><p class="labela">Not registered? Register here!</p></a>
-  </div>
-  </div>
+</div>
 </body>
 
 </html>

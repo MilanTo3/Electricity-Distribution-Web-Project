@@ -2,16 +2,20 @@
     <h3 class="title"><i class="fas fa-users"></i> Create a team:</h3>
     <p class="labela">Here, the administrator can create a dispatch team that solve incidents.</p>
     <div class="form-group">
-        <div class="form-inline" style="padding: 30px;">
-            <label class="col-sm-2 labela">Team name:</label>
-            <input class="col-md-7 form-control inputPolja" type="text" placeholder="Enter a team name here"/>
-        </div>
+        <form [formGroup]="teamsForm" class="formWrapper">
+            <div class="form-inline" style="padding-top: 30px; padding-bottom: 15px;">
+                <label class="col-sm-2 labela">Team name:</label>
+                <input class="col-md-7 form-control inputPolja" type="text" formControlName="name"
+                    placeholder="Enter a team name here" />
+            </div>
+            <small *ngIf="teamsForm.get('name').invalid && teamsForm.get('name').touched" class="text-danger">Team name is a required field.</small>
+        </form>
 
         <div cdkDropListGroup style="margin-top: 20px;">
             <div class="example-container" style="text-align: center;">
                 <h5 class="title">Available Team members ({{availableMem.length}}):</h5>
                 <div class="form-inline" style="margin-top: 23px;">
-                    <input class="form-control col-md-9 inputPolja" type="text"/>
+                    <input class="form-control col-md-9 inputPolja" type="text" />
                     <button class="btn buttonClass col-md-3"><i class="fas fa-search"></i> Search</button>
                 </div>
 
@@ -31,7 +35,7 @@
             <div class="example-container" style="text-align: center;">
                 <h5 class="title">This teams members ({{usedMem.length}}):</h5>
                 <div class="form-inline" style="margin-top: 23px;">
-                    <input class="form-control col-md-9 inputPolja" type="text"/>
+                    <input class="form-control col-md-9 inputPolja" type="text" />
                     <button class="btn buttonClass col-md-3"><i class="fas fa-search"></i> Search</button>
                 </div>
 

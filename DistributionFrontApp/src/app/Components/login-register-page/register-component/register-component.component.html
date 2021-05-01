@@ -6,50 +6,66 @@
   <div class="RegisterWrapper">
     <p class="MainLabela">Register here!</p>
     <p class="SecondaryLabela">Dont have an account? Register an account in less than a minute.</p>
-    <form>
+    <form name="registeringForm" [formGroup]="registerForm">
       <div class="container">
-        <img src="assets/Images/defimage3.jpg" height="104" style="border-radius: 50%; padding: 15px;"/>
+        <img src="assets/Images/defimage3.jpg" height="104" style="border-radius: 50%; padding: 15px;" />
         <p class="labela">Upload image</p>
         <div class="row form-group">
           <div class="col">
             <div class="sekcija">
-              <p class="labela">Name:</p>
-              <input class="inputpolja form-control" type="text" />
+              <p class="labela">Name: <small *ngIf="registerForm.get('name').errors?.required && registerForm.get('name').touched" class="text-danger">Required.</small>
+                                      <small *ngIf="registerForm.get('name').errors?.maxlength" class="text-danger">Too long.</small>
+              </p>
+              <input class="inputpolja form-control" type="text" formControlName="name" />
             </div>
             <div class="sekcija">
-              <p class="labela">Username:</p>
-              <input class="inputpolja form-control" type="text" />
+              <p class="labela">Username: <small *ngIf="registerForm.get('username').errors?.required && registerForm.get('username').touched" class="text-danger">Required.</small>
+                                          <small *ngIf="registerForm.get('username').errors?.maxlength" class="text-danger">Too long.</small>
+              </p>
+              <input class="inputpolja form-control" type="text" formControlName="username" />
             </div>
             <div class="sekcija">
-              <p class="labela">Password:</p>
-              <input class="inputpolja form-control" type="password" />
+              <p class="labela">Password: <small *ngIf="registerForm.get('password').errors?.required && registerForm.get('password').touched" class="text-danger">Required.</small>
+                                          <small *ngIf="registerForm.get('password').errors?.maxlength" class="text-danger">Too long.</small>
+                                          <small *ngIf="registerForm.get('password').errors?.minlength" class="text-danger">Too short.</small>
+              </p>
+              <input class="inputpolja form-control" type="password" formControlName="password" />
             </div>
             <div class="sekcija">
-              <p class="labela">Date of birth:</p>
-              <input class="inputpolja form-control" type="date" />
+              <p class="labela">Date of birth: <small *ngIf="registerForm.get('birthday').invalid && registerForm.get('birthday').touched" class="text-danger">Required.</small></p>
+              <input class="inputpolja form-control" type="date" formControlName="birthday" />
             </div>
           </div>
           <div class="col">
             <div class="sekcija">
-              <p class="labela">Lastname:</p>
-              <input class="inputpolja form-control" type="text" />
+              <p class="labela">Lastname: <small *ngIf="registerForm.get('lastname').errors?.required && registerForm.get('lastname').touched" class="text-danger">Required.</small>
+                                          <small *ngIf="registerForm.get('lastname').errors?.maxlength" class="text-danger">Too long.</small>
+              </p>
+              <input class="inputpolja form-control" type="text" formControlName="lastname" />
             </div>
             <div class="sekcija">
-              <p class="labela">Email:</p>
-              <input class="inputpolja form-control" type="text" />
+              <p class="labela">Email: <small *ngIf="emailForm.errors?.required && registerForm.get('email').touched" class="text-danger">Required.</small>
+                                       <small *ngIf="emailForm.errors?.email" class="text-danger">Not a valid email.</small>
+              </p>
+              <input class="inputpolja form-control" type="email" formControlName="email" />
             </div>
             <div class="sekcija">
-              <p class="labela">Confirm password:</p>
-              <input class="inputpolja form-control" type="password" />
+              <p class="labela">Confirm pass: <small *ngIf="registerForm.get('confirmedPassword').invalid && registerForm.get('confirmedPassword').touched && !registerForm.hasError('confirmError')" class="text-danger">Required.</small>
+                                              <small *ngIf="registerForm.hasError('confirmError')" class="text-danger">Not matching.</small>
+              </p>
+              <input class="inputpolja form-control" type="password" formControlName="confirmedPassword" />
             </div>
             <div class="sekcija">
-              <p class="labela">Address:</p>
-              <input class="inputpolja form-control" type="text" />
+              <p class="labela">Address: <small *ngIf="registerForm.get('address').errors?.required && registerForm.get('address').touched" class="text-danger">Required.</small>
+                                         <small *ngIf="registerForm.get('address').errors?.maxlength" class="text-danger">Too long.</small>
+
+              </p>
+              <input class="inputpolja form-control" type="text" formControlName="address" />
             </div>
           </div>
           <div class="sekcija">
             <p class="labela">User Type:</p>
-            <select class="inputpolja form-control" name="Gender">
+            <select class="inputpolja form-control" name="Gender" formControlName="userType">
               <option value="Potrošač">Consumer</option>
               <option value="Član ekipe">Team member</option>
               <option value="Dispečer">Dispatcher</option>
@@ -59,13 +75,15 @@
           </div>
         </div>
       </div>
-      <br/>
+      <br />
       <button>Sign Up</button>
     </form>
-    <br/>
-    <a class="d-lg-none d-xl-none"><p class="labela">Have an account? Sign In here!</p></a>
+    <br />
+    <a class="d-lg-none d-xl-none">
+      <p class="labela">Have an account? Sign In here!</p>
+    </a>
   </div>
-  <br/>
+  <br />
 </body>
 
 </html>

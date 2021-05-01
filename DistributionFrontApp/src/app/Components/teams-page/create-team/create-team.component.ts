@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { User } from '../../../Models/User.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-team',
@@ -11,8 +12,11 @@ export class CreateTeamComponent implements OnInit {
 
   availableMem: User[] = [];
   usedMem: User[] = [];
+  teamsForm: FormGroup = this.fb.group({
+    name: ['', Validators.required]
+  });
 
-  constructor(){
+  constructor(private fb: FormBuilder){
     this.addMockUsers();
   }
 

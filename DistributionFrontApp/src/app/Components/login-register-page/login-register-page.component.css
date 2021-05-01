@@ -16,13 +16,13 @@ body{
 }
 
 .loginform{
-	margin-left: 21px;
+	margin-left: 47px;
 }
 
 .formsClass {
     border: 1px solid black;
     border-radius: 4px;
-    width: 995px;
+    width: 1100px;
 	height: 864px;
 	background: white;
     position: relative;

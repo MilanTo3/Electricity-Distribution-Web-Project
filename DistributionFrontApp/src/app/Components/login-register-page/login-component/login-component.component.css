@@ -75,3 +75,13 @@ a.buttonReport:hover {
 	color:#FFFFFF;
 	border-color:#FFFFFF;
 }
+
+.text-danger{
+    font-weight: bold;
+    animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
+}
