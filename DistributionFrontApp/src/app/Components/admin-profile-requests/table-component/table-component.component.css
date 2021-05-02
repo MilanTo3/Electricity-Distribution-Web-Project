@@ -37,7 +37,7 @@
     transition: 0.45s;
 }
 
-.teamButtons{
+.teamButtons, .consumer-buttons{
     font-family: 'Roboto';
     font-weight: bold;
     margin-right: 4px;
