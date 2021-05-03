@@ -3,18 +3,17 @@
 <body>
 	<div class="container-fluid row">
 		<div class="row formsClass">
-			<div class="col loginform d-md-block" [hidden]="toggleFormsVisibility" [ngClass]="{easingIn: show===true}">
-				<div class="container">
-					<app-login-component></app-login-component>
-				</div>
+			<div class="col loginform d-lg-block" [hidden]="toggleFormsVisibility" [ngClass]="{easingIn: show===true}">
+				<app-login-component></app-login-component>
 			</div>
-			<div class="col registerform d-md-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">
-				<div>
+			<div class="col registerform d-lg-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">
+				<div style="display:inline-flex;">
+					<span class="labela backButton"><i class="fas fa-chevron-left d-lg-none" (click)="toggleForms()"></i></span>
 					<app-register-component></app-register-component>
-					<br/>
+					<br />
 				</div>
 			</div>
-			<div class="overlay-container d-none d-md-block" [ngClass]="{swipeLeftAnimation: show===false}">
+			<div class="overlay-container d-none d-lg-block" [ngClass]="{swipeLeftAnimation: show===false}">
 				<div class="overlay">
 					<div class="overlay-panel overlay-left" [ngClass]="{loginAnimation: show===false}">
 						<h1 class="text">Welcome Back!</h1>
@@ -31,4 +30,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

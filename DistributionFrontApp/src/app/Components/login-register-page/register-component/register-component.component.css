@@ -72,3 +72,51 @@ button{
     0%{ opacity: 0; }
     100%{ opacity: 1; }
 }
+
+.profileImg{
+    width: 118px;
+    height: 118px;
+    object-fit:cover;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.profileImg:hover{
+    opacity: 0.8;
+    cursor:pointer;
+}
+
+.profileImgDefault{
+    object-fit: contain;
+    padding: 9px;
+
+}
+
+.imageBorderClass{
+    background: 
+    linear-gradient(to right, rgb(100, 127, 200), rgba(100, 200, 200, 1)),
+    linear-gradient(to right, rgb(241, 182, 20), rgb(255, 136, 0), rgb(238, 141, 30));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 300ms;
+  padding:8px;
+}
+
+.imageBorderClass:hover{
+    background-size: 0 0.1em, 100% 0.1em;
+
+}
+
+.rolesSection, .teamSection{
+    width: 50%;
+}
+
+.teamSection{
+    animation: appear 0.5s;
+}
+
+@keyframes appear{
+    0%{ opacity: 0; }
+    100% { opacity: 1; }
+}
