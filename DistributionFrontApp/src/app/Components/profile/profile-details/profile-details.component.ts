@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from '../../../Models/User.model';
+import { customFormValidators } from '../../../Models/customValidators';
 
 @Component({
   selector: 'app-profile-details',
@@ -21,16 +22,14 @@ export class ProfileDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileForm  = this.formBuilder.group({
-      name: [this.currentUser.name],
-      lastname: [this.currentUser.lastname],
-      email: [this.currentUser.email],
-      username: [this.currentUser.username],
-      birthday: [this.currentUser.birthday],
-      address: [this.currentUser.address],
-      role: [this.currentUser.role],
-      oldPassword: [this.oldpass],
-      newPassword: [this.newpass],
-      profileImg: [this.currentUser.profileImg]
+      name: [this.currentUser.name, Validators.required],
+      lastname: [this.currentUser.lastname, Validators.required],
+      email: [this.currentUser.email, Validators.required],
+      username: [this.currentUser.username, Validators.required],
+      birthday: [this.currentUser.birthday, Validators.required],
+      address: [this.currentUser.address, Validators.required],
+      role: [this.currentUser.role, Validators.required],
+      profileImg: [this.currentUser.profileImg, Validators.required]
     });
   }
   onSubmit(): void {
