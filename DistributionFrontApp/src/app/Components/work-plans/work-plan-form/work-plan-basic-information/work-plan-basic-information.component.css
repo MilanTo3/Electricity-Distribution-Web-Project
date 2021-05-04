@@ -14,7 +14,16 @@
     font-weight: bold;
     color: #ec7729;
 }
+.text-danger{
+    font-weight: bold;
+    text-align: right;
+    animation: fadein 0.3s;
+}
 
+@keyframes fadein{
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
+}
 .labela{
     color: #699fa1;
     font-family: 'Georgia';
