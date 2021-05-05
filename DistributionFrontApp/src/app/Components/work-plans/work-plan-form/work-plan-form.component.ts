@@ -10,5 +10,6 @@ export class WorkPlanFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    sessionStorage.clear();
   }
 }

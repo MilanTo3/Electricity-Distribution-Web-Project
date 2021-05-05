@@ -9,12 +9,9 @@ import { customFormValidators } from '../../../../Models/customValidators';
   styleUrls: ['./work-plan-basic-information.component.css']
 })
 export class WorkPlanBasicInformationComponent implements OnInit {
-  planBasicInfoForm: FormGroup;
-
   constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.planBasicInfoForm  = this.formBuilder.group({
+  planBasicInfoForm  = this.formBuilder.group({
       type: ['', Validators.required],
       status: ['', Validators.required],
       workRequestId: ['', Validators.required],
@@ -33,7 +30,19 @@ export class WorkPlanBasicInformationComponent implements OnInit {
     { //Custom validacija.
       validator: Validators.compose([customFormValidators.dateLessThan('startDateTime', 'endDateTime', { 'dateError': true })])
     });
+   ngOnInit(): void {
+    if (sessionStorage.getItem("planBasicInfoForm") !== null) {
+      let formdata = JSON.parse(sessionStorage.getItem("planBasicInfoForm"));
+      this.planBasicInfoForm.setValue(formdata);
+    }
+    this.onValueChanges();
   }
-  onSubmit(): void {
-  }
+
+  onValueChanges(): void {
+    this.planBasicInfoForm.valueChanges.subscribe(val => {
+      sessionStorage.setItem("planBasicInfoForm", JSON.stringify(this.planBasicInfoForm.value));
+      sessionStorage.setItem("planBasicInfoFormValid", JSON.stringify(this.planBasicInfoForm.valid));
+      
+    })
+  } 
 }

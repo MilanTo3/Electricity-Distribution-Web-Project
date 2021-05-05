@@ -8,3 +8,10 @@ export class WorkRequestWrapper{
     mediaForm: pictureModel[] = [];
 
 }
+export class WorkPlanWrapper{
+
+    basicInformationForm: any;
+    historyForm: HistoryStateChange[] = [];
+    mediaForm: pictureModel[] = [];
+    switchingInstructionsForm: any;
+}
