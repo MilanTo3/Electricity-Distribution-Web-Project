@@ -39,16 +39,26 @@
   border-radius: 4px;
 }
 .label, .section-title{
-  color: #dd612c;
+  color: var(--c-orange-200);
   font-family: 'Georgia';
 }
 .title{
   font-family: 'Roboto';
   font-weight: bold;
-  color: #ec7729;
+  color: var(--c-orange-100);
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--c-blue-100);
   opacity: 1; /* Firefox */
+}
+
+.text-danger{
+  font-weight: bold;
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+  0%{ opacity: 0; }
+  100%{ opacity: 1; }
 }

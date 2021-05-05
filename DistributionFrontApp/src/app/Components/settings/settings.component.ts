@@ -32,7 +32,9 @@ export class SettingsComponent implements OnInit {
       infoCheck : [],
       warningCheck:[],
       successCheck:[],
-      errorCheck: []
+      errorCheck: [],
+      resetCheck: [],
+      mandatoryCheck:[]
 
     });
   }
