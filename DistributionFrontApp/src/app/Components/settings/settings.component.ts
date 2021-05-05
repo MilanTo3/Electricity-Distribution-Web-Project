@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-settings',
@@ -9,24 +9,31 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class SettingsComponent implements OnInit {
   settingsForm: FormGroup;
+  settingsFormAdmin: FormGroup;
+
   currentPassword: string;
   newPassword: string;
   crewIcon: string;
   callIcon: string;
   incidentIcon: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
     this.settingsForm  = this.formBuilder.group({
-      currentPassword: [this.currentPassword],
-      newPassword: [this.newPassword],
+      currentPassword: [this.currentPassword, Validators.required],
+      newPassword: [this.newPassword, Validators.required],   
+    });
+    this.settingsFormAdmin  = this.formBuilder.group({
       iconCall: [this.callIcon],
       iconIncident: [this.incidentIcon],
-      iconCrew: [this.crewIcon]
-      
-      
+      iconCrew: [this.crewIcon],
+      infoCheck : [],
+      warningCheck:[],
+      successCheck:[],
+      errorCheck: []
+
     });
   }
  
@@ -70,5 +77,35 @@ export class SettingsComponent implements OnInit {
     
     }
   }
+  onSubmit(){
+    // Process checkout data here
+    if (this.settingsForm.valid) {
+      this.showToastrSuccess(1);
+    } else {
+      this.showToastrError();
+    }
+  }
+  onSubmitAdmin(){
+    // Process checkout data here
+    if (this.settingsFormAdmin.valid) {
+      this.showToastrSuccess(2);
+    } else {
+      this.showToastrError();
+    }
+  }
 
+  showToastrSuccess(i){  
+    if(i===1)
+    {
+      this.toastr.success('Your password change has been sent.', 'Form successfuly sent.');
+    }
+    else
+    {
+      this.toastr.success('New settings have been sent.', 'Form successfuly sent.');
+
+    }
+  }
+  showToastrError(){  
+      this.toastr.error('Please check all the fields are filled out correctly.', 'Form not sent.');
+  }
 }

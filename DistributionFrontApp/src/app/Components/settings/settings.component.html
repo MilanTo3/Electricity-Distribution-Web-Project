@@ -1,8 +1,8 @@
-<form class="settings" action="" [formGroup]="settingsForm"  >
+<form class="settings" [formGroup]="settingsForm" (ngSubmit)="onSubmit()" >
 
 <div class="container">
-    <div class="row border mt-5">
-      <label class="label h4 mt-2" for="notifications">Change password</label>  
+    <div class="row border mt-5" id="passwords">
+      <label class="label h4 mt-2 mb-5 " for="passwords">Change password</label>  
       <div class="col col-md-3">
             <label class="label" for="currentPassword">Current password</label>
             <input
@@ -12,6 +12,8 @@
                     placeholder="Enter current password"
                     formControlName="currentPassword"                  
             />
+            <small *ngIf="settingsForm.get('currentPassword').invalid && settingsForm.get('currentPassword').touched" class="text-danger">Current password is required.</small>
+
         </div>
         <div class="col col-md-3 mb-2">
           <label class="label" for="newPassword">New password</label>
@@ -22,33 +24,46 @@
                     placeholder="Enter new password"
                     formControlName="newPassword"                  
             />
+            <small *ngIf="settingsForm.get('newPassword').invalid && settingsForm.get('newPassword').touched" class="text-danger">New password is required.</small>
+
         </div>
+        <div class="row ">
+            <div class="w-auto mt-5 mb-5">
+                <button class="btn btn-success" type="submit">
+                    Change password
+                </button>
+            </div>
+        </div>  
     </div>
-  <div class=" admin-view mt-5" >
-      <div id="notifications" class="row notifications border">        
-        <label class="label h4 mt-2" for="notifications">Select visible notifications</label>  
+    </div>
+</form>
+
+<form class="settings" [formGroup]="settingsFormAdmin" (ngSubmit)="onSubmitAdmin()" >
+  <div class="container admin-view mt-5 mb-5 border rounded" >
+      <div id="notifications" class="row notifications">        
+        <label class="label h4 mt-2 mb-5" for="notifications">Select visible notifications</label>  
         <div class="ml-2">
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" >Info
+            <input type="checkbox" class="form-check-input" formControlName="infoCheck">Info
         </div>
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" >Warnings
+            <input type="checkbox" class="form-check-input" formControlName="warningCheck">Warnings
         </div>
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" >Success
+            <input type="checkbox" class="form-check-input" formControlName="successCheck" >Success
         </div> 
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" >Errors
+            <input type="checkbox" class="form-check-input" formControlName="errorCheck">Errors
         </div> 
         </div>
          
       </div>
 
-      <div id="icons" class="row mt-5 icons border rounded"> 
+      <div id="icons" class="row mt-5 icons "> 
         <label class="label h4 mt-2 " for="icons">Manage icons</label>
         <div class="row">
           <div class="col col-md-3 p-5 icon-img-browse">
-            <h2 class="label border-bottom pb-3 mb-5">Calls</h2>
+            <h2 class="label border-bottom pb-3 mb-5">Calls icon</h2>
             <div class="row">
                     <div class="col ">
                         <div class="form-group">
@@ -108,7 +123,7 @@
         </div>
       </div>
 
-      <div id="other-settings" class="row mt-5 mb-5 border">
+      <div id="other-settings" class="row mt-5 mb-5 ">
         <label class="label h4 mt-2 " for="other-settings">Other settings</label>
         <div class="ml-2">
             <div class="form-check">
@@ -121,15 +136,14 @@
         </div>
 
       </div>  
+      <div class="row justify-content-end">
+        <div class="w-auto ml-auto mb-5">
+            <button class="btn btn-success" type="submit">
+                Save changes
+            </button>
+        </div>
+    </div> 
   </div>
 
-  <div class="row justify-content-end">
-    <div class="w-auto ml-auto mb-5">
-        <button class="btn btn-success" type="submit">
-            Save changes
-        </button>
-    </div>
-</div>  
-
-</div>
+ 
 </form>
