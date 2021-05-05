@@ -11,3 +11,13 @@
 .work-plan-form{
     margin-left:50px;
 }
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: var(--c-orange-100);
+}
+
+.labela{
+    color: var(--c-blue-100);
+    font-family: 'Georgia';
+}

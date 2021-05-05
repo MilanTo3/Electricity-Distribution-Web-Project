@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from '../../../Models/User.model';
 import { customFormValidators } from '../../../Models/customValidators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-details',
@@ -17,7 +18,7 @@ export class ProfileDetailsComponent implements OnInit {
   oldpass: string;
   newpass: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,  private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -34,19 +35,19 @@ export class ProfileDetailsComponent implements OnInit {
   }
   onSubmit(): void {
     // Process checkout data here
-    if(this.profileForm)
-    {
-      console.log('name: ' + this.profileForm.value.name);
-      console.log('lastname: ' + this.profileForm.value.lastname);
-      console.log('email: ' + this.profileForm.value.email);
-      console.log('username: ' + this.profileForm.value.username);
-      console.log('birthday: ' + this.profileForm.value.birthday);
-      console.log('address: ' + this.profileForm.value.address);
-      console.log('role: ' + this.profileForm.value.role);
-      console.log('img: ' + this.profileForm.value.profileImg);
+    if (this.profileForm.valid) {
+      this.showToastrSuccess();
+    } else {
+      this.showToastrError();
     }
    
 
+  }
+  showToastrSuccess(){  
+    this.toastr.success('Your profile change has been sent.', 'Form successfuly sent.');
+  }
+  showToastrError(){  
+    this.toastr.error('Please check all the fields are filled out correctly.', 'Form not sent.');
   }
   onFileChanged(event : any){
     const reader = new FileReader();
