@@ -12,6 +12,8 @@
                         placeholder="Name"
                         formControlName="name"                                  
                     />
+                    <small *ngIf="consumerForm.get('name').invalid && consumerForm.get('name').touched" class="text-danger">Name is required.</small>
+
                 </div>
                 <div class="form-group row" >
                     <label class="col-sm-3 col-form-label" for="location">Location:</label>
@@ -22,6 +24,8 @@
                             placeholder="Location"
                             formControlName="location"                                       
                         />
+                        <small *ngIf="consumerForm.get('location').invalid && consumerForm.get('location').touched" class="text-danger">Location is required.</small>
+
                 </div>
                 <div class="form-group row" >
                     <label class="col-sm-3 col-form-label" for="accountId">Account identifier:</label>
@@ -32,6 +36,8 @@
                             placeholder="Unique identifier"
                             formControlName="accountId"                                       
                         />
+                        <small *ngIf="consumerForm.get('accountId').invalid && consumerForm.get('accountId').touched" class="text-danger">Account identifier is required.</small>
+
                 </div>
                 <div class="form-group row" >
                     <label class="col-sm-3 col-form-label" for="phone">Phone number:</label>
@@ -42,6 +48,8 @@
                             placeholder="Phone"
                             formControlName="phone"                                       
                         />
+                        <small *ngIf="consumerForm.get('phone').invalid && consumerForm.get('phone').touched" class="text-danger">Phone number is required.</small>
+
                 </div>
                 <div class="form-group row" >
                     <label class="col-sm-3 col-form-label" for="lastname">Lastname:</label>
@@ -50,9 +58,10 @@
                             type="text"
                             class="col-sm-6 form-control"
                             placeholder="Last name"
-                            formControlName="lastname"
-                            
+                            formControlName="lastname"                     
                         />
+                        <small *ngIf="consumerForm.get('lastname').invalid && consumerForm.get('lastname').touched" class="text-danger">Last name is required.</small>
+
                 </div>
                 <div class="form-group row" >
                     <label class="col-sm-3 col-form-label" for="priority">Priority:</label>
@@ -64,15 +73,19 @@
                             formControlName="priority"
                             readonly
                         />
+                        <small *ngIf="consumerForm.get('priority').invalid && consumerForm.get('priority').touched" class="text-danger">Priority is required.</small>
+
                 </div>
                 <div class="form-group row" >
                     <label class="col-sm-3 col-form-label" for="type">Set type:</label>
                     <select                          
                         class="col-sm-6 form-control"
                         id="type" 
-                        formControlName="priority">
+                        formControlName="type">
                         <option *ngFor="let option of typeOptions" [value]="option" >{{ option }}</option> 
                     </select>
+                    <small *ngIf="consumerForm.get('type').invalid && consumerForm.get('type').touched" class="text-danger">Type is required.</small>
+
                 </div>
             </div>
 
