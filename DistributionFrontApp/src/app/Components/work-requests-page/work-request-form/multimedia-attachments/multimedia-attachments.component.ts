@@ -42,8 +42,10 @@ export class MultimediaAttachmentsComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = function(e) {
       let item = new pictureModel(file.name, e.target.result);
-      this_.filePaths.push(item);
-      this_.db.collection('images').add(item, file.name);
+      if (this_.filePaths.some(x => x.name === file.name || x.picture === e.target.result) === false) {
+        this_.filePaths.push(item);
+        this_.db.collection('images').add(item, file.name);
+      }
     }
 
   }

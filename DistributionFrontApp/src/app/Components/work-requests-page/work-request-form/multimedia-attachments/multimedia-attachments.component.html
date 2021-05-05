@@ -1,25 +1,28 @@
 <div class="container">
     <div class="row">
         <h3 class="title">Multimedia attachments:</h3>
-        <p class="labela">Here, multimedia attachments can be added. Attachments such as diagrams,
-            drafts, images will be shared with team members who are working on an incident that this work request is
-            for.</p>
+        <p class="labela">Here, multimedia attachments can be added. Attachments such as diagrams, drafts, images will be shared with team members who are working on an incident.</p>
     </div>
-    <div class="row col-md-11">
+    <div class="row col">
         <div class="imageListClass">
             <form name="multimediaForm">
-                <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)" accept="image/*"
-                    multiple />
                 <div class="galleryContainer">
-                    <a (click)="fileInput.click()">
-                        <div class="uploadImage">
-                            <p class="uploadText">Upload</p>
-                        </div>
-                    </a>
                     <div class="image-list" fxLayout="row">
+                        <a (click)="fileInput.click()">
+                            <div class="uploadImage">
+                                <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)"
+                                    accept="image/*" multiple />
+                                <p class="uploadText">Upload</p>
+                            </div>
+                        </a>
                         <ng-container *ngFor="let item of filePaths">
-                            <img class="imageClass" src="{{item.picture}}" />
-                            <a (click)="fileDelete(filePaths.indexOf(item))">Delete img</a>
+                            <div class="glassContainer">
+                                <img class="imageClass" src="{{item.picture}}" />
+                                <div class="bottomWriting">
+                                    <p class="imageName">{{ item.name.substring(0, item.name.lastIndexOf('.')) }} </p>
+                                    <a (click)="fileDelete(filePaths.indexOf(item))"><i class="fas fa-trash-alt" style="float:right; margin:4px 10px 0px 0px;"></i></a>
+                                </div>
+                            </div>
                         </ng-container>
                     </div>
                 </div>
