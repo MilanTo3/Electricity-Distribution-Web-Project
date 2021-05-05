@@ -28,26 +28,21 @@ export class WorkPlanFormComponent implements OnInit {
       this.showToastrWarning();
       return;
     }
-    console.log(check);
     this.setInfoForm();
     this.setHistoryForm();
     this.setMediaForm();
     this.setInstructionsForm();
-    console.log(this.wrapper);
     this.showToastrSuccess();
     this.router.navigateByUrl('/workPlans');
 
   }
 
-  showToastrSuccess(){
-    
+  showToastrSuccess(){   
     this.toastr.success('Your work plan has been successfuly sent.', 'Form successfuly sent.');
-
   }
 
   showToastrWarning(){
     this.toastr.warning('Seems like theres an error with basic information form input. Please check again.', 'Ooops!');
-
   }
 
   setInfoForm(){
