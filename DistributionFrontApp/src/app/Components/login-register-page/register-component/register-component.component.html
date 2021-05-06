@@ -6,10 +6,10 @@
   <div class="RegisterWrapper">
     <p class="MainLabela">Register here!</p>
     <p class="SecondaryLabela">Dont have an account? Register an account in less than a minute.</p>
-    <form name="registeringForm" [formGroup]="registerForm">
+    <form name="registeringForm" [formGroup]="registerForm" ngSubmit="onSubmit()">
       <div class="container">
         <div class="imageBorderClass">
-        <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)" accept="image/*" formControlName="filePicture" />
+        <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)" accept="image/*" formControlName="FilePicture" />
         <a (click)="fileInput.click()">
           <img [src]="picurl" class="profileImg" [ngClass]="{ profileImgDefault: onDefault===true }" />
         </a>
@@ -18,59 +18,59 @@
         <div class="row form-group">
           <div class="col">
             <div class="sekcija">
-              <p class="labela">Name: <small *ngIf="registerForm.get('name').errors?.required && registerForm.get('name').touched" class="text-danger">Required.</small>
-                                      <small *ngIf="registerForm.get('name').errors?.maxlength" class="text-danger">Too long.</small>
+              <p class="labela">Name: <small *ngIf="registerForm.get('Name').errors?.required && registerForm.get('Name').touched" class="text-danger">Required.</small>
+                                      <small *ngIf="registerForm.get('Name').errors?.maxlength" class="text-danger">Too long.</small>
               </p>
-              <input class="inputpolja form-control" type="text" formControlName="name" />
+              <input class="inputpolja form-control" type="text" formControlName="Name" />
             </div>
             <div class="sekcija">
-              <p class="labela">Username: <small *ngIf="registerForm.get('username').errors?.required && registerForm.get('username').touched" class="text-danger">Required.</small>
-                                          <small *ngIf="registerForm.get('username').errors?.maxlength" class="text-danger">Too long.</small>
+              <p class="labela">Username: <small *ngIf="registerForm.get('Username').errors?.required && registerForm.get('Username').touched" class="text-danger">Required.</small>
+                                          <small *ngIf="registerForm.get('Username').errors?.maxlength" class="text-danger">Too long.</small>
               </p>
-              <input class="inputpolja form-control" type="text" formControlName="username" />
+              <input class="inputpolja form-control" type="text" formControlName="Username" />
             </div>
             <div class="sekcija">
-              <p class="labela">Password: <small *ngIf="registerForm.get('password').errors?.required && registerForm.get('password').touched" class="text-danger">Required.</small>
-                                          <small *ngIf="registerForm.get('password').errors?.maxlength" class="text-danger">Too long.</small>
-                                          <small *ngIf="registerForm.get('password').errors?.minlength" class="text-danger">Too short.</small>
+              <p class="labela">Password: <small *ngIf="registerForm.get('Password').errors?.required && registerForm.get('Password').touched" class="text-danger">Required.</small>
+                                          <small *ngIf="registerForm.get('Password').errors?.maxlength" class="text-danger">Too long.</small>
+                                          <small *ngIf="registerForm.get('Password').errors?.minlength" class="text-danger">Too short.</small>
               </p>
-              <input class="inputpolja form-control" type="password" formControlName="password" />
+              <input class="inputpolja form-control" type="password" formControlName="Password" />
             </div>
             <div class="sekcija">
-              <p class="labela">Date of birth: <small *ngIf="registerForm.get('birthday').invalid && registerForm.get('birthday').touched" class="text-danger">Required.</small></p>
-              <input class="inputpolja form-control" type="date" formControlName="birthday" />
+              <p class="labela">Date of birth: <small *ngIf="registerForm.get('Birthday').invalid && registerForm.get('Birthday').touched" class="text-danger">Required.</small></p>
+              <input class="inputpolja form-control" type="date" formControlName="Birthday" />
             </div>
           </div>
           <div class="col">
             <div class="sekcija">
-              <p class="labela">Lastname: <small *ngIf="registerForm.get('lastname').errors?.required && registerForm.get('lastname').touched" class="text-danger">Required.</small>
-                                          <small *ngIf="registerForm.get('lastname').errors?.maxlength" class="text-danger">Too long.</small>
+              <p class="labela">Lastname: <small *ngIf="registerForm.get('Lastname').errors?.required && registerForm.get('Lastname').touched" class="text-danger">Required.</small>
+                                          <small *ngIf="registerForm.get('Lastname').errors?.maxlength" class="text-danger">Too long.</small>
               </p>
-              <input class="inputpolja form-control" type="text" formControlName="lastname" />
+              <input class="inputpolja form-control" type="text" formControlName="Lastname" />
             </div>
             <div class="sekcija">
-              <p class="labela">Email: <small *ngIf="emailForm.errors?.required && registerForm.get('email').touched" class="text-danger">Required.</small>
+              <p class="labela">Email: <small *ngIf="emailForm.errors?.required && registerForm.get('Email').touched" class="text-danger">Required.</small>
                                        <small *ngIf="emailForm.errors?.email" class="text-danger">Not a valid email.</small>
               </p>
-              <input class="inputpolja form-control" type="email" formControlName="email" />
+              <input class="inputpolja form-control" type="email" formControlName="Email" />
             </div>
             <div class="sekcija">
-              <p class="labela">Confirm pass: <small *ngIf="registerForm.get('confirmedPassword').invalid && registerForm.get('confirmedPassword').touched && !registerForm.hasError('confirmError')" class="text-danger">Required.</small>
+              <p class="labela">Confirm pass: <small *ngIf="registerForm.get('ConfirmedPassword').invalid && registerForm.get('ConfirmedPassword').touched && !registerForm.hasError('confirmError')" class="text-danger">Required.</small>
                                               <small *ngIf="registerForm.hasError('confirmError')" class="text-danger">Not matching.</small>
               </p>
-              <input class="inputpolja form-control" type="password" formControlName="confirmedPassword" />
+              <input class="inputpolja form-control" type="password" formControlName="ConfirmedPassword" />
             </div>
             <div class="sekcija">
-              <p class="labela">Address: <small *ngIf="registerForm.get('address').errors?.required && registerForm.get('address').touched" class="text-danger">Required.</small>
-                                         <small *ngIf="registerForm.get('address').errors?.maxlength" class="text-danger">Too long.</small>
+              <p class="labela">Address: <small *ngIf="registerForm.get('Address').errors?.required && registerForm.get('Address').touched" class="text-danger">Required.</small>
+                                         <small *ngIf="registerForm.get('Address').errors?.maxlength" class="text-danger">Too long.</small>
 
               </p>
-              <input class="inputpolja form-control" type="text" formControlName="address" />
+              <input class="inputpolja form-control" type="text" formControlName="Address" />
             </div>
           </div>
           <div class="sekcija" [ngClass]="{ rolesSection: teamSelected===true }">
             <p class="labela">User Type:</p>
-            <select class="inputpolja form-control" name="Gender" #selectOpt formControlName="userType" (change)="onChange(selectOpt.value)">
+            <select class="inputpolja form-control" name="Gender" #selectOpt formControlName="UserType" (change)="onChange(selectOpt.value)">
               <option value="Potrošač">Consumer</option>
               <option value="Član ekipe">Team member</option>
               <option value="Dispečer">Dispatcher</option>
@@ -80,12 +80,12 @@
           </div>
           <div class="sekcija teamSection" *ngIf="teamSelected">
             <p class="labela">Team:</p>
-            <input class="inputpolja form-control" type="text" fromControlName="team" />
+            <input class="inputpolja form-control" type="text" fromControlName="TeamId" />
           </div>
         </div>
       </div>
       <br />
-      <button>Sign Up</button>
+      <button type="submit" (click)="onSubmit()">Sign Up</button>
     </form>
     <br />
   </div>

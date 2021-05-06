@@ -16,6 +16,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling'
+import { HttpClientModule } from '@angular/common/http';
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -33,7 +34,8 @@ const MaterialComponents = [
   MatListModule,
   MatTooltipModule,
   DragDropModule,
-  ScrollingModule
+  ScrollingModule,
+  HttpClientModule
 ];
 
 @NgModule({

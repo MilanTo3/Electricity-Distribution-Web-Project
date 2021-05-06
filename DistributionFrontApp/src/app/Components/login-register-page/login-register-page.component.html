@@ -9,7 +9,7 @@
 			<div class="col registerform d-lg-block" [hidden]="!toggleFormsVisibility" [ngClass]="{easingIn: show===false}">
 				<div style="display:inline-flex;">
 					<span class="labela backButton"><i class="fas fa-chevron-left d-lg-none" (click)="toggleForms()"></i></span>
-					<app-register-component></app-register-component>
+					<app-register-component (moveOverlay)="toggleForms()"></app-register-component>
 					<br />
 				</div>
 			</div>
