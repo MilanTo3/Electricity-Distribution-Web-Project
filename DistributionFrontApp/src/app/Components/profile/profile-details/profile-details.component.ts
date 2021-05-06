@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from '../../../Models/User.model';
+import { customFormValidators } from '../../../Models/customValidators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-details',
@@ -16,38 +18,36 @@ export class ProfileDetailsComponent implements OnInit {
   oldpass: string;
   newpass: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,  private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
     this.profileForm  = this.formBuilder.group({
-      name: [this.currentUser.name],
-      lastname: [this.currentUser.lastname],
-      email: [this.currentUser.email],
-      username: [this.currentUser.username],
-      birthday: [this.currentUser.birthday],
-      address: [this.currentUser.address],
-      role: [this.currentUser.role],
-      oldPassword: [this.oldpass],
-      newPassword: [this.newpass],
-      profileImg: [this.currentUser.profileImg]
+      name: [this.currentUser.name, Validators.required],
+      lastname: [this.currentUser.lastname, Validators.required],
+      email: [this.currentUser.email, Validators.required],
+      username: [this.currentUser.username, Validators.required],
+      birthday: [this.currentUser.birthday, Validators.required],
+      address: [this.currentUser.address, Validators.required],
+      role: [this.currentUser.role, Validators.required],
+      profileImg: [this.currentUser.profileImg, Validators.required]
     });
   }
   onSubmit(): void {
     // Process checkout data here
-    if(this.profileForm)
-    {
-      console.log('name: ' + this.profileForm.value.name);
-      console.log('lastname: ' + this.profileForm.value.lastname);
-      console.log('email: ' + this.profileForm.value.email);
-      console.log('username: ' + this.profileForm.value.username);
-      console.log('birthday: ' + this.profileForm.value.birthday);
-      console.log('address: ' + this.profileForm.value.address);
-      console.log('role: ' + this.profileForm.value.role);
-      console.log('img: ' + this.profileForm.value.profileImg);
+    if (this.profileForm.valid) {
+      this.showToastrSuccess();
+    } else {
+      this.showToastrError();
     }
    
 
+  }
+  showToastrSuccess(){  
+    this.toastr.success('Your profile change has been sent.', 'Form successfuly sent.');
+  }
+  showToastrError(){  
+    this.toastr.error('Please check all the fields are filled out correctly.', 'Form not sent.');
   }
   onFileChanged(event : any){
     const reader = new FileReader();

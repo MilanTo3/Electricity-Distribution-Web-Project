@@ -1,5 +1,5 @@
 
-<!-- <form class="plan-basic-info-form" [formGroup]="planBasicInfoForm" (ngSubmit)="onSubmit()"> -->
+ <form class="plan-basic-info-form" [formGroup]="planBasicInfoForm"> 
     <div class="container">
         <h3 class="title">Basic information:</h3>
         <p class="labela">Please fill out all necessary fields.</p> 
@@ -7,61 +7,83 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Type:</label>
-                    <select class="col-sm-6 form-control">
+                    <select class="col-sm-6 form-control" formControlName="type">
                         <option>Planned work</option>
                         <option>Unplanned work</option>
                     </select>
+                    <small *ngIf="planBasicInfoForm.get('type').invalid && planBasicInfoForm.get('type').touched" class="text-danger">Type is required.</small>
                 </div>
+
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Status:</label>
-                    <select class="col-sm-6 form-control">
+                    <select class="col-sm-6 form-control" formControlName="status">
                         <option selected>Draft</option>
-                    </select>                
+                    </select>  
+                    <small *ngIf="planBasicInfoForm.get('status').invalid && planBasicInfoForm.get('status').touched" class="text-danger">Status is required.</small>
+              
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Work request:</label>
-                    <label class="col-sm-6 " >Work request ID</label>
+                    <input class="col-sm-6 " type="text" formControlName="workRequestId" />
+                    <small *ngIf="planBasicInfoForm.get('workRequestId').invalid && planBasicInfoForm.get('workRequestId').touched" class="text-danger">Work request is required.</small>
                     <!-- ubaci browse dugme -->
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Incident:</label>
-                    <label class="col-sm-6 " >Incident ID</label>
+                    <input class="col-sm-6 " type="text" formControlName="incidentId"/>
+                    <small *ngIf="planBasicInfoForm.get('incidentId').invalid && planBasicInfoForm.get('incidentId').touched" class="text-danger">Incident is required.</small>
                     <!-- ubaci browse dugme -->
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Street:</label>
-                    <input class="col-sm-6 form-control" type="text" />
+                    <input class="col-sm-6 form-control" type="text" formControlName="street"/>
+                    <small *ngIf="planBasicInfoForm.get('street').invalid && planBasicInfoForm.get('street').touched" class="text-danger">Street is required.</small>
+
                 </div>
                 <div class="form-group row">
                     <label class="col-form-label col-sm-6">Start date/time:</label>
-                    <input class="col-sm-6 form-control" type="date" />
+                    <input class="col-sm-6 form-control" type="date" formControlName="startDateTime"/>
+                    <small *ngIf="planBasicInfoForm.get('startDateTime').invalid && planBasicInfoForm.get('startDateTime').touched" class="text-danger">Start date and time are required.</small>
+
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">End date/time:</label>
-                    <input class="col-sm-6 form-control" type="date" />
+                    <input class="col-sm-6 form-control" type="date" formControlName="endDateTime"/>
+                    <small *ngIf="planBasicInfoForm.get('endDateTime').invalid && planBasicInfoForm.get('endDateTime').touched" class="text-danger">End date and time are required.</small>
+                    <small *ngIf="planBasicInfoForm.hasError('dateError')" class="text-danger">End date can't be earlier than start date.</small>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Field crew:</label>
-                    <label class="col-sm-6 " >ID ekipe</label>
+                    <input class="col-sm-6 " type="text" formControlName="crewId"/>
+                    <small *ngIf="planBasicInfoForm.get('crewId').invalid && planBasicInfoForm.get('crewId').touched" class="text-danger">Crew is required.</small>
+
                     <!-- ubaci browse dugme -->
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Created by:</label>
-                    <label class="col-sm-6 " >User</label>
+                    <input class="col-sm-6 " formControlName="user" type="text" readonly/>
+                    <small *ngIf="planBasicInfoForm.get('user').invalid && planBasicInfoForm.get('user').touched" class="text-danger">User is required.</small>
+
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Company:</label>
-                    <input class="col-sm-6 form-control" type="text" />
+                    <input class="col-sm-6 form-control" type="text" formControlName="company"/>
+                    <small *ngIf="planBasicInfoForm.get('company').invalid && planBasicInfoForm.get('company').touched" class="text-danger">Company is required.</small>
+
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">PhoneNo:</label>
-                    <input class="col-sm-6 form-control" type="text" />
+                    <input class="col-sm-6 form-control" type="text" formControlName="phoneNumber" />
+                    <small *ngIf="planBasicInfoForm.get('phoneNumber').invalid && planBasicInfoForm.get('phoneNumber').touched" class="text-danger">Phone number is required.</small>
+
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Date/time created:</label>
-                    <input class="col-sm-6 form-control" type="date" />
+                    <input class="col-sm-6 form-control" type="date" formControlName="createdDateTime" />
+                    <small *ngIf="planBasicInfoForm.get('createdDateTime').invalid && planBasicInfoForm.get('createdDateTime').touched" class="text-danger">Created date and time are required.</small>
+
                 </div>
             </div>
         </div>
@@ -69,13 +91,17 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Purpose:</label>
-                    <input class="col form-control" type="text" />
+                    <input class="col form-control" type="text" formControlName="purpose"/>
+                    <small *ngIf="planBasicInfoForm.get('purpose').invalid && planBasicInfoForm.get('purpose').touched" class="text-danger">Purpose is required.</small>
+
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Notes:</label>
-                    <input class="col form-control" type="text" />
+                    <input class="col form-control" type="text" formControlName="notes"/>
+                    <small *ngIf="planBasicInfoForm.get('notes').invalid && planBasicInfoForm.get('notes').touched" class="text-danger">Notes are required.</small>
+
                 </div>
             </div>
         </div>
     </div>
-<!-- </form> -->
+</form> 

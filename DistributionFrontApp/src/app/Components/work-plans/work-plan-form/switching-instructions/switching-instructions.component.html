@@ -1,55 +1,60 @@
-<div class="container">
-    <h3 class="title">Switching instructions:</h3>
-        <p class="label">Please provide necessary instructions.</p> 
-        <div class="row ">
-            <div class="col col-lg-2">
-                <button class="btn btn-primary buttons"  data-toggle="modal" data-target="#instructionModal">
-                  <i class="fa fa-file" ></i>
-                    New
-                </button>
-            </div>
-            <div class="col col-lg-2">
-                <button class="btn btn-primary buttons" (click)="executeInstruction()">
-                  <i class="fa fa-check-square"></i>
-                   Execute
-                </button>
-            </div>
-            <div class="col col-lg-2">
-                <button class="btn btn-primary buttons" (click)="deleteInstruction()">
-                  <i class="fa fa-trash"></i>
-                  Delete
-                </button>
-            </div>
-            <div class="col col-lg-3">
-                <button class="btn btn-primary buttons " (click)="deleteAllInstructions()">
-                  <i class="fa fa-trash" ></i>
-                  Delete all
-                </button>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="row mt-4">
-                <div class="container">
-                    <tbody >
-                        <tr *ngFor="let instruction of instructions" (click)="onSelect(instruction.id)">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text" >{{instruction.id}}</span>
+<form [formGroup]="WPSwitchingInstuctionsForm" >
+  <div class="container">
+      <h3 class="title">Switching instructions:</h3>
+          <p class="label">Please provide necessary instructions.</p> 
+          <div class="row ">
+              <div class="col col-lg-2">
+                  <button class="btn btn-primary buttons"  data-toggle="modal" data-target="#instructionModal">
+                    <i class="fa fa-file" ></i>
+                      New
+                  </button>
+              </div>
+              <div class="col col-lg-2">
+                  <button class="btn btn-primary buttons" (click)="executeInstruction()">
+                    <i class="fa fa-check-square"></i>
+                    Execute
+                  </button>
+              </div>
+              <div class="col col-lg-2">
+                  <button class="btn btn-primary buttons" (click)="deleteInstruction()">
+                    <i class="fa fa-trash"></i>
+                    Delete
+                  </button>
+              </div>
+              <div class="col col-lg-3">
+                  <button class="btn btn-primary buttons " (click)="deleteAllInstructions()">
+                    <i class="fa fa-trash" ></i>
+                    Delete all
+                  </button>
+              </div>
+          </div>
+          <div class="row ">
+              <div class="row mt-4">
+                  <div class="container">
+                      <tbody >
+                          <tr formArrayName="items" *ngFor="let item of WPSwitchingInstuctionsForm.get('items')['controls']; let i = index;" (click)="onSelect(item.value.id)">
+                              <div class="input-group mb-3" [formGroupName]="i">
+                                <div class="input-group-prepend" >
+                                <input class="input-group-text" formControlName="id" readonly/>
+
                                 </div>
-                                <input type="text" class="form-control"  aria-label="instruction" [value]="instruction.name" readonly>
+                                <input type="text" class="form-control"  aria-label="instruction" formControlName="name" readonly>
+
                                 <div class="input-group-append">
-                                <span class="input-group-text" [ngStyle]="{'color': (instruction!=null && instruction.status=='EXECUTED')? 'var(--c-blue-100)' : 'var(--c-orange-100)'}">{{instruction.status}}</span>
-                                </div>
+                                <input class="input-group-text" formControlName="status" [ngStyle]="{'color': (item.value!=null && item.value.status=='EXECUTED')? 'var(--c-blue-100)' : 'var(--c-orange-100)'}" readonly/>
+                              </div>
                             </div>
-                        </tr>
-                    </tbody>
-                </div>
-                <div class="container" *ngIf="instructions.length==0">
-                    <p class="label">No added instructions.</p>
-                </div>
-            </div>
-        </div>
-</div>
+                             
+                          </tr>
+                      </tbody>
+                  </div>
+                  <div class="container" *ngIf="instructions.length==0">
+                      <p class="label">No added instructions.</p>
+                  </div>
+              </div>
+          </div>
+  </div>
+</form>
 
 <!-- Modal -->
 <div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">

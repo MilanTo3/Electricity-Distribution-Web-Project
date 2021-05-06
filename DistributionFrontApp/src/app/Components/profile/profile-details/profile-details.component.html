@@ -8,7 +8,7 @@
                         <div class="col ">
                             <div class="form-group">
                                 <label for="name"><h5>Username</h5></label>
-                                <div class="input-group ">
+                                <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
@@ -23,6 +23,7 @@
                                         
                                     />
                                 </div>
+                                <small *ngIf="profileForm.get('username').invalid && profileForm.get('username').touched" class="text-danger">Username is required.</small>
                             </div>
 
                             <div class="form-group" >
@@ -38,10 +39,10 @@
                                             type="text"
                                             class="form-control"
                                             placeholder="Name"
-                                            formControlName="name"
-                                           
+                                            formControlName="name"                                        
                                         />
                                 </div>
+                                <small *ngIf="profileForm.get('name').invalid && profileForm.get('name').touched" class="text-danger">Name is required.</small>
                             </div>
                             <div class="form-group" >
                                 <label for="address"><h5>Address</h5></label>
@@ -60,24 +61,14 @@
                                         formControlName="address"                                       
                                     />
                                 </div>
-                            </div>
-                            <div class="form-group" >
-                                <label for="oldPassword"><h5>Old password</h5></label>
-                                <div class="input-group ">                         
-                                    <input
-                                            id="oldPassword"
-                                            type="password"
-                                            class="form-control"
-                                            placeholder="Old password"
-                                            formControlName="oldPassword"                                            
-                                    />
-                                </div>
+                                <small *ngIf="profileForm.get('address').invalid && profileForm.get('address').touched" class="text-danger">Address is required.</small>
                             </div>
                             <div class="form-group">
                                 <label for="role"><h5>Change role:</h5></label>
                                 <select  class="form-control" id="role" formControlName="role">
                                         <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
                                 </select>
+                                <small *ngIf="profileForm.get('role').invalid && profileForm.get('role').touched" class="text-danger">Role is required.</small>
                             </div> 
 
 						</div>
@@ -95,10 +86,10 @@
                                         type="email"
                                         class="form-control"
                                         placeholder="Email"
-                                        formControlName="email"
-                                                                      
+                                        formControlName="email"                                                                    
                                     />
                                 </div>
+                                <small *ngIf="profileForm.get('email').invalid && profileForm.get('email').touched" class="text-danger">Email is required.</small>
                             </div>
                             <div class="form-group" >
                                 <label for="lastname"><h5>Lastname</h5></label>
@@ -113,10 +104,10 @@
                                         type="text"
                                         class="form-control"
                                         placeholder="Last name"
-                                        formControlName="lastname"
-                                        
+                                        formControlName="lastname"                                      
                                     />
                                 </div>
+                                <small *ngIf="profileForm.get('lastname').invalid && profileForm.get('lastname').touched" class="text-danger">Lastname is required.</small>
                             </div>
                             <div class="form-group" >
                                 <label for="birthday"><h5>Birthday</h5></label>
@@ -135,21 +126,8 @@
                                         formControlName="birthday"
                                     />
                                 </div>
+                                <small *ngIf="profileForm.get('birthday').invalid && profileForm.get('birthday').touched" class="text-danger">Birthday is required.</small>
                             </div>
-                            <div class="form-group" >
-                                <label for="newPassword"><h5>New password</h5></label>
-                                <div class="input-group ">                         
-                                    <input
-                                        id="newPassword"
-                                        type="password"
-                                        class="form-control"
-                                        placeholder="New password"
-                                        formControlName="newPassword"
-                                        
-                                    />
-                                </div>
-                            </div>
-
 				        </div>
 
 					</div> <!-- end row -->

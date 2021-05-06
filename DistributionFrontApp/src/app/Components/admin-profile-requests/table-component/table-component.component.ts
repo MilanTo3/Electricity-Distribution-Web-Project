@@ -187,7 +187,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   ngOnInit(): void{
     this.addMockRequests();
     this.copyArray(this.keyNames, this.headerToPrint);
-    if(this.tableid === 0 || this.tableid === 7){
+    if(this.tableid === 0 || this.tableid === 7 || this.tableid===9){
       this.headerToPrint.push("What to do?");
     }
     this.dataBind.data = this.dataToPrint;

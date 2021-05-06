@@ -10,18 +10,26 @@ import { menuList } from './menuList';
 export class NavigationBarComponent implements OnInit {
 
   title = 'AngularMaterialGettingStarted';
-
+  hiddenBadge = false;
   events: string[] = [];
   opened: boolean = true;
   expand = false;
   showFields = false;
+  notificationMessages = [
+    { type: "Error", content: 'Notification text', seen: false },
+    { type: "Info", content: 'Notification text', seen: false },
+    { type: "Success", content: 'Notification text', seen: false}
+  ];
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-
+  markAllAsRead(){
+    this.notificationMessages = [];
+  }
   redirectToNotifications() {
+    this.hiddenBadge = true;
     this.router.navigateByUrl('/notifications');
   }
 

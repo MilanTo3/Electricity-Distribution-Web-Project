@@ -53,3 +53,13 @@
   background-color: var(--c-orange-200);
   border-color: var(--c-orange-200);
 }
+.text-danger{
+  font-weight: bold;
+  text-align: right;
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+  0%{ opacity: 0; }
+  100%{ opacity: 1; }
+}

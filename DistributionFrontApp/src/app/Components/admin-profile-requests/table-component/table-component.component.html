@@ -30,6 +30,10 @@
             <button [hidden]="hideElement" routerLink="/editTeam" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
             <button [hidden]="choose" class="teamButtons btn btn-primary">Choose</button>
           </div>
+          <div *ngIf="tableid===9">
+            <button [hidden]="hideElement" routerLink="/edit-consumer" class="consumer-buttons btn btn-primary"><i class="fas fa-edit"></i>Edit</button>
+            <button [hidden]="hideElement" routerLink="/delete-consumer" class="consumer-buttons btn btn-info"><i class="fas fa-trash"></i> Delete</button>
+          </div>
         </mat-cell>
       </ng-container>
     </div>
