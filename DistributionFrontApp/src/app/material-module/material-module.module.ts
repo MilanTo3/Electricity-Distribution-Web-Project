@@ -12,7 +12,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule} from '@angular/material/button'; 
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatMenuModule} from '@angular/material/menu'
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling'
@@ -33,7 +35,10 @@ const MaterialComponents = [
   MatListModule,
   MatTooltipModule,
   DragDropModule,
-  ScrollingModule
+  ScrollingModule,
+  MatBadgeModule,
+  MatButtonModule,
+  MatMenuModule
 ];
 
 @NgModule({

@@ -13,7 +13,14 @@
       <a href="/profile"><p class="profilename">Ooooo Weeee</p></a>
       <a href="/profile"><img src="/assets/Images/profilepic.jpg" class="profilepic"/></a>
     </div>
-    <mat-icon (click)="redirectToNotifications()" class="toolbar-icon" matBadge="8" matBadgePosition="after" matBadgeColor="accent">notifications</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon   [matBadgeHidden]="hiddenBadge" class="toolbar-icon" [matBadge]="notificationMessages.length" matBadgePosition="after" matBadgeColor="accent">notifications</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <app-notification *ngFor="let notification of notificationMessages" [type]="notification.type" [content]="notification.content" [seen]="notification.seen"></app-notification>
+      <button mat-menu-item (click)="markAllAsRead()">Mark all as read</button>
+      <button mat-menu-item (click)="redirectToNotifications()">See all</button>
+    </mat-menu>
   </mat-toolbar>
 </div>
   <div class="container">
