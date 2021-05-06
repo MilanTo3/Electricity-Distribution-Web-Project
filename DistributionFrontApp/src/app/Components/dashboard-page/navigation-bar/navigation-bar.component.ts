@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { menuList } from './menuList';
+import { Notification } from 'src/app/Models/notification.model';
+import { NotificationService } from 'src/app/Services/notifications/notification.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -15,18 +17,27 @@ export class NavigationBarComponent implements OnInit {
   opened: boolean = true;
   expand = false;
   showFields = false;
-  notificationMessages = [
-    { type: "Error", content: 'Notification text', seen: false },
-    { type: "Info", content: 'Notification text', seen: false },
-    { type: "Success", content: 'Notification text', seen: false}
-  ];
 
-  constructor(private router: Router) { }
+  notificationMessages: Notification[] = [];
+
+  constructor(private router: Router, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
+    this.getNotifications();
+  }
+
+  getNotifications(): void {
+    this.notificationService.getUnreadNotifications()
+        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
+  }
+  setMarkAsRead(): void {
+    this.notificationService.setMarkAsRead()
+        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
   }
   markAllAsRead(){
-    this.notificationMessages = [];
+    this.hiddenBadge = true;
+    this.setMarkAsRead();
+
   }
   redirectToNotifications() {
     this.hiddenBadge = true;

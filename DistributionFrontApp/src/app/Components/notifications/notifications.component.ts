@@ -2,6 +2,9 @@ import { NotificationComponent } from './notification/notification.component';
 import { Component, OnInit } from '@angular/core';
 import { clearAllProjections } from 'ol/proj';
 import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from 'src/app/Services/notifications/notification.service';
+import { Notification } from 'src/app/Models/notification.model';
+
 
 @Component({
   selector: 'app-notifications',
@@ -13,59 +16,72 @@ export class NotificationsComponent implements OnInit {
   filterOptions = ["All notifications", "Unread notifications", "Errors", "Info", "Success", "Warnings"];
   test = 1;
   selectedFilter = "All notifications";
-  notificationMessages = [
-    { type: "Success", content: 'Notification text', seen: true },
-    { type: "Info", content: 'Notification text', seen: true },
-    { type: "Warning", content: 'Notification text' , seen: true},
-    { type: "Error", content: 'Notification text', seen: true },
-    { type: "Error", content: 'Notification text', seen: false },
-    { type: "Info", content: 'Notification text', seen: false },
-    { type: "Success", content: 'Notification text', seen: false}
-  ];
-  constructor( private toastr: ToastrService ) { }
+  notificationMessages: Notification[] = [];
+
+  constructor( private toastr: ToastrService, private notificationService: NotificationService ) { }
 
   ngOnInit(): void {
-    console.log(this.notificationMessages);
+    this.getAllNotifications();
   }
+  getUnreadNotifications(): void {
+    this.notificationService.getUnreadNotifications()
+        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
+  }
+  setMarkAsRead(): void {
+    this.notificationService.setMarkAsRead()
+        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
+  }
+  markAsRead(){
+    this.setMarkAsRead();
+  }
+  getAllNotifications(){
+    this.notificationService.getAllNotifications()
+        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
+  }
+
   onClick(filter:string){
     this.selectedFilter = filter;
-    console.log(this.selectedFilter);
+    this.filter();
   }
 
   filter(){
     switch(this.selectedFilter){
       case 'Success': 
       {
-      return this.notificationMessages.filter(i => i.type === 'Success');
+       this.getAllNotifications();
+       return this.notificationMessages.filter(i => i.type === 'Success');
       }
       case 'Info': 
       {
-      return this.notificationMessages.filter(i => i.type === 'Info');
+        this.getAllNotifications();
+        return this.notificationMessages.filter(i => i.type === 'Info');
       }
       case 'Errors': 
       {
-      return this.notificationMessages.filter(i => i.type === 'Error');
+        this.getAllNotifications();
+        return this.notificationMessages.filter(i => i.type === 'Error');
       }
       case 'Warnings': 
       {
-      return this.notificationMessages.filter(i => i.type === 'Warning');
+        this.getAllNotifications();
+        return this.notificationMessages.filter(i => i.type === 'Warning');
       }
       case 'Unread notifications': 
-      {
-      return this.notificationMessages.filter(i => i.seen == false);
+      {        
+        this.getUnreadNotifications();
+        return this.notificationMessages;
       }
-      default: return this.notificationMessages;
-    }
-  }
-  markAsRead(){
-    var unreadNotifications = this.notificationMessages.filter(i => i.seen == false);
-    for (var notification of unreadNotifications) 
-    {
-      notification.seen=true;
+      default: 
+      {
+        this.getAllNotifications();
+        return this.notificationMessages;
+      }
+      
     }
   }
   clearAll(){
-    this.notificationMessages = [];
+    this.notificationService.clearAll()
+        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
   }
   
   showToastrSuccess(){
