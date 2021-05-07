@@ -9,7 +9,7 @@ namespace DistributionSmartEnergyBackApp.Models
 {
     public class ApplicationUser : IdentityUser
     {
-
+        public enum RegistrationState { Pending, Approved, Denied };
         private string name;
         private string lastname;
         private DateTime birthday;
@@ -17,6 +17,7 @@ namespace DistributionSmartEnergyBackApp.Models
         private string userType;
         private string filePicture;
         private string teamid;
+        private RegistrationState state;
 
         [Column]
         public string Name {
@@ -64,6 +65,13 @@ namespace DistributionSmartEnergyBackApp.Models
 
             get { return teamid; }
             set { teamid = value; }
+        }
+
+        [Column]
+        public RegistrationState RegState {
+
+            get { return state; }
+            set { state = value; }
         }
     }
 }

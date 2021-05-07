@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 Address = model.Address,
                 UserType = model.UserType,
                 FilePicture = model.FilePicture,
-                TeamId = model.TeamId
+                TeamId = model.TeamId,
+                RegState = ApplicationUser.RegistrationState.Pending
             };
 
             try {
@@ -51,6 +53,13 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 throw e;
             }
 
+        }
+
+        [HttpGet]
+        [Route("getPendingUsers")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> getPendingUsers() {
+
+            return await _userManager.Users.Where(x => x.RegState == ApplicationUser.RegistrationState.Pending).ToListAsync();
         }
     }
 }
