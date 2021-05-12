@@ -1,0 +1,39 @@
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+}
+
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+    margin-bottom: 25px;
+}
+
+.pageContainer{
+    margin-top: 15px;
+}
+
+.formPart{
+    padding: 15px;
+}
+
+.form-group input, select {
+    height: 34px;
+    color: #699FA1;
+    font-weight: bold;
+    background-color: rgba(137, 179, 228, 0.3);
+    border-radius: 4px;
+}
+
+.btn{
+    margin-top: 15px;
+    background: var(--c-blue-100);
+    color: white;
+    font-weight: bold;
+    border-color: var(--c-blue-100);
+}
+.btn:hover{
+    background: var(--c-orange-200);
+    border-color: var(--c-orange-200);
+}

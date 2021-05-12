@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <body>
     <div>
         <app-navigation-bar [hidden]="checkPath()"></app-navigation-bar>
-        <main [@routeAnimations] = "prepareRoute(outlet)" style="margin-left: 63px !important;">
+        <main [@routeAnimations]="prepareRoute(outlet)" class="content">
             <router-outlet #outlet="outlet"></router-outlet>
         </main>
     </div>
 </body>
+
 </html>

@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling'
 import { HttpClientModule } from '@angular/common/http';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -40,7 +41,8 @@ const MaterialComponents = [
   MatBadgeModule,
   MatButtonModule,
   MatMenuModule,
-  HttpClientModule
+  HttpClientModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({

@@ -57,6 +57,9 @@ import { EditTeamComponent } from './Components/teams-page/edit-team/edit-team.c
 import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.component';
 import { ConsumersComponent } from './Components/consumers/consumers.component';
 import { NewConsumerComponent } from './Components/consumers/new-consumer/new-consumer.component';
+import { AdminPanelComponent } from './Components/admin-panel/admin-panel.component';
+import { AddStreetComponent } from './Components/admin-panel/add-street/add-street.component';
+import { ApproveRolesComponent } from './Components/admin-panel/approve-roles/approve-roles.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +110,10 @@ import { NewConsumerComponent } from './Components/consumers/new-consumer/new-co
     EditTeamComponent,
     ViewTeamComponent,
     ConsumersComponent,
-    NewConsumerComponent
+    NewConsumerComponent,
+    AdminPanelComponent,
+    AddStreetComponent,
+    ApproveRolesComponent,
   
   ],
   imports: [
@@ -119,7 +125,7 @@ import { NewConsumerComponent } from './Components/consumers/new-consumer/new-co
     MaterialModuleModule,
     ToastrModule.forRoot(
       {
-        timeOut: 1500
+        timeOut: 3000
       }
     ),
     NgxChartsModule

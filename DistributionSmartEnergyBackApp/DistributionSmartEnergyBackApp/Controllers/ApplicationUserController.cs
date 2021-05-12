@@ -16,6 +16,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
     {
 
         private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
 
         public ApplicationUserController(UserManager<ApplicationUser> userManager) {
 
@@ -25,7 +26,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpPost]
         [Route("Register")]
-        //Post: /api/ApplicationUser/Register
+        //Post: localhost:24885/api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser([FromBody]UserModel model) {
 
             ApplicationUser applicationUser = new ApplicationUser() {

@@ -13,6 +13,7 @@ import { MySafetyDoc } from 'src/app/Models/MySafetyDoc.model';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { changeRoleRequest } from 'src/app/Models/roleRequestChange.model';
 
 @Component({
   selector: 'app-table-component',
@@ -72,9 +73,20 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     }else if(this.tableid === 8){
       this.loadMySafetyDocs();
     }else if(this.tableid === 9){
-    this.loadAllConsumers();
+      this.loadAllConsumers();
+    }else if(this.tableid === 10){
+      this.loadRoleRequests();
     }
 
+  }
+
+  loadRoleRequests(){
+    let user1 = new changeRoleRequest("Erik", "Dispatcher", "Administrator");
+    let user2 = new changeRoleRequest("Rukia", "Dispatcher", "Dispatcher");
+    let user3 = new changeRoleRequest("Jordan", "Consumer", "Administrator");
+
+    this.dataToPrint.push(user1, user2, user3);
+    this.keyNames = Object.getOwnPropertyNames(user3);
   }
 
   loadTeams(){
@@ -135,16 +147,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     let device2 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
     let device3 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
     let device4 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
-    let device5 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
-    let device6 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
-    let device7 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
-    let device8 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
-    let device9 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
-    let device10 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
-    let device11 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
-    let device12 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
 
-    this.dataToPrint.push(device1, device2, device3, device4, device5, device6, device7, device8, device9, device10, device11, device12);
+    this.dataToPrint.push(device1, device2, device3, device4);
     this.keyNames = Object.getOwnPropertyNames(device3);
   }
 
@@ -187,7 +191,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   ngOnInit(): void{
     this.addMockRequests();
     this.copyArray(this.keyNames, this.headerToPrint);
-    if(this.tableid === 0 || this.tableid === 7 || this.tableid===9){
+    if(this.tableid === 0 || this.tableid === 7 || this.tableid===9 || this.tableid===10){
       this.headerToPrint.push("What to do?");
     }
     this.dataBind.data = this.dataToPrint;

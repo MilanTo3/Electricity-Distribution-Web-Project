@@ -8,9 +8,6 @@
     background: var(--c-orange-200);
     border-color: var(--c-orange-200);
 }
-.work-plan-form{
-    margin-left:50px;
-}
 .title{
     font-family: 'Roboto';
     font-weight: bold;

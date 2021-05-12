@@ -37,6 +37,9 @@ import { EditTeamComponent } from './Components/teams-page/edit-team/edit-team.c
 import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.component';
 import { ConsumersComponent } from './Components/consumers/consumers.component';
 import { NewConsumerComponent } from './Components/consumers/new-consumer/new-consumer.component';
+import { AddStreetComponent } from './Components/admin-panel/add-street/add-street.component';
+import { AdminPanelComponent } from './Components/admin-panel/admin-panel.component';
+import { ApproveRolesComponent } from './Components/admin-panel/approve-roles/approve-roles.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -47,7 +50,6 @@ const routes: Routes = [
       { path: "mySafetyDocs", component: MySafetyDocsComponent}
     ]*/
   },
-  { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
   { path: "myIncidents", component: MyIncidentsComponent},
   { path: "mySafetyDocs", component: MySafetyDocsComponent},
   { path: "workRequests", component: WorkRequestsPageComponent },
@@ -100,6 +102,11 @@ const routes: Routes = [
   { path: "viewTeam", component: ViewTeamComponent },
   { path: "consumers", component: ConsumersComponent },
   { path: "new-consumer", component: NewConsumerComponent},
+  { path: "adminPanel", component: AdminPanelComponent, children: [
+    { path: "addStreet", component: AddStreetComponent },
+    { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
+    { path: "approveRoleChanges", component: ApproveRolesComponent},
+  ] },
     
 ];
 
