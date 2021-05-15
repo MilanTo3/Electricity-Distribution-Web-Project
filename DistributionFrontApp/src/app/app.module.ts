@@ -60,6 +60,8 @@ import { NewConsumerComponent } from './Components/consumers/new-consumer/new-co
 import { AdminPanelComponent } from './Components/admin-panel/admin-panel.component';
 import { AddStreetComponent } from './Components/admin-panel/add-street/add-street.component';
 import { ApproveRolesComponent } from './Components/admin-panel/approve-roles/approve-roles.component';
+import { PieChartKarticaComponent } from './Components/dashboard-page/pie-chart-kartica/pie-chart-kartica.component';
+import { PieChartComponent } from './Components/dashboard-page/pie-chart-kartica/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +116,8 @@ import { ApproveRolesComponent } from './Components/admin-panel/approve-roles/ap
     AdminPanelComponent,
     AddStreetComponent,
     ApproveRolesComponent,
+    PieChartKarticaComponent,
+    PieChartComponent,
   
   ],
   imports: [
