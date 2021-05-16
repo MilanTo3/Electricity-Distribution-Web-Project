@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { customFormValidators } from '../../../Models/customValidators';
 import { pictureModel } from '../../../Models/pictureModel.model';
-import { RegistrationServiceService } from '../../../Services/registration-service.service';
+import { UserService } from '../../../Services/registration-service.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -26,15 +26,17 @@ export class RegisterComponentComponent implements OnInit {
     ConfirmedPassword: ['', Validators.required],
     Birthday: ['', Validators.required],
     Address: ['', [Validators.required, Validators.maxLength(100)]],
-    UserType: ['Potrošač'],
-    FilePicture: [''], TeamId: ['']
+    PhoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
+    UserType: ['Consumer'],
+    FilePicture: [''],
+    TeamId: ['']
   },
     {
       validator: Validators.compose([customFormValidators.passwordConfirmCheck('Password', 'ConfirmedPassword', { 'confirmError': true })])
     }
   );
 
-  constructor(private fb: FormBuilder, private registtration: RegistrationServiceService, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private registtration: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -86,7 +88,7 @@ export class RegisterComponentComponent implements OnInit {
   }
 
   onChange(SelectValue: string) {
-    if (SelectValue === 'Član ekipe') {
+    if (SelectValue === 'Team Member') {
       setTimeout(() => { this.teamSelected = true; }, 400);
     } else {
       this.teamSelected = false;
@@ -99,6 +101,10 @@ export class RegisterComponentComponent implements OnInit {
 
   get passwordForm() {
     return this.registerForm.get('Password') as FormControl;
+  }
+
+  get phoneNumber(){
+    return this.registerForm.get('PhoneNumber');
   }
 
 }

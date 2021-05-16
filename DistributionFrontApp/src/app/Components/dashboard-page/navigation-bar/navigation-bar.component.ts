@@ -66,8 +66,9 @@ export class NavigationBarComponent implements OnInit {
     }
   }
 
-  returnTrue() {
-    return true;
+  logOut(){
+    sessionStorage.clear();
+    this.router.navigateByUrl('/login-register');
   }
 
 }

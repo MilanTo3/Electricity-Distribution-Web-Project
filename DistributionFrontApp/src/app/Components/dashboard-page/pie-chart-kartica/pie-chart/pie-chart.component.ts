@@ -24,7 +24,7 @@ export class PieChartComponent implements OnInit {
   legend: boolean = true;
   showLabels: boolean = true;
   animations: boolean = true;
-  view: [number, number] = [364, 300];
+  view: [number, number] = [374, 300];
 
   // options
   showLegend: boolean = true;

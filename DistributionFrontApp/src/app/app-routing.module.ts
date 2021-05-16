@@ -40,6 +40,7 @@ import { NewConsumerComponent } from './Components/consumers/new-consumer/new-co
 import { AddStreetComponent } from './Components/admin-panel/add-street/add-street.component';
 import { AdminPanelComponent } from './Components/admin-panel/admin-panel.component';
 import { ApproveRolesComponent } from './Components/admin-panel/approve-roles/approve-roles.component';
+import { AuthGuard } from './Components/auth/auth.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "login-register", pathMatch: "full" },
@@ -59,7 +60,7 @@ const routes: Routes = [
     { path: "historyStateChanges", component: HistoryStateChangesComponent },
     { path: "multimediaAttachments", component: MultimediaAttachmentsComponent }
   ] },
-  { path: "profile", component: ProfileComponent },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
 
   { path: "newIncident", component: NewIncidentComponent,
     children: [

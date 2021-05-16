@@ -67,3 +67,5 @@ E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\Distribution
 E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.pdb
 E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.genruntimeconfig.cache
 E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csprojAssemblyReference.cache
+E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
+E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
