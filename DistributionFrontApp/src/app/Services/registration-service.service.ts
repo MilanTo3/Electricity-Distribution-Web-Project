@@ -21,7 +21,6 @@ export class UserService {
     }
 
     getUserProfile(){
-      var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + sessionStorage.getItem('token')});
-      return this.http.get('http://localhost:24885/api/ApplicationUser/getUserProfile', {headers: tokenHeader});
+      return this.http.get('http://localhost:24885/api/ApplicationUser/getUserProfile');
     }
 }

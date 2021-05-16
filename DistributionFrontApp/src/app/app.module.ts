@@ -62,6 +62,9 @@ import { AddStreetComponent } from './Components/admin-panel/add-street/add-stre
 import { ApproveRolesComponent } from './Components/admin-panel/approve-roles/approve-roles.component';
 import { PieChartKarticaComponent } from './Components/dashboard-page/pie-chart-kartica/pie-chart-kartica.component';
 import { PieChartComponent } from './Components/dashboard-page/pie-chart-kartica/pie-chart/pie-chart.component';
+import { UserService } from './Services/registration-service.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './Components/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -134,6 +137,11 @@ import { PieChartComponent } from './Components/dashboard-page/pie-chart-kartica
     ),
     NgxChartsModule
   ],
+  providers: [UserService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

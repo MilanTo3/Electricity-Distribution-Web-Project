@@ -46,10 +46,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel) {
             var user = await _userManager.FindByNameAsync(loginModel.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password)) {
+                var role = await _userManager.GetRolesAsync(user);
+                IdentityOptions _options = new IdentityOptions();
+
                 var tokenDescriptor = new SecurityTokenDescriptor {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserID", user.Id.ToString())
+                        new Claim("UserID", user.Id.ToString()),
+                        new Claim(_options.ClaimsIdentity.RoleClaimType, role.FirstOrDefault())
                     }),
                     Expires = DateTime.UtcNow.AddHours(5), // token expires in 5 hours.
                     //Key min: 16 characters
@@ -58,7 +62,9 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+                string roletype = user.UserType;
+                string username = user.UserName;
+                return Ok(new { token, username, roletype });
             }
             else
                 return BadRequest("errUsername or password is incorrect.");
@@ -80,7 +86,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 FilePicture = model.FilePicture,
                 TeamId = model.TeamId,
                 RegState = ApplicationUser.RegistrationState.Pending,
-                PhoneNumber = model.PhoneNumber
+                PhoneNumber = model.PhoneNumber,
             };
 
             try {
@@ -89,6 +95,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                     var test = result.Errors.ToList();
                     return BadRequest("err" + test[0].Description);
                 }
+                await _userManager.AddToRoleAsync(applicationUser, model.UserType);
                 return Ok("ok");
             }
             catch (Exception e) {

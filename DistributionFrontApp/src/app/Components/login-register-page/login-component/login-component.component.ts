@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/Services/registration-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 
 @Component({
   selector: 'app-login-component',
@@ -25,8 +26,9 @@ export class LoginComponentComponent implements OnInit {
     if (this.loginForm.valid) {
       this.logService.login(this.loginForm.value).subscribe(
         (response: any) => {
-          sessionStorage.setItem('token', response.token);
-          console.log(response.token);
+          let user = new LoggedUser(response.token, response.username, response.roletype);
+          sessionStorage.setItem('loggedUser', JSON.stringify(user));
+          console.log(user);
           this.router.navigateByUrl('/dashboard');
         },
         (err) => {

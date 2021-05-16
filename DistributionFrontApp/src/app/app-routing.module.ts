@@ -66,7 +66,7 @@ const routes: Routes = [
     children: [
       { path: "basicInformation", component: BasicInformationIncidentComponent},
       { path: "devices", component: DevicesComponentComponent },
-      { path: "resolution", component: ResolutionComponent },  
+      { path: "resolution", component: ResolutionComponent },
       { path: "calls", component: CallsComponent },
       { path: "multimediaAttachments", component: MultimediaAttachmentsComponent },
       { path: "crew", component: TeamsPageComponent }
@@ -103,11 +103,11 @@ const routes: Routes = [
   { path: "viewTeam", component: ViewTeamComponent },
   { path: "consumers", component: ConsumersComponent },
   { path: "new-consumer", component: NewConsumerComponent},
-  { path: "adminPanel", component: AdminPanelComponent, children: [
+  { path: "adminPanel", component: AdminPanelComponent, canActivate: [AuthGuard], children: [
     { path: "addStreet", component: AddStreetComponent },
     { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
     { path: "approveRoleChanges", component: ApproveRolesComponent},
-  ] },
+  ]},
     
 ];
 

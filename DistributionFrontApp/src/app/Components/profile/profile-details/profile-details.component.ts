@@ -36,7 +36,7 @@ export class ProfileDetailsComponent implements OnInit {
           birthday: [moment(res["birthday"]).format('YYYY-MM-DD'), Validators.required],
           address: [res["address"], Validators.required],
           role: [res["userType"], Validators.required],
-          profileImg: ['', Validators.required]
+          profileImg: [res["filePicture"], Validators.required]
         });
       }
     );

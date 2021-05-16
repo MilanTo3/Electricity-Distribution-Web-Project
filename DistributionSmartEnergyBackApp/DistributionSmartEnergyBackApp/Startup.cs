@@ -31,7 +31,7 @@ namespace DistributionSmartEnergyBackApp
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
-            services.AddIdentityCore<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
+            services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = false;

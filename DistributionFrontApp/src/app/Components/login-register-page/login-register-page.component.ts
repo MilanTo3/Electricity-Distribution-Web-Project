@@ -14,7 +14,7 @@ export class LoginRegisterPageComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('token') != null){
+    if(sessionStorage.getItem('loggedUser') != null){
       this.router.navigateByUrl('/dashboard');
     }
   }
