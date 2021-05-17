@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace DistributionSmartEnergyBackApp.Models
         private DateTime birthday;
         private string address;
         private string userType;
-        private string filePicture;
+        private IFormFile filePicture;
         private string team;
         private string phoneNumber;
 
@@ -80,7 +81,7 @@ namespace DistributionSmartEnergyBackApp.Models
             set { userType = value; }
         }
 
-        public string FilePicture {
+        public IFormFile FilePicture {
 
             get { return filePicture; }
             set { filePicture = value; }
@@ -95,7 +96,7 @@ namespace DistributionSmartEnergyBackApp.Models
         public string PhoneNumber {
 
             get { return phoneNumber; }
-            set { phoneNumber = value; }
+            set { phoneNumber = value;}
         }
 
     }

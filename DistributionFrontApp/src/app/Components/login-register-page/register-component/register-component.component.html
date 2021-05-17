@@ -8,7 +8,7 @@
     <p class="SecondaryLabela">Dont have an account? Register an account in less than a minute.</p>
     <form name="registeringForm" [formGroup]="registerForm" ngSubmit="onSubmit()">
       <div class="container">
-        <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)" accept="image/*" formControlName="FilePicture" />
+        <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)" accept="image/*"/>
         <a (click)="fileInput.click()">
           <img [src]="picurl" class="profileImg" [ngClass]="{ profileImgDefault: onDefault===true }" />
         </a>
