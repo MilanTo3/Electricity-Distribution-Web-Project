@@ -16,6 +16,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http.Features;
+using DistributionSmartEnergyBackApp.Models.Interfaces;
+using DistributionSmartEnergyBackApp.Services;
 
 namespace DistributionSmartEnergyBackApp
 {
@@ -30,8 +36,19 @@ namespace DistributionSmartEnergyBackApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
+
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+            
+            //add services here
+            services.AddScoped<ILocation, LocationService>();
+
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
+
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
 
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = false;
@@ -42,6 +59,7 @@ namespace DistributionSmartEnergyBackApp
             });
 
             services.AddCors();
+
 
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"]);
 
@@ -62,6 +80,8 @@ namespace DistributionSmartEnergyBackApp
 
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
+           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +91,11 @@ namespace DistributionSmartEnergyBackApp
             }
 
             app.UseCors(builder => builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString()).AllowAnyHeader().AllowAnyMethod());
-
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions() {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
+            });
             app.UseRouting();
 
             app.UseAuthentication();
