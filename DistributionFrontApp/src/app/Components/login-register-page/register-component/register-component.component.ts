@@ -15,8 +15,10 @@ export class RegisterComponentComponent implements OnInit {
   @Output() moveOverlay = new EventEmitter();
   teamSelected = false;
   onDefault = true;
+  fileToUpload: any = null;
   defpicurl = '/assets/Images/defimage3.jpg';
   picurl: any = this.defpicurl;
+  formdata: FormData = new FormData();
   registerForm = this.fb.group({
     Name: ['', [Validators.required, Validators.maxLength(100)]],
     Lastname: ['', [Validators.required, Validators.maxLength(100)]],
@@ -42,14 +44,12 @@ export class RegisterComponentComponent implements OnInit {
   }
 
   onFileChanged(event: any) {
-
     if (event.target.files.length > 0) {
       var reader = new FileReader();
       let this_ = this;
-
+      this.fileToUpload = event.target.files[0];
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = function (e) {
-        let item = new pictureModel(event.target.files[0].name, e.target.result);
         this_.picurl = e.target.result;
         this_.onDefault = false;
       }
@@ -57,8 +57,10 @@ export class RegisterComponentComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.registerForm.valid) {
-      this.registtration.register(this.registerForm.value).subscribe(
+      this.fillFormData();
+      this.registtration.register(this.formdata).subscribe(
         (response: any) => {
           if (response === "ok") {
             this.toastr.success('Thank you for joining smart energy.', 'Registration successful :)');
@@ -82,9 +84,27 @@ export class RegisterComponentComponent implements OnInit {
     }
   }
 
+  fillFormData(){
+    this.formdata = new FormData();
+    this.formdata.append('UserName', this.registerForm.get('Username').value);
+    this.formdata.append('Name', this.registerForm.get('Name').value);
+    this.formdata.append('Lastname', this.registerForm.get('Lastname').value);
+    this.formdata.append('Email', this.registerForm.get('Email').value);
+    this.formdata.append('Birthday', this.registerForm.get('Birthday').value);
+    this.formdata.append('Address', this.registerForm.get('Address').value);
+    this.formdata.append('UserType', this.registerForm.get('UserType').value);
+    this.formdata.append('Password', this.registerForm.get('Password').value);
+    this.formdata.append('TeamId', this.registerForm.get('TeamId').value);
+    this.formdata.append('PhoneNumber', this.registerForm.get('PhoneNumber').value);
+    if(this.fileToUpload !== null){
+      this.formdata.append("FilePicture", this.fileToUpload, this.fileToUpload.name);
+    }
+  }
+
   clearImage() {
     this.picurl = this.defpicurl;
     this.onDefault = true;
+    this.fileToUpload = null;
   }
 
   onChange(SelectValue: string) {

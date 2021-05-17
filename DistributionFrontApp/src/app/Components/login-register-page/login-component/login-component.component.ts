@@ -27,6 +27,7 @@ export class LoginComponentComponent implements OnInit {
       this.logService.login(this.loginForm.value).subscribe(
         (response: any) => {
           let user = new LoggedUser(response.token, response.username, response.roletype);
+          
           sessionStorage.setItem('loggedUser', JSON.stringify(user));
           console.log(user);
           this.router.navigateByUrl('/dashboard');
