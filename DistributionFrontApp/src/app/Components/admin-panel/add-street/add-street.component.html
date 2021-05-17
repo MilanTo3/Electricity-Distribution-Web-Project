@@ -1,0 +1,50 @@
+<div class="container pageContainer">
+    <h3 class="title"><i class="fa fa-fw fa-map-marker"></i>Add a street location:</h3>
+    <p class="labela">Here, the administrator can add a street and set its priority.</p>
+    <form name="infoForm" [formGroup]="locationForm">
+        <div class="row">
+            <div class="col">
+                <div class="row border formPart">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label title">*City name:</label>
+                        <input class="col-sm-7 form-control" type="text" formControlName="name" />
+                        <small *ngIf="locationForm.get('name').invalid && locationForm.get('name').touched" class="text-danger">City name is a required field.</small>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label title">*Street name:</label>
+                        <input class="col-sm-7 form-control" type="text" formControlName="street" />
+                        <small *ngIf="locationForm.get('street').invalid && locationForm.get('street').touched" class="text-danger">Street is required field.</small>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label title">*Priority:</label>
+                        <select class="col-sm-7 form-control" formControlName="priority">
+                            <option>Low</option>
+                            <option>Normal</option>
+                            <option>Important</option>
+                            <option>Critical</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row border formPart">
+                    <p class="labela">Set coordinates, or choose a place from the map beside.</p>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label title">*Longitude:</label>
+                        <input class="col-sm-7 form-control" type="number" formControlName="longitude" />
+                        <small *ngIf="locationForm.get('longitude').invalid && locationForm.get('longitude').touched && !locationForm.get('longitude').errors.pattern" class="text-danger">Longitude is required field.</small>
+                        <small *ngIf="locationForm.get('longitude').invalid && locationForm.get('longitude').errors.pattern" class="text-danger">Longitude should be a number.</small>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label title">*Latitude:</label>
+                        <input class="col-sm-7 form-control" type="number" formControlName="latitude" />
+                        <small *ngIf="locationForm.get('latitude').invalid && locationForm.get('latitude').touched && !locationForm.get('latitude').errors.pattern" class="text-danger">Latitude is required field.</small>
+                        <small *ngIf="locationForm.get('latitude').invalid && locationForm.get('latitude').errors.pattern" class="text-danger">Latitude should be a number.</small>
+                    </div>
+                </div>
+                <button class="btn btn-primary">Create Street</button>
+            </div>
+            <div class="col">
+                <app-map-component width='530' (emitValues)="setValues($event)"></app-map-component>
+            </div>
+        </div>
+    </form>
+</div>

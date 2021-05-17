@@ -18,6 +18,7 @@ namespace DistributionSmartEnergyBackApp.Models
         private string userType;
         private string filePicture;
         private string team;
+        private string phoneNumber;
 
         public UserModel() {
 
@@ -89,6 +90,12 @@ namespace DistributionSmartEnergyBackApp.Models
 
             get { return team; }
             set { team = value; }
+        }
+
+        public string PhoneNumber {
+
+            get { return phoneNumber; }
+            set { phoneNumber = value; }
         }
 
     }

@@ -246,6 +246,9 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.Property<string>("TeamId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Teams")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserType")
                         .HasColumnType("nvarchar(max)");
 

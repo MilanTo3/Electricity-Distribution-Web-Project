@@ -1,4 +1,4 @@
-import { Component, NgZone, AfterViewInit, Input, OnInit } from '@angular/core';
+import { Component, NgZone, AfterViewInit, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import olMap from 'ol/Map';
 import View from 'ol/View';
 import OSM from 'ol/source/OSM.js';
@@ -16,6 +16,7 @@ import Geometry from 'ol/geom/Geometry';
 import Source from 'ol/source/Source';
 import { Overlay } from 'ol';
 import { Coordinate } from 'ol/coordinate';
+import { transform } from 'ol/proj';
 
 @Component({
   selector: 'app-map-component',
@@ -31,6 +32,7 @@ export class MapComponentComponent implements OnInit {
   vectorSource = new VectorSource({});
   vectorLayer = new VectorLayer({ source: this.vectorSource });
   overlayPopup = new Overlay({ element: document.getElementById('tooltip') });
+  @Output() emitValues = new EventEmitter<[number, number]>();
 
   constructor() { }
 
@@ -64,6 +66,9 @@ export class MapComponentComponent implements OnInit {
 
   ngOnInit() {
 
+    let mapElement = document.getElementById("map")!;
+    mapElement.style.width = this.width.toString() + "px";
+    mapElement.style.height = this.height.toString() + "px";
     let convertedMapCoordinate = fromLonLat([19.8227, 45.2396]);
 
     const osmLayer = new TileLayer({
@@ -96,10 +101,6 @@ export class MapComponentComponent implements OnInit {
     
     this.overlayPopup.setElement(document.getElementById('tooltip'));
 
-    let mapElement = document.getElementById("map")!;
-    mapElement.style.width = this.width.toString() + "px";
-    mapElement.style.height = this.height.toString() + "px";
-
     this.map.on('click', (evt) => {
       let item = document.getElementById('tooltip');
 
@@ -113,6 +114,8 @@ export class MapComponentComponent implements OnInit {
       }else{
         item.hidden = true;
         this.overlayPopup.setPosition(undefined);
+        let lonlat = transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+        this.emitValues.next([lonlat[0], lonlat[1]]);
       }
 
     });

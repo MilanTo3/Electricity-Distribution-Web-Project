@@ -3,6 +3,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from '../../../Models/User.model';
 import { customFormValidators } from '../../../Models/customValidators';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/Services/registration-service.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-profile-details',
@@ -11,27 +13,34 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileDetailsComponent implements OnInit {
 
-  currentUser = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Dispatcher", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
+  currentImg: string;
   rolesOptions = ["Administrator", "Dispatcher", "Team member", "Consumer", "Employed(data analyst)"];
   selectedRole : string; 
   profileForm: FormGroup;
   oldpass: string;
   newpass: string;
 
-  constructor(private formBuilder: FormBuilder,  private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder,  private toastr: ToastrService, private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.profileForm  = this.formBuilder.group({
-      name: [this.currentUser.name, Validators.required],
-      lastname: [this.currentUser.lastname, Validators.required],
-      email: [this.currentUser.email, Validators.required],
-      username: [this.currentUser.username, Validators.required],
-      birthday: [this.currentUser.birthday, Validators.required],
-      address: [this.currentUser.address, Validators.required],
-      role: [this.currentUser.role, Validators.required],
-      profileImg: [this.currentUser.profileImg, Validators.required]
-    });
+
+    this.userService.getUserProfile().subscribe(
+      res => {
+        this.currentImg = res["filePicture"];
+        this.profileForm  = this.formBuilder.group({
+          name: [res["name"], Validators.required],
+          lastname: [res["lastname"], Validators.required],
+          email: [res["email"], Validators.required],
+          username: [res["userName"], Validators.required],
+          birthday: [moment(res["birthday"]).format('YYYY-MM-DD'), Validators.required],
+          address: [res["address"], Validators.required],
+          role: [res["userType"], Validators.required],
+          profileImg: [res["filePicture"], Validators.required]
+        });
+      }
+    );
+
   }
   onSubmit(): void {
     // Process checkout data here
@@ -58,8 +67,7 @@ export class ProfileDetailsComponent implements OnInit {
      
       reader.onload = () => {
     
-        this.currentUser.profileImg = reader.result as string;
-      
+        this.currentImg = reader.result as string;
         this.profileForm.patchValue({
           profileImg: reader.result
         });

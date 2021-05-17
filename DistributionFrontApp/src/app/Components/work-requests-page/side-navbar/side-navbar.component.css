@@ -19,4 +19,11 @@
 
 .wrapper{
     padding-bottom: 30px;
+
+}
+
+@media (min-width: 978px) {
+    .wrapper{
+        margin-left: 35px !important;
+    }
 }

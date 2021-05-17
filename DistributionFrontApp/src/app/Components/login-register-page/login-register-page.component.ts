@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-register-page',
@@ -11,9 +11,12 @@ export class LoginRegisterPageComponent implements OnInit {
   show = true;
   toggleFormsVisibility = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('loggedUser') != null){
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
   toggleForms(){

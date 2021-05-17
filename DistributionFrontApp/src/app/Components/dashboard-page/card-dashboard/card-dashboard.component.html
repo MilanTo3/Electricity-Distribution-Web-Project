@@ -13,9 +13,9 @@
         <div class="row">
             <div class="col">
                 <mat-card (click)="openMyIncidentsTable()" class="mat-elevation-z7 card">
-                    <mat-card-header class="header">
+                    <mat-card-header class="header title">
                         <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title class="title">My Incidents</mat-card-title>
+                        <mat-card-title>My Incidents</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="content">
                         <div class="container text">
@@ -30,9 +30,9 @@
 
             <div class="col">
                 <mat-card (click)="openMyWorkRequests()" class="mat-elevation-z7 card">
-                    <mat-card-header class="header">
+                    <mat-card-header class="header title">
                         <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title class="title">My Work Requests</mat-card-title>
+                        <mat-card-title>My Work Requests</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="content">
                         <div class="container text">
@@ -47,9 +47,9 @@
 
             <div class="col">
                 <mat-card (click)="openMyWorkPlans()" class="mat-elevation-z7 card">
-                    <mat-card-header class="header">
+                    <mat-card-header class="header title">
                         <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title class="title">My Work Plans</mat-card-title>
+                        <mat-card-title>My Work Plans</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="content">
                         <div class="container text">
@@ -64,9 +64,9 @@
 
             <div class="col">
                 <mat-card (click)="openMySafetyDocsTable()" class="mat-elevation-z7 card">
-                    <mat-card-header class="header">
+                    <mat-card-header class="header title">
                         <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title class="title">Safety Docs</mat-card-title>
+                        <mat-card-title>Safety Docs</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="content">
                         <div class="container text">
@@ -80,8 +80,9 @@
             </div>
         </div>
 
-            <div class="row">
+            <div style="display: inline-flex;">
                 <app-line-chart-kartica></app-line-chart-kartica>
+                <app-pie-chart-kartica></app-pie-chart-kartica>
             </div>
     </div>
 </body>

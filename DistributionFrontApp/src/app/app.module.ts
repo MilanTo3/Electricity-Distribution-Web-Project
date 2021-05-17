@@ -57,6 +57,14 @@ import { EditTeamComponent } from './Components/teams-page/edit-team/edit-team.c
 import { ViewTeamComponent } from './Components/teams-page/view-team/view-team.component';
 import { ConsumersComponent } from './Components/consumers/consumers.component';
 import { NewConsumerComponent } from './Components/consumers/new-consumer/new-consumer.component';
+import { AdminPanelComponent } from './Components/admin-panel/admin-panel.component';
+import { AddStreetComponent } from './Components/admin-panel/add-street/add-street.component';
+import { ApproveRolesComponent } from './Components/admin-panel/approve-roles/approve-roles.component';
+import { PieChartKarticaComponent } from './Components/dashboard-page/pie-chart-kartica/pie-chart-kartica.component';
+import { PieChartComponent } from './Components/dashboard-page/pie-chart-kartica/pie-chart/pie-chart.component';
+import { UserService } from './Services/registration-service.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './Components/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -107,7 +115,12 @@ import { NewConsumerComponent } from './Components/consumers/new-consumer/new-co
     EditTeamComponent,
     ViewTeamComponent,
     ConsumersComponent,
-    NewConsumerComponent
+    NewConsumerComponent,
+    AdminPanelComponent,
+    AddStreetComponent,
+    ApproveRolesComponent,
+    PieChartKarticaComponent,
+    PieChartComponent,
   
   ],
   imports: [
@@ -119,11 +132,16 @@ import { NewConsumerComponent } from './Components/consumers/new-consumer/new-co
     MaterialModuleModule,
     ToastrModule.forRoot(
       {
-        timeOut: 1500
+        timeOut: 3000
       }
     ),
     NgxChartsModule
   ],
+  providers: [UserService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

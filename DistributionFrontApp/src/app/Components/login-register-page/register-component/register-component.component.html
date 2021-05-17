@@ -8,13 +8,11 @@
     <p class="SecondaryLabela">Dont have an account? Register an account in less than a minute.</p>
     <form name="registeringForm" [formGroup]="registerForm" ngSubmit="onSubmit()">
       <div class="container">
-        <div class="imageBorderClass">
         <input id='fileid' type='file' #fileInput hidden (change)="onFileChanged($event)" accept="image/*" formControlName="FilePicture" />
         <a (click)="fileInput.click()">
           <img [src]="picurl" class="profileImg" [ngClass]="{ profileImgDefault: onDefault===true }" />
         </a>
         <p class="labela">Upload image <i *ngIf="!onDefault" class="fas fa-times-circle" style="cursor: pointer;" (click)="clearImage()"></i></p>
-        </div>
         <div class="row form-group">
           <div class="col">
             <div class="sekcija">
@@ -68,13 +66,19 @@
               <input class="inputpolja form-control" type="text" formControlName="Address" />
             </div>
           </div>
+          <div class="sekcija">
+            <p class="labela">Phone number: <small *ngIf="phoneNumber.invalid && phoneNumber.touched && !phoneNumber.errors.pattern" class="text-danger">Required.</small> 
+              <small *ngIf="phoneNumber.invalid && phoneNumber.errors.pattern" class="text-danger">Must be a number.</small>
+            </p>
+            <input class="inputpolja form-control" type="text" formControlName="PhoneNumber" />
+          </div>
           <div class="sekcija" [ngClass]="{ rolesSection: teamSelected===true }">
             <p class="labela">User Type:</p>
             <select class="inputpolja form-control" name="Gender" #selectOpt formControlName="UserType" (change)="onChange(selectOpt.value)">
-              <option value="Potrošač">Consumer</option>
-              <option value="Član ekipe">Team member</option>
-              <option value="Dispečer">Dispatcher</option>
-              <option value="ZaposleniPregledac">Employed(data analyst)</option>
+              <option value="Consumer">Consumer</option>
+              <option value="Team Member">Team member</option>
+              <option value="Dispatcher">Dispatcher</option>
+              <option value="Employed(data analyst)">Employed(data analyst)</option>
               <option value="Administrator">Administrator</option>
             </select>
           </div>
@@ -86,6 +90,7 @@
       </div>
       <br />
       <button type="submit" (click)="onSubmit()">Sign Up</button>
+      <a><p class="labela">Sign up with social media.</p></a>
     </form>
     <br />
   </div>

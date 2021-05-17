@@ -14,11 +14,11 @@
 }
 
 #settings #search {
-    padding-top: 300px;
+    padding-top: 150px;
 }
 
 #search {
-    padding-top: 300px;
+    padding-top: 150px;
 }
 
 .sidebar a {
@@ -108,7 +108,7 @@ i{
     width:30px;
 }
 
-.fa-file-alt{
+.fa-file-alt, .fa-sign-out-alt{
     margin-left:5px;
     width: 27px;
 }

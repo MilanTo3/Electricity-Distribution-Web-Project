@@ -73,5 +73,12 @@ namespace DistributionSmartEnergyBackApp.Models
             get { return state; }
             set { state = value; }
         }
+
+        [Column]
+        public string Teams {
+
+            get { return teamid; }
+            set { teamid = value; }
+        }
     }
 }

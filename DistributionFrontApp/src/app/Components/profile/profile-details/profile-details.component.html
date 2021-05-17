@@ -66,7 +66,7 @@
                             <div class="form-group">
                                 <label for="role"><h5>Change role:</h5></label>
                                 <select  class="form-control" id="role" formControlName="role">
-                                        <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
+                                    <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
                                 </select>
                                 <small *ngIf="profileForm.get('role').invalid && profileForm.get('role').touched" class="text-danger">Role is required.</small>
                             </div> 
@@ -155,7 +155,7 @@
                                     />
                                 </label>  -->
                                 <label class="row mb-4 user-profile-img-wrapper" for="browse-photo-btn">
-                                    <img [src]="currentUser.profileImg" formControlName="profileImg" *ngIf="currentUser.profileImg" class="user-profile-img" >                            
+                                    <img [src]="currentImg" *ngIf="currentImg" class="user-profile-img" >                            
                                 </label> 
                                                         
                                 <div class='row'>
