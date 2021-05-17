@@ -11,8 +11,8 @@
     <div class="container requestsPage">
         <h2 class="title">My Incidents:</h2>
         <p class="labela">Here, users can see all or their submitted calls. The table down is in experimental phase.</p>
-        <button (click)="openNewIncident()" class="btn newbtn"><i class="fas fa-file"></i>New</button>
-        
+        <button (click)="openNewIncident()" class="btn newbtn"><i class="fas fa-file"></i>New</button>       
+       
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn active radiobtn">
                 <input type="radio" name="options" id="option1" autocomplete="off" checked> All
@@ -21,6 +21,7 @@
                 <input type="radio" name="options" id="option2" autocomplete="off"> Mine
             </label>
         </div>
+      
         <app-table-component [tableType]='2'></app-table-component>
     </div>
 </body>
