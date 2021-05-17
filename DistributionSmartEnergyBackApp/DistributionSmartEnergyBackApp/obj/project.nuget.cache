@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1WvZEYm7D75axDd2VscXoiW1rBqtEdJCdIqNQdC4xTCLJVx22B1ovvaU3ML5wc4PnUNJ2dyqKPHgFbfpB451SA==",
+  "dgSpecHash": "NWb4D11iTnC9gaVV5AJF+F1mn/LDvl9INeCL1LTrlNjdC3akKYY6cLTlS4xhlxu85NGssEmTHG4mBPgP6xY83w==",
   "success": true,
   "projectFilePath": "E:\\clonedAngularProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
   "expectedPackageFiles": [
@@ -29,9 +29,9 @@
     "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
-    "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.5\\microsoft.entityframeworkcore.5.0.5.nupkg.sha512",
-    "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.5\\microsoft.entityframeworkcore.abstractions.5.0.5.nupkg.sha512",
-    "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.5\\microsoft.entityframeworkcore.analyzers.5.0.5.nupkg.sha512",
+    "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.6\\microsoft.entityframeworkcore.5.0.6.nupkg.sha512",
+    "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.6\\microsoft.entityframeworkcore.abstractions.5.0.6.nupkg.sha512",
+    "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.6\\microsoft.entityframeworkcore.analyzers.5.0.6.nupkg.sha512",
     "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.5\\microsoft.entityframeworkcore.design.5.0.5.nupkg.sha512",
     "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.5\\microsoft.entityframeworkcore.relational.5.0.5.nupkg.sha512",
     "C:\\Users\\TOMIN\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.5\\microsoft.entityframeworkcore.sqlserver.5.0.5.nupkg.sha512",

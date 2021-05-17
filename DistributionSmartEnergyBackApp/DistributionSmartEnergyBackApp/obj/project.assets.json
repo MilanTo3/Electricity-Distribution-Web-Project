@@ -2048,7 +2048,7 @@
       ]
     },
     "Microsoft.AspNetCore.Cors/2.2.0": {
-      "sha512": "4Qkq7Wpe+TFsd8KSjKgztzrHGkGZrB+Zrm7j2W0np7p0xD/uNdYQJzmuNziTrLIaWjQ54Z2MUliDgn6gxo09Hg==",
+      "sha512": "LFlTM3ThS3ZCILuKnjy8HyK9/IlDh3opogdbCVx6tMGyDzTQBgMPXLjGDLtMk5QmLDCcP3l1TO3z/+1viA8GUg==",
       "type": "package",
       "path": "microsoft.aspnetcore.cors/2.2.0",
       "files": [
@@ -6732,23 +6732,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\maja\\.nuget\\packages\\": {},
+    "C:\\Users\\TOMIN\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maja\\Desktop\\UNI\\4\\VIII\\web2\\projekat\\glavni\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
+      "projectUniqueName": "E:\\clonedAngularProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
       "projectName": "DistributionSmartEnergyBackApp",
-      "projectPath": "C:\\Users\\maja\\Desktop\\UNI\\4\\VIII\\web2\\projekat\\glavni\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
-      "packagesPath": "C:\\Users\\maja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maja\\Desktop\\UNI\\4\\VIII\\web2\\projekat\\glavni\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\obj\\",
+      "projectPath": "E:\\clonedAngularProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
+      "packagesPath": "C:\\Users\\TOMIN\\.nuget\\packages\\",
+      "outputPath": "E:\\clonedAngularProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\maja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TOMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6756,10 +6756,12 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\.NET SDK\\v2.9\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -6771,6 +6773,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Google": {
             "target": "Package",
@@ -6837,7 +6840,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
