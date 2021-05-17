@@ -202,6 +202,11 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataBind.paginator = this.pagination;
 
     this.dataBind.sort = this.sort;
+
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataBind.filter = filterValue.trim().toLowerCase();
   }
 
   copyArray(arr1: string[], arr2: string[]){
