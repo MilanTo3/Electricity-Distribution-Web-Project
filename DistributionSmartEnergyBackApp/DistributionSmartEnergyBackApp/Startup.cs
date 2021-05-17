@@ -16,10 +16,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.HttpsPolicy;
+<<<<<<< Updated upstream
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http.Features;
+=======
+using DistributionSmartEnergyBackApp.Models.Interfaces;
+using DistributionSmartEnergyBackApp.Services;
+>>>>>>> Stashed changes
 
 namespace DistributionSmartEnergyBackApp
 {
@@ -34,7 +39,12 @@ namespace DistributionSmartEnergyBackApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
+
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+            
+            //add services here
+            services.AddScoped<ILocation, LocationService>();
+
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
 
             services.Configure<FormOptions>(o => {
@@ -52,6 +62,7 @@ namespace DistributionSmartEnergyBackApp
             });
 
             services.AddCors();
+
 
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"]);
 
@@ -71,6 +82,8 @@ namespace DistributionSmartEnergyBackApp
             });
 
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+
+           
 
         }
 

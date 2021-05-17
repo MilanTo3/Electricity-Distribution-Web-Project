@@ -16,5 +16,6 @@ namespace DistributionSmartEnergyBackApp.Models
 
         public DbSet<ApplicationUser> applicationUsers { get; set; }
 
+        public DbSet<LocationModel> Locations { get; set; }
     }
 }
