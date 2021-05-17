@@ -16,15 +16,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.HttpsPolicy;
-<<<<<<< Updated upstream
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http.Features;
-=======
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using DistributionSmartEnergyBackApp.Services;
->>>>>>> Stashed changes
 
 namespace DistributionSmartEnergyBackApp
 {
