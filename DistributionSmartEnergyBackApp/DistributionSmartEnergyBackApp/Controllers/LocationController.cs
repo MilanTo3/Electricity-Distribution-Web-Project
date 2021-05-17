@@ -60,11 +60,11 @@ namespace DistributionSmartEnergyBackApp.Controllers
         // PUT api/Location/5
         [HttpPut("{id}")]
         [Route("Update")]
-        public async Task Put([FromBody] LocationModel location)
+        public async Task Put([FromBody] LocationModel location, long id)
         {
             try
             {
-                await _context.UpdateLocation(location);
+                await _context.UpdateLocation(location, id);
             }
             catch (Exception e)
             {
