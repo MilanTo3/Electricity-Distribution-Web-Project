@@ -19,11 +19,11 @@
                                         type="text"
                                         class="form-control"
                                         placeholder="Username"
-                                        formControlName="username"
+                                        formControlName="userName"
                                         
                                     />
                                 </div>
-                                <small *ngIf="profileForm.get('username').invalid && profileForm.get('username').touched" class="text-danger">Username is required.</small>
+                                <small *ngIf="profileForm.get('userName').invalid && profileForm.get('userName').touched" class="text-danger">Username is required.</small>
                             </div>
 
                             <div class="form-group" >
@@ -65,10 +65,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="role"><h5>Change role:</h5></label>
-                                <select  class="form-control" id="role" formControlName="role">
+                                <select  class="form-control" id="role" formControlName="userType">
                                     <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
                                 </select>
-                                <small *ngIf="profileForm.get('role').invalid && profileForm.get('role').touched" class="text-danger">Role is required.</small>
+                                <small *ngIf="profileForm.get('userType').invalid && profileForm.get('userType').touched" class="text-danger">Role is required.</small>
                             </div> 
 
 						</div>
