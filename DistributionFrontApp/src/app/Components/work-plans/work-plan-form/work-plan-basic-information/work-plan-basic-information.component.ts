@@ -19,7 +19,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       street: ['', Validators.required],
       startDateTime: ['', Validators.required],
       endDateTime: ['', Validators.required],
-      crewId: ['', Validators.required],
+      crewId: [0, Validators.required],
       user: ['popunjeno', Validators.required],
       company: ['', Validators.required],
       phoneNumber: ['',  [Validators.required, Validators.pattern('^[- +0-9]+$')]],

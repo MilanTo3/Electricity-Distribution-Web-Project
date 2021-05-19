@@ -34,6 +34,7 @@ export class WorkPlanFormComponent implements OnInit {
     this.setMediaForm();
     this.setInstructionsForm();
     this.showToastrSuccess();
+    console.log(this.wrapper);
     this.router.navigateByUrl('/workPlans');
 
   }
