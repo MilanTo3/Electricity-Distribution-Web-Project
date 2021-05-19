@@ -45,6 +45,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
       if (this_.filePaths.some(x => x.name === file.name || x.picture === e.target.result) === false) {
         this_.filePaths.push(item);
         this_.db.collection('images').add(item, file.name);
+        this_.db.collection('files').add(file, file.name);
       }
     }
 
@@ -55,6 +56,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
     let itemName = this.filePaths[index].name;
     this.filePaths.splice(index, 1);
     this.db.collection('images').doc(itemName).delete();
+    this.db.collection('files').doc(itemName).delete();
 
   }
 

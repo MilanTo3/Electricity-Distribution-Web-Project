@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using DistributionSmartEnergyBackApp.Models.FormParts;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,10 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<ApplicationUser> applicationUsers { get; set; }
 
         public DbSet<LocationModel> Locations { get; set; }
+        public DbSet<WorkRequestModel> WorkRequests { get; set; }
+        public DbSet<BasicInformationWR> BasicInformationsWR { get; set; }
+        public DbSet<HistoryOfStateChanges> HistoryChanges { get; set; }
+
+
     }
 }

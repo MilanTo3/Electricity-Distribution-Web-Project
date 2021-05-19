@@ -35,12 +35,13 @@ namespace DistributionSmartEnergyBackApp
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             
             //add services here
             services.AddScoped<ILocation, LocationService>();
+            services.AddScoped<IWorkRequest, WorkRequestService>();
 
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
 
@@ -79,8 +80,6 @@ namespace DistributionSmartEnergyBackApp
             });
 
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
-
-           
 
         }
 

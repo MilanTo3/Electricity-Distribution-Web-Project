@@ -14,7 +14,7 @@ export class BasicInformationFPComponent implements OnInit {
     street: ['', Validators.required],
     startDate: [null, Validators.required],
     endDate: [null, Validators.required],
-    emergency: ['false', Validators.required],
+    emergency: [false, Validators.required],
     company: ['', Validators.required],
     phoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
     purpose: ['', Validators.required],

@@ -5,13 +5,13 @@ export class WorkRequestWrapper{
 
     infoForm: any;
     historyForm: HistoryStateChange[] = [];
-    mediaForm: pictureModel[] = [];
+    mediaForm: File[] = [];
 
 }
 export class WorkPlanWrapper{
 
     basicInformationForm: any;
     historyForm: HistoryStateChange[] = [];
-    mediaForm: pictureModel[] = [];
+    mediaForm: File[] = [];
     switchingInstructionsForm: any;
 }
