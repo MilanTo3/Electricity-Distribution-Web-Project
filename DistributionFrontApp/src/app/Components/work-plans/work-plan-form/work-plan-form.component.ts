@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Localbase from 'localbase';
 import { WorkPlanWrapper } from '../../../Models/formWrappers';
 import { ToastrService } from 'ngx-toastr';
+import { WorkPlanServiceService } from 'src/app/Services/work-plan-service.service';
 
 @Component({
   selector: 'app-work-plan-form',
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class WorkPlanFormComponent implements OnInit {
   db = new Localbase('db');
   wrapper: WorkPlanWrapper = new WorkPlanWrapper();
-  constructor(private router: Router, private toastr: ToastrService) { }
+  constructor(private router: Router, private workPlanService: WorkPlanServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     sessionStorage.clear();
@@ -35,6 +36,13 @@ export class WorkPlanFormComponent implements OnInit {
     this.setInstructionsForm();
     this.showToastrSuccess();
     console.log(this.wrapper);
+
+    this.workPlanService.postWorkRequest(this.wrapper).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+
     this.router.navigateByUrl('/workPlans');
 
   }

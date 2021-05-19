@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,19 @@ namespace DistributionSmartEnergyBackApp.Controllers
     [ApiController]
     public class WorkPlanController : ControllerBase
     {
+
+        [HttpPost]
+        [Route("postRequest")]
+        public async Task<IActionResult> postWorkRequest([FromBody] WorkPlanViewModel wrapper) {
+
+            try {
+
+                return Ok();
+            }
+            catch {
+                return BadRequest();
+            }
+        }
+
     }
 }

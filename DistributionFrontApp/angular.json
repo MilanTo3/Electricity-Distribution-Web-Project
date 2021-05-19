@@ -33,7 +33,6 @@
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
               "src/custom-theme.scss",
-               "src/my-theme.scss",
                 "node_modules/ol/ol.css",
                 "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"

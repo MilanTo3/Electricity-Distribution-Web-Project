@@ -7,8 +7,8 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan
 {
     public class WorkPlanViewModel
     {
-        BasicInformationWP basicInformationForm;
-        HistoryOfStateChanges historyForm;
-        SwitchingInstruction[] switchingInstructionsForm;
+        public BasicInformationWP basicInformationForm { get; set; }
+        public HistoryOfStateChanges[] historyForm { get; set; }
+        public List<SwitchingInstruction> items { get; set; }
     }
 }
