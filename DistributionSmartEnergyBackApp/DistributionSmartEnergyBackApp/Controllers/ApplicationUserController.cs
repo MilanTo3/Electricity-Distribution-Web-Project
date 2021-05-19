@@ -284,7 +284,5 @@ namespace DistributionSmartEnergyBackApp.Controllers
             return await _userManager.Users.Where(x => x.RegState == ApplicationUser.RegistrationState.Pending).ToListAsync();
         }
 
-
-
     }
 }

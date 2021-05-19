@@ -79,5 +79,27 @@ namespace DistributionSmartEnergyBackApp.Controllers
             return await _context.GetBasicInfo(id);
         }
 
+        [HttpGet]
+        [Route("GetAttachments")]
+        public async Task<IActionResult> GetAttachments(long id) {
+
+            string folderName = Path.Combine("Resources", "WorkRequestsMA");
+            string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            var filePath = Path.Combine(pathToRead, "WR"+id.ToString());
+            if (!System.IO.Directory.Exists(filePath))
+                return NotFound();
+
+            DirectoryInfo d = new DirectoryInfo(filePath);
+            FileInfo[] Files = d.GetFiles();
+
+            List<pictureModel> pc = new List<pictureModel>();
+            foreach (FileInfo file in Files) {
+                pc.Add(new pictureModel(file.Name, "data:image/png;base64," + Convert.ToBase64String(System.IO.File.ReadAllBytes(Path.Combine(filePath, file.Name)))));
+            }
+
+            return Ok(pc);
+        }
+
     }
 }

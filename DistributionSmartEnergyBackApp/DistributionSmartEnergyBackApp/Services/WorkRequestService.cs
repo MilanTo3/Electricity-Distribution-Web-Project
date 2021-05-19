@@ -63,5 +63,6 @@ namespace DistributionSmartEnergyBackApp.Services
         public async Task<IEnumerable<HistoryOfStateChanges>> GetHistory(long id) {
             return await _context.HistoryChanges.Where(x => x.DocumentId == "WR" + id).ToListAsync();
         }
+
     }
 }
