@@ -13,6 +13,11 @@ export class WorkRequestServiceService {
     return this.http.post('http://localhost:24885/api/WorkRequest/postRequest', formdata);
   }
 
+  getAllBasicInfo(){
+    
+    return this.http.get('http://localhost:24885/api/WorkRequest/getAllBasicInfo');
+  }
+
   sendAttachments(files){
     
     return this.http.post('http://localhost:24885/api/WorkRequest/sendAttachments', files);

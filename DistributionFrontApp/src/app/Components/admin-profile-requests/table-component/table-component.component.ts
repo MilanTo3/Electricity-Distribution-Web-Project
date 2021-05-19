@@ -14,6 +14,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { changeRoleRequest } from 'src/app/Models/roleRequestChange.model';
+import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-table-component',
@@ -23,7 +25,7 @@ import { changeRoleRequest } from 'src/app/Models/roleRequestChange.model';
 
 export class TableComponentComponent implements OnInit, AfterViewInit {
 
-  @Input('tableType') tableid:number = 0;
+  @Input('tableType') tableid: number = 0;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) pagination: MatPaginator;
   keyNames: string[] = [];
@@ -34,13 +36,13 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   hideElement = false;
   choose = false;
 
-  constructor(public router: Router) { 
+  constructor(public router: Router, private workRequestService: WorkRequestServiceService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
           this.hideElement = true;
-        }  else {
-          this.hideElement = false;     
+        } else {
+          this.hideElement = false;
         }
         if ((event.url === '/teamsPage')) {
           this.choose = true;
@@ -52,35 +54,35 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     });
   }
 
-  addMockRequests(){
+  addMockRequests() {
 
-    if(this.tableid === 0){
+    if (this.tableid === 0) {
       this.loadProfileRequests();
-    }else if(this.tableid === 1){
-      this.loadWorkRequests();    
-    }else if(this.tableid === 2){
+    } else if (this.tableid === 1) {
+      this.loadWorkRequests();
+    } else if (this.tableid === 2) {
       this.loadMyIncidents();
-    }else if(this.tableid === 3){
+    } else if (this.tableid === 3) {
       this.loadHistoryStateChanges();
-    }else if(this.tableid === 4){
+    } else if (this.tableid === 4) {
       this.loadDevices();
-    }else if(this.tableid === 5){
+    } else if (this.tableid === 5) {
       this.loadCalls();
-    }else if(this.tableid ===6){
+    } else if (this.tableid === 6) {
       this.loadWorkPlans();
-    }else if(this.tableid ===7){
+    } else if (this.tableid === 7) {
       this.loadTeams();
-    }else if(this.tableid === 8){
+    } else if (this.tableid === 8) {
       this.loadMySafetyDocs();
-    }else if(this.tableid === 9){
+    } else if (this.tableid === 9) {
       this.loadAllConsumers();
-    }else if(this.tableid === 10){
+    } else if (this.tableid === 10) {
       this.loadRoleRequests();
     }
 
   }
 
-  loadRoleRequests(){
+  loadRoleRequests() {
     let user1 = new changeRoleRequest("Erik", "Dispatcher", "Administrator");
     let user2 = new changeRoleRequest("Rukia", "Dispatcher", "Dispatcher");
     let user3 = new changeRoleRequest("Jordan", "Consumer", "Administrator");
@@ -89,7 +91,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(user3);
   }
 
-  loadTeams(){
+  loadTeams() {
 
     let team1 = new Team("Team-1", "Dispatch Team Telep");
     let team2 = new Team("Team-2", "Dispatch Team Novo Naselje");
@@ -100,26 +102,33 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
-  loadProfileRequests(){
+  loadProfileRequests() {
 
     let user1 = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Administrator", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
     let user2 = new User("Rukia", "Kuchiki", "kuchiki123@gmail.com", "Dispatcher", "username1", "2019-01-16", "fejkadresfda", "/assets/Images/colorpattern.jpg");
     let user3 = new User("Jordan", "Peterson", "jordanpeterson@gmail.com", "Consumer", "username3", "2019-01-16", "fejkfdadresa", "/assets/Images/colorpattern.jpg");
-    let user4 = new User("Petar" , "Bojovic", "petarbojovic@gmail.com", "Administrator", "username4", "2019-01-16", "fejkfadresa", "/assets/Images/colorpattern.jpg");
+    let user4 = new User("Petar", "Bojovic", "petarbojovic@gmail.com", "Administrator", "username4", "2019-01-16", "fejkfadresa", "/assets/Images/colorpattern.jpg");
 
     this.dataToPrint.push(user1, user2, user3, user4);
     this.keyNames = Object.getOwnPropertyNames(user4);
 
   }
 
-  loadWorkRequests(){
+  loadWorkRequests() {
 
-    let request1 = new WorkRequest('WR-1', new Date(2021, 9, 1, 5, 5, 4, 22), "3989-434-343", "Draft", "Jevrejska 12a");
-    let request2 = new WorkRequest("WR-2", new Date(2021, 4, 17, 15, 30, 0), "323-35345-2343", "Draft", "Marka Kraljevica 15");
-    let request3 = new WorkRequest("WR-3", new Date(2021, 4, 23, 15, 50, 33), "349-553-855-12", "Draft", "Dragana Torbice 3");
+    this.workRequestService.getAllBasicInfo().subscribe(
+      res => {
+        let i;
+        let wr;
+        for(i = 0; i < res["length"]; i++){
+          wr = new WorkRequest("WR-"+res[i]["id"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], "Draft", res[i]["street"]);
+          this.dataToPrint.push(wr);
+        }
 
-    this.dataToPrint.push(request1, request2, request3);
-    this.keyNames = Object.getOwnPropertyNames(request3);
+        this.keyNames = Object.getOwnPropertyNames(wr);
+        this.enableView();
+      }
+    );
 
   }
 
@@ -130,9 +139,11 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
     this.dataToPrint.push(myIncident1, myIncident2, myIncident3);
     this.keyNames = Object.getOwnPropertyNames(myIncident3);
+    console.log(this.keyNames);
+    console.log(this.dataToPrint);
   }
 
-  loadHistoryStateChanges(){
+  loadHistoryStateChanges() {
 
     let stateChange1 = new HistoryStateChange("Petar", "Bojovic", new Date(2021, 5, 25, 4, 33, 1, 20), "State changed to denied.");
     let stateChange2 = new HistoryStateChange("Petar", "Bojovic", new Date(2021, 4, 21, 21, 23, 22, 30), "State changed to approved.");
@@ -152,7 +163,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(device3);
   }
 
-  loadWorkPlans(){
+  loadWorkPlans() {
     let plan1 = new WorkPlan('WR-1', "2019-01-16", "3989-434-343", "Draft", "Jevrejska 12a");
     let plan2 = new WorkPlan("WR-2", "2019-01-16", "323-35345-2343", "Draft", "Marka Kraljevica 15");
     let plan3 = new WorkPlan("WR-3", "2019-01-16", "349-553-855-12", "Draft", "Dragana Torbice 3");
@@ -179,26 +190,34 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataToPrint.push(doc1, doc2, doc3);
     this.keyNames = Object.getOwnPropertyNames(doc3);
   }
-  loadAllConsumers(){
+  loadAllConsumers() {
     let consumer1 = new Consumer("Erik", "Hoffstad", "grad, ulica i broj", "high", "065454215", "id naloga", "residential");
     let consumer2 = new Consumer("Rukia", "Kuchiki", "grad, ulica i broj", "low", "065454215", "id naloga", "residential");
     let consumer3 = new Consumer("Jordan", "Peterson", "grad, ulica i broj", "low", "065454215", "id naloga", "commertial");
-    let consumer4 = new Consumer("Petar" , "Bojovic", "grad, ulica i broj", "high", "065454215", "id naloga", "commertial");
+    let consumer4 = new Consumer("Petar", "Bojovic", "grad, ulica i broj", "high", "065454215", "id naloga", "commertial");
 
     this.dataToPrint.push(consumer1, consumer2, consumer3, consumer4);
     this.keyNames = Object.getOwnPropertyNames(consumer4);
   }
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.addMockRequests();
     this.copyArray(this.keyNames, this.headerToPrint);
-    if(this.tableid === 0 || this.tableid === 7 || this.tableid===9 || this.tableid===10){
+    if (this.tableid === 0 || this.tableid === 7 || this.tableid === 9 || this.tableid === 10) {
       this.headerToPrint.push("What to do?");
     }
     this.dataBind.data = this.dataToPrint;
 
   }
 
-  ngAfterViewInit(){
+  enableView(){
+    this.copyArray(this.keyNames, this.headerToPrint);
+    if (this.tableid === 0 || this.tableid === 7 || this.tableid === 9 || this.tableid === 10) {
+      this.headerToPrint.push("What to do?");
+    }
+    this.dataBind.data = this.dataToPrint;
+  }
+
+  ngAfterViewInit() {
     this.dataBind.paginator = this.pagination;
 
     this.dataBind.sort = this.sort;
@@ -209,9 +228,9 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataBind.filter = filterValue.trim().toLowerCase();
   }
 
-  copyArray(arr1: string[], arr2: string[]){
+  copyArray(arr1: string[], arr2: string[]) {
     let i;
-    for(i = 0; i < arr1.length; i++){
+    for (i = 0; i < arr1.length; i++) {
       arr2.push(arr1[i]);
     }
 
