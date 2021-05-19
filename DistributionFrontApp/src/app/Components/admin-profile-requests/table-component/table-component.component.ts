@@ -26,8 +26,8 @@ import * as moment from 'moment';
 export class TableComponentComponent implements OnInit, AfterViewInit {
 
   @Input('tableType') tableid: number = 0;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) pagination: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) pagination: MatPaginator;
   keyNames: string[] = [];
   headerToPrint: string[] = [];
   dataToPrint: any = [];
@@ -125,6 +125,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
           this.dataToPrint.push(wr);
         }
 
+        this.dataBind = new MatTableDataSource(this.dataToPrint);
         this.keyNames = Object.getOwnPropertyNames(wr);
         this.enableView();
       }
@@ -139,8 +140,6 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
     this.dataToPrint.push(myIncident1, myIncident2, myIncident3);
     this.keyNames = Object.getOwnPropertyNames(myIncident3);
-    console.log(this.keyNames);
-    console.log(this.dataToPrint);
   }
 
   loadHistoryStateChanges() {
@@ -209,19 +208,18 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
+  ngAfterViewInit(): void {
+    this.dataBind.paginator = this.pagination;
+    this.dataBind.sort = this.sort;
+  }
+
   enableView(){
     this.copyArray(this.keyNames, this.headerToPrint);
     if (this.tableid === 0 || this.tableid === 7 || this.tableid === 9 || this.tableid === 10) {
       this.headerToPrint.push("What to do?");
     }
-    this.dataBind.data = this.dataToPrint;
-  }
-
-  ngAfterViewInit() {
     this.dataBind.paginator = this.pagination;
-
     this.dataBind.sort = this.sort;
-
   }
 
   applyFilter(filterValue: string) {
