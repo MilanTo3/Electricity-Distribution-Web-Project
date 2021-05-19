@@ -1,6 +1,8 @@
 ﻿using DistributionSmartEnergyBackApp.Models;
+using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +48,20 @@ namespace DistributionSmartEnergyBackApp.Services
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<BasicInformationWR>> GetAllBasicInfo() {
+            return await _context.BasicInformationsWR.ToListAsync();
+        }
+
+        public async Task<BasicInformationWR> GetBasicInfo(long id) {
+            return await _context.BasicInformationsWR.FindAsync(id);
+        }
+
         public async Task Save() {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<HistoryOfStateChanges>> GetHistory(long id) {
+            return await _context.HistoryChanges.Where(x => x.DocumentId == "WR" + id).ToListAsync();
         }
     }
 }

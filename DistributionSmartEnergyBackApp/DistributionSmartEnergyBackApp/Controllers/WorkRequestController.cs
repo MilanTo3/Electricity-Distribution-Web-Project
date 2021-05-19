@@ -61,5 +61,23 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetAllBasicInfo")]
+        public async Task<IEnumerable<BasicInformationWR>> GetAllBasicInformations(long id) {
+            return await _context.GetAllBasicInfo();
+        }
+
+        [HttpGet]
+        [Route("GetBasicInfo")]
+        public async Task<BasicInformationWR> GetBasicInformation(long id) {
+            return await _context.GetBasicInfo(id);
+        }
+
+        [HttpGet]
+        [Route("GetHistory")]
+        public async Task<BasicInformationWR> GetHistory(long id) {
+            return await _context.GetBasicInfo(id);
+        }
+
     }
 }
