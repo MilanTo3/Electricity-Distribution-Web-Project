@@ -8,13 +8,14 @@
 
 </head>
 
-<mat-form-field>
-  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+<mat-form-field class="example-form-field">
+  <mat-label>Filter</mat-label>
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Enter here">
 </mat-form-field>
 
 <body>
   <div class="mat-elevation-z8 table">
-    
+
   <mat-table [dataSource]="dataBind" matSort>
     <div>
       <ng-container *ngFor="let col of keyNames" [matColumnDef]="col">

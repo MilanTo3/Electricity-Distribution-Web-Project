@@ -10,13 +10,14 @@
     margin-bottom: 25px;
 }
 
+
 .radiobtn, .btn-primary{
     background: var(--c-blue-100);
     color: white;
     font-weight: bold;
     border-color: var(--c-blue-100);
-    
 }
+
 .radiobtn:hover, .btn-primary:hover{
     background: var(--c-orange-200);
     border-color: var(--c-orange-200);

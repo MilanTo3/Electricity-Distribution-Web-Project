@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -40,6 +41,97 @@ namespace DistributionSmartEnergyBackApp.Controllers
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
             return user;
+        }
+
+        [HttpPut, DisableRequestSizeLimit]
+        [Route("updateProfile")]
+        //PUT : /api/ApplicationUser/UpdateProfile
+        public async Task<IActionResult> UpdateProfile([FromForm] UserModel userModel)
+        {
+
+            try
+            {
+                string userId = User.Claims.First(c => c.Type == "UserID").Value;
+                var user = await _userManager.FindByIdAsync(userId);
+
+                user.UserName = userModel.UserName;
+                user.Name = userModel.Name;
+                user.Lastname = userModel.Lastname;
+                user.Email = userModel.Email;
+                user.Birthday = userModel.Birthday;
+                user.Address = userModel.Address;
+                user.UserType = userModel.UserType;
+                user.RegState = ApplicationUser.RegistrationState.Pending;
+                user.PhoneNumber = userModel.PhoneNumber;
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    return BadRequest("err" + test[0].Description);
+                }
+                var user1 = await _userManager.FindByIdAsync(userId);
+
+                if (userModel.FilePicture != null)
+                {
+                    // saveImage(user, userModel.FilePicture); pozove se dispose ili se buni da dve stvari koriste isti kontekst pa je zato kopirana metoda ovde
+                                                              //taj problem se javlja kad se menja slika i u isto vreme neka druga polja, nisam htela da menjam metodu
+                    var extension = Path.GetExtension(userModel.FilePicture.FileName);
+                    string fileName = user.UserName + extension;
+                    string folderName = Path.Combine("Resources", "UsersPics");
+                    string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                    user.FilePicture = fileName;
+                    //smestam sliku na lokaciju
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        userModel.FilePicture.CopyTo(stream);
+                    }
+
+                    await _userManager.UpdateAsync(user);
+                }
+
+
+                return Ok("ok");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+
+        }
+
+        [HttpDelete]
+        [Route("DeleteProfile")]
+        //DELETE : /api/ApplicationUser/DeleteProfile?username=
+        public async Task<IActionResult> DeleteProfile( string username)
+        {
+
+            try
+            {
+                var user =  _userManager.Users.FirstOrDefault(u=> u.UserName == username);
+
+
+                deleteImage(user);
+
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    return BadRequest("err" + test[0].Description);
+                }
+             
+                return Ok("ok");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+
         }
 
         [HttpPost]
@@ -109,7 +201,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         }
 
-        public void saveImage(ApplicationUser user, IFormFile file) {
+        public async void saveImage(ApplicationUser user, IFormFile file) {
+
             var extension = Path.GetExtension(file.FileName);
             string fileName = user.UserName + extension;
             string folderName = Path.Combine("Resources", "UsersPics");
@@ -122,7 +215,31 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 file.CopyTo(stream);
             }
 
-            _userManager.UpdateAsync(user);
+            await _userManager.UpdateAsync(user);
+        }
+        public  void deleteImage(ApplicationUser user)
+        {
+
+            string folderName = Path.Combine("Resources", "UsersPics");
+            string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            //brisem sliku sa lokacije
+            var fullPath = Path.Combine(pathToSave, user.FilePicture);
+            try
+            {
+                // Check if file exists with its full path    
+                if (System.IO.File.Exists(fullPath))
+                {
+                    // If file found, delete it    
+                    System.IO.File.Delete(fullPath);
+                    Console.WriteLine("File deleted.");
+                }
+                else Console.WriteLine("File not found");
+            }
+            catch (IOException ioExp)
+            {
+                Console.WriteLine(ioExp.Message);
+            }
         }
 
         [HttpGet, DisableRequestSizeLimit]
@@ -166,5 +283,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
             return await _userManager.Users.Where(x => x.RegState == ApplicationUser.RegistrationState.Pending).ToListAsync();
         }
+
+
+
     }
 }

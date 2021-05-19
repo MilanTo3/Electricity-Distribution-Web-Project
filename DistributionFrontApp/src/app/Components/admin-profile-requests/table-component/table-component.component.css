@@ -91,6 +91,11 @@
     transition: 0.45s;
 }
 
+.example-form-field {
+    width: 200px;  
+    color: #DD612C;  
+  }
+
 ::-webkit-scrollbar {
     width: 15px;
 }

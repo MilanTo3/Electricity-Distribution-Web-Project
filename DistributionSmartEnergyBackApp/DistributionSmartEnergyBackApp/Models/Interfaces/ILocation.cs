@@ -13,7 +13,7 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
 
         Task DeleteLocation(long id);
 
-        Task UpdateLocation(LocationModel location);
+        Task UpdateLocation(LocationModel location, long id);
 
         Task<IEnumerable<LocationModel>> GetLocations();
     }

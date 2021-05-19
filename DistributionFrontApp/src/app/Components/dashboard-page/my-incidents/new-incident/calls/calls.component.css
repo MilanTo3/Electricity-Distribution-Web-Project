@@ -19,8 +19,7 @@
 }
 
 .newbtn{
-    margin-right:24px;
-
+    float:right;
 }
 
 .fas, .fa{
