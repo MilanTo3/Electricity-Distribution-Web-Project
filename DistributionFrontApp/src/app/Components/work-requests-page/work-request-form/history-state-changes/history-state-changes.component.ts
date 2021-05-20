@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableComponentComponent } from 'src/app/Components/admin-profile-requests/table-component/table-component.component';
+import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { HistoryStateChange } from '../../../../Models/HistoryStateChange.model';
 
 @Component({
@@ -14,7 +15,7 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   stateArray: HistoryStateChange[] = [];
   editMode = false;
 
-  constructor() { }
+  constructor(private wr: WorkRequestServiceService) { }
 
   ngOnInit(): void {
 
@@ -27,6 +28,16 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
     }
     this.stateArray = this.table.dataToPrint;
 
+  }
+
+  saveChanges(){
+
+    let id = sessionStorage.getItem("idDoc");
+    this.wr.updateHistoryState(this.stateArray, id).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
   }
 
   addState(state: number) {

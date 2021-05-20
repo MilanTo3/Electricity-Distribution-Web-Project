@@ -39,30 +39,39 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.BasicInformationsWR.FirstOrDefaultAsync(x => x.DocumentId == id);
         }
 
-        public async Task Save() {
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id) {
             return await _context.HistoryChanges.Where(x => x.DocumentId == id).ToListAsync();
         }
 
-        public async Task UpdateBasicInfo(BasicInformationWR basicInfo, string id) {
+        public async Task UpdateBasicInfo(BasicInformationWR basicInfo) {
 
-            var info = await _context.BasicInformationsWR.FirstOrDefaultAsync(x => x.DocumentId == id);
+            var info = await _context.BasicInformationsWR.FirstOrDefaultAsync(x => x.DocumentId == basicInfo.DocumentId);
 
             if (info != null) {
-                info = basicInfo;
+                info.Company = basicInfo.Company;
+                info.Details = basicInfo.Details;
+                info.emergency = basicInfo.emergency;
+                info.endDate = basicInfo.endDate;
+                info.Notes = basicInfo.Notes;
+                info.PhoneNumber = basicInfo.PhoneNumber;
+                info.Purpose = basicInfo.Purpose;
+                info.startDate = basicInfo.startDate;
+                info.Status = basicInfo.Status;
+                info.Street = basicInfo.Street;
+                info.Type = basicInfo.Type;
                 _context.BasicInformationsWR.Update(info);
                 await _context.SaveChangesAsync();
             }
         }
 
-        public async Task UpdateHistory(HistoryOfStateChanges[] changes, string id) {
-
-            changes.ToList().ForEach(x => x.DocumentId = id); // history se vezuje za dokument.
+        public async Task UpdateHistory(HistoryOfStateChanges[] changes) {
 
             await _context.HistoryChanges.AddRangeAsync(changes);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Save() {
+            await _context.SaveChangesAsync();
         }
     }
 }

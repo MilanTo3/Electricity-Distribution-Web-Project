@@ -1,5 +1,6 @@
 export class HistoryStateChange{
 
+    documentId: string;
     name: string;
     lastname: string;
     dateChanged: string;

@@ -1,6 +1,7 @@
 export class WorkPlan{
 
     id: string;
+    documentId: string;
     startDate: string;
     phoneNo: string;
     status: string;

@@ -1,6 +1,7 @@
 export class MySafetyDoc{
 
     id: string;
+    documentId: string;
     startDate: string;
     phoneNumber: string;
     status: string;

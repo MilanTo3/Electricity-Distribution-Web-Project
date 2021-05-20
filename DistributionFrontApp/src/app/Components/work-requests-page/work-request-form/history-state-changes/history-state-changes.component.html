@@ -12,6 +12,6 @@
                 <button type="button" class="btn btn-success ml-3" (click)="addState(2)">Approve</button>
             </div>
         </div>
-
     </div>
+    <button class="btn" *ngIf="editMode" (click)="saveChanges()">Save Changes</button>
 </div>

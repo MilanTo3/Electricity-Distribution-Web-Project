@@ -16,8 +16,8 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
         Task<BasicInformationWR> GetBasicInfo(string id);
         Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id);
 
-        Task UpdateBasicInfo(BasicInformationWR basicInfo, string id);
-        Task UpdateHistory(HistoryOfStateChanges[] changes, string id);
+        Task UpdateBasicInfo(BasicInformationWR basicInfo);
+        Task UpdateHistory(HistoryOfStateChanges[] changes);
 
         Task Save();
     }

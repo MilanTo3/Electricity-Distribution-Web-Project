@@ -14,6 +14,7 @@ export class BasicInformationFPComponent implements OnInit {
   editMode = false;
   infoForm = this.fb.group({
     type: ['Planned work'],
+    documentId: [''],
     street: ['', Validators.required],
     startDate: [null, Validators.required],
     endDate: [null, Validators.required],
@@ -31,7 +32,6 @@ export class BasicInformationFPComponent implements OnInit {
   constructor(private fb: FormBuilder, private wr: WorkRequestServiceService) { }
 
   ngOnInit(): void {
-
 
     if(sessionStorage.getItem("idDoc") !== null){
       this.getAndFill(sessionStorage.getItem("idDoc"));
@@ -51,6 +51,17 @@ export class BasicInformationFPComponent implements OnInit {
     })
   }
 
+  saveChanges(){
+
+    let id = sessionStorage.getItem("idDoc");
+    this.infoForm.get('documentId').setValue(id);
+    this.wr.updateBasicInfo(this.infoForm.value).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+  }
+
   getAndFill(id){
 
     this.wr.getBasicInformation(id).subscribe(
@@ -65,7 +76,6 @@ export class BasicInformationFPComponent implements OnInit {
         this.infoForm.get('purpose').setValue(res["purpose"]);
         this.infoForm.get('details').setValue(res["details"]);
         this.infoForm.get('notes').setValue(res["notes"]);
-        this.infoForm.disable();
       }
     );
 

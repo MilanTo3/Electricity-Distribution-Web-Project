@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HistoryStateChange } from '../Models/HistoryStateChange.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,12 @@ export class WorkRequestServiceService {
     return this.http.get('http://localhost:24885/api/WorkRequest/getAttachments?id='+id);
   }
 
-  updateBasicInfo(formdata, wrId){
-    return this.http.post('http://localhost:24885/api/WorkRequest/updateBasicInfo', { basicInfo: formdata, id: wrId });
+  updateBasicInfo(formdata){
+    return this.http.post('http://localhost:24885/api/WorkRequest/updateBasicInfo', formdata);
   }
 
-  updateHistoryState(formdata, wrId){
-    return this.http.post('http://localhost:24885/api/WorkRequest/updateHistory', { historyInfo: formdata, id: wrId });
+  updateHistoryState(formdata: HistoryStateChange[], wrId){
+    formdata.forEach(x => x.documentId = wrId);
+    return this.http.post('http://localhost:24885/api/WorkRequest/updateHistory', formdata);
   }
 }

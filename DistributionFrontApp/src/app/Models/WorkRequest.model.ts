@@ -1,7 +1,7 @@
 
 export class WorkRequest{
 
-    id: string;
+    documentId: string;
     startDate: string;
     phoneNumber: string;
     status: string;
@@ -9,7 +9,7 @@ export class WorkRequest{
 
     constructor(id: string, startingDate: Date, phone: string, state: string, workLocation: string){
 
-        this.id = id;
+        this.documentId = id;
         this.startDate = startingDate.toUTCString();
         this.phoneNumber = phone;
         this.status = state;

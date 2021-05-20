@@ -48,7 +48,7 @@
       </ng-container>
     </div>
     <mat-header-row *matHeaderRowDef="headerToPrint"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: headerToPrint;" class="tablerow" (click)="callMethod(row.id)"></mat-row>
+    <mat-row *matRowDef="let row; columns: headerToPrint;" class="tablerow" (click)="callMethod(row.documentId)"></mat-row>
   </mat-table>
   <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
