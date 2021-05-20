@@ -20,7 +20,7 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<LocationModel> Locations { get; set; }
         public DbSet<WorkRequestModel> WorkRequests { get; set; }
         public DbSet<BasicInformationWR> BasicInformationsWR { get; set; }
-        public DbSet<HistoryOfStateChanges> HistoryChanges { get; set; }
+        public DbSet<HistoryOfStateChanges> HistoryChanges { get; set; } // WR-1 WP-1
 
 
     }

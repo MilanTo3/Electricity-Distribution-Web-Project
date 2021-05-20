@@ -9,6 +9,6 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan
     {
         public BasicInformationWP basicInformationForm { get; set; }
         public HistoryOfStateChanges[] historyForm { get; set; }
-        public List<SwitchingInstruction> items { get; set; }
+        public List<SwitchingInstruction> switchingInstructionsForm { get; set; }
     }
 }
