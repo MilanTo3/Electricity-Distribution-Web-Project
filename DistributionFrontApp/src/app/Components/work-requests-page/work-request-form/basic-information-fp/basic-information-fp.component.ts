@@ -11,6 +11,7 @@ import { customFormValidators } from '../../../../Models/customValidators';
 })
 export class BasicInformationFPComponent implements OnInit {
 
+  editMode = false;
   infoForm = this.fb.group({
     type: ['Planned work'],
     street: ['', Validators.required],
@@ -34,6 +35,7 @@ export class BasicInformationFPComponent implements OnInit {
 
     if(sessionStorage.getItem("idDoc") !== null){
       this.getAndFill(sessionStorage.getItem("idDoc"));
+      this.editMode = true;
     }else if (sessionStorage.getItem("infoForm") !== null) {
       let formdata = JSON.parse(sessionStorage.getItem("infoForm"));
       this.infoForm.setValue(formdata);

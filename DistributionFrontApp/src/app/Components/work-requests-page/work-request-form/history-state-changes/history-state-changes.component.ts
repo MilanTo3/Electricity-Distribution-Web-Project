@@ -12,6 +12,7 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(TableComponentComponent, { static: false }) table: TableComponentComponent;
   stateArray: HistoryStateChange[] = [];
+  editMode = false;
 
   constructor() { }
 
@@ -25,11 +26,9 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
       this.stateArray = this.stateArray.concat(addedStates);
       this.table.dataToPrint = this.stateArray;
       this.table.dataBind.data = this.table.dataToPrint;
-    } else if(this.table.dataBind.data.length == 0){
-      let item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to canceled.');
-      this.table.dataBind = new MatTableDataSource(this.table.dataToPrint);
-      this.table.keyNames = Object.getOwnPropertyNames(item);
-      this.table.enableView();
+    }
+    if(sessionStorage.getItem('idDoc')!==null){
+      this.editMode = true;
     }
 
   }
@@ -47,8 +46,11 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
 
     this.stateArray.push(item);
     sessionStorage.setItem("historyStateForm", JSON.stringify(this.stateArray));
-    this.table.dataToPrint.push(item);
-    this.table.dataBind.data = this.table.dataBind.data;
+    this.table.dataBind.data = this.stateArray;
+    if(this.table.keyNames !== Object.getOwnPropertyNames(item)){
+      this.table.keyNames = Object.getOwnPropertyNames(item);
+      this.table.enableView();
+    }
 
   }
 
