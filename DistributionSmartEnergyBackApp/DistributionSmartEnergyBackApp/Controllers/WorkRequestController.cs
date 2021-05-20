@@ -101,5 +101,34 @@ namespace DistributionSmartEnergyBackApp.Controllers
             return Ok(pc);
         }
 
+        [HttpPost]
+        [Route("updateBasicInfo")]
+        public async Task<IActionResult> updateBasicInfo(BasicInformationWR basicInfo, string id) {
+
+            try {
+                await _context.UpdateBasicInfo(basicInfo, id);
+                return Ok();
+            }
+            catch (Exception ex) {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("updateHistory")]
+        public async Task<IActionResult> updateHistory(HistoryOfStateChanges[] historyInfo, string id) {
+
+            try {
+                await _context.UpdateHistory(historyInfo, id);
+                return Ok();
+            }
+            catch(Exception ex) {
+                return BadRequest();
+            }
+
+        }
+
     }
 }

@@ -34,4 +34,12 @@ export class WorkRequestServiceService {
   getAttachments(id){
     return this.http.get('http://localhost:24885/api/WorkRequest/getAttachments?id='+id);
   }
+
+  updateBasicInfo(formdata, wrId){
+    return this.http.post('http://localhost:24885/api/WorkRequest/updateBasicInfo', { basicInfo: formdata, id: wrId });
+  }
+
+  updateHistoryState(formdata, wrId){
+    return this.http.post('http://localhost:24885/api/WorkRequest/updateHistory', { historyInfo: formdata, id: wrId });
+  }
 }

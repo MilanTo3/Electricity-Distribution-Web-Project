@@ -246,7 +246,9 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   copyArray(arr1: string[], arr2: string[]) {
     let i;
     for (i = 0; i < arr1.length; i++) {
-      arr2.push(arr1[i]);
+      if(arr2.includes(arr1[i]) === false){
+        arr2.push(arr1[i]);
+      }
     }
 
   }

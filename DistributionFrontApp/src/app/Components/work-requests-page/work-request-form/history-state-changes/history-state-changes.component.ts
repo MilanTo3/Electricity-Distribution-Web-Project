@@ -21,15 +21,11 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (sessionStorage.getItem("historyStateForm") !== null) {
-      let addedStates = JSON.parse(sessionStorage.getItem("historyStateForm"));
-      this.stateArray = this.stateArray.concat(addedStates);
-      this.table.dataToPrint = this.stateArray;
-      this.table.dataBind.data = this.table.dataToPrint;
-    }
-    if(sessionStorage.getItem('idDoc')!==null){
+
+    if (sessionStorage.getItem('idDoc') !== null) {
       this.editMode = true;
     }
+    this.stateArray = this.table.dataToPrint;
 
   }
 
@@ -45,13 +41,9 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
     }
 
     this.stateArray.push(item);
-    sessionStorage.setItem("historyStateForm", JSON.stringify(this.stateArray));
+    this.table.keyNames = Object.getOwnPropertyNames(item);
     this.table.dataBind.data = this.stateArray;
-    if(this.table.keyNames !== Object.getOwnPropertyNames(item)){
-      this.table.keyNames = Object.getOwnPropertyNames(item);
-      this.table.enableView();
-    }
-
+    this.table.enableView();
   }
 
 }

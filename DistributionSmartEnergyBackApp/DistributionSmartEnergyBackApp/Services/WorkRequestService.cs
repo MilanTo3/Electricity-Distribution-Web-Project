@@ -2,6 +2,7 @@
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,22 +31,6 @@ namespace DistributionSmartEnergyBackApp.Services
             return wr.Id;
         }
 
-        public Task DeleteWorkRequest(long id) {
-            throw new NotImplementedException();
-        }
-
-        public Task<WorkRequestModel> GetWorkRequest(long id) {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<WorkRequestModel>> GetWorkRequest() {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateWorkRequest(WorkRequestModel location) {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<BasicInformationWR>> GetAllBasicInfo() {
             return await _context.BasicInformationsWR.ToListAsync();
         }
@@ -62,5 +47,22 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.HistoryChanges.Where(x => x.DocumentId == id).ToListAsync();
         }
 
+        public async Task UpdateBasicInfo(BasicInformationWR basicInfo, string id) {
+
+            var info = await _context.BasicInformationsWR.FirstOrDefaultAsync(x => x.DocumentId == id);
+
+            if (info != null) {
+                info = basicInfo;
+                _context.BasicInformationsWR.Update(info);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task UpdateHistory(HistoryOfStateChanges[] changes, string id) {
+
+            changes.ToList().ForEach(x => x.DocumentId = id); // history se vezuje za dokument.
+
+            await _context.HistoryChanges.AddRangeAsync(changes);
+        }
     }
 }

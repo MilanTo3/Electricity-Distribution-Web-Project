@@ -1,5 +1,6 @@
 ﻿using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,14 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
 {
     public interface IWorkRequest
     {
-        Task<WorkRequestModel> GetWorkRequest(long id);
         Task<long> AddWorkRequest(WorkRequestViewModel location);
-
-        Task DeleteWorkRequest(long id);
-
-        Task UpdateWorkRequest(WorkRequestModel location);
-
-        Task<IEnumerable<WorkRequestModel>> GetWorkRequest();
 
         Task<IEnumerable<BasicInformationWR>> GetAllBasicInfo();
         Task<BasicInformationWR> GetBasicInfo(string id);
         Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id);
+
+        Task UpdateBasicInfo(BasicInformationWR basicInfo, string id);
+        Task UpdateHistory(HistoryOfStateChanges[] changes, string id);
 
         Task Save();
     }
