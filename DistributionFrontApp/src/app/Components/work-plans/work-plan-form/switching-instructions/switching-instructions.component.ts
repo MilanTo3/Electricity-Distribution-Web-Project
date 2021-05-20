@@ -32,7 +32,7 @@ export class SwitchingInstructionsComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.selectedId = -1;
     this.instructionText="";
-    this.instructionElement=""; 
+    this.instructionElement="";
    }
  
 
@@ -47,17 +47,18 @@ export class SwitchingInstructionsComponent implements OnInit {
   }
   onValueChanges(): void {
     this.WPSwitchingInstuctionsForm.valueChanges.subscribe(val => {
-      sessionStorage.setItem("WPSwitchingInstuctionsForm", JSON.stringify(this.WPSwitchingInstuctionsForm.value));
-      sessionStorage.setItem("WPSwitchingInstuctionsFormValid", JSON.stringify(this.WPSwitchingInstuctionsForm.valid));
+      sessionStorage.setItem("WPSwitchingInstuctionsForm", JSON.stringify(this.instructionsForm.value));
+      sessionStorage.setItem("WPSwitchingInstuctionsFormValid", JSON.stringify(this.instructionsForm.valid));
       
     })
   } 
   createMockInstructions(instructions){
     instructions.forEach(element => {
       this.instructionsForm = this.WPSwitchingInstuctionsForm.get('items') as FormArray;
-      this.instructionsForm.push(this.mockFormArrays(element)); 
+      this.instructionsForm.push(this.mockFormArrays(element));
     });
   }
+
   mockFormArrays(instruction): FormGroup{
     return this.formBuilder.group({
       id: instruction.id,
