@@ -16,6 +16,7 @@ export class WorkRequestFormComponent implements OnInit {
 
   db = new Localbase('db');
   wrapper: WorkRequestWrapper = new WorkRequestWrapper();
+  editMode = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private workRequest: WorkRequestServiceService) { }
 
@@ -27,6 +28,7 @@ export class WorkRequestFormComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('idparam');
     if(id !== null && id !== undefined){
       sessionStorage.setItem('idDoc', id);
+      this.editMode = true;
     }
     this.router.navigateByUrl('/workRequestForm/basicInformation');
   }

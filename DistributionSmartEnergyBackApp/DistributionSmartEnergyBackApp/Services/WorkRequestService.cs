@@ -24,9 +24,7 @@ namespace DistributionSmartEnergyBackApp.Services
             await _context.SaveChangesAsync(true);
 
             wrapper.infoForm.DocumentId = "WR"+wr.Id;
-            wrapper.historyForm.ToList().ForEach(x => x.DocumentId = "WR"+wr.Id);
             _context.BasicInformationsWR.Add(wrapper.infoForm);
-            _context.HistoryChanges.AddRange(wrapper.historyForm);
             await _context.SaveChangesAsync();
 
             return wr.Id;

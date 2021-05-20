@@ -14,6 +14,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
 
   filePaths: pictureModel[] = [];
   db = new Localbase('db');
+  editMode = false;
 
   constructor(private wr: WorkRequestServiceService) { }
 
@@ -21,6 +22,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
 
     if (sessionStorage.getItem("idDoc") !== null) {
       this.getAndFill(sessionStorage.getItem("idDoc"));
+      this.editMode = true;
     }
 
     this.db.collection('images').get().then(x => {
