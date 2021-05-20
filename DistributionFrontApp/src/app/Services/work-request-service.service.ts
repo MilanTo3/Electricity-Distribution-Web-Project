@@ -24,10 +24,14 @@ export class WorkRequestServiceService {
   }
 
   getBasicInformation(id) {
-    return this.http.get('http://localhost:24885/api/WorkRequest/getBasicInformation?id='+id);
+    return this.http.get('http://localhost:24885/api/WorkRequest/getBasicInfo?id='+id);
   }
 
   getHistoryState(id) {
-    return this.http.get('http://localhost:24885/api/WorkRequest/getHistoryState?id='+id);
+    return this.http.get('http://localhost:24885/api/WorkRequest/getHistory?id='+id);
+  }
+
+  getAttachments(id){
+    return this.http.get('http://localhost:24885/api/WorkRequest/getAttachments?id='+id);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Localbase from 'localbase';
 import { WorkRequestWrapper } from '../../../Models/formWrappers';
 import { ToastrService } from 'ngx-toastr';
@@ -17,12 +17,17 @@ export class WorkRequestFormComponent implements OnInit {
   db = new Localbase('db');
   wrapper: WorkRequestWrapper = new WorkRequestWrapper();
 
-  constructor(private router: Router, private toastr: ToastrService, private workRequest: WorkRequestServiceService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private workRequest: WorkRequestServiceService) { }
 
   ngOnInit(): void {
     sessionStorage.clear();
     this.db.collection('images').delete();
     this.db.collection('files').delete();
+
+    let id = this.route.snapshot.paramMap.get('idparam');
+    if(id !== null && id !== undefined){
+      sessionStorage.setItem('idDoc', id);
+    }
     this.router.navigateByUrl('/workRequestForm/basicInformation');
   }
 

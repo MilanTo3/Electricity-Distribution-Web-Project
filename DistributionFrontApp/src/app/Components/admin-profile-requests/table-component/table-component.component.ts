@@ -32,6 +32,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   headerToPrint: string[] = [];
   dataToPrint: any = [];
   dataBind = new MatTableDataSource([]);
+  baseLink: string;
 
   hideElement = false;
   choose = false;
@@ -116,12 +117,13 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   loadWorkRequests() {
 
+    this.baseLink = "/workRequestForm";
     this.workRequestService.getAllBasicInfo().subscribe(
       res => {
         let i;
         let wr;
         for(i = 0; i < res["length"]; i++){
-          wr = new WorkRequest("WR-"+res[i]["id"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], "Draft", res[i]["street"]);
+          wr = new WorkRequest(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], "Draft", res[i]["street"]);
           this.dataToPrint.push(wr);
         }
 
@@ -144,11 +146,22 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   loadHistoryStateChanges() {
 
-    let stateChange1 = new HistoryStateChange("Petar", "Bojovic", new Date(2021, 5, 25, 4, 33, 1, 20), "State changed to denied.");
-    let stateChange2 = new HistoryStateChange("Petar", "Bojovic", new Date(2021, 4, 21, 21, 23, 22, 30), "State changed to approved.");
+    if(sessionStorage.getItem('idDoc') === null){return;}
+    this.workRequestService.getHistoryState(sessionStorage.getItem('idDoc')).subscribe(
+      res => {
+        console.log(res);
+        let i;
+        let sc1: HistoryStateChange;
+        for(i = 0; i < res["length"]; i++){
+          sc1 = new HistoryStateChange(res[i]["documentId"], res[i]["name"], new Date(moment(res[i]["dateChanged"]).format('YYYY-MM-DDTHH:mm')), res[i]["details"]);
+          this.dataToPrint.push(sc1);
+        }
 
-    this.dataToPrint.push(stateChange1, stateChange2);
-    this.keyNames = Object.getOwnPropertyNames(stateChange2);
+        this.dataBind = new MatTableDataSource(this.dataToPrint);
+        this.keyNames = Object.getOwnPropertyNames(sc1);
+        this.enableView();
+      }
+    );
 
   }
 
@@ -211,6 +224,10 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataBind.paginator = this.pagination;
     this.dataBind.sort = this.sort;
+  }
+
+  callMethod(id){
+    this.router.navigate([this.baseLink, {idparam: id}]);
   }
 
   enableView(){

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
+import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { customFormValidators } from '../../../../Models/customValidators';
 
 @Component({
@@ -25,10 +27,14 @@ export class BasicInformationFPComponent implements OnInit {
       validator: Validators.compose([customFormValidators.dateLessThan('startDate', 'endDate', { 'dateError': true })])
     });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private wr: WorkRequestServiceService) { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem("infoForm") !== null) {
+
+
+    if(sessionStorage.getItem("idDoc") !== null){
+      this.getAndFill(sessionStorage.getItem("idDoc"));
+    }else if (sessionStorage.getItem("infoForm") !== null) {
       let formdata = JSON.parse(sessionStorage.getItem("infoForm"));
       this.infoForm.setValue(formdata);
     }
@@ -41,6 +47,26 @@ export class BasicInformationFPComponent implements OnInit {
       sessionStorage.setItem("infoFormValid", JSON.stringify(this.infoForm.valid));
       
     })
+  }
+
+  getAndFill(id){
+
+    this.wr.getBasicInformation(id).subscribe(
+      res => {
+        this.infoForm.get('type').setValue(res["type"]);
+        this.infoForm.get('street').setValue(res["street"]);
+        this.infoForm.get('startDate').setValue(moment(res["startDate"]).format('YYYY-MM-DDTHH:mm'));
+        this.infoForm.get('endDate').setValue(moment(res["endDate"]).format('YYYY-MM-DDTHH:mm'));
+        this.infoForm.get('emergency').setValue(res["emergency"]);
+        this.infoForm.get('company').setValue(res["company"]);
+        this.infoForm.get('phoneNumber').setValue(res["phoneNumber"]);
+        this.infoForm.get('purpose').setValue(res["purpose"]);
+        this.infoForm.get('details').setValue(res["details"]);
+        this.infoForm.get('notes').setValue(res["notes"]);
+        this.infoForm.disable();
+      }
+    );
+
   }
 
   get endDateForm() {

@@ -69,24 +69,24 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpGet]
         [Route("GetBasicInfo")]
-        public async Task<BasicInformationWR> GetBasicInformation(long id) {
+        public async Task<BasicInformationWR> GetBasicInformation(string id) {
             return await _context.GetBasicInfo(id);
         }
 
         [HttpGet]
         [Route("GetHistory")]
-        public async Task<BasicInformationWR> GetHistory(long id) {
-            return await _context.GetBasicInfo(id);
+        public async Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id) {
+            return await _context.GetHistory(id);
         }
 
         [HttpGet]
         [Route("GetAttachments")]
-        public async Task<IActionResult> GetAttachments(long id) {
+        public async Task<IActionResult> GetAttachments(string id) {
 
             string folderName = Path.Combine("Resources", "WorkRequestsMA");
             string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-            var filePath = Path.Combine(pathToRead, "WR"+id.ToString());
+            var filePath = Path.Combine(pathToRead, id);
             if (!System.IO.Directory.Exists(filePath))
                 return NotFound();
 

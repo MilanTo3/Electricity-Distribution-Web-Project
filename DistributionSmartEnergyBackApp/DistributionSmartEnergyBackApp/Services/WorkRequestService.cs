@@ -52,16 +52,16 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.BasicInformationsWR.ToListAsync();
         }
 
-        public async Task<BasicInformationWR> GetBasicInfo(long id) {
-            return await _context.BasicInformationsWR.FindAsync(id);
+        public async Task<BasicInformationWR> GetBasicInfo(string id) {
+            return await _context.BasicInformationsWR.FirstOrDefaultAsync(x => x.DocumentId == id);
         }
 
         public async Task Save() {
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<HistoryOfStateChanges>> GetHistory(long id) {
-            return await _context.HistoryChanges.Where(x => x.DocumentId == "WR" + id).ToListAsync();
+        public async Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id) {
+            return await _context.HistoryChanges.Where(x => x.DocumentId == id).ToListAsync();
         }
 
     }

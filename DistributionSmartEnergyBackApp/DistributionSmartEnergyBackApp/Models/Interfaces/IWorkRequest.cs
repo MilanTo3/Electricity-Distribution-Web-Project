@@ -19,8 +19,8 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
         Task<IEnumerable<WorkRequestModel>> GetWorkRequest();
 
         Task<IEnumerable<BasicInformationWR>> GetAllBasicInfo();
-        Task<BasicInformationWR> GetBasicInfo(long id);
-        Task<IEnumerable<HistoryOfStateChanges>> GetHistory(long id);
+        Task<BasicInformationWR> GetBasicInfo(string id);
+        Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id);
 
         Task Save();
     }

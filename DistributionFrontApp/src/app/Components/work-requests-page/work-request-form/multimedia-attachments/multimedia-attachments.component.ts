@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Localbase from 'localbase'
 import { isObservable } from 'rxjs';
+import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { pictureModel } from '../../../../Models/pictureModel.model';
 
 @Component({
@@ -14,9 +15,14 @@ export class MultimediaAttachmentsComponent implements OnInit {
   filePaths: pictureModel[] = [];
   db = new Localbase('db');
 
-  constructor() { }
+  constructor(private wr: WorkRequestServiceService) { }
 
   ngOnInit(): void {
+
+    if (sessionStorage.getItem("idDoc") !== null) {
+      this.getAndFill(sessionStorage.getItem("idDoc"));
+    }
+
     this.db.collection('images').get().then(x => {
       let i;
       for (i = 0; i < x.length; i++) {
@@ -24,6 +30,18 @@ export class MultimediaAttachmentsComponent implements OnInit {
       }
     });
 
+  }
+
+  getAndFill(id) {
+    this.wr.getAttachments(id).subscribe(
+      res => {
+        let i;
+        let pic;
+        for(i = 0; i < res["length"]; i++){
+          pic = new pictureModel(res[i]["name"], res[i]["picture"]);
+          this.filePaths.push(pic);
+        }
+      });
   }
 
   onFileChanged(event: any) {
@@ -40,7 +58,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
     let this_ = this;
 
     reader.readAsDataURL(file);
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       let item = new pictureModel(file.name, e.target.result);
       if (this_.filePaths.some(x => x.name === file.name || x.picture === e.target.result) === false) {
         this_.filePaths.push(item);
