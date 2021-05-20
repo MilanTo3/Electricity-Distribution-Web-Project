@@ -4,61 +4,68 @@
     <div class="row formRow">
         <div class="col">
             <div class="form-group row">
-                <label class="col-sm-4">Incident ID:</label>
-                <label class="col-sm-4"><b>5005</b></label>
+                <label class="col-md-4">Incident ID:</label>
+                <label class="col-md-4"><b>5005</b></label>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Type:</label>
-                <select class="col-sm-4 form-control">
+                <label class="col-md-4 col-form-label">Type:</label>
+                <select class="col-md-4 form-control">
                     <option>Planned work</option>
                     <option>Unplanned work</option>
                 </select>
             </div>
-            <div class="form-group row form-inline">
-                <label class="col-sm-4 col-form-label">Emergency work:</label>
-                <mat-slide-toggle class="col-sm-1"></mat-slide-toggle>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">Emergency work:</label>
+                <mat-slide-toggle class="col-md-1"></mat-slide-toggle>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4">Status:</label>
-                <label class="col-sm-4"><b>Dispatched</b></label>
+                <label class="col-md-4">Confirmed:</label>
+                <mat-slide-toggle class="col-md-1"></mat-slide-toggle>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Description:</label>
-                <input class="col-sm-6 form-control" type="text"/>
+                <label class="col-md-4">Status:</label>
+                <label class="col-md-4"><b>Dispatched</b></label>
+            </div>       
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">ETA:</label>
+                <input class="col-md-6 form-control" type="time" />
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ETA:</label>
-                <input class="col-sm-6 form-control" type="date" />
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ATA:</label>
-                <input class="col-sm-6 form-control" type="date" />
+                <label class="col-md-4 col-form-label">ATA:</label>
+                <input class="col-md-4 form-control" type="date" />
+                <input class="col-md-2 form-control" type="time" />
             </div>
         </div>
         <div class="col">
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Affected customers:</label>
-                <input class="col-sm-2 form-control" type="text"/>
+                <label class="col-md-4 col-form-label">Time of incident:</label>
+                <input class="col-md-4 form-control" type="date" />
+                <input class="col-md-2 form-control" type="time" />
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Outage time:</label>
-                <input class="col-sm-6 form-control" type="date" />
+                <label class="col-md-4 col-form-label">ETR</label>
+                <input class="col-md-6 form-control" type="time" />
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ETR:</label>
-                <input class="col-sm-6 form-control" type="date" />
+                <label class="col-md-4 col-form-label">Affected customers:</label>
+                <input class="col-md-2 form-control" type="number"/>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Calls:</label>
-                <input class="col-sm-2 form-control" type="text"/>
+                <label class="col-md-4 col-form-label">Calls:</label>
+                <input class="col-md-2 form-control" type="number"/>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Voltage [kV]:</label>
-                <input class="col-sm-2 form-control" type="text"/>
+                <label class="col-md-4 col-form-label">Voltage [kV]:</label>
+                <input class="col-md-2 form-control" type="number"/>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Scheduled time:</label>
-                <input class="col-sm-6 form-control" type="date" />
+                <label class="col-md-4 col-form-label">Scheduled time:</label>
+                <input class="col-md-4 form-control" type="date" />
+                <input class="col-md-2 form-control" type="time" />
+            </div>
+            <div class="form-group row last">
+                <label class="col-md-6 col-form-label">Take control of the incident?</label>
+                <button class="col-md-4 btn btn-primary">Accept</button>
             </div>
         </div>
     </div>
