@@ -4,7 +4,7 @@ export class Team{
 
     id: string;
     name: string;
-    members: User[];
+    members: string[];
 
     constructor(idnum: string, name: string){
         this.id = idnum;

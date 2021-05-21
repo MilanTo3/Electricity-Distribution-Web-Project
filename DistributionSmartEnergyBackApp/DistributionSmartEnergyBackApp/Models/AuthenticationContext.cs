@@ -21,6 +21,7 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<WorkRequestModel> WorkRequests { get; set; }
         public DbSet<BasicInformationWR> BasicInformationsWR { get; set; }
         public DbSet<HistoryOfStateChanges> HistoryChanges { get; set; } // WR-1 WP-1
+        public DbSet<TeamModel> DispatchTeams { get; set; }
 
 
     }
