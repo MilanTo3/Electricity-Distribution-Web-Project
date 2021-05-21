@@ -9,6 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class TeamsPageComponent implements OnInit {
 
   hideElement = false;
+  chosenId: number;
 
   constructor(public router: Router) { 
     this.router.events.subscribe((event) => {
@@ -22,7 +23,11 @@ export class TeamsPageComponent implements OnInit {
     });
   }
 
-  
+  setTeamId(event){
+    this.chosenId = event;
+    sessionStorage.setItem('chosenId', JSON.stringify(this.chosenId));
+    alert(this.chosenId);
+  }
 
   ngOnInit(): void {
   }

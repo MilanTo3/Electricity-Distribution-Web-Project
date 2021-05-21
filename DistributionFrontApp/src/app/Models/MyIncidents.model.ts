@@ -2,6 +2,7 @@
 export class MyIncidents{
 
     id: string;
+    documentId: string;
     startDate: string;
     phoneNumber: string;
     status: string;

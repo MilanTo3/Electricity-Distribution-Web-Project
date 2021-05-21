@@ -19,7 +19,7 @@
                 <button class="btn buttonClass"><i class="fas fa-search"></i> Search</button>
             </div>
             <div>
-                <app-table-component [tableType]='7'></app-table-component>
+                <app-table-component [tableType]='7' (emitter)="setTeamId($event)"></app-table-component>
             </div>
         </div>
     </body>

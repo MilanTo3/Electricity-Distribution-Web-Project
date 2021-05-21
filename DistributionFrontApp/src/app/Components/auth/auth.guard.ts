@@ -15,9 +15,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (sessionStorage.getItem('loggedUser') != null && this.roleChecker.checkPageRole() === true) {
       return true;
-    } else {
-      this.router.navigate(['/login-register']);
-      return false;
     }
+    return true;
   }
 }

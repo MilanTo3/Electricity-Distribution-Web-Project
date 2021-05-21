@@ -1,5 +1,5 @@
 import { Consumer } from './../../../Models/Consumer.model';
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { MyIncidents } from 'src/app/Models/MyIncidents.model';
 import { User } from '../../../Models/User.model';
 import { WorkRequest } from '../../../Models/WorkRequest.model';
@@ -33,9 +33,14 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   dataToPrint: any = [];
   dataBind = new MatTableDataSource([]);
   baseLink: string;
+  @Output() emitter = new EventEmitter<string>();
 
   hideElement = false;
   choose = false;
+
+  emitId(id){
+    this.emitter.next(id);
+  }
 
   constructor(public router: Router, private workRequestService: WorkRequestServiceService) {
     this.router.events.subscribe((event) => {
