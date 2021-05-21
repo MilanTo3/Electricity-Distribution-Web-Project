@@ -47,6 +47,13 @@ export class MultimediaAttachmentsComponent implements OnInit {
       });
   }
 
+  downloadImage(index){
+    alert('here');
+    var url = this.filePaths[index].picture.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
+    window.open(url);
+
+  }
+
   onFileChanged(event: any) {
     let i;
     for (i = 0; i < event.target.files.length; i++) {

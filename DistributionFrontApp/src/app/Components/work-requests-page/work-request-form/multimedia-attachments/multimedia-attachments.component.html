@@ -20,7 +20,8 @@
                                 <img class="imageClass" src="{{item.picture}}" />
                                 <div class="bottomWriting">
                                     <p class="imageName">{{ item.name.substring(0, item.name.lastIndexOf('.')) }} </p>
-                                    <a (click)="fileDelete(filePaths.indexOf(item))"><i class="fas fa-trash-alt" style="float:right; margin:4px 10px 0px 0px;"></i></a>
+                                    <a (click)="fileDelete(filePaths.indexOf(item))"><i class="fas fa-trash-alt" style="float:right; margin:4px 10px 0px 0px; cursor:pointer;"></i></a>
+                                    <a href="{{item.picture}}" download="{{item.name}}"><i class="fas fa-cloud-download-alt"></i></a>
                                 </div>
                             </div>
                         </ng-container>
