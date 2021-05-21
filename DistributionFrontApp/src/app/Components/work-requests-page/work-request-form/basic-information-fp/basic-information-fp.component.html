@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Created by:</label>
-                    <label class="col-sm-5"><b>User</b></label>
+                    <input class="col-sm-5 form-control" type="text" formControlName="user" disabled/>
                 </div>
             </div>
             <div class="col">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Date created:</label>
-                    <input class="col-sm-5 form-control" type="date" disabled />
+                    <input class="col-sm-5 form-control" type="datetime-local" formControlName="dateCreated" disabled />
                 </div>
             </div>
         </div>

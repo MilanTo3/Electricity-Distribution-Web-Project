@@ -18,7 +18,6 @@ export class WorkPlanFormComponent implements OnInit {
   ngOnInit(): void {
     sessionStorage.clear();
     this.db.collection('images').delete();
-    this.db.collection('files').delete();
     this.router.navigateByUrl('/newWorkPlan/basic-information');
   }
 
@@ -67,7 +66,7 @@ export class WorkPlanFormComponent implements OnInit {
 
   setMediaForm(){
     this.wrapper.mediaForm = [];
-    this.db.collection('files').get().then(x => {
+    this.db.collection('images').get().then(x => {
       let i;
       for (i = 0; i < x.length; i++) {
         this.wrapper.mediaForm.push(x[i]);

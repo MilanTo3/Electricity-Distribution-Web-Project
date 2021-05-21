@@ -25,8 +25,8 @@ namespace DistributionSmartEnergyBackApp.Services
             await _context.SaveChangesAsync(true);
 
             wrapper.infoForm.DocumentId = "WR"+wr.Id;
+            wrapper.infoForm.DateCreated = DateTime.Now;
             _context.BasicInformationsWR.Add(wrapper.infoForm);
-            await _context.SaveChangesAsync();
 
             return wr.Id;
         }

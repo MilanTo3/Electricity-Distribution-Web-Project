@@ -23,7 +23,6 @@ export class WorkRequestFormComponent implements OnInit {
   ngOnInit(): void {
     sessionStorage.clear();
     this.db.collection('images').delete();
-    this.db.collection('files').delete();
 
     let id = this.route.snapshot.paramMap.get('idparam');
     if(id !== null && id !== undefined){
@@ -33,7 +32,7 @@ export class WorkRequestFormComponent implements OnInit {
     this.router.navigateByUrl('/workRequestForm/basicInformation');
   }
 
-  onSubmit() {
+  async onSubmit() {
 
     let check = JSON.parse(sessionStorage.getItem("infoFormValid"));
     if(check === false || check === null){
@@ -44,27 +43,13 @@ export class WorkRequestFormComponent implements OnInit {
     console.log(check);
     this.setInfoForm();
     this.setHistoryForm();
-    this.setMediaForm();
+    await this.setMediaForm();
     console.log(this.wrapper);
     // Launch meh to backend!
-
+    
     this.workRequest.postWorkRequest(this.wrapper).subscribe(
       res => {
-        let formdata: FormData = new FormData();
-        let i;
-        for(i = 0; i < this.wrapper.mediaForm.length; i++){
-          formdata.append('mediaForm', this.wrapper.mediaForm[i]);
-        }
-        formdata.append('id', String(res));
-        
-        this.workRequest.sendAttachments(formdata).subscribe(
-          res => {
-            this.showToastrSuccess();
-          },
-          err => {
-            this.toastr.error('Error uploading attachments', 'Error');
-          }
-        );
+        this.toastr.success('Yay! Form Successfully submitted.', 'Work Request submitted.');
       }
     );
 
@@ -92,9 +77,9 @@ export class WorkRequestFormComponent implements OnInit {
     this.wrapper.historyForm = formdata;
   }
 
-  setMediaForm(){
+  async setMediaForm(){
     this.wrapper.mediaForm = [];
-    this.db.collection('files').get().then(x => {
+    await this.db.collection('images').get().then(x => {
       let i;
       for (i = 0; i < x.length; i++) {
         this.wrapper.mediaForm.push(x[i]);
@@ -102,5 +87,4 @@ export class WorkRequestFormComponent implements OnInit {
 
     });
   }
-
 }

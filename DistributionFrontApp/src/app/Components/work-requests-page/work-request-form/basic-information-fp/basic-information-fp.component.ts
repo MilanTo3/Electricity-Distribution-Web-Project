@@ -15,8 +15,10 @@ export class BasicInformationFPComponent implements OnInit {
   infoForm = this.fb.group({
     type: ['Planned work'],
     documentId: [''],
+    user: [''],
     street: ['', Validators.required],
     startDate: [null, Validators.required],
+    dateCreated: [null],
     endDate: [null, Validators.required],
     emergency: [false, Validators.required],
     company: ['', Validators.required],
@@ -69,6 +71,8 @@ export class BasicInformationFPComponent implements OnInit {
         this.infoForm.get('type').setValue(res["type"]);
         this.infoForm.get('street').setValue(res["street"]);
         this.infoForm.get('startDate').setValue(moment(res["startDate"]).format('YYYY-MM-DDTHH:mm'));
+        this.infoForm.get('user').setValue(res["user"]);
+        this.infoForm.get('dateCreated').setValue(moment(res["dateCreated"]).format('YYYY-MM-DDTHH:mm'));
         this.infoForm.get('endDate').setValue(moment(res["endDate"]).format('YYYY-MM-DDTHH:mm'));
         this.infoForm.get('emergency').setValue(res["emergency"]);
         this.infoForm.get('company').setValue(res["company"]);

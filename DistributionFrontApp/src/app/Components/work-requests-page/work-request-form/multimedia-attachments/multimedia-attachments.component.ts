@@ -66,7 +66,6 @@ export class MultimediaAttachmentsComponent implements OnInit {
       if (this_.filePaths.some(x => x.name === file.name || x.picture === e.target.result) === false) {
         this_.filePaths.push(item);
         this_.db.collection('images').add(item, file.name);
-        this_.db.collection('files').add(file, file.name);
       }
     }
 
@@ -77,7 +76,6 @@ export class MultimediaAttachmentsComponent implements OnInit {
     let itemName = this.filePaths[index].name;
     this.filePaths.splice(index, 1);
     this.db.collection('images').doc(itemName).delete();
-    this.db.collection('files').doc(itemName).delete();
 
   }
 
@@ -86,7 +84,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
     let formdata = await this.makeFormData();
     this.wr.updateAttachments(formdata).subscribe(
       res => {
-        this.toastr.success('Yay! Files successfully added.', 'Attachments updated.');
+        this.toastr.success('Yay! Attachment update successfull.', 'Attachments updated.');
       },
       err => {
         this.toastr.error('Ooops, seems like theres an error uploading your files.', 'Attachments error.');
@@ -102,12 +100,11 @@ export class MultimediaAttachmentsComponent implements OnInit {
     for (i = 0; i < this.filePaths.length; i++) {
       formdata.append('currentFileList', this.filePaths[i].name); // making array currentFileList[jpg1, jpg2, jpg3].
     }
-
-    let files = await this.db.collection('files').get();
+    let files = await this.db.collection('images').get();
 
     // making array files.
     for (i = 0; i < files.length; i++) {
-      formdata.append('files', files[i]);
+      formdata.append('stringPicModels', JSON.stringify(files[i]));
     }
 
     formdata.append('id', sessionStorage.getItem('idDoc'));

@@ -5,14 +5,14 @@ export class WorkRequestWrapper{
 
     infoForm: any;
     historyForm: HistoryStateChange[] = [];
-    mediaForm: File[] = [];
+    mediaForm: pictureModel[] = [];
 
 }
 export class WorkPlanWrapper{
 
     basicInformationForm: any;
     historyForm: HistoryStateChange[] = [];
-    mediaForm: File[] = [];
+    mediaForm: pictureModel[] = [];
     switchingInstructionsForm: any;
 }
 export class MyIncidentWrapper{
@@ -20,7 +20,7 @@ export class MyIncidentWrapper{
     infoForm: any;
     teamId: number;
     devicesIds: number[];
-    mediaForm: File[] = [];
+    mediaForm: pictureModel[] = [];
     resolutionForm: any;
 
 }
@@ -30,6 +30,6 @@ export class MySafetyDocsWrapper{
     infoForm: any;
     checkListForm: any;
     historyForm: HistoryStateChange[] = [];
-    mediaForm: File[] = [];
+    mediaForm: pictureModel[] = [];
 
 }

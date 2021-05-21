@@ -28,7 +28,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
             try {
                 long id = await _context.AddWorkRequest(wrapper);
-
+                uploadAttachments(wrapper.mediaForm, id);
+                await _context.Save();
                 return Ok(id);
             }
             catch {
@@ -36,9 +37,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("sendAttachments")]
-        public async Task<IActionResult> uploadAttachments([FromForm] IFormFile[] mediaForm, [FromForm] int id) {
+        public void uploadAttachments(pictureModel[] mediaForm, long id) {
 
             string folderName = Path.Combine("Resources", "WorkRequestsMA");
             string requestsDir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
@@ -47,18 +46,16 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
             int i;
             for (i = 0; i < mediaForm.Length; i++) {
-                string fullPath = Path.Combine(WRDir, mediaForm[i].FileName);
-                saveImage(mediaForm[i], fullPath);
+                string fullPath = Path.Combine(WRDir, mediaForm[i].name);
+                saveImage(mediaForm[i].picture, fullPath);
             }
 
-            return Ok();
         }
 
-        public void saveImage(IFormFile file, string fullpath) {
+        public void saveImage(string picture, string fullpath) {
             //smestam sliku na lokaciju
-            using (var stream = new FileStream(fullpath, FileMode.Create)) {
-                file.CopyTo(stream);
-            }
+            byte[] imageBytes = Convert.FromBase64String(picture.Split(',')[1]);
+            System.IO.File.WriteAllBytes(fullpath, imageBytes);
         }
 
         [HttpGet]
@@ -103,7 +100,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpPost]
         [Route("UpdateAttachments")]
-        public async Task<IActionResult> updateAttachments([FromForm] IFormFile[] files, [FromForm]string[] currentFileList, [FromForm]string id) {
+        public async Task<IActionResult> updateAttachments([FromForm] string[] stringPicModels, [FromForm]string[] currentFileList, [FromForm]string id) {
+
+            int i;
+            pictureModel[] files = new pictureModel[stringPicModels.Length];
+
+            for (i = 0; i < stringPicModels.Length; i++) {
+                files[i] = Newtonsoft.Json.JsonConvert.DeserializeObject<pictureModel>(stringPicModels[i]);
+            }
 
             string folderName = Path.Combine("Resources", "WorkRequestsMA");
             string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
@@ -114,16 +118,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
 
             // save files.
-            foreach (IFormFile file in files) {
-                string fullPath = Path.Combine(id, Path.Combine(filePath, file.FileName));
-                saveImage(file, fullPath);
+            foreach (pictureModel file in files) {
+                string fullPath = Path.Combine(id, Path.Combine(filePath, file.name));
+                saveImage(file.picture, fullPath);
             }
 
             DirectoryInfo d = new DirectoryInfo(filePath);
             FileInfo[] dirFiles = d.GetFiles();
 
-            //delete those that arent in currentFileList.
-            // Ako fajl postoji u direktorijumu, a ne u currentFileList.
             foreach (FileInfo directoryFile in dirFiles) {
                 if (currentFileList.ToList().Exists(x => x == directoryFile.Name)  == false) {
                     System.IO.File.Delete(directoryFile.FullName);
