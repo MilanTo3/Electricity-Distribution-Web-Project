@@ -15,3 +15,21 @@ export class WorkPlanWrapper{
     mediaForm: File[] = [];
     switchingInstructionsForm: any;
 }
+export class MyIncidentWrapper{
+
+    infoForm: any;
+    teamId: number;
+    devicesIds: number[];
+    mediaForm: File[] = [];
+    resolutionForm: any;
+
+}
+
+export class MySafetyDocsWrapper{
+
+    infoForm: any;
+    checkListForm: any;
+    historyForm: HistoryStateChange[] = [];
+    mediaForm: File[] = [];
+
+}
