@@ -21,7 +21,7 @@
       <ng-container *ngFor="let col of keyNames" [matColumnDef]="col">
         <mat-header-cell *matHeaderCellDef class="header" mat-sort-header>{{col.charAt(0).toUpperCase() + col.slice(1) + ':'}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="body"> {{element[col]}} </mat-cell>
+        <mat-cell *matCellDef="let element" class="body" (click)="callMethod(element.documentId)"> {{element[col]}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="What to do?">
@@ -48,7 +48,7 @@
       </ng-container>
     </div>
     <mat-header-row *matHeaderRowDef="headerToPrint"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: headerToPrint;" class="tablerow" (click)="callMethod(row.documentId)"></mat-row>
+    <mat-row *matRowDef="let row; columns: headerToPrint;" class="tablerow"></mat-row>
   </mat-table>
   <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>

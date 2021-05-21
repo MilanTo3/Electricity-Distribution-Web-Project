@@ -44,4 +44,8 @@ export class WorkRequestServiceService {
     formdata.forEach(x => x.documentId = wrId);
     return this.http.post('http://localhost:24885/api/WorkRequest/updateHistory', formdata);
   }
+
+  updateAttachments(formdata){
+    return this.http.post('http://localhost:24885/api/WorkRequest/UpdateAttachments', formdata);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Localbase from 'localbase'
+import { ToastrService } from 'ngx-toastr';
 import { isObservable } from 'rxjs';
 import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { pictureModel } from '../../../../Models/pictureModel.model';
@@ -16,7 +17,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
   db = new Localbase('db');
   editMode = false;
 
-  constructor(private wr: WorkRequestServiceService) { }
+  constructor(private wr: WorkRequestServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -39,7 +40,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
       res => {
         let i;
         let pic;
-        for(i = 0; i < res["length"]; i++){
+        for (i = 0; i < res["length"]; i++) {
           pic = new pictureModel(res[i]["name"], res[i]["picture"]);
           this.filePaths.push(pic);
         }
@@ -78,6 +79,40 @@ export class MultimediaAttachmentsComponent implements OnInit {
     this.db.collection('images').doc(itemName).delete();
     this.db.collection('files').doc(itemName).delete();
 
+  }
+
+  async updateAttachments() {
+
+    let formdata = await this.makeFormData();
+    this.wr.updateAttachments(formdata).subscribe(
+      res => {
+        this.toastr.success('Yay! Files successfully added.', 'Attachments updated.');
+      },
+      err => {
+        this.toastr.error('Ooops, seems like theres an error uploading your files.', 'Attachments error.');
+      }
+    );
+
+  }
+
+  async makeFormData() {
+
+    let i;
+    let formdata: FormData = new FormData();
+    for (i = 0; i < this.filePaths.length; i++) {
+      formdata.append('currentFileList', this.filePaths[i].name); // making array currentFileList[jpg1, jpg2, jpg3].
+    }
+
+    let files = await this.db.collection('files').get();
+
+    // making array files.
+    for (i = 0; i < files.length; i++) {
+      formdata.append('files', files[i]);
+    }
+
+    formdata.append('id', sessionStorage.getItem('idDoc'));
+
+    return formdata;
   }
 
 }

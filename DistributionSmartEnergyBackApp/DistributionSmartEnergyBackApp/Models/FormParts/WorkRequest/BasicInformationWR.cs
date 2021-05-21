@@ -9,7 +9,7 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts
     {
 
         public long Id { get; set; }
-        public string DocumentId { get; set; }
+        public string DocumentId { get; set; }  // WR1
         public string Status { get; set; }
         public string Type { get; set; }
         public string Street { get; set; }

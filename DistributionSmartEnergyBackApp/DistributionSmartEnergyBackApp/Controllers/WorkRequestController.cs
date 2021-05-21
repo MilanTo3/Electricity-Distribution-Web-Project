@@ -102,6 +102,38 @@ namespace DistributionSmartEnergyBackApp.Controllers
         }
 
         [HttpPost]
+        [Route("UpdateAttachments")]
+        public async Task<IActionResult> updateAttachments([FromForm] IFormFile[] files, [FromForm]string[] currentFileList, [FromForm]string id) {
+
+            string folderName = Path.Combine("Resources", "WorkRequestsMA");
+            string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            var filePath = Path.Combine(pathToRead, id);
+
+            if (!System.IO.Directory.Exists(filePath)) {
+                Directory.CreateDirectory(filePath);
+            }
+
+            // save files.
+            foreach (IFormFile file in files) {
+                string fullPath = Path.Combine(id, Path.Combine(filePath, file.FileName));
+                saveImage(file, fullPath);
+            }
+
+            DirectoryInfo d = new DirectoryInfo(filePath);
+            FileInfo[] dirFiles = d.GetFiles();
+
+            //delete those that arent in currentFileList.
+            // Ako fajl postoji u direktorijumu, a ne u currentFileList.
+            foreach (FileInfo directoryFile in dirFiles) {
+                if (currentFileList.ToList().Exists(x => x == directoryFile.Name)  == false) {
+                    System.IO.File.Delete(directoryFile.FullName);
+                }
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
         [Route("updateBasicInfo")]
         public async Task<IActionResult> updateBasicInfo([FromBody]BasicInformationWR basicInfo) {
 
