@@ -17,7 +17,7 @@ export class ProfileDetailsComponent implements OnInit {
   formdata = new FormData();
 
   currentImg: any;
-  rolesOptions = ["Administrator", "Dispatcher", "Team member", "Consumer", "Employed(data analyst)"];
+  rolesOptions = ["Administrator", "Dispatcher", "TeamMember", "Consumer", "DataAnalyst"];
   selectedRole: string;
   profileForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -77,7 +77,6 @@ export class ProfileDetailsComponent implements OnInit {
     let user: LoggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.userService.getProfileImg(user.username).subscribe(
       res => {
-        console.log(res);
 
         let this_ = this;
         var reader = new FileReader();
@@ -90,6 +89,9 @@ export class ProfileDetailsComponent implements OnInit {
             filePicture: reader.result
           });
         }
+      },
+      err => {
+        this.currentImg = "/assets/Images/defimage3.jpg";
       }
     );
 
@@ -97,7 +99,6 @@ export class ProfileDetailsComponent implements OnInit {
 
   onSubmit(): void {
     // Process checkout data here
-    console.log(this.profileForm);
     if (this.profileForm.valid) {
       this.fillFormData();
 

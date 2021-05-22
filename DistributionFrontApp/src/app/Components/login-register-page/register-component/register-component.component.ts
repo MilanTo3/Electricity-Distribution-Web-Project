@@ -31,7 +31,7 @@ export class RegisterComponentComponent implements OnInit {
     PhoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
     UserType: ['Consumer'],
     FilePicture: [''],
-    TeamId: ['']
+    TeamId: [null]
   },
     {
       validator: Validators.compose([customFormValidators.passwordConfirmCheck('Password', 'ConfirmedPassword', { 'confirmError': true })])

@@ -7,7 +7,7 @@ import { LoggedUser } from '../Models/LoggedUser.model';
 })
 export class RoleCheckerService {
 
-  roles = ["Administrator", "Dispatcher", "Employed(Data Analyst)", "Team Member", "Consumer", "Guest"]
+  roles = ["Administrator", "Dispatcher", "DataAnalyst", "TeamMember", "Consumer", "Guest"]
   routeMap: Map<string, string[]> = new Map<string, string[]>([
     ["/dashboard", this.roles.slice(0, 5)],
     ["/profile", this.roles.slice(0, 5)],

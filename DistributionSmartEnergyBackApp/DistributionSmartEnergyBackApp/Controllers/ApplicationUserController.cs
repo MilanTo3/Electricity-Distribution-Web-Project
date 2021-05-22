@@ -17,6 +17,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static DistributionSmartEnergyBackApp.Models.ApplicationUser;
 
 namespace DistributionSmartEnergyBackApp.Controllers
 {
@@ -60,7 +61,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 user.Email = userModel.Email;
                 user.Birthday = userModel.Birthday;
                 user.Address = userModel.Address;
-                user.UserType = userModel.UserType;
+                user.UserType = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), userModel.UserType);
                 user.RegState = ApplicationUser.RegistrationState.Pending;
                 user.PhoneNumber = userModel.PhoneNumber;
                 var result = await _userManager.UpdateAsync(user);
@@ -76,6 +77,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 {
                     // saveImage(user, userModel.FilePicture); pozove se dispose ili se buni da dve stvari koriste isti kontekst pa je zato kopirana metoda ovde
                                                               //taj problem se javlja kad se menja slika i u isto vreme neka druga polja, nisam htela da menjam metodu
+                    
+                    
                     var extension = Path.GetExtension(userModel.FilePicture.FileName);
                     string fileName = user.UserName + extension;
                     string folderName = Path.Combine("Resources", "UsersPics");
@@ -156,7 +159,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
-                string roletype = user.UserType;
+                string roletype = user.UserType.ToString();
                 string username = user.UserName;
                 return Ok(new { token, username, roletype });
             }
@@ -177,7 +180,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 Email = model.Email,
                 Birthday = model.Birthday,
                 Address = model.Address,
-                UserType = model.UserType,
+                UserType = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), model.UserType),
                 TeamId = model.TeamId,
                 RegState = ApplicationUser.RegistrationState.Pending,
                 PhoneNumber = model.PhoneNumber,

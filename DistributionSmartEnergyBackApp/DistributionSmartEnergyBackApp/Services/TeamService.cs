@@ -1,8 +1,10 @@
 ﻿using DistributionSmartEnergyBackApp.Models;
+using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,14 +19,28 @@ namespace DistributionSmartEnergyBackApp.Services
             _context = context;
         }
 
-        public Task AddTeam(TeamModel team, string[] usernames) {
-            throw new NotImplementedException();
+        public async Task AddTeam(string team, string[] usernames) {
+
+            TeamModel teamModel = new TeamModel(team);
+            await _context.DispatchTeams.AddAsync(teamModel);
+            _context.SaveChanges();
+
+            foreach (string member in usernames) {
+                ApplicationUser user = await _context.applicationUsers.FirstOrDefaultAsync(x => x.UserName == member);
+                if (user != null) {
+                    user.TeamId = teamModel.Id.ToString();
+                }
+            }
+
         }
 
         public async Task DeleteTeam(long id) {
             var team = await _context.DispatchTeams.FindAsync(id);
 
             _context.DispatchTeams.Remove(team);
+
+            var members = _context.applicationUsers.Where(x => x.TeamId == id.ToString());
+            await members.ForEachAsync(x => x.TeamId = null);
         }
 
         public async Task<TeamModel> GetTeam(long id) {
@@ -41,12 +57,62 @@ namespace DistributionSmartEnergyBackApp.Services
             if (team != null) {
                 team.Name = name;
                 _context.DispatchTeams.Update(team);
-                await _context.SaveChangesAsync();
             }
+
+            var thisTeamsMembers = await _context.applicationUsers.Where(x => x.TeamId == id.ToString()).ToListAsync();
+            thisTeamsMembers.ToList().ForEach(x => x.TeamId = null);
+
+            foreach (string member in usernames) {
+                ApplicationUser user = await _context.applicationUsers.FirstOrDefaultAsync(x => x.UserName == member);
+                if (user != null) {
+                    user.TeamId = id.ToString();
+                }
+            }
+
         }
 
         public async Task Save() {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<TeamMemberModel>> getAvailableMembers() {
+
+            var availableMembers = await _context.applicationUsers.Where(x => x.UserType == ApplicationUser.UserTypeEnumeration.TeamMember && x.TeamId == null).ToListAsync();
+
+            List<TeamMemberModel> members = new List<TeamMemberModel>();
+            foreach (ApplicationUser teamMember in availableMembers) {
+
+                members.Add(new TeamMemberModel(teamMember.UserName, teamMember.Name, teamMember.Lastname, getBase64FileImg(teamMember.FilePicture)));
+            }
+
+            return members;
+        }
+
+        private string getBase64FileImg(string filename) {
+
+            if (filename == null) {
+                return null;
+            }
+
+            string folderName = Path.Combine("Resources", "UsersPics");
+            string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            string fullPath = Path.Combine(pathToRead, filename);
+
+            string image = "data:image/png;base64," + Convert.ToBase64String(System.IO.File.ReadAllBytes(fullPath));
+
+            return image;
+        }
+
+        public async Task<IEnumerable<TeamMemberModel>> getTeamMembers(long id) {
+
+            var members = await _context.applicationUsers.Where(x => x.TeamId == id.ToString()).ToListAsync();
+            List<TeamMemberModel> teamMembers = new List<TeamMemberModel>();
+
+            foreach(ApplicationUser teamMate in members) {
+                teamMembers.Add(new TeamMemberModel(teamMate.UserName, teamMate.Name, teamMate.Lastname, getBase64FileImg(teamMate.FilePicture)));
+            }
+
+            return teamMembers.ToList();
         }
     }
 }
