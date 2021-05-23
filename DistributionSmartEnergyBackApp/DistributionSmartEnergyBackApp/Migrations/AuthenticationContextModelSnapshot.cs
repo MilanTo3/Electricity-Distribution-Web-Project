@@ -100,6 +100,84 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.ToTable("HistoryChanges");
                 });
 
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan.BasicInformationWP", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Purpose")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("createdDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("crewId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("endDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("incidentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("phoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("startDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("user")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("workRequestId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BasicInformationsWP");
+                });
+
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan.SwitchingInstruction", b =>
+                {
+                    b.Property<long>("switchId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("switchId");
+
+                    b.ToTable("SwitchingInstructions");
+                });
+
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.LocationModel", b =>
                 {
                     b.Property<long>("Id")
@@ -125,6 +203,33 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.TeamModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DispatchTeams");
+                });
+
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.WorkPlanModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkPlans");
                 });
 
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.WorkRequestModel", b =>

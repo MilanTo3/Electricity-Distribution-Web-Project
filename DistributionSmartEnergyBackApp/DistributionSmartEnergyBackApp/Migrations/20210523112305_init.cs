@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DistributionSmartEnergyBackApp.Migrations
 {
-    public partial class novaMigracija2 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,6 +57,33 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BasicInformationsWP",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    workRequestId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    incidentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    startDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    endDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    crewId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    user = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    phoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    createdDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Purpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasicInformationsWP", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BasicInformationsWR",
                 columns: table => new
                 {
@@ -81,6 +108,19 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BasicInformationsWR", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DispatchTeams",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DispatchTeams", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,6 +154,33 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SwitchingInstructions",
+                columns: table => new
+                {
+                    switchId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SwitchingInstructions", x => x.switchId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkPlans",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkPlans", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -292,13 +359,25 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BasicInformationsWP");
+
+            migrationBuilder.DropTable(
                 name: "BasicInformationsWR");
+
+            migrationBuilder.DropTable(
+                name: "DispatchTeams");
 
             migrationBuilder.DropTable(
                 name: "HistoryChanges");
 
             migrationBuilder.DropTable(
                 name: "Locations");
+
+            migrationBuilder.DropTable(
+                name: "SwitchingInstructions");
+
+            migrationBuilder.DropTable(
+                name: "WorkPlans");
 
             migrationBuilder.DropTable(
                 name: "WorkRequests");

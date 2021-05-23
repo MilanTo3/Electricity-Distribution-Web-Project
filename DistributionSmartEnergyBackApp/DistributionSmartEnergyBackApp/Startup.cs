@@ -42,6 +42,7 @@ namespace DistributionSmartEnergyBackApp
             //add services here
             services.AddScoped<ILocation, LocationService>();
             services.AddScoped<IWorkRequest, WorkRequestService>();
+            services.AddScoped<IWorkPlan, WorkPlanService>();
 
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
 

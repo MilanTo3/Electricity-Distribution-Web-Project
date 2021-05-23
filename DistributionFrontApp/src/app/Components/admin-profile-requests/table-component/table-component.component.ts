@@ -1,3 +1,4 @@
+import { WorkPlanServiceService } from 'src/app/Services/work-plan-service.service';
 import { Consumer } from './../../../Models/Consumer.model';
 import { Component, Input, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { MyIncidents } from 'src/app/Models/MyIncidents.model';
@@ -42,7 +43,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.emitter.next(id);
   }
 
-  constructor(public router: Router, private workRequestService: WorkRequestServiceService) {
+  constructor(public router: Router, private workRequestService: WorkRequestServiceService, private workPlanService : WorkPlanServiceService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
@@ -181,12 +182,21 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   }
 
   loadWorkPlans() {
-    let plan1 = new WorkPlan('WR-1', "2019-01-16", "3989-434-343", "Draft", "Jevrejska 12a");
-    let plan2 = new WorkPlan("WR-2", "2019-01-16", "323-35345-2343", "Draft", "Marka Kraljevica 15");
-    let plan3 = new WorkPlan("WR-3", "2019-01-16", "349-553-855-12", "Draft", "Dragana Torbice 3");
+    this.baseLink = "/newWorkPlan";
+    this.workPlanService.getAllBasicInfo().subscribe(
+      res => {
+        let i;
+        let wp;
+        for(i = 0; i < res["length"]; i++){
+          wp = new WorkRequest(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], res[i]["status"], res[i]["street"]);
+          this.dataToPrint.push(wp);
+        }
 
-    this.dataToPrint.push(plan1, plan2, plan3);
-    this.keyNames = Object.getOwnPropertyNames(plan3);
+        this.dataBind = new MatTableDataSource(this.dataToPrint);
+        this.keyNames = Object.getOwnPropertyNames(wp);
+        this.enableView();
+      }
+    );
   }
 
   loadCalls() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Localbase from 'localbase';
 import { WorkPlanWrapper } from '../../../Models/formWrappers';
 import { ToastrService } from 'ngx-toastr';
@@ -13,15 +13,23 @@ import { WorkPlanServiceService } from 'src/app/Services/work-plan-service.servi
 export class WorkPlanFormComponent implements OnInit {
   db = new Localbase('db');
   wrapper: WorkPlanWrapper = new WorkPlanWrapper();
-  constructor(private router: Router, private workPlanService: WorkPlanServiceService, private toastr: ToastrService) { }
+  editMode = false;
+
+  constructor(private router: Router,private route: ActivatedRoute, private workPlanService: WorkPlanServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     sessionStorage.clear();
     this.db.collection('images').delete();
+
+    let id = this.route.snapshot.paramMap.get('idparam');
+    if(id !== null && id !== undefined){
+      sessionStorage.setItem('idDoc', id);
+      this.editMode = true;
+    }
     this.router.navigateByUrl('/newWorkPlan/basic-information');
   }
 
-  onSubmit() {
+ async onSubmit() {
 
     let check = JSON.parse(sessionStorage.getItem("planBasicInfoFormValid"));
     if(check === false || check === null){
@@ -31,13 +39,13 @@ export class WorkPlanFormComponent implements OnInit {
     }
     this.setInfoForm();
     this.setHistoryForm();
-    this.setMediaForm();
+    await this.setMediaForm();
     this.setInstructionsForm();
-    this.showToastrSuccess();
     console.log(this.wrapper);
 
     this.workPlanService.postWorkRequest(this.wrapper).subscribe(
       res => {
+        this.showToastrSuccess();
         console.log(res);
       }
     );

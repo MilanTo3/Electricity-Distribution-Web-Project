@@ -1,4 +1,5 @@
 ﻿using DistributionSmartEnergyBackApp.Models.FormParts;
+using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,6 +23,12 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<BasicInformationWR> BasicInformationsWR { get; set; }
         public DbSet<HistoryOfStateChanges> HistoryChanges { get; set; } // WR-1 WP-1
         public DbSet<TeamModel> DispatchTeams { get; set; }
+
+        public DbSet<WorkPlanModel> WorkPlans { get; set; }
+
+        public DbSet<SwitchingInstruction> SwitchingInstructions { get; set; }
+
+        public DbSet<BasicInformationWP> BasicInformationsWP { get; set; }
 
 
     }

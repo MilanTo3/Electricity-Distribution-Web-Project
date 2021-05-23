@@ -8,10 +8,14 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan
     public class BasicInformationWP
     {
         public long Id { get; set; }
+
+        public string DocumentId { get; set; }  // WP1
+        public string Status { get; set; }
         public string Type { get; set; }
         public string workRequestId { get; set; }
-        public string workIncidentId { get; set; }
-        public long locationId { get; set; }
+        public string incidentId { get; set; }
+        public string Street { get; set; }
+       // public long locationId { get; set; }
         public DateTime startDateTime { get; set; }
         public DateTime endDateTime { get; set; }
         public string crewId { get; set; }

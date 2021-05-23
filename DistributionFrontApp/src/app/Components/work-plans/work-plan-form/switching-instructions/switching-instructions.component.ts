@@ -12,15 +12,7 @@ export class SwitchingInstructionsComponent implements OnInit {
   instructionElement: string;
 
   instructionsForm : FormArray;
-  //WPSwitchingInstuctionsForm : FormGroup;
   instructions =  [
-/*      { id: 1, name: 'ADD', status: "UNEXECUTED" },
-    { id: 2, name: 'OPEN', status: "UNEXECUTED" },
-    { id: 3, name: 'CLOSE' , status: "UNEXECUTED"},
-    { id: 4, name: 'OPEN', status: "UNEXECUTED" },
-    { id: 5, name: 'CLOSE', status: "UNEXECUTED" },
-    { id: 6, name: 'CLOSE', status: "UNEXECUTED" },
-    { id: 7, name: 'REMOVE', status: "UNEXECUTED" }   */
   ];
   index = this.instructions.length +1;
   selectedId: number;
