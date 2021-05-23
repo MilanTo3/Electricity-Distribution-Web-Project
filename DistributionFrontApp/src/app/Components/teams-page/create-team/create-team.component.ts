@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TeamMember } from '../../../Models/TeamMember.model';
 import { TeamsServiceService } from '../../../Services/teams-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-team',
@@ -19,7 +20,7 @@ export class CreateTeamComponent implements OnInit {
     name: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private teamsService: TeamsServiceService, private toastr: ToastrService){
+  constructor(private fb: FormBuilder, private router: Router, private teamsService: TeamsServiceService, private toastr: ToastrService){
     this.addMockUsers();
   }
 
@@ -41,6 +42,7 @@ export class CreateTeamComponent implements OnInit {
 
     this.teamsService.createTeam(formdata).subscribe(
       res => {
+        this.router.navigateByUrl('/teamsPage');
         this.toastr.success('Team has been successfully created.', 'Team Created.');
       }
     );

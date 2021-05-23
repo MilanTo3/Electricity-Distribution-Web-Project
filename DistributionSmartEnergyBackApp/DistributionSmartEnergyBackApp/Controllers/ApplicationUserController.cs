@@ -192,7 +192,6 @@ namespace DistributionSmartEnergyBackApp.Controllers
                     var test = result.Errors.ToList();
                     return BadRequest("err" + test[0].Description);
                 }
-                await _userManager.AddToRoleAsync(applicationUser, HttpContext.Request.Form["UserType"]);
                 if (model.FilePicture != null) {
                     saveImage(applicationUser, model.FilePicture);
                 }

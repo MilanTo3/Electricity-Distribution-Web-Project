@@ -18,7 +18,7 @@ export class BasicInformationFPComponent implements OnInit {
     user: [''],
     street: ['', Validators.required],
     startDate: [null, Validators.required],
-    dateCreated: [null],
+    dateCreated: [Date.now],
     endDate: [null, Validators.required],
     emergency: [false, Validators.required],
     company: ['', Validators.required],

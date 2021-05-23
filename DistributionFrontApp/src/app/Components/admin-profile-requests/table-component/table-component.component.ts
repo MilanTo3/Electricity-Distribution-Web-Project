@@ -28,8 +28,8 @@ import * as moment from 'moment';
 export class TableComponentComponent implements OnInit, AfterViewInit {
 
   @Input('tableType') tableid: number = 0;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: false}) pagination: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) pagination: MatPaginator;
   keyNames: string[] = [];
   headerToPrint: string[] = [];
   dataToPrint: any = [];
@@ -40,11 +40,11 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   hideElement = false;
   choose = false;
 
-  emitId(id){
+  emitId(id) {
     this.emitter.next(id);
   }
 
-    constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService, private workPlanService: WorkPlanServiceService) {
+  constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService, private workPlanService: WorkPlanServiceService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
@@ -62,24 +62,24 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     });
   }
 
-  addMockRequests() {
+  async addMockRequests() {
 
     if (this.tableid === 0) {
       this.loadProfileRequests();
     } else if (this.tableid === 1) {
-      this.loadWorkRequests();
+      await this.loadWorkRequests();
     } else if (this.tableid === 2) {
       this.loadMyIncidents();
     } else if (this.tableid === 3) {
-      this.loadHistoryStateChanges();
+      await this.loadHistoryStateChanges();
     } else if (this.tableid === 4) {
       this.loadDevices();
     } else if (this.tableid === 5) {
       this.loadCalls();
     } else if (this.tableid === 6) {
-      this.loadWorkPlans();
+      await this.loadWorkPlans();
     } else if (this.tableid === 7) {
-      this.loadTeams();
+      await this.loadTeams();
     } else if (this.tableid === 8) {
       this.loadMySafetyDocs();
     } else if (this.tableid === 9) {
@@ -99,19 +99,13 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(user3);
   }
 
-  loadTeams() {
+  async loadTeams() {
 
     this.baseLink = "/viewTeam";
-    this.workRequestService.getAllBasicInfo().subscribe(
-      res => {
-
-        this.dataToPrint = res;
-        this.dataBind = new MatTableDataSource(this.dataToPrint);
-        this.keyNames = Object.getOwnPropertyNames(res[0]);
-        this.enableView();
-      }
-    );
-
+    let res = await this.teamsService.getAllTeams().toPromise();
+    this.dataToPrint = res;
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(res[0]);
   }
 
   loadProfileRequests() {
@@ -126,23 +120,20 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
-  loadWorkRequests() {
+  async loadWorkRequests() {
 
     this.baseLink = "/workRequestForm";
-    this.workRequestService.getAllBasicInfo().subscribe(
-      res => {
-        let i;
-        let wr;
-        for(i = 0; i < res["length"]; i++){
-          wr = new WorkRequest(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], "Draft", res[i]["street"]);
-          this.dataToPrint.push(wr);
-        }
+    let res = await this.workRequestService.getAllBasicInfo().toPromise();
 
-        this.dataBind = new MatTableDataSource(this.dataToPrint);
-        this.keyNames = Object.getOwnPropertyNames(wr);
-        this.enableView();
-      }
-    );
+    let i;
+    let wr;
+    for (i = 0; i < res["length"]; i++) {
+      wr = new WorkRequest(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], "Draft", res[i]["street"]);
+      this.dataToPrint.push(wr);
+    }
+
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(wr);
 
   }
 
@@ -155,24 +146,23 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(myIncident3);
   }
 
-  loadHistoryStateChanges() {
+  async loadHistoryStateChanges() {
 
-    if(sessionStorage.getItem('idDoc') === null){return;}
-    this.workRequestService.getHistoryState(sessionStorage.getItem('idDoc')).subscribe(
-      res => {
-        console.log(res);
-        let i;
-        let sc1: HistoryStateChange;
-        for(i = 0; i < res["length"]; i++){
-          sc1 = new HistoryStateChange(res[i]["documentId"], res[i]["name"], new Date(moment(res[i]["dateChanged"]).format('YYYY-MM-DDTHH:mm')), res[i]["details"]);
-          this.dataToPrint.push(sc1);
-        }
+    if (sessionStorage.getItem('idDoc') === null) { return; }
+    let res = await this.workRequestService.getHistoryState(sessionStorage.getItem('idDoc')).toPromise();
 
-        this.dataBind = new MatTableDataSource(this.dataToPrint);
-        this.keyNames = Object.getOwnPropertyNames(sc1);
-        this.enableView();
+    if (res !== null || res !== undefined) {
+      let i;
+      let sc1: HistoryStateChange;
+      for (i = 0; i < res["length"]; i++) {
+        sc1 = new HistoryStateChange(res[i]["documentId"], res[i]["name"], new Date(moment(res[i]["dateChanged"]).format('YYYY-MM-DDTHH:mm')), res[i]["details"]);
+        this.dataToPrint.push(sc1);
       }
-    );
+
+      this.dataBind = new MatTableDataSource(this.dataToPrint);
+      this.keyNames = Object.getOwnPropertyNames(sc1);
+      this.enableView();
+    }
 
   }
 
@@ -186,22 +176,20 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(device3);
   }
 
-  loadWorkPlans() {
+  async loadWorkPlans() {
     this.baseLink = "/newWorkPlan";
-    this.workPlanService.getAllBasicInfo().subscribe(
-      res => {
-        let i;
-        let wp;
-        for(i = 0; i < res["length"]; i++){
-          wp = new WorkRequest(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], res[i]["status"], res[i]["street"]);
-          this.dataToPrint.push(wp);
-        }
+    let res = await this.workPlanService.getAllBasicInfo().toPromise();
 
-        this.dataBind = new MatTableDataSource(this.dataToPrint);
-        this.keyNames = Object.getOwnPropertyNames(wp);
-        this.enableView();
-      }
-    );
+    let i;
+    let wp;
+    for (i = 0; i < res["length"]; i++) {
+      wp = new WorkPlan(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')).toLocaleDateString(), res[i]["phoneNumber"], res[i]["status"], res[i]["street"]);
+      this.dataToPrint.push(wp);
+    }
+
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(wp);
+
   }
 
   loadCalls() {
@@ -231,8 +219,9 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataToPrint.push(consumer1, consumer2, consumer3, consumer4);
     this.keyNames = Object.getOwnPropertyNames(consumer4);
   }
-  ngOnInit(): void {
-    this.addMockRequests();
+
+  async ngOnInit(): Promise<void> {
+    await this.addMockRequests();
     this.copyArray(this.keyNames, this.headerToPrint);
     if (this.tableid === 0 || this.tableid === 7 || this.tableid === 9 || this.tableid === 10) {
       this.headerToPrint.push("What to do?");
@@ -246,11 +235,11 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataBind.sort = this.sort;
   }
 
-  callMethod(id){
-    this.router.navigate([this.baseLink, {idparam: id}]);
+  callMethod(id) {
+    this.router.navigate([this.baseLink, { idparam: id }]);
   }
 
-  enableView(){
+  enableView() {
     this.copyArray(this.keyNames, this.headerToPrint);
     if (this.tableid === 0 || this.tableid === 7 || this.tableid === 9 || this.tableid === 10) {
       this.headerToPrint.push("What to do?");
@@ -266,7 +255,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   copyArray(arr1: string[], arr2: string[]) {
     let i;
     for (i = 0; i < arr1.length; i++) {
-      if(arr2.includes(arr1[i]) === false){
+      if (arr2.includes(arr1[i]) === false) {
         arr2.push(arr1[i]);
       }
     }
