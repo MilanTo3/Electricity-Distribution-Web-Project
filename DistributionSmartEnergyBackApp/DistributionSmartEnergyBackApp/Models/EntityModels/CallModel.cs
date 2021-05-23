@@ -14,5 +14,7 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
         public string Hazzard { get; set; }
 
         public string Reason { get; set; }   
+
+        public long LocationId { get; set; }
     }
 }

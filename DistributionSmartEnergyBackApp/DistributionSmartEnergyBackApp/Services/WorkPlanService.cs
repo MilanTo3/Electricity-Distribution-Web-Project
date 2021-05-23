@@ -73,7 +73,7 @@ namespace DistributionSmartEnergyBackApp.Services
                 info.Type = basicInfo.Type;
                 info.crewId = basicInfo.crewId;           
                 info.Status = basicInfo.Status;
-                info.Street = basicInfo.Street;
+                info.locationId = basicInfo.locationId;
                 info.user = basicInfo.user;
                 if(basicInfo.Type == "Planned work")
                 {

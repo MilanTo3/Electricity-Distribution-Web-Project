@@ -48,6 +48,7 @@ namespace DistributionSmartEnergyBackApp.Services
             var call = await _context.Calls.FindAsync(c.Id);
             if (call != null)
             {
+                call.LocationId = c.LocationId;
                 call.Reason = c.Reason;
                 call.Comment = c.Comment;
                 call.Hazzard = c.Hazzard;
