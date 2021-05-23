@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/Services/registration-service.service';
 import { User } from '../../Models/User.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-call',
@@ -13,8 +16,13 @@ export class NewCallComponent implements OnInit {
   customerInfo: User;
   
   user = new User("", "", "", "", "", "", "", "");
-  
-  constructor() { 
+  callForm = this.formBuilder.group({
+    comment: ['', Validators.required],
+    reason: ['', Validators.required],
+    hazzard: ['', Validators.required]
+    
+  });
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService) { 
     this.customerInfo = this.user;
   }
 
@@ -27,5 +35,10 @@ export class NewCallComponent implements OnInit {
   }
   selectCustomer()
   {
+  }
+
+  onSubmit()
+  {
+
   }
 }

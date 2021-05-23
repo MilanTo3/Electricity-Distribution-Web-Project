@@ -1,4 +1,5 @@
-﻿using DistributionSmartEnergyBackApp.Models.FormParts;
+﻿using DistributionSmartEnergyBackApp.Models.EntityModels;
+using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,8 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<SwitchingInstruction> SwitchingInstructions { get; set; }
 
         public DbSet<BasicInformationWP> BasicInformationsWP { get; set; }
+
+        public DbSet<CallModel> Calls { get; set; }
 
 
     }

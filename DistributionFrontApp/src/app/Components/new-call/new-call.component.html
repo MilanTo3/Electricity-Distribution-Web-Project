@@ -1,3 +1,5 @@
+<form class="call-form" action="" [formGroup]="callForm" (ngSubmit)="onSubmit()" >
+
 <div class="container">
 <div class="container ml-3">
     <h3 class="title">Submit a call</h3>
@@ -6,15 +8,15 @@
         <div class="col">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Reason:</label>
-                <input class="col-sm-8 form-control" type="text" />
+                <input class="col-sm-8 form-control" type="text" formControlName="reason"/>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Comment:</label>
-                <input class="col-sm-8 form-control" type="text" />
+                <input class="col-sm-8 form-control" type="text"  formControlName="comment"/>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Hazard:</label>
-                <input class="col-sm-8 form-control" type="text" />
+                <input class="col-sm-8 form-control" type="text"  formControlName="hazzard" />
             </div>
         </div>   
     </div>
@@ -60,7 +62,7 @@
     </div>
 </div>
 </div>
-
+</form>
 <!-- Modal -->
 <div class="modal fade" id="selectCustomerModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
