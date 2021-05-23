@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { User } from '../../../Models/User.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TeamMember } from '../../../Models/TeamMember.model';
+import { TeamsServiceService } from '../../../Services/teams-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-team',
@@ -10,33 +13,44 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateTeamComponent implements OnInit {
 
-  availableMem: User[] = [];
-  usedMem: User[] = [];
+  availableMem: TeamMember[] = [];
+  usedMem: TeamMember[] = [];
   teamsForm: FormGroup = this.fb.group({
     name: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private teamsService: TeamsServiceService, private toastr: ToastrService){
     this.addMockUsers();
   }
 
-  addMockUsers(){
+  async addMockUsers(){
 
-    let user1 = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Administrator", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
-    let user2 = new User("Rukia", "Kuchiki", "kuchiki123@gmail.com", "Dispatcher", "username1", "2019-01-16", "fejkadresfda", "/assets/Images/colorpattern.jpg");
-    let user3 = new User("Jordan", "Peterson", "jordanpeterson@gmail.com", "Consumer", "username3", "2019-01-16", "fejkfdadresa", "/assets/Images/colorpattern.jpg");
-    let user4 = new User("Petar" , "Bojovic", "petarbojovic@gmail.com", "Administrator", "username4", "2019-01-16", "fejkfadresa", "/assets/Images/colorpattern.jpg");
-    let user5 = new User("Zoe", "Castillo", "zoeDreamsCrow@gmail.com", "Consumer", "username4", "2021-2-15", "address", "/assets/Images/colorpattern.jpg");
-    let user6 = new User("Corey", "Gil-Shuster", "coreyGilShuster@gmail.com", "Dispatcher", "username4", "2021-02-13", "address", "/assets/Images/colorpattern.jpg");
+    this.availableMem = await (await this.teamsService.getAvailableTeamMembers()).toPromise();
     
-    this.availableMem.push(user1, user2, user3, user4, user5, user6);
-    this.usedMem.push(user1, user2, user3, user4, user5, user6);
+  }
+
+  onSubmit(){
+
+    let i;
+
+    let formdata: FormData = new FormData();
+    formdata.append('team', this.teamsForm.get('name').value);
+    for(i = 0 ; i < this.usedMem.length; i++){
+      formdata.append('usernames', this.usedMem[i].username);
+    }
+
+    this.teamsService.createTeam(formdata).subscribe(
+      res => {
+        this.toastr.success('Team has been successfully created.', 'Team Created.');
+      }
+    );
+
   }
 
   ngOnInit(): void {
   }
 
-  drop(event: CdkDragDrop<User[]>) {
+  drop(event: CdkDragDrop<TeamMember[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

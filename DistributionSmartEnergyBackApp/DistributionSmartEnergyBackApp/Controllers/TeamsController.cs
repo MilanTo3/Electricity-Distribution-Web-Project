@@ -50,7 +50,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpPost]
         [Route("addTeam")]
-        public async Task<IActionResult> addTeams(string team, string[] usernames) {
+        public async Task<IActionResult> addTeams([FromForm]string team, [FromForm]string[] usernames) {
 
             try {
 
