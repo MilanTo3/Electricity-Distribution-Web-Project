@@ -41,9 +41,9 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.Locations.ToListAsync();
         }
 
-        public async Task UpdateLocation(LocationModel location, long id)
+        public async Task UpdateLocation(LocationModel location)
         {
-            var loc = await _context.Locations.FindAsync(id);
+            var loc = await _context.Locations.FindAsync(location.Id);
             if(loc!= null)
             {
                 loc.Latitude = location.Latitude;
