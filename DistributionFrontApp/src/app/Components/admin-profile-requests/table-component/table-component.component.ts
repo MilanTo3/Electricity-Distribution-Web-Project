@@ -16,6 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { changeRoleRequest } from 'src/app/Models/roleRequestChange.model';
 import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
+import { TeamsServiceService } from '../../../Services/teams-service.service';
 import * as moment from 'moment';
 
 @Component({
@@ -43,7 +44,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.emitter.next(id);
   }
 
-  constructor(public router: Router, private workRequestService: WorkRequestServiceService, private workPlanService : WorkPlanServiceService) {
+    constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService, private workPlanService: WorkPlanServiceService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
@@ -100,12 +101,16 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   loadTeams() {
 
-    let team1 = new Team("Team-1", "Dispatch Team Telep");
-    let team2 = new Team("Team-2", "Dispatch Team Novo Naselje");
-    let team3 = new Team("Team-3", "Dispatch Team Satelit");
+    this.baseLink = "/viewTeam";
+    this.workRequestService.getAllBasicInfo().subscribe(
+      res => {
 
-    this.dataToPrint.push(team1, team2, team3);
-    this.keyNames = Object.getOwnPropertyNames(team3);
+        this.dataToPrint = res;
+        this.dataBind = new MatTableDataSource(this.dataToPrint);
+        this.keyNames = Object.getOwnPropertyNames(res[0]);
+        this.enableView();
+      }
+    );
 
   }
 
