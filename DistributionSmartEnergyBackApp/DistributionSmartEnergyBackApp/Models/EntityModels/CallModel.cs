@@ -7,5 +7,12 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
 {
     public class CallModel
     {
+        public long Id { get; set; }
+
+        public string Comment { get; set; }
+
+        public string Hazzard { get; set; }
+
+        public string Reason { get; set; }   
     }
 }
