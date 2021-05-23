@@ -1,7 +1,7 @@
 <div class="container pageContainer">
     <h3 class="title"><i class="fa fa-fw fa-map-marker"></i>Add a street location:</h3>
     <p class="labela">Here, the administrator can add a street and set its priority.</p>
-    <form name="infoForm" [formGroup]="locationForm">
+    <form name="infoForm" [formGroup]="locationForm" (ngSubmit)="submitForm()">
         <div class="row">
             <div class="col">
                 <div class="row border formPart">

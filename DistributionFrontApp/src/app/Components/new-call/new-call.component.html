@@ -7,6 +7,17 @@
     <div class="row ml-2">
         <div class="col">
             <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Location*:</label>
+                <input class="col-sm-8 form-control" type="text" formControlName="location" [matAutocomplete]="auto"/>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                      {{street}}
+                    </mat-option>
+                  </mat-autocomplete>
+                <small *ngIf="callForm.get('location').invalid && callForm.get('location').touched" class="text-danger">Location is required.</small>
+
+            </div>
+            <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Reason:</label>
                 <input class="col-sm-8 form-control" type="text" formControlName="reason"/>
             </div>

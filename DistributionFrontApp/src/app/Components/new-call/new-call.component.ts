@@ -1,9 +1,12 @@
+import { LocationService } from './../../Services/location.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/Services/registration-service.service';
 import { User } from '../../Models/User.model';
 import { ToastrService } from 'ngx-toastr';
 import { CallService } from 'src/app/Services/call.service';
+import { Observable } from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-call',
@@ -18,27 +21,56 @@ export class NewCallComponent implements OnInit {
   formdata = new FormData();
 
   user = new User("", "", "", "", "", "", "", "");
+  locations : any;
+  addedStreets = [];
+  filteredStreets: Observable<string[]>;
   callForm = this.formBuilder.group({
     id:[''],
+    location: ['', Validators.required],
     comment: ['', Validators.required],
     reason: ['', Validators.required],
     hazzard: ['', Validators.required]
     
   });
-  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService, private callService: CallService) { 
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService,
+     private callService: CallService, private locationService: LocationService) { 
     this.customerInfo = this.user;
   }
 
   ngOnInit(): void {
-    
+    this.locationService.GetLocations().subscribe(
+      res => {
+        this.locations = res;
+        this.locations.forEach(element => {
+          this.addedStreets.push(element["street"]);
+        });
+        console.log(this.addedStreets);
+      }
+    );
+    this.filteredStreets = this.callForm.get('location').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+    }
+  private _filter(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.addedStreets.filter(street => this._normalizeValue(street).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toString().toLowerCase().replace(/\s/g, '');
   }
 
   fillFormData(){
     this.formdata = new FormData();
+    let loc = this.callForm.get('location').value;
+    let index = this.addedStreets.indexOf(loc); // addedstreets redom popunjen ulicama, znaci imamo index preko kojeg mozemo naci id iz dobijenih lokacija :)
+    let locationid = this.locations[index]["id"];
     this.formdata.append('comment', this.callForm.get('comment').value);
     this.formdata.append('reason', this.callForm.get('reason').value);
     this.formdata.append('hazzard', this.callForm.get('hazzard').value);  
-    this.formdata.append('id', '0');  
+    this.formdata.append('id', '0'); // ovo se salje samo zbog modela koji back ocekuje, svakako ce dobiti novi id
+    this.formdata.append('locationId', locationid.toString());   
   }
   resetModal()
   {

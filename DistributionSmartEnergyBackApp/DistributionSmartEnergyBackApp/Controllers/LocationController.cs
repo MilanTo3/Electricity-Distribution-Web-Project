@@ -43,7 +43,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
         // POST: api/Location/AddLocation
         [HttpPost]
         [Route("AddLocation")]
-        public async Task<IActionResult> AddLocation([FromBody]LocationModel location)
+        public async Task<IActionResult> AddLocation([FromForm]LocationModel location)
         {
             try
             {
