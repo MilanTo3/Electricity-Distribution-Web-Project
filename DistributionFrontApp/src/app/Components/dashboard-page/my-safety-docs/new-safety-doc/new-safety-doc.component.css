@@ -1,21 +1,26 @@
-.container {
-    margin-top: 50px;
-}
-
-.buttons {
-    display: inline-block; 
-    margin-left: 48%;    
-    margin-top: 10px;
-}
-
-button{
-    background: #699fa1;
+.btn{
+    background: var(--c-blue-100);
     color: white;
     font-weight: bold;
-    margin-left: 5px;
+    border-color: var(--c-blue-100);
+}
+.btn:hover{
+    background: var(--c-orange-200);
+    border-color: var(--c-orange-200);
 }
 
-button:hover{
-    background: #dd612c;
+.title{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #ec7729;
+}
 
+.labela{
+    color: #699fa1;
+    font-family: 'Georgia';
+}
+
+.dugmad{
+    padding-top: 24px;
+    text-align: center;
 }

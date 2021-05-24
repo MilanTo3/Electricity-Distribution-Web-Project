@@ -1,11 +1,13 @@
 <div class="container basicInformationForm">
     <h3 class="title">Basic Information:</h3>
     <p class="labela">All information about the safety document.</p>
+    <form name="infoForm" [formGroup]="infoForm">
     <div class="row formRow">
-        <div class="col">   
+        <div class="col">  
+
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Type:</label>
-                <select class="col-sm-4 form-control">
+                <select class="col-sm-4 form-control" formControlName="type">
                     <option>Planned work</option>
                     <option>Unplanned work</option>
                 </select>
@@ -20,31 +22,38 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-4">Created By:</label>
-                <label class="col-sm-6"><b>John Johnes</b></label>
+                <input class="col-sm-5 form-control" type="text" formControlName="user" disabled/>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4">Crew:</label>
-                <label class="col-sm-6"><b>MTM Crew</b></label>
+                <input class="col-sm-5 form-control" type="text" formControlName="crew" disabled/>
             </div>
 
         
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Details:</label>
-                <input class="col-sm-6 form-control" type="text"/>
+                <input class="col-sm-6 form-control" type="text" formControlName="details"/>
+                <small *ngIf="infoForm.get('details').invalid && infoForm.get('details').touched" class="text-danger">Details is required.</small>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Notes:</label>
-                <input class="col-sm-6 form-control" type="text"/>
+                <input class="col-sm-6 form-control" type="text" formControlName="notes"/>
+                <small *ngIf="infoForm.get('notes').invalid && infoForm.get('notes').touched" class="text-danger">Notes is required.</small>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Phone Number:</label>
-                <input class="col-sm-6 form-control" type="text"/>
+                <input class="col-sm-6 form-control" type="text" formControlName="phoneNumber"/>
+                <small *ngIf="phoneNumber.invalid && phoneNumber.touched && !phoneNumber.errors.pattern" class="text-danger">Phone number is required.</small> 
+                <small *ngIf="phoneNumber.invalid && phoneNumber.errors.pattern" class="text-danger">Phone number contains only numbers</small>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Date/time created:</label>
-                <input class="col-sm-6 form-control" type="date" />
+                <input class="col-sm-6 form-control" type="datetime-local" formControlName="dateCreated" disabled/>
             </div>        
         
  
-</div>
+             </div>
+        </div>
+    </form>
+    <button class="btn" *ngIf="editMode" (click)="saveChanges()">Save Changes</button>
 </div>
