@@ -29,6 +29,7 @@ import { MyIncidentsComponent } from './Components/dashboard-page/my-incidents/m
 import { MySafetyDocsComponent } from './Components/dashboard-page/my-safety-docs/my-safety-docs.component';
 import { NewSafetyDocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/new-safety-doc.component';
 import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/basic-information-mysfdoc/basic-information-mysfdoc.component';
+
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
 import { SettingsComponent } from './Components/settings/settings.component';

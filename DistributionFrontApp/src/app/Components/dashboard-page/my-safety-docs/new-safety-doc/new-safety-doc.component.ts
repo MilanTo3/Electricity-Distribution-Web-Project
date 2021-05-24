@@ -35,7 +35,8 @@ export class NewSafetyDocComponent implements OnInit {
     }
     console.log(check);
     this.setInfoForm();
-    //this.setHistoryForm();
+    this.setHistoryForm();
+    this.setCheckListForm();
     await this.setMediaForm();
     console.log(this.wrapper);
     this.router.navigateByUrl('/newMySafetyDoc');
@@ -61,6 +62,17 @@ export class NewSafetyDocComponent implements OnInit {
 
     });
   }
+
+   setHistoryForm(){
+    let formdata = JSON.parse(sessionStorage.getItem("historyStateForm"));
+    this.wrapper.historyForm = formdata;
+  }
+
+  setCheckListForm() {
+    let formdata = JSON.parse(sessionStorage.getItem("checkListForm"));
+    this.wrapper.checkListForm = formdata;
+  }
+
 
 
 }

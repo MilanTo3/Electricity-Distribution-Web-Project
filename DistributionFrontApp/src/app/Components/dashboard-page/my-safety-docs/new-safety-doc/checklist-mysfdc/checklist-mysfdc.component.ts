@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-checklist-mysfdc',
@@ -7,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChecklistMysfdcComponent implements OnInit {
 
-  constructor() { }
+  checkListForm = this.fb.group({
+    firstCheck: [''],
+    secondCheck: [''],
+    thirdCheck: [''],
+    fourthCheck: ['']
+  });
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("checkListForm") != null) {
+      let formData = JSON.parse(sessionStorage.getItem("checkListForm"));
+      this.checkListForm.setValue(formData);
+    }
+    this.onValueChanges();
+  }
+
+  onValueChanges(): void {
+    this.checkListForm.valueChanges.subscribe(val => {
+      sessionStorage.setItem("checkListForm", JSON.stringify(this.checkListForm.value));
+      sessionStorage.setItem("infoFormValid", JSON.stringify(this.checkListForm.valid));
+      
+    })
   }
 
 }
+
+
+//checkListForm
