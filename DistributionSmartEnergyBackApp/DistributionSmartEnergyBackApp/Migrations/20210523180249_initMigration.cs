@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DistributionSmartEnergyBackApp.Migrations
 {
-    public partial class init : Migration
+    public partial class initMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserType = table.Column<int>(type: "int", nullable: true),
                     FilePicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TeamId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RegState = table.Column<int>(type: "int", nullable: true),
@@ -111,12 +111,29 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Calls",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Hazzard = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calls", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DispatchTeams",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    incidentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    dateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -363,6 +380,9 @@ namespace DistributionSmartEnergyBackApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "BasicInformationsWR");
+
+            migrationBuilder.DropTable(
+                name: "Calls");
 
             migrationBuilder.DropTable(
                 name: "DispatchTeams");

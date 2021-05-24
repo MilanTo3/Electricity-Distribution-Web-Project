@@ -40,7 +40,7 @@ namespace DistributionSmartEnergyBackApp.Services
             _context.DispatchTeams.Remove(team);
 
             var members = _context.applicationUsers.Where(x => x.TeamId == id.ToString());
-            await members.ForEachAsync(x => x.TeamId = null);
+            await members.ForEachAsync(x => x.TeamId = "none");
         }
 
         public async Task<TeamModel> GetTeam(long id) {
@@ -60,7 +60,7 @@ namespace DistributionSmartEnergyBackApp.Services
             }
 
             var thisTeamsMembers = await _context.applicationUsers.Where(x => x.TeamId == id.ToString()).ToListAsync();
-            thisTeamsMembers.ToList().ForEach(x => x.TeamId = null);
+            thisTeamsMembers.ToList().ForEach(x => x.TeamId = "none");
 
             foreach (string member in usernames) {
                 ApplicationUser user = await _context.applicationUsers.FirstOrDefaultAsync(x => x.UserName == member);
@@ -77,7 +77,7 @@ namespace DistributionSmartEnergyBackApp.Services
 
         public async Task<IEnumerable<TeamMemberModel>> getAvailableMembers() {
 
-            var availableMembers = await _context.applicationUsers.Where(x => x.UserType == ApplicationUser.UserTypeEnumeration.TeamMember && x.TeamId == null).ToListAsync();
+            var availableMembers = await _context.applicationUsers.Where(x => x.UserType == ApplicationUser.UserTypeEnumeration.TeamMember && x.TeamId == "none").ToListAsync();
 
             List<TeamMemberModel> members = new List<TeamMemberModel>();
             foreach (ApplicationUser teamMember in availableMembers) {

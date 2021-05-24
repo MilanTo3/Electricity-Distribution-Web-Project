@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DistributionSmartEnergyBackApp.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20210523130133_dodatiPoziv")]
-    partial class dodatiPoziv
+    [Migration("20210523180249_initMigration")]
+    partial class initMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

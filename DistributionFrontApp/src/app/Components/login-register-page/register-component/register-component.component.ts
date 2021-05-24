@@ -31,7 +31,7 @@ export class RegisterComponentComponent implements OnInit {
     PhoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
     UserType: ['Consumer'],
     FilePicture: [''],
-    TeamId: [null]
+    TeamId: ['none']
   },
     {
       validator: Validators.compose([customFormValidators.passwordConfirmCheck('Password', 'ConfirmedPassword', { 'confirmError': true })])
@@ -108,7 +108,7 @@ export class RegisterComponentComponent implements OnInit {
   }
 
   onChange(SelectValue: string) {
-    if (SelectValue === 'Team Member') {
+    if (SelectValue === 'TeamMember') {
       setTimeout(() => { this.teamSelected = true; }, 400);
     } else {
       this.teamSelected = false;
