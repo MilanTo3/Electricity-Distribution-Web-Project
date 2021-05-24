@@ -22,23 +22,33 @@
                     <small *ngIf="planBasicInfoForm.get('status').invalid && planBasicInfoForm.get('status').touched" class="text-danger">Status is required.</small>
               
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-6 col-form-label">Work request:</label>
-                    <input class="col-sm-6 " type="text" formControlName="workRequestId" />
-                    <small *ngIf="planBasicInfoForm.get('workRequestId').invalid && planBasicInfoForm.get('workRequestId').touched" class="text-danger">Work request is required.</small>
-                    <!-- ubaci browse dugme -->
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-6 col-form-label">Incident:</label>
-                    <input class="col-sm-6 " type="text" formControlName="incidentId"/>
-                    <small *ngIf="planBasicInfoForm.get('incidentId').invalid && planBasicInfoForm.get('incidentId').touched" class="text-danger">Incident is required.</small>
-                    <!-- ubaci browse dugme -->
-                </div>
+                <div class="unplanned" *ngIf="planBasicInfoForm.get('type').value=='Unplanned work'">
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label">Work request:</label>
+                        <input class="col-sm-6 " type="text" formControlName="workRequestId"  [matAutocomplete]="auto" />
+                        <small *ngIf="planBasicInfoForm.get('workRequestId').invalid && planBasicInfoForm.get('workRequestId').touched" class="text-danger">Work request is required.</small>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let request of filteredRequests | async" [value]="request">
+                              {{request}}
+                            </mat-option>
+                          </mat-autocomplete>                    
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label">Incident:</label>
+                        <input class="col-sm-6 " type="text" formControlName="incidentId" readonly/>
+                        <small *ngIf="planBasicInfoForm.get('incidentId').invalid && planBasicInfoForm.get('incidentId').touched" class="text-danger">Incident is required.</small>
+                        <!-- ubaci browse dugme -->
+                    </div>
+                </div>               
                 <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Street:</label>
-                    <input class="col-sm-6 form-control" type="text" formControlName="street"/>
+                    <input class="col-sm-6 form-control" type="text" formControlName="street" [matAutocomplete]="auto" />
                     <small *ngIf="planBasicInfoForm.get('street').invalid && planBasicInfoForm.get('street').touched" class="text-danger">Street is required.</small>
-
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                          {{street}}
+                        </mat-option>
+                      </mat-autocomplete>
                 </div>
                 <div class="form-group row">
                     <label class="col-form-label col-sm-6">Start date/time:</label>

@@ -74,7 +74,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error while deleting a location. [{e.Message}]");
+                Console.WriteLine($"Error while deleting a call. [{e.Message}]");
             }
         }
     }

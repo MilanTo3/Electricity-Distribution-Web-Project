@@ -100,7 +100,7 @@ export class NewCallComponent implements OnInit {
 
   }
   showToastrSuccess() {
-    this.toastr.success('Your profile change has been sent.', 'Form successfuly sent.');
+    this.toastr.success('Added a street successfully.', 'Yay!');
   }
   showToastrError() {
     this.toastr.error('Please check all the fields are filled out correctly.', 'Form not sent.');

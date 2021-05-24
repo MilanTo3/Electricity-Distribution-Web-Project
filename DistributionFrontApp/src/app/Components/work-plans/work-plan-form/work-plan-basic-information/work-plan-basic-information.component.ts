@@ -1,9 +1,12 @@
+import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { WorkPlanServiceService } from 'src/app/Services/work-plan-service.service';
 import { customFormValidators } from '../../../../Models/customValidators';
 import * as moment from 'moment';
-
+import { Observable } from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
+import { LocationService } from 'src/app/Services/location.service';
 
 @Component({
   selector: 'app-work-plan-basic-information',
@@ -11,16 +14,23 @@ import * as moment from 'moment';
   styleUrls: ['./work-plan-basic-information.component.css']
 })
 export class WorkPlanBasicInformationComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private wp: WorkPlanServiceService) { }
+  constructor(private formBuilder: FormBuilder, private wp: WorkPlanServiceService, private wr: WorkRequestServiceService, private locationService: LocationService) { }
   editMode = false;
+
+  workRequests : any;
+  addedWRs = [];
+  filteredRequests: Observable<string[]>;
+  locations : any;
+  addedStreets = [];
+  filteredStreets: Observable<string[]>;
 
   planBasicInfoForm  = this.formBuilder.group({
       type: ['', Validators.required],
       documentId: [''],
       status: ['', Validators.required],
-      workRequestId: ['popunjeno', Validators.required],
-      incidentId: ['popunjeno', Validators.required],
-      street: ['', Validators.required],
+      workRequestId: [''],
+      incidentId: [''],
+      street: [''],
       //locationId : [''],
       startDateTime: ['', Validators.required],
       endDateTime: ['', Validators.required],
@@ -45,21 +55,83 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       this.planBasicInfoForm.setValue(formdata);
     }
     this.onValueChanges();
+    this.onWRChanges();
+
+    this.wr.getAllBasicInfo().subscribe(
+      res => {
+        this.workRequests = res;
+        console.log(this.workRequests);
+        this.workRequests.forEach(element => {
+          this.addedWRs.push(element["documentId"]);
+        });
+      }
+    );
+    this.filteredRequests = this.planBasicInfoForm.get('workRequestId').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterWRs(value))
+    );
+
+    this.locationService.GetLocations().subscribe(
+      res => {
+        this.locations = res;
+        this.locations.forEach(element => {
+          this.addedStreets.push(element["street"]);
+        });
+      }
+    );
+    this.filteredStreets = this.planBasicInfoForm.get('street').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterStreets(value))
+    );
+    }
+  private _filterStreets(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.addedStreets.filter(street => this._normalizeValue(street).includes(filterValue));
   }
+  private _filterWRs(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.addedWRs.filter(req => this._normalizeValue(req).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toString().toLowerCase().replace(/\s/g, '');
+  }
+
 
   onValueChanges(): void {
     this.planBasicInfoForm.valueChanges.subscribe(val => {
       sessionStorage.setItem("planBasicInfoForm", JSON.stringify(this.planBasicInfoForm.value));
       sessionStorage.setItem("planBasicInfoFormValid", JSON.stringify(this.planBasicInfoForm.valid));
-      
     })
   }
-  
+  onWRChanges(): void{
+    this.planBasicInfoForm.get('workRequestId').valueChanges.subscribe(val=>
+      {
+        this.planBasicInfoForm.get('street').setValue(this.getStreet(this.planBasicInfoForm.get('workRequestId').value));
+        this.planBasicInfoForm.get('incidentId').setValue(this.getIncident(this.planBasicInfoForm.get('workRequestId').value)); 
+      }
+    )
+  }
+  getStreet(wrDocumentId):string
+  {
+    let index = this.addedWRs.indexOf(wrDocumentId); 
+    if (this.workRequests[index]["street"]!= undefined)
+      return this.workRequests[index]["street"];
+    else
+      return "Work request does not have a street.";
+  }
+  getIncident(wrDocumentId):string
+  {
+    let index = this.addedWRs.indexOf(wrDocumentId); 
+    if (this.workRequests[index]["incidentId"]!= undefined)
+      return this.workRequests[index]["incidentId"];
+    else
+      return "Work request does not have a incident.";
+  }
   getAndFill(id){
 
     this.wp.getBasicInformation(id).subscribe(
       res => {
-
         this.planBasicInfoForm.get('type').setValue(res["type"]);
         this.planBasicInfoForm.get('status').setValue(res["status"]);
         this.planBasicInfoForm.get('street').setValue(res["street"]);
@@ -73,7 +145,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
         this.planBasicInfoForm.get('purpose').setValue(res["purpose"]);
         this.planBasicInfoForm.get('details').setValue(res["details"]);
         this.planBasicInfoForm.get('notes').setValue(res["notes"]);
-       // this.planBasicInfoForm.get('locationId').setValue(res["locationId"]);
+        //this.planBasicInfoForm.get('locationId').setValue(res["locationId"]);
         this.planBasicInfoForm.get('crewId').setValue(res["crewId"]);
         this.planBasicInfoForm.get('company').setValue(res["company"]);
       }

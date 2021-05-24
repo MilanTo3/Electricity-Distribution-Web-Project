@@ -121,7 +121,7 @@ import { AuthInterceptor } from './Components/auth/auth.interceptor';
     ApproveRolesComponent,
     PieChartKarticaComponent,
     PieChartComponent,
-  
+
   ],
   imports: [
     BrowserModule,
