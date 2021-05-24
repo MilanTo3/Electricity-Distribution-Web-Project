@@ -107,6 +107,7 @@ const routes: Routes = [
     { path: "addStreet", component: AddStreetComponent },
     { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
     { path: "approveRoleChanges", component: ApproveRolesComponent},
+    { path: "devices", component: DevicesComponentComponent}
   ]},
     
 ];
