@@ -101,7 +101,6 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   async loadTeams() {
 
-    this.baseLink = "/viewTeam";
     let res = await this.teamsService.getAllTeams().toPromise();
     this.dataToPrint = res;
     this.dataBind = new MatTableDataSource(this.dataToPrint);

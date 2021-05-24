@@ -194,6 +194,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 }
                 if (model.FilePicture != null) {
                     saveImage(applicationUser, model.FilePicture);
+                    await _userManager.UpdateAsync(applicationUser);
                 }
                 return Ok("ok");
             }
@@ -203,7 +204,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         }
 
-        public async void saveImage(ApplicationUser user, IFormFile file) {
+        public void saveImage(ApplicationUser user, IFormFile file) {
 
             var extension = Path.GetExtension(file.FileName);
             string fileName = user.UserName + extension;
@@ -217,7 +218,6 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 file.CopyTo(stream);
             }
 
-            await _userManager.UpdateAsync(user);
         }
         public  void deleteImage(ApplicationUser user)
         {
