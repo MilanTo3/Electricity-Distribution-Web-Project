@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import { LocationService } from 'src/app/Services/location.service';
+import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 
 @Component({
   selector: 'app-work-plan-basic-information',
@@ -16,7 +17,7 @@ import { LocationService } from 'src/app/Services/location.service';
 export class WorkPlanBasicInformationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private wp: WorkPlanServiceService, private wr: WorkRequestServiceService, private locationService: LocationService) { }
   editMode = false;
-
+  loggedInUser: LoggedUser;
   workRequests : any;
   addedWRs = [];
   filteredRequests: Observable<string[]>;
@@ -35,7 +36,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       startDateTime: ['', Validators.required],
       endDateTime: ['', Validators.required],
       crewId: [0, Validators.required],
-      user: ['popunjeno', Validators.required],
+      user: ['', Validators.required],
       company: ['', Validators.required],
       phoneNumber: ['',  [Validators.required, Validators.pattern('^[- +0-9]+$')]],
       createdDateTime: ['', Validators.required],
@@ -56,6 +57,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
     }
     this.onValueChanges();
     this.onWRChanges();
+    this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedUser'));
 
     this.wr.getAllBasicInfo().subscribe(
       res => {
@@ -153,6 +155,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
 
     let id = sessionStorage.getItem("idDoc");
     this.planBasicInfoForm.get('documentId').setValue(id);
+    this.planBasicInfoForm.get('user').setValue(JSON.parse(sessionStorage.getItem('loggedUser')).username);
     this.wp.updateBasicInfo(this.planBasicInfoForm.value).subscribe(
       res => {
         console.log(res);

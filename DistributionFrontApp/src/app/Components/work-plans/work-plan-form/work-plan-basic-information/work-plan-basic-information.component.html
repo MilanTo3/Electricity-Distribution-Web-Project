@@ -61,12 +61,12 @@
                 </div>
             </div>
             <div class="col">
-                <div class="form-group row">
+                <div *ngIf="editMode" class="form-group row">
                     <label class="col-sm-6 col-form-label">Field crew:</label>
-                    <input class="col-sm-6 " type="text" formControlName="crewId"/>
+                    <input class="col-sm-6 " type="text" formControlName="crewId" readonly/>
                     <small *ngIf="planBasicInfoForm.get('crewId').invalid && planBasicInfoForm.get('crewId').touched" class="text-danger">Crew is required.</small>
                 </div>
-                <div class="form-group row">
+                <div *ngIf="editMode" class="form-group row">
                     <label class="col-sm-6 col-form-label">Created by:</label>
                     <input class="col-sm-6 " formControlName="user" type="text" readonly/>
                     <small *ngIf="planBasicInfoForm.get('user').invalid && planBasicInfoForm.get('user').touched" class="text-danger">User is required.</small>
@@ -84,9 +84,9 @@
                     <small *ngIf="planBasicInfoForm.get('phoneNumber').invalid && planBasicInfoForm.get('phoneNumber').touched" class="text-danger">Phone number is required.</small>
 
                 </div>
-                <div class="form-group row">
+                <div  *ngIf="editMode" class="form-group row">
                     <label class="col-sm-6 col-form-label">Date/time created:</label>
-                    <input class="col-sm-6 form-control" type="date" formControlName="createdDateTime" />
+                    <input class="col-sm-6 form-control" type="date" formControlName="createdDateTime" readonly/>
                     <small *ngIf="planBasicInfoForm.get('createdDateTime').invalid && planBasicInfoForm.get('createdDateTime').touched" class="text-danger">Created date and time are required.</small>
 
                 </div>
