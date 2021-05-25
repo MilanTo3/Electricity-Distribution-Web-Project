@@ -43,6 +43,30 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.ToTable("Calls");
                 });
 
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.DeviceModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Coordinates")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Devices");
+                });
+
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.BasicInformationWR", b =>
                 {
                     b.Property<long>("Id")

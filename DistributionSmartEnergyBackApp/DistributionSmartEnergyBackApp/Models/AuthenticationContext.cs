@@ -33,6 +33,8 @@ namespace DistributionSmartEnergyBackApp.Models
 
         public DbSet<CallModel> Calls { get; set; }
 
+        public DbSet<DeviceModel> Devices { get; set; }
+
 
     }
 }
