@@ -29,3 +29,35 @@ label{
     font-family: 'Georgia';
     margin-bottom: 25px;
 }
+
+.btn{
+    background: var(--c-blue-100);
+    color: white;
+    font-weight: bold;
+    border-color: var(--c-blue-100);
+}
+.btn:hover{
+    background: var(--c-orange-200);
+    border-color: var(--c-orange-200);
+}
+
+.dugmad{
+    padding-top: 40px;
+    text-align: center;
+    padding-right: 150px;
+}
+
+.row{
+    padding-top: 7px;
+}
+
+.text-danger{
+    font-weight: bold;  
+    padding-left: 350px;
+    animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
+}

@@ -33,3 +33,7 @@ export class MySafetyDocsWrapper{
     mediaForm: pictureModel[] = [];
 
 }
+
+export class AddNewDeviceWrapper {
+    infoForm: any;
+}
