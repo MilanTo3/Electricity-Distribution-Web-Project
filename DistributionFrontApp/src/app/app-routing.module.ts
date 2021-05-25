@@ -29,7 +29,7 @@ import { MyIncidentsComponent } from './Components/dashboard-page/my-incidents/m
 import { MySafetyDocsComponent } from './Components/dashboard-page/my-safety-docs/my-safety-docs.component';
 import { NewSafetyDocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/new-safety-doc.component';
 import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/basic-information-mysfdoc/basic-information-mysfdoc.component';
-import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
+
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
 import { SettingsComponent } from './Components/settings/settings.component';
@@ -77,7 +77,7 @@ const routes: Routes = [
   { path:"newMySafetyDoc", component: NewSafetyDocComponent,
     children: [
       { path: "basicInformation", component: BasicInformationMysfdocComponent},
-      { path: "historyOfMyDocChanges", component: HistoryChangeMysfdcComponent },
+      { path: "historyOfMyDocChanges", component: HistoryStateChangesComponent },
       { path: "multimediaAttachments", component: MultimediaAttachmentsComponent },
       { path: "checklist", component: ChecklistMysfdcComponent }
     ]
@@ -107,6 +107,7 @@ const routes: Routes = [
     { path: "addStreet", component: AddStreetComponent },
     { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
     { path: "approveRoleChanges", component: ApproveRolesComponent},
+    { path: "devices", component: DevicesComponentComponent}
   ]},
     
 ];

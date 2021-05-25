@@ -42,7 +42,6 @@ import { CardDashboardComponent } from './Components/dashboard-page/card-dashboa
 import { MyIncidentsComponent } from './Components/dashboard-page/my-incidents/my-incidents.component';
 import { NewSafetyDocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/new-safety-doc.component';
 import { BasicInformationMysfdocComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/basic-information-mysfdoc/basic-information-mysfdoc.component';
-import { HistoryChangeMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/history-change-mysfdc/history-change-mysfdc.component';
 import { ChecklistMysfdcComponent } from './Components/dashboard-page/my-safety-docs/new-safety-doc/checklist-mysfdc/checklist-mysfdc.component';
 import { NewDeviceComponent } from './Components/dashboard-page/my-incidents/new-incident/devices-component/new-device/new-device.component';
 import { NavigationBarComponent } from './Components/dashboard-page/navigation-bar/navigation-bar.component';
@@ -104,7 +103,6 @@ import { AuthInterceptor } from './Components/auth/auth.interceptor';
     MyIncidentsComponent,
     NewSafetyDocComponent,
     BasicInformationMysfdocComponent,
-    HistoryChangeMysfdcComponent,
     ChecklistMysfdcComponent,
     NewDeviceComponent,
     NavigationBarComponent,

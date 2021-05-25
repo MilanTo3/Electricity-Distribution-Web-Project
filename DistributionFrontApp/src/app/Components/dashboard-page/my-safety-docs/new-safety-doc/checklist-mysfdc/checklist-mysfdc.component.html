@@ -1,28 +1,26 @@
 <div class="container basicInformationForm">
     <h3 class="title">Checklist:</h3>
     <p class="labela">Please fill in the checkboxes listed below.</p>
-    <div class="row formRow">
-        <div class="col">
-        
-            <div class="form-group row">
-                <label class="col-sm-8 col-form-label">All work operations completed?</label>
-                <input class="col-sm-4" type="checkbox" />
+    <form name="checkListForm" [formGroup]="checkListForm">
+        <div class="row formRow">
+            <div class="col">           
+                <div class="form-group row">
+                    <label class="col-sm-8 col-form-label">All work operations completed?</label>
+                    <input class="col-sm-4" type="checkbox" formControlName="firstCheck"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-8 col-form-label">All tags removed?</label>
+                    <input class="col-sm-4" type="checkbox" formControlName="secondCheck"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-8 col-form-label">Grounding removed?</label>
+                    <input class="col-sm-4" type="checkbox" formControlName="thirdCheck"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-8 col-form-label">Ready for service?</label>
+                    <input class="col-sm-4" type="checkbox" formControlName="fourthCheck"/>
+                </div>            
             </div>
-            <div class="form-group row">
-                <label class="col-sm-8 col-form-label">All tags removed?</label>
-                <input class="col-sm-4" type="checkbox" />
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-8 col-form-label">Grounding removed?</label>
-                <input class="col-sm-4" type="checkbox" />
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-8 col-form-label">Ready for service?</label>
-                <input class="col-sm-4" type="checkbox" />
-            </div>
-                
         </div>
-     
- 
-</div>
+    </form> 
 </div>

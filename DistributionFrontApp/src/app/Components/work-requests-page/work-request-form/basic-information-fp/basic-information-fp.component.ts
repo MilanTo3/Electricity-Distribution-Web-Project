@@ -18,7 +18,7 @@ export class BasicInformationFPComponent implements OnInit {
     user: [''],
     street: ['', Validators.required],
     startDate: [null, Validators.required],
-    dateCreated: [Date.now],
+    dateCreated: [''],
     endDate: [null, Validators.required],
     emergency: [false, Validators.required],
     company: ['', Validators.required],
@@ -34,13 +34,13 @@ export class BasicInformationFPComponent implements OnInit {
   constructor(private fb: FormBuilder, private wr: WorkRequestServiceService) { }
 
   ngOnInit(): void {
-
+    if(sessionStorage.getItem("infoForm") !== null) {
+      let formdata = JSON.parse(sessionStorage.getItem("infoForm"));
+      this.infoForm.setValue(formdata);
+    }
     if(sessionStorage.getItem("idDoc") !== null){
       this.getAndFill(sessionStorage.getItem("idDoc"));
       this.editMode = true;
-    }else if (sessionStorage.getItem("infoForm") !== null) {
-      let formdata = JSON.parse(sessionStorage.getItem("infoForm"));
-      this.infoForm.setValue(formdata);
     }
     this.onValueChanges();
   }

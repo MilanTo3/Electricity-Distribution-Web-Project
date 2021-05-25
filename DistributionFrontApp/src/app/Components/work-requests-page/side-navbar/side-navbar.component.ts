@@ -14,7 +14,7 @@ export class SideNavbarComponent implements OnInit {
     ["Basic information", "History of state changes", "Multimedia attachments", "Switching instructions"],
     ["Browse and Manage Teams", "Create a Team"],
     ["Basic Information", "History of State Changes", "Multimedia Attachments", "Checklist"], //My Safety Docs
-    ["Approve Requests", "Approve Role Change", "Add Street Location"]
+    ["Approve Requests", "Approve Role Change", "Add Street Location", "Add Device"]
     //["Basic Information", "Devices", "Resolution", "Calls"],
   ];
   contentRoutes: string[][] = [
@@ -23,7 +23,7 @@ export class SideNavbarComponent implements OnInit {
     ["basic-information", "history-of-state-changes", "multimedia-attachments", "switching-instructions"],
     ["browseandManageTeams", "createTeam"],
     ["basicInformation", "historyOfMyDocChanges", "multimediaAttachments", "checklist"], //My Safety Docs
-    ["adminProfileRequests", "approveRoleChanges", "addStreet"]
+    ["adminProfileRequests", "approveRoleChanges", "addStreet", "devices"]
     /////////////////////////////////////////////////////////
     
   ];
