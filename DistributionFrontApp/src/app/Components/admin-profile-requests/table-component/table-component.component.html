@@ -35,8 +35,8 @@
             <button mat-button class="adminButton btn btn-danger">Delete</button>
           </div>
           <div *ngIf="tableid===7">
-            <button [hidden]="hideElement" routerLink="/viewTeam" class="teamButtons btn btn-primary">View Team</button>
-            <button [hidden]="hideElement" routerLink="/editTeam" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
+            <button [hidden]="hideElement" [routerLink]="['/viewTeam', row.id]" class="teamButtons btn btn-primary">View Team</button>
+            <button [hidden]="hideElement" [routerLink]="['/editTeam', row.id]" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
             <button [hidden]="choose" class="teamButtons btn btn-primary" (click)="emitId(row.id)" >Choose</button>
           </div>
           <div *ngIf="tableid===9">

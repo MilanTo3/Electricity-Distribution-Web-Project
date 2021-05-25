@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/Models/User.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
+import { TeamsServiceService } from 'src/app/Services/teams-service.service';
+import { TeamMember } from '../../../Models/TeamMember.model';
+import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-team',
@@ -10,28 +15,60 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditTeamComponent implements OnInit {
 
-  availableMem: User[] = [];
-  usedMem: User[] = [];
+  availableMem: TeamMember[] = [];
+  usedMem: TeamMember[] = [];
+  dateCreated;
+  incidentId;
+  parameter;
+
   teamsForm: FormGroup = this.fb.group({
     name: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder) { this.addMockUsers(); }
+  constructor(private routerActivate: ActivatedRoute, private router: Router, private fb: FormBuilder, private teamService: TeamsServiceService, private toastr: ToastrService) { }
 
-  addMockUsers(){
+  async ngOnInit(): Promise<void> {
 
-    let user1 = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Administrator", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
-    let user2 = new User("Rukia", "Kuchiki", "kuchiki123@gmail.com", "Dispatcher", "username1", "2019-01-16", "fejkadresfda", "/assets/Images/colorpattern.jpg");
-    let user3 = new User("Jordan", "Peterson", "jordanpeterson@gmail.com", "Consumer", "username3", "2019-01-16", "fejkfdadresa", "/assets/Images/colorpattern.jpg");
-    let user4 = new User("Petar" , "Bojovic", "petarbojovic@gmail.com", "Administrator", "username4", "2019-01-16", "fejkfadresa", "/assets/Images/colorpattern.jpg");
-    let user5 = new User("Zoe", "Castillo", "zoeDreamsCrow@gmail.com", "Consumer", "username4", "2021-2-15", "address", "/assets/Images/colorpattern.jpg");
-    let user6 = new User("Corey", "Gil-Shuster", "coreyGilShuster@gmail.com", "Dispatcher", "username4", "2021-02-13", "address", "/assets/Images/colorpattern.jpg");
-    
-    this.availableMem.push(user1, user2, user3, user4, user5, user6);
-    this.usedMem.push(user1, user2, user3, user4, user5, user6);
+    this.parameter = this.routerActivate.snapshot.paramMap.get('teamId');
+
+    let teamInfo = await this.teamService.getTeam(this.parameter).toPromise();
+    this.teamsForm.get('name').setValue(teamInfo["name"]);
+    this.dateCreated = moment(teamInfo["dateCreated"]).format('YYYY-MM-DD');
+    this.incidentId = teamInfo["incidentId"];
+
+    this.availableMem = await this.teamService.getAvailableTeamMembers().toPromise();
+    this.usedMem = await this.teamService.getTeamMembers(this.parameter).toPromise();
+
   }
 
-  ngOnInit(): void {
+  submitTeamChange(){
+    let i;
+    let formdata: FormData = new FormData();
+    formdata.append('team', this.teamsForm.get('name').value);
+    for(i = 0 ; i < this.usedMem.length; i++){
+      formdata.append('usernames', this.usedMem[i].username);
+    }
+    formdata.append('id', this.parameter);
+
+    this.teamService.editTeam(formdata).subscribe(
+      res => {
+        this.router.navigateByUrl('/teamsPage');
+        this.toastr.success('Team has been successfully edited.', 'Team edited.');
+      }
+    );
+  }
+
+  deleteTeam(){
+
+    let formdata = new FormData();
+    formdata.append('id', this.parameter);
+    this.teamService.deleteTeam(formdata).subscribe(
+      res => {
+        this.router.navigateByUrl('/teamsPage');
+        this.toastr.success('Team has been successfully deleted.', 'Team deleted.');
+      }
+    );
+
   }
 
   drop(event: CdkDragDrop<User[]>) {

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/Models/User.model';
+import { TeamsServiceService } from '../../../Services/teams-service.service';
+import { TeamMember } from '../../../Models/TeamMember.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-view-team',
@@ -8,23 +12,24 @@ import { User } from 'src/app/Models/User.model';
 })
 export class ViewTeamComponent implements OnInit {
 
-  usedMem: User[] = [];
+  usedMem: TeamMember[] = [];
+  dateCreated;
+  incidentId;
+  parameter;
+  name;
 
-  constructor() { this.addMockUsers() }
+  constructor(private route: ActivatedRoute, private teamService: TeamsServiceService) { }
 
-  addMockUsers(){
+  async ngOnInit(): Promise<void> {
 
-    let user1 = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Administrator", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
-    let user2 = new User("Rukia", "Kuchiki", "kuchiki123@gmail.com", "Dispatcher", "username1", "2019-01-16", "fejkadresfda", "/assets/Images/colorpattern.jpg");
-    let user3 = new User("Jordan", "Peterson", "jordanpeterson@gmail.com", "Consumer", "username3", "2019-01-16", "fejkfdadresa", "/assets/Images/colorpattern.jpg");
-    let user4 = new User("Petar" , "Bojovic", "petarbojovic@gmail.com", "Administrator", "username4", "2019-01-16", "fejkfadresa", "/assets/Images/colorpattern.jpg");
-    let user5 = new User("Zoe", "Castillo", "zoeDreamsCrow@gmail.com", "Consumer", "username4", "2021-2-15", "address", "/assets/Images/colorpattern.jpg");
-    let user6 = new User("Corey", "Gil-Shuster", "coreyGilShuster@gmail.com", "Dispatcher", "username4", "2021-02-13", "address", "/assets/Images/colorpattern.jpg");
-    
-    this.usedMem.push(user1, user2, user3, user4, user5, user6);
-  }
+    this.parameter = this.route.snapshot.paramMap.get('teamId');
 
-  ngOnInit(): void {
+    let teamInfo = await this.teamService.getTeam(this.parameter).toPromise();
+    this.name = teamInfo["name"];
+    this.dateCreated = moment(teamInfo["dateCreated"]).format('YYYY-MM-DD');
+    this.incidentId = teamInfo["incidentId"];
+
+    this.usedMem = await this.teamService.getTeamMembers(this.parameter).toPromise();
   }
 
 }

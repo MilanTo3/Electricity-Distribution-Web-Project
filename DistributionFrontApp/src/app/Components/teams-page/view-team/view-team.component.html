@@ -9,7 +9,7 @@
             </div>
             <div class="form-group">
                 <label class="col-md-5 labela">Team name:</label>
-                <label class="col-md-7 labela1" style="font-weight: bold;">Telep dispatch team</label>
+                <label class="col-md-7 labela1" style="font-weight: bold;">{{ name }}</label>
             </div>
             <div class="form-group">
                 <label class="col-md-5 labela">Team member count:</label>
@@ -17,13 +17,13 @@
             </div>
             <div class="form-group">
                 <label class="col-md-5 labela">Currently working on:</label>
-                <label class="col-md-7 labela1" style="font-weight: bold;">Incident-1</label>
+                <label class="col-md-7 labela1" style="font-weight: bold;">{{ incidentId }}</label>
             </div>
             <div class="form-group">
                 <label class="col-md-5 labela">Date formed:</label>
-                <label class="col-md-7 labela1" style="font-weight: bold;">23.07.2021</label>
+                <label class="col-md-7 labela1" style="font-weight: bold;">{{ dateCreated }}</label>
             </div>
-            <button class="btn buttonClass" style="margin-top: 24px; width: 200px;" routerLink="/editTeam">Edit team</button>
+            <button class="btn buttonClass" style="margin-top: 24px; width: 200px;" [routerLink]="['/editTeam', parameter]">Edit team</button>
         </div>
         <div class="col-md-6" style="margin-top: 34px;">
             <div class="form-group">

@@ -99,8 +99,8 @@ const routes: Routes = [
   { path: "new-call", component: NewCallComponent},
   { path: "notifications", component: NotificationsComponent},
   { path: "settings", component: SettingsComponent},
-  { path: "editTeam", component: EditTeamComponent },
-  { path: "viewTeam", component: ViewTeamComponent },
+  { path: "editTeam/:teamId", component: EditTeamComponent },
+  { path: "viewTeam/:teamId", component: ViewTeamComponent },
   { path: "consumers", component: ConsumersComponent },
   { path: "new-consumer", component: NewConsumerComponent},
   { path: "adminPanel", component: AdminPanelComponent, canActivate: [AuthGuard], children: [

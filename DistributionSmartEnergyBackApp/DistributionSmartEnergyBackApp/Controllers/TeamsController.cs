@@ -48,6 +48,20 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         }
 
+        [HttpGet]
+        [Route("getTeam")]
+        public async Task<IActionResult> getTeam(long id) {
+
+            try {
+                var team = await _context.GetTeam(id);
+                return Ok(team);
+            }
+            catch {
+                return BadRequest();
+            }
+
+        }
+
         [HttpPost]
         [Route("addTeam")]
         public async Task<IActionResult> addTeams([FromForm]string team, [FromForm]string[] usernames) {
@@ -66,7 +80,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpPost]
         [Route("updateTeam")]
-        public async Task<IActionResult> updateTeams(long id, string team, string[] usernames) {
+        public async Task<IActionResult> updateTeams([FromForm]long id, [FromForm]string team, [FromForm]string[] usernames) {
 
             try {
                 await _context.UpdateTeam(id, team, usernames);
@@ -81,7 +95,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpPost]
         [Route("deleteTeam")]
-        public async Task<IActionResult> deleteTeams(long id) {
+        public async Task<IActionResult> deleteTeams([FromForm]long id) {
 
             try {
 

@@ -21,4 +21,20 @@ export class TeamsServiceService {
     return this.http.get<TeamMember[]>('http://localhost:24885/api/Teams/getAvailableTeamMembers');
   }
 
+  getTeam(id){
+    return this.http.get('http://localhost:24885/api/Teams/getTeam?id=' + id);
+  }
+
+  getTeamMembers(id){
+    return this.http.get<TeamMember[]>('http://localhost:24885/api/Teams/getMembers?id=' + id);
+  }
+
+  deleteTeam(formdata){
+    return this.http.post('http://localhost:24885/api/Teams/deleteTeam', formdata);
+  }
+
+  editTeam(formdata){
+    return this.http.post('http://localhost:24885/api/Teams/updateTeam', formdata);
+  }
+
 }
