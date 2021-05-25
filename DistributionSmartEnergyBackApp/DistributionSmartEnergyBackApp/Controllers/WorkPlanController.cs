@@ -61,6 +61,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
         }
 
         [HttpGet]
+        [Route("GetSwitchingInstructionsWP")]
+        public async Task<IEnumerable<SwitchingInstruction>> GetSwitchingInstructionsWP(string id)
+        {
+            return await _context.GetSwitchingInstructionsWP(id);
+        }
+
+
+        [HttpGet]
         [Route("GetAttachments")]
         public async Task<IActionResult> GetAttachments(string id)
         {
@@ -152,6 +160,40 @@ namespace DistributionSmartEnergyBackApp.Controllers
             try
             {
                 await _context.UpdateHistory(historyInfo);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        [HttpPost]
+        [Route("UpdateInstructions")]
+        public async Task<IActionResult> UpdateSwitchingInstructions([FromBody]SwitchingInstruction[] instructions)
+        {
+
+            try
+            {
+                await _context.UpdateSwitchingInstructions(instructions);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        [HttpDelete]
+        [Route("DeleteInstructions")]
+        public async Task<IActionResult> DeleteSwitchingInstructions([FromBody]SwitchingInstruction[] instructions)
+        {
+
+            try
+            {
+                await _context.DeleteSwitchingInstructions(instructions);
                 return Ok();
             }
             catch (Exception ex)

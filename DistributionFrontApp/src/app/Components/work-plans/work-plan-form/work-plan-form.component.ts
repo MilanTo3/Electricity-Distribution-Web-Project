@@ -23,6 +23,7 @@ export class WorkPlanFormComponent implements OnInit {
 
     let id = this.route.snapshot.paramMap.get('idparam');
     if(id !== null && id !== undefined){
+      console.log(id);
       sessionStorage.setItem('idDoc', id);
       this.editMode = true;
     }

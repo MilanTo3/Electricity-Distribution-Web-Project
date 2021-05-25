@@ -1,3 +1,4 @@
+<div class="container">
 <form [formGroup]="WPSwitchingInstuctionsForm" >
   <div class="container">
       <h3 class="title">Switching instructions:</h3>
@@ -7,18 +8,6 @@
                   <button class="btn btn-primary buttons"  data-toggle="modal" data-target="#instructionModal">
                     <i class="fa fa-file" ></i>
                       New
-                  </button>
-              </div>
-              <div class="col col-lg-2">
-                  <button class="btn btn-primary buttons" (click)="executeInstruction()">
-                    <i class="fa fa-check-square"></i>
-                    Execute
-                  </button>
-              </div>
-              <div class="col col-lg-2">
-                  <button class="btn btn-primary buttons" (click)="deleteInstruction()">
-                    <i class="fa fa-trash"></i>
-                    Delete
                   </button>
               </div>
               <div class="col col-lg-3">
@@ -32,10 +21,10 @@
               <div class="row mt-4">
                   <div class="container">
                       <tbody >
-                          <tr formArrayName="items" *ngFor="let item of WPSwitchingInstuctionsForm.get('items')['controls']; let i = index;" (click)="onSelect(item.value.id)">
+                          <tr formArrayName="items" *ngFor="let item of WPSwitchingInstuctionsForm.get('items')['controls']; let i = index;">
                               <div class="input-group mb-3" [formGroupName]="i">
                                 <div class="input-group-prepend" >
-                                <input class="input-group-text" formControlName="id" readonly/>
+                                <input class="input-group-text" formControlName="deviceId" readonly/>
 
                                 </div>
                                 <input type="text" class="form-control"  aria-label="instruction" formControlName="name" readonly>
@@ -43,8 +32,11 @@
                                 <div class="input-group-append">
                                 <input class="input-group-text" formControlName="status" [ngStyle]="{'color': (item.value!=null && item.value.status=='EXECUTED')? 'var(--c-blue-100)' : 'var(--c-orange-100)'}" readonly/>
                               </div>
-                            </div>
-                             
+                              <div *ngIf="editMode">
+                                <button class="btn btn-primary buttons ml-2 mr-2" (click)="executeInstruction(i)"><i class="fa fa-check-square"></i>Execute</button>
+                              </div>
+                              <button class="btn btn-primary buttons mr-2" (click)="deleteInstruction(i)"><i class="fa fa-trash"></i>Delete</button>
+                              </div>                             
                           </tr>
                       </tbody>
                   </div>
@@ -55,6 +47,15 @@
           </div>
   </div>
 </form>
+<div class="row justify-content-center mt-5">
+  <div *ngIf="editMode" class="w-auto ml-5">
+      <button class="btn" (click)="saveChanges()">Save Changes</button>
+      <button class="btn ml-3" routerLink="/workPlans">Cancel</button>
+  </div>
+</div>
+
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">

@@ -14,7 +14,7 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan
         public string Type { get; set; }
         public string workRequestId { get; set; }
         public string incidentId { get; set; }
-       // public string Street { get; set; } 
+        public string Street { get; set; } 
         public long locationId { get; set; } // street dobijamo preko id lokacije
         public DateTime startDateTime { get; set; }
         public DateTime endDateTime { get; set; }

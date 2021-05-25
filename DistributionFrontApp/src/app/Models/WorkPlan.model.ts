@@ -9,7 +9,7 @@ export class WorkPlan{
 
     constructor(id: string, startDate: string, phoneNo: string, state: string, address: string){
 
-        this.id = id;
+        this.documentId = id;
         this.startDate = startDate;
         this.phoneNo = phoneNo;
         this.status = state;

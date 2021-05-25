@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DistributionSmartEnergyBackApp.Migrations
 {
-    public partial class initMigration : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,6 +68,7 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     workRequestId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     incidentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    locationId = table.Column<long>(type: "bigint", nullable: false),
                     startDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     endDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     crewId = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -118,7 +119,8 @@ namespace DistributionSmartEnergyBackApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Hazzard = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LocationId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -177,15 +179,16 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 name: "SwitchingInstructions",
                 columns: table => new
                 {
-                    switchId = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocumentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeviceId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SwitchingInstructions", x => x.switchId);
+                    table.PrimaryKey("PK_SwitchingInstructions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
