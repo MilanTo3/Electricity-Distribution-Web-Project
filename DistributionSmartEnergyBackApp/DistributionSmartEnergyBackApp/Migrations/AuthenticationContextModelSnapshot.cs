@@ -146,6 +146,9 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
@@ -183,12 +186,15 @@ namespace DistributionSmartEnergyBackApp.Migrations
 
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan.SwitchingInstruction", b =>
                 {
-                    b.Property<long>("switchId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Id")
+                    b.Property<string>("DeviceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -197,7 +203,7 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("switchId");
+                    b.HasKey("Id");
 
                     b.ToTable("SwitchingInstructions");
                 });

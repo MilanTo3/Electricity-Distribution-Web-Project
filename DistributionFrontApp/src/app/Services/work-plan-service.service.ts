@@ -1,3 +1,4 @@
+import { SwitchingInstruction } from './../Models/SwitchingInstruction.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HistoryStateChange } from '../Models/HistoryStateChange.model';
@@ -31,7 +32,9 @@ export class WorkPlanServiceService {
   getAttachments(id){
     return this.http.get('http://localhost:24885/api/WorkPlan/getAttachments?id='+id);
   }
-
+  getSwitchingInstructionsWP(id) {
+    return this.http.get('http://localhost:24885/api/WorkPlan/GetSwitchingInstructionsWP?id='+id);
+  }
   updateBasicInfo(formdata){
     return this.http.post('http://localhost:24885/api/WorkPlan/updateBasicInfo', formdata);
   }
@@ -44,4 +47,12 @@ export class WorkPlanServiceService {
   updateAttachments(formdata){
     return this.http.post('http://localhost:24885/api/WorkPlan/UpdateAttachments', formdata);
   }
+
+  updateSwitchingInstructions(formdata : SwitchingInstruction[], wpId)
+  {
+    formdata.forEach(x => x.documentId = wpId);
+    return this.http.post('http://localhost:24885/api/WorkPlan/UpdateInstructions', formdata);
+  }
+  
+
 }

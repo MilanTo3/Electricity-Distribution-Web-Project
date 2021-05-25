@@ -9,8 +9,11 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan
     public class SwitchingInstruction
     {
         [Key]
-        public long switchId { get; set; } 
-        public string Id { get; set; }
+        public long Id { get; set; }
+
+        public string DocumentId { get; set; }  // WP1
+
+        public string DeviceId { get; set; } // Device Id
         public string Name { get; set; }
         public string Status { get; set; }
 

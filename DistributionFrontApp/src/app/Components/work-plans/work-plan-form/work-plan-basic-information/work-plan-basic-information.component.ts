@@ -27,7 +27,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
   planBasicInfoForm  = this.formBuilder.group({
       type: ['', Validators.required],
       documentId: [''],
-      status: ['', Validators.required],
+      status: ['Draft', Validators.required],
       workRequestId: [''],
       incidentId: [''],
       street: [''],
@@ -50,7 +50,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       this.getAndFill(sessionStorage.getItem("idDoc"));
       this.editMode = true;
     }
-    else if (sessionStorage.getItem("planBasicInfoForm") !== null) {
+    if (sessionStorage.getItem("planBasicInfoForm") !== null) {
       let formdata = JSON.parse(sessionStorage.getItem("planBasicInfoForm"));
       this.planBasicInfoForm.setValue(formdata);
     }
@@ -59,8 +59,6 @@ export class WorkPlanBasicInformationComponent implements OnInit {
 
     this.wr.getAllBasicInfo().subscribe(
       res => {
-        this.workRequests = res;
-        console.log(this.workRequests);
         this.workRequests.forEach(element => {
           this.addedWRs.push(element["documentId"]);
         });
@@ -82,7 +80,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
     this.filteredStreets = this.planBasicInfoForm.get('street').valueChanges.pipe(
       startWith(''),
       map(value => this._filterStreets(value))
-    );
+    ); 
     }
   private _filterStreets(value: string): string[] {
     const filterValue = this._normalizeValue(value);
@@ -135,22 +133,21 @@ export class WorkPlanBasicInformationComponent implements OnInit {
         this.planBasicInfoForm.get('type').setValue(res["type"]);
         this.planBasicInfoForm.get('status').setValue(res["status"]);
         this.planBasicInfoForm.get('street').setValue(res["street"]);
-        this.planBasicInfoForm.get('startDateTime').setValue(moment(res["startDateTime"]).format('YYYY-MM-DDTHH:mm'));
+        this.planBasicInfoForm.get('startDateTime').setValue(moment(res["startDateTime"]).format('YYYY-MM-DD'));
         this.planBasicInfoForm.get('user').setValue(res["user"]);
-        this.planBasicInfoForm.get('createdDateTime').setValue(moment(res["createdDateTime"]).format('YYYY-MM-DDTHH:mm'));
-        this.planBasicInfoForm.get('endDateTime').setValue(moment(res["endDateTime"]).format('YYYY-MM-DDTHH:mm'));
+        this.planBasicInfoForm.get('createdDateTime').setValue(moment(res["createdDateTime"]).format('YYYY-MM-DD'));
+        this.planBasicInfoForm.get('endDateTime').setValue(moment(res["endDateTime"]).format('YYYY-MM-DD'));
         this.planBasicInfoForm.get('workRequestId').setValue(res["workRequestId"]);
         this.planBasicInfoForm.get('incidentId').setValue(res["incidentId"]);
         this.planBasicInfoForm.get('phoneNumber').setValue(res["phoneNumber"]);
         this.planBasicInfoForm.get('purpose').setValue(res["purpose"]);
-        this.planBasicInfoForm.get('details').setValue(res["details"]);
         this.planBasicInfoForm.get('notes').setValue(res["notes"]);
         //this.planBasicInfoForm.get('locationId').setValue(res["locationId"]);
         this.planBasicInfoForm.get('crewId').setValue(res["crewId"]);
         this.planBasicInfoForm.get('company').setValue(res["company"]);
       }
-    );
 
+    );
   }
   saveChanges(){
 

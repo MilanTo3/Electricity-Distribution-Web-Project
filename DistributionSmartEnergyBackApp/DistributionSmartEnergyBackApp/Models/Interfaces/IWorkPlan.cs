@@ -20,8 +20,11 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
 
         Task<IEnumerable<SwitchingInstruction>> GetAllSwitchingInstructions();
 
-        Task UpdateSwitchingInstructions(SwitchingInstruction switchingInstructions);
+        Task UpdateSwitchingInstructions(SwitchingInstruction[] switchingInstructions);
 
+        Task DeleteSwitchingInstructions(SwitchingInstruction[] switchingInstructions);
+
+        Task<IEnumerable<SwitchingInstruction>> GetSwitchingInstructionsWP(string id);
         Task Save();
     }
 }

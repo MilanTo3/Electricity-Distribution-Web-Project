@@ -2,6 +2,7 @@
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,16 @@ namespace DistributionSmartEnergyBackApp.Services
             wrapper.basicInformationForm.createdDateTime = DateTime.Now;
             _context.BasicInformationsWP.Add(wrapper.basicInformationForm);
 
+            foreach(SwitchingInstruction instruction in  wrapper.switchingInstructionsForm)
+            {
+                instruction.DocumentId = "WP" + wp.Id;
+                _context.SwitchingInstructions.Add(instruction);
+            }
+
             return wp.Id;
         }
+
+
 
         public async Task<IEnumerable<BasicInformationWP>> GetAllBasicInfo()
         {
@@ -52,7 +61,10 @@ namespace DistributionSmartEnergyBackApp.Services
         {
             return await _context.HistoryChanges.Where(x => x.DocumentId == id).ToListAsync();
         }
-
+        public async Task<IEnumerable<SwitchingInstruction>> GetSwitchingInstructionsWP(string id)
+        {
+            return await _context.SwitchingInstructions.Where(x => x.DocumentId == id).ToListAsync();
+        }
         public async Task Save()
         {
             await _context.SaveChangesAsync();
@@ -75,6 +87,7 @@ namespace DistributionSmartEnergyBackApp.Services
                 info.Status = basicInfo.Status;
                 info.locationId = basicInfo.locationId;
                 info.user = basicInfo.user;
+                info.Street = basicInfo.Street;
                 if(basicInfo.Type == "Planned work")
                 {
                     info.incidentId = "";
@@ -96,7 +109,12 @@ namespace DistributionSmartEnergyBackApp.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateSwitchingInstructions(SwitchingInstruction switchingInstructions)
+        public async Task UpdateSwitchingInstructions(SwitchingInstruction[] switchingInstructions)
+        {
+             _context.SwitchingInstructions.UpdateRange(switchingInstructions);
+            await _context.SaveChangesAsync();
+        }
+        public Task DeleteSwitchingInstructions(SwitchingInstruction[] switchingInstructions)
         {
             throw new NotImplementedException();
         }

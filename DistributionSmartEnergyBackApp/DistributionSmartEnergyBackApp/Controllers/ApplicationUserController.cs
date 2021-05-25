@@ -102,8 +102,22 @@ namespace DistributionSmartEnergyBackApp.Controllers
             {
                 throw e;
             }
+        }
 
+        [HttpPut]
+        [Route("ChangePassword")]
+        //PUT : /api/ApplicationUser/ChangePassword
+        public async Task<IActionResult> ChangePassword(string oldpass, string newpass)
+        {
 
+            try
+            {
+                return Ok("ok");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         [HttpDelete]
