@@ -42,6 +42,10 @@ export class EditTeamComponent implements OnInit {
   }
 
   submitTeamChange(){
+    if(this.teamsForm.valid === false){
+      this.toastr.warning('Please specify the name for this team.', 'Team name not set.');
+    }
+
     let i;
     let formdata: FormData = new FormData();
     formdata.append('team', this.teamsForm.get('name').value);
