@@ -14,7 +14,9 @@ export class NewDeviceComponent implements OnInit {
 
   deviceForm = this.fb.group({
     type: ['', Validators.required],
-    address: ['', Validators.required]
+    address: ['', Validators.required],
+    name: [''],
+    id: ['']
   });
 
   //
@@ -32,10 +34,11 @@ export class NewDeviceComponent implements OnInit {
   fillFormData() {
     this.formData = new FormData();
     this.formData.append('type', this.deviceForm.get('type').value);
-    this.formData.append('id', '0');
-    this.formData.append('name', this.deviceForm.get('name').value);
+    //this.formData.append('id', this.deviceForm.get('id').value);  //nije neophodno jer se generise automatski u bazi po pravilu iz spec
+    //this.formData.append('name', this.deviceForm.get('name').value);  //nije neophodno jer se generise automatski u bazi po pravilu iz spec
     this.formData.append('address', this.deviceForm.get('address').value);
-    this.formData.append('coordinates', this.deviceForm.get('coordinates').value);
+
+    this.formData.append('coordinates', '0'); //da li se generise na osnovu adrese?
     
   }
 
@@ -67,16 +70,16 @@ export class NewDeviceComponent implements OnInit {
  
 }
 
-/* $(function() {
+ /*$(function() {
   
   $('#deviceSelect').change(function(){
       changeValues(this.value);
   });
-}); */
+}); 
 
 //Get the value from selected option 
 //Convert it to string to get substring after
-/*function changeValues(selectedValue) {
+function changeValues(selectedValue) {
   var allSelects = $('select');
   $.each(allSelects, function(index, dropDown) {
       $('#' + dropDown.id).val(selectedValue);

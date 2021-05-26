@@ -7,14 +7,49 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
 {
     public class DeviceModel
     {
-        public long Id { get; set; }
+        private string name;
+        private string type;
+        private long id;
+        public long Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
 
-        public string Type { get; set; }
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
+        }
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get 
+            { 
+                return name;
+            }
+            set
+            {
+                name = type.Substring(0, 3).ToUpper() + id;
+            }
+        }
 
         public string Address { get; set; }
 
         public string Coordinates { get; set; }
+
+        
     }
 }

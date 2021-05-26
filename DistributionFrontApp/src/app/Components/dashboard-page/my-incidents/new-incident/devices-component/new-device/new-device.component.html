@@ -18,11 +18,11 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">ID:</label>
-                    <input class="col-sm-1" value="-" disabled/>
+                    <input class="col-sm-1" formControlName="id" disabled/>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Name:</label>
-                    <input id="deviceName" class="col-sm-2 form-control"/>
+                    <input id="deviceName" class="col-sm-2 form-control" formControlName="name" disabled/>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Address:</label>
@@ -34,8 +34,7 @@
                     <input class="col-sm-2 form-control"/>
                 </div>   
                      
-            </div>
-                
+            </div>            
         </div>
         <button type="submit" class="btn btn-primary">Add Device</button>   
     </form>
