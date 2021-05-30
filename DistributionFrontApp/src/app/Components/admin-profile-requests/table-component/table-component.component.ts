@@ -17,6 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { changeRoleRequest } from 'src/app/Models/roleRequestChange.model';
 import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { TeamsServiceService } from '../../../Services/teams-service.service';
+import { UserService } from '../../../Services/registration-service.service';
 import * as moment from 'moment';
 
 @Component({
@@ -44,7 +45,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.emitter.next(id);
   }
 
-  constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService, private workPlanService: WorkPlanServiceService) {
+  constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService, private workPlanService: WorkPlanServiceService, private registrattionService: UserService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
@@ -65,7 +66,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   async addMockRequests() {
 
     if (this.tableid === 0) {
-      this.loadProfileRequests();
+      await this.loadProfileRequests();
     } else if (this.tableid === 1) {
       await this.loadWorkRequests();
     } else if (this.tableid === 2) {
@@ -90,6 +91,16 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
+  async approveOrDenyRegistration(username, op){
+
+    let formdata: FormData = new FormData();
+    formdata.append('username', username);
+    formdata.append('op', op);
+    await this.registrattionService.approveOrDenyRequest(formdata).toPromise();
+    this.loadProfileRequests();
+
+  }
+
   loadRoleRequests() {
     let user1 = new changeRoleRequest("Erik", "Dispatcher", "Administrator");
     let user2 = new changeRoleRequest("Rukia", "Dispatcher", "Dispatcher");
@@ -105,17 +116,16 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataToPrint = res;
     this.dataBind = new MatTableDataSource(this.dataToPrint);
     this.keyNames = Object.getOwnPropertyNames(res[0]);
+    this.enableView();
   }
 
-  loadProfileRequests() {
+  async loadProfileRequests() {
 
-    let user1 = new User("Erik", "Hoffstad", "erikhoffstad123@squirel.com", "Administrator", "username2", "2019-01-16", "fejkadresa", "/assets/Images/colorpattern.jpg");
-    let user2 = new User("Rukia", "Kuchiki", "kuchiki123@gmail.com", "Dispatcher", "username1", "2019-01-16", "fejkadresfda", "/assets/Images/colorpattern.jpg");
-    let user3 = new User("Jordan", "Peterson", "jordanpeterson@gmail.com", "Consumer", "username3", "2019-01-16", "fejkfdadresa", "/assets/Images/colorpattern.jpg");
-    let user4 = new User("Petar", "Bojovic", "petarbojovic@gmail.com", "Administrator", "username4", "2019-01-16", "fejkfadresa", "/assets/Images/colorpattern.jpg");
-
-    this.dataToPrint.push(user1, user2, user3, user4);
-    this.keyNames = Object.getOwnPropertyNames(user4);
+    let res = await this.registrattionService.getPendingUsers().toPromise();
+    this.dataToPrint = res;
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(res[0]);
+    this.enableView();
 
   }
 
@@ -240,9 +250,6 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   enableView() {
     this.copyArray(this.keyNames, this.headerToPrint);
-    if (this.tableid === 0 || this.tableid === 7 || this.tableid === 9 || this.tableid === 10) {
-      this.headerToPrint.push("What to do?");
-    }
     this.dataBind.paginator = this.pagination;
     this.dataBind.sort = this.sort;
   }

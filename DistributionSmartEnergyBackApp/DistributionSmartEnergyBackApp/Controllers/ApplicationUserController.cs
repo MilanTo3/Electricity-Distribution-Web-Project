@@ -1,4 +1,5 @@
 ﻿using DistributionSmartEnergyBackApp.Models;
+using DistributionSmartEnergyBackApp.Models.EntityModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -179,6 +180,26 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 return BadRequest("errUsername or password is incorrect.");
         }
 
+        [HttpPost]
+        [Route("approveOrDenyRequest")]
+        public async Task<IActionResult> approveOrDenyRequest([FromForm]string username, [FromForm]int op) {
+
+            var user = await _userManager.FindByNameAsync(username);
+            if (user != null) {
+
+                if (op == 0) {
+                    user.RegState = RegistrationState.Approved;
+                }
+                else {
+                    user.RegState = RegistrationState.Denied;
+                }
+                await _userManager.UpdateAsync(user);
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+        
         [HttpPost, DisableRequestSizeLimit]
         [Route("Register")]
         //Post: localhost:24885/api/ApplicationUser/Register
@@ -293,9 +314,16 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpGet]
         [Route("getPendingUsers")]
-        public async Task<ActionResult<IEnumerable<ApplicationUser>>> getPendingUsers() {
+        public async Task<ActionResult<IEnumerable<ReturnUserModel>>> getPendingUsers() {
 
-            return await _userManager.Users.Where(x => x.RegState == ApplicationUser.RegistrationState.Pending).ToListAsync();
+            var pendingUsers = await _userManager.Users.Where(x => x.RegState == ApplicationUser.RegistrationState.Pending).ToListAsync();
+            List<ReturnUserModel> returnUsersModelList = new List<ReturnUserModel>();
+
+            foreach (ApplicationUser user in pendingUsers) {
+                returnUsersModelList.Add(new ReturnUserModel(user.Name, user.Lastname, user.Email, user.UserType.ToString(), user.UserName, user.Birthday.ToString(), user.Address));
+            }
+
+            return returnUsersModelList;
         }
 
     }

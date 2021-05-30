@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../Models/User.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,12 @@ export class UserService {
     return this.http.post('http://localhost:24885/api/ApplicationUser/Register', formdata, { responseType: 'text' });
   }
 
+  approveOrDenyRequest(formdata){
+    return this.http.post('http://localhost:24885/api/ApplicationUser/approveOrDenyRequest', formdata);
+  }
+
   getPendingUsers() {
-    return this.http.get('http://localhost:24885/api/ApplicationUser/getPendingUsers');
+    return this.http.get<User[]>('http://localhost:24885/api/ApplicationUser/getPendingUsers');
   }
 
   getUserProfile() {

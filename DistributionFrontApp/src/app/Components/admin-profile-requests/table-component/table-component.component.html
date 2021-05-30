@@ -28,8 +28,8 @@
         <mat-header-cell *matHeaderCellDef class="header">What to do?</mat-header-cell>
         <mat-cell *matCellDef="let row" class="body">
           <div *ngIf="tableid===0">
-            <button mat-button class="adminButton btn btn-success">Approve</button>
-            <button mat-button class="adminButton btn btn-danger">Block</button>
+            <button mat-button class="adminButton btn btn-success" (click)="approveOrDenyRegistration(row.username, 0)">Approve</button>
+            <button mat-button class="adminButton btn btn-danger" (click)="approveOrDenyRegistration(row.username, 1)">Block</button>
           </div>
           <div *ngIf="tableid===4"> 
             <button mat-button class="adminButton btn btn-danger">Delete</button>

@@ -15,6 +15,7 @@ import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 export class ProfileDetailsComponent implements OnInit {
   fileToUpload: any = null;
   formdata = new FormData();
+  registrationState;
 
   currentImg: any;
   rolesOptions = ["Administrator", "Dispatcher", "TeamMember", "Consumer", "DataAnalyst"];
@@ -70,7 +71,14 @@ export class ProfileDetailsComponent implements OnInit {
         this.profileForm.get('teamId').setValue(res["teamId"]);
         this.profileForm.get('phoneNumber').setValue(res["phoneNumber"]);
         this.profileForm.get('password').setValue(res["password"]);
-
+        let regState: number = res["regState"];
+        if(regState === 0){
+          this.registrationState = "Pending";
+        }else if(regState === 1){
+          this.registrationState = "Verified";
+        }else{
+          this.registrationState = "Blocked";
+        }
       }
     );
 

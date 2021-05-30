@@ -1,5 +1,6 @@
 export class User{
 
+    profileImg: string;
     name: string;
     lastname: string;
     email:string;
@@ -7,7 +8,6 @@ export class User{
     username: string;
     birthday: string;
     address: string;
-    profileImg: string;
 
     constructor(firstname: string, lastname: string, eposta: string, privilege: string, username: string, birthday: string, address: string, profileImg: string){
         this.name = firstname;
