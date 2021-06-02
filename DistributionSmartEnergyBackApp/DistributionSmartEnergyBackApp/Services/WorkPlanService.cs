@@ -31,11 +31,15 @@ namespace DistributionSmartEnergyBackApp.Services
             wrapper.basicInformationForm.createdDateTime = DateTime.Now;
             _context.BasicInformationsWP.Add(wrapper.basicInformationForm);
 
-            foreach(SwitchingInstruction instruction in  wrapper.switchingInstructionsForm)
+            if(wrapper.switchingInstructionsForm!=null)
             {
-                instruction.DocumentId = "WP" + wp.Id;
-                _context.SwitchingInstructions.Add(instruction);
+                foreach (SwitchingInstruction instruction in wrapper.switchingInstructionsForm)
+                {
+                    instruction.DocumentId = "WP" + wp.Id;
+                    _context.SwitchingInstructions.Add(instruction);
+                }
             }
+            
 
             return wp.Id;
         }

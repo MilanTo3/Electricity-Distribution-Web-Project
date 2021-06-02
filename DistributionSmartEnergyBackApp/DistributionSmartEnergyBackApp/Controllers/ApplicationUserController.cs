@@ -105,15 +105,21 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("ChangePassword")]
         //PUT : /api/ApplicationUser/ChangePassword
-        public async Task<IActionResult> ChangePassword(string oldpass, string newpass)
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordModel passes)
         {
 
             try
             {
-                return Ok("ok");
+                string userId = User.Claims.First(c => c.Type == "UserID").Value;
+                var user = await _userManager.FindByIdAsync(userId);
+                var result = await _userManager.ChangePasswordAsync(user, passes.Old, passes.New);
+                if (result.Succeeded)
+                    return Ok();
+                else
+                    return BadRequest("Incorrect password!");
             }
             catch (Exception e)
             {
