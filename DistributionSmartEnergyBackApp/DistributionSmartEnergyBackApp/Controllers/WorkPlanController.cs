@@ -3,6 +3,7 @@ using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,11 @@ namespace DistributionSmartEnergyBackApp.Controllers
     public class WorkPlanController : ControllerBase
     {
         private readonly IWorkPlan _context;
-        public WorkPlanController(IWorkPlan context)
+        private UserManager<ApplicationUser> _userManager;
+
+        public WorkPlanController(UserManager<ApplicationUser> userManager, IWorkPlan context)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -28,6 +32,9 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
             try
             {
+                string userId = User.Claims.First(c => c.Type == "UserID").Value;
+                var user = await _userManager.FindByIdAsync(userId);
+                wrapper.basicInformationForm.user = user.UserName;
                 long id = await _context.AddWorkPlan(wrapper);
                 uploadAttachments(wrapper.mediaForm, id);
                 await _context.Save();
@@ -45,6 +52,17 @@ namespace DistributionSmartEnergyBackApp.Controllers
         {
             return await _context.GetAllBasicInfo();
         }
+
+        [HttpGet]
+        [Route("GetMyBasicInfo")]
+        public async Task<IEnumerable<BasicInformationWP>> GetMyBasicInformations()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            return await _context.GetMyBasicInfo(user.UserName);
+        }
+
+
 
         [HttpGet]
         [Route("GetBasicInfo")]

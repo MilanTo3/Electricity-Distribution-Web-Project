@@ -7,12 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./work-plans.component.css']
 })
 export class WorkPlansComponent implements OnInit {
-
+  option = false;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
   createNewPlan(){
-    this.router.navigate(['/newWorkPlan']);
+    this.router.navigateByUrl('/newWorkPlan');
+  }
+
+  changeOption(op){
+    if(op=='All')
+      this.option= false;
+    else
+      this.option=true; //show mine
   }
 }

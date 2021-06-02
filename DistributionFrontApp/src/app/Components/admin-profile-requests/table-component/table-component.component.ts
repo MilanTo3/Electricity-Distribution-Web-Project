@@ -1,3 +1,4 @@
+import { clearAllProjections } from 'ol/proj';
 import { WorkPlanServiceService } from 'src/app/Services/work-plan-service.service';
 import { Consumer } from './../../../Models/Consumer.model';
 import { Component, Input, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
@@ -19,6 +20,7 @@ import { WorkRequestServiceService } from 'src/app/Services/work-request-service
 import { TeamsServiceService } from '../../../Services/teams-service.service';
 import { UserService } from '../../../Services/registration-service.service';
 import * as moment from 'moment';
+import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 
 @Component({
   selector: 'app-table-component',
@@ -29,6 +31,7 @@ import * as moment from 'moment';
 export class TableComponentComponent implements OnInit, AfterViewInit {
 
   @Input('tableType') tableid: number = 0;
+  @Input('showMine') showMine?: boolean; //opcioni parametar za prikaz samo svojih
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) pagination: MatPaginator;
   keyNames: string[] = [];
@@ -88,6 +91,14 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     } else if (this.tableid === 10) {
       this.loadRoleRequests();
     }
+
+  }
+  async ngOnChanges() {
+    /**********THIS FUNCTION WILL TRIGGER WHEN PARENT COMPONENT UPDATES 'someInput'**************/
+    //Write your code here
+    if (this.tableid === 6) {
+      await this.loadWorkPlans();
+    }   
 
   }
 
@@ -187,18 +198,29 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   async loadWorkPlans() {
     this.baseLink = "/newWorkPlan";
-    let res = await this.workPlanService.getAllBasicInfo().toPromise();
+    let res;
+    const data = [];
 
-    let i;
-    let wp;
-    for (i = 0; i < res["length"]; i++) {
-      wp = new WorkPlan(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')).toLocaleDateString(), res[i]["phoneNumber"], res[i]["status"], res[i]["street"]);
-      this.dataToPrint.push(wp);
+    if(this.showMine){
+      res = await this.workPlanService.getMineBasicInfo().toPromise();
+    }
+    else{
+      res = await this.workPlanService.getAllBasicInfo().toPromise();
     }
 
-    this.dataBind = new MatTableDataSource(this.dataToPrint);
-    this.keyNames = Object.getOwnPropertyNames(wp);
-
+    if(res){
+      let i;
+      let wp;
+      for (i = 0; i < res["length"]; i++) {
+        wp = new WorkPlan(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')).toLocaleDateString(), res[i]["phoneNumber"], res[i]["status"], res[i]["street"]);
+        data.push(wp);
+      }
+      this.dataToPrint = data;
+      this.dataBind = new MatTableDataSource(this.dataToPrint);
+      this.keyNames = Object.getOwnPropertyNames(wp);
+  
+    }
+   
   }
 
   loadCalls() {

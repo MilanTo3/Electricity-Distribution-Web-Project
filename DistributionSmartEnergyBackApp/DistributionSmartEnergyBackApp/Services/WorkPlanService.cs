@@ -2,6 +2,7 @@
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,7 +16,7 @@ namespace DistributionSmartEnergyBackApp.Services
     {
         private readonly AuthenticationContext _context;
 
-        public WorkPlanService(AuthenticationContext context)
+        public WorkPlanService( AuthenticationContext context)
         {
             _context = context;
         }
@@ -24,6 +25,7 @@ namespace DistributionSmartEnergyBackApp.Services
             WorkPlanModel wp = new WorkPlanModel();
             _context.WorkPlans.Add(wp);
             await _context.SaveChangesAsync(true);
+
 
             wrapper.basicInformationForm.DocumentId = "WP" + wp.Id;
             wrapper.basicInformationForm.createdDateTime = DateTime.Now;
@@ -45,7 +47,11 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.BasicInformationsWP.ToListAsync();
 
         }
+        public async Task<IEnumerable<BasicInformationWP>> GetMyBasicInfo(string username)
+        {
+            return await _context.BasicInformationsWP.Where(wp=> wp.user == username).ToListAsync();
 
+        }
         public async Task<IEnumerable<SwitchingInstruction>> GetAllSwitchingInstructions()
         {
             return await _context.SwitchingInstructions.ToListAsync();

@@ -27,10 +27,10 @@ export class WorkPlanBasicInformationComponent implements OnInit {
 
   planBasicInfoForm  = this.formBuilder.group({
       type: ['', Validators.required],
-      documentId: [''],
+      documentId: ['id'],
       status: ['Draft', Validators.required],
-      workRequestId: [''],
-      incidentId: [''],
+      workRequestId: ['id', Validators.required],
+      incidentId: ['id', Validators.required],
       street: [''],
       //locationId : [''],
       startDateTime: ['', Validators.required],
@@ -39,7 +39,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       user: ['', Validators.required],
       company: ['', Validators.required],
       phoneNumber: ['',  [Validators.required, Validators.pattern('^[- +0-9]+$')]],
-      createdDateTime: ['', Validators.required],
+      createdDateTime: ['2001-01-01', Validators.required],
       purpose: ['', Validators.required],
       notes: ['', Validators.required]
     },
@@ -57,7 +57,10 @@ export class WorkPlanBasicInformationComponent implements OnInit {
     }
     this.onValueChanges();
     this.onWRChanges();
+
     this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedUser'));
+    this.planBasicInfoForm.get('user').setValue(this.loggedInUser.username);
+
 
     this.wr.getAllBasicInfo().subscribe(
       res => {
