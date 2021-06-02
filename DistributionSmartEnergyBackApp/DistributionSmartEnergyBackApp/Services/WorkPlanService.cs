@@ -96,12 +96,12 @@ namespace DistributionSmartEnergyBackApp.Services
                 info.crewId = basicInfo.crewId;           
                 info.Status = basicInfo.Status;
                 info.locationId = basicInfo.locationId;
-                info.user = basicInfo.user;
+               // info.user = basicInfo.user;
                 info.Street = basicInfo.Street;
                 if(basicInfo.Type == "Planned work")
                 {
-                    info.incidentId = "";
-                    info.workRequestId = ""; //receno je da moze da postoji wp bez incidenta ili requesta
+                    info.incidentId = "noWR";
+                    info.workRequestId = "noIN"; //receno je da moze da postoji wp bez incidenta ili requesta
                 }
                 else
                 {

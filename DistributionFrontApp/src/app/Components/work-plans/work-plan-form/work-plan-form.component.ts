@@ -20,12 +20,19 @@ export class WorkPlanFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
-    sessionStorage.clear();
+    if(sessionStorage.getItem("idDocReadOnly") === null)
+    {
+      sessionStorage.clear();
+    }
+    else{
+      this.editMode = true; // kad se vraca iz WR
+    }
+
     sessionStorage.setItem('loggedUser', JSON.stringify(this.loggedUser));
 
     this.db.collection('images').delete();
 
-    let id = this.route.snapshot.paramMap.get('idparam');
+    let id = this.route.snapshot.paramMap.get('idparam'); 
     if(id !== null && id !== undefined){
       sessionStorage.setItem('idDoc', id);
       this.editMode = true;
@@ -50,7 +57,6 @@ export class WorkPlanFormComponent implements OnInit {
     this.workPlanService.postWorkRequest(this.wrapper).subscribe(
       res => {
         this.showToastrSuccess();
-        console.log(res);
       }
     );
 
