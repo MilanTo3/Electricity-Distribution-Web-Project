@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/Services/registration-service.service';
 
 @Component({
   selector: 'app-settings',
@@ -11,19 +12,17 @@ export class SettingsComponent implements OnInit {
   settingsForm: FormGroup;
   settingsFormAdmin: FormGroup;
 
-  currentPassword: string;
-  newPassword: string;
   crewIcon: string;
   callIcon: string;
   incidentIcon: string;
 
-  constructor(private formBuilder: FormBuilder, private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.settingsForm  = this.formBuilder.group({
-      currentPassword: [this.currentPassword, Validators.required],
-      newPassword: [this.newPassword, Validators.required],   
+      Old: ['', Validators.required],
+      New: ['', Validators.required],   
     });
     this.settingsFormAdmin  = this.formBuilder.group({
       iconCall: [this.callIcon],
@@ -82,7 +81,17 @@ export class SettingsComponent implements OnInit {
   onSubmit(){
     // Process checkout data here
     if (this.settingsForm.valid) {
-      this.showToastrSuccess(1);
+      this.userService.updatePassword(this.settingsForm.value).subscribe(
+        (response: any) => {
+          this.showToastrSuccess(1);
+        },
+        (err) => {
+          if (err.status == 400)
+            this.toastr.error(err.error, 'Password Change Error');
+          else
+            this.toastr.error('Seems like our servers are down, our hamster mechanic is on it. Please try again later.', 'Server Error');
+        }
+      );
     } else {
       this.showToastrError();
     }
@@ -99,7 +108,7 @@ export class SettingsComponent implements OnInit {
   showToastrSuccess(i){  
     if(i===1)
     {
-      this.toastr.success('Your password change has been sent.', 'Form successfuly sent.');
+      this.toastr.success('Dont forget your new pass gurrl.', 'Password changed!');
     }
     else
     {

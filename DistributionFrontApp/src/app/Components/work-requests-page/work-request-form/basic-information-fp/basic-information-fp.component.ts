@@ -12,14 +12,15 @@ import { customFormValidators } from '../../../../Models/customValidators';
 export class BasicInformationFPComponent implements OnInit {
 
   editMode = false;
+  readOnlyMode = false;
   infoForm = this.fb.group({
     type: ['Planned work'],
     documentId: [''],
     user: [''],
     street: ['', Validators.required],
-    startDate: [null, Validators.required],
-    dateCreated: [''],
-    endDate: [null, Validators.required],
+    startDate: ['2001-11-01', Validators.required],
+    dateCreated: ['2021-11-01'],
+    endDate: ['2001-11-05', Validators.required],
     emergency: [false, Validators.required],
     company: ['', Validators.required],
     phoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
@@ -39,8 +40,17 @@ export class BasicInformationFPComponent implements OnInit {
       this.infoForm.setValue(formdata);
     }
     if(sessionStorage.getItem("idDoc") !== null){
-      this.getAndFill(sessionStorage.getItem("idDoc"));
-      this.editMode = true;
+      let readDocId = sessionStorage.getItem("idDocReadOnly");
+      if (readDocId!==null && readDocId.substring(0,2)=="WR")
+      {
+        this.getAndFill(sessionStorage.getItem("idDocReadOnly"));
+        this.readOnlyMode = true;
+      }
+      else{
+        this.getAndFill(sessionStorage.getItem("idDoc"));
+        this.editMode = true;
+      }
+
     }
     this.onValueChanges();
   }

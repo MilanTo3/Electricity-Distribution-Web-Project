@@ -12,6 +12,9 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
         Task<long> AddWorkPlan(WorkPlanViewModel location);
 
         Task<IEnumerable<BasicInformationWP>> GetAllBasicInfo();
+
+        Task<IEnumerable<BasicInformationWP>> GetMyBasicInfo(string username);
+
         Task<BasicInformationWP> GetBasicInfo(string id);
         Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id);
 

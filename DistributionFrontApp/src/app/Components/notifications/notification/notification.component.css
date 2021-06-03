@@ -106,3 +106,7 @@
     }
   } 
    */
+
+  .alert{
+    word-wrap: break-word;
+  }

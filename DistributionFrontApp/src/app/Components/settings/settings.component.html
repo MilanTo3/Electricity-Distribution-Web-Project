@@ -157,9 +157,9 @@
                 id="change_password__current_password"
                 class="form-control col-md-4 mt-1"
                 placeholder="Enter current password"
-                formControlName="currentPassword"                  
+                formControlName="Old"                  
             />
-            <small *ngIf="settingsForm.get('currentPassword').invalid && settingsForm.get('currentPassword').touched" class="form-text text-danger">
+            <small *ngIf="settingsForm.get('Old').invalid && settingsForm.get('Old').touched" class="form-text text-danger">
                 Current password is required.
             </small>
     </div>
@@ -171,9 +171,9 @@
                 id="change_password__new_password"
                 class="form-control col-md-4 mt-1"
                 placeholder="Enter new password"
-                formControlName="newPassword"                  
+                formControlName="New"                  
             />
-            <small *ngIf="settingsForm.get('newPassword').invalid && settingsForm.get('newPassword').touched" class="form-text text-danger">
+            <small *ngIf="settingsForm.get('New').invalid && settingsForm.get('New').touched" class="form-text text-danger">
                     New password is required.
             </small>
     </div>

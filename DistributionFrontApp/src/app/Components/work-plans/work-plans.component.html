@@ -12,20 +12,21 @@
                 </button>
             </div>
             
+
             <div class="col col-lg-2">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn radiobtn">
-                        <input type="radio" name="options" id="optionAll" autocomplete="off" checked/> All
+                        <input type="radio" name="optionAll" id="optionAll" autocomplete="off" value="All"  (click)="changeOption('All')"> All
                     </label>
                     <label class="btn radiobtn">
-                        <input type="radio" name="options" id="optionMine" autocomplete="off"> Mine
+                        <input type="radio" name="optionMine" id="optionMine" autocomplete="off" value="Mine" (click)="changeOption('Mine')"> Mine
                     </label>
                 </div>
             </div>       
         </div>
         
         <div class="row">
-            <app-table-component [tableType]='6'></app-table-component>
+            <app-table-component [tableType]='6' [showMine]="option"></app-table-component>
         </div>
     </div>
 </div>

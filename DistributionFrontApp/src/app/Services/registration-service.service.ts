@@ -16,7 +16,11 @@ export class UserService {
   register(formdata: FormData) {
     return this.http.post('http://localhost:24885/api/ApplicationUser/Register', formdata, { responseType: 'text' });
   }
-
+  updatePassword(formdata: FormData)
+  {
+    console.log(formdata);
+    return this.http.post('http://localhost:24885/api/ApplicationUser/ChangePassword', formdata);
+  }
   approveOrDenyRequest(formdata){
     return this.http.post('http://localhost:24885/api/ApplicationUser/approveOrDenyRequest', formdata);
   }

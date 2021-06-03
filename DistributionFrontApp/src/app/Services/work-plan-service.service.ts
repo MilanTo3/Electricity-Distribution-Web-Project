@@ -18,19 +18,22 @@ export class WorkPlanServiceService {
   
   getAllBasicInfo(){
     
-    return this.http.get('http://localhost:24885/api/WorkPlan/getAllBasicInfo');
+    return this.http.get('http://localhost:24885/api/WorkPlan/GetAllBasicInfo');
   }
+  getMineBasicInfo(){
+    return this.http.get('http://localhost:24885/api/WorkPlan/GetMyBasicInfo');
 
+  }
   getBasicInformation(id) {
-    return this.http.get('http://localhost:24885/api/WorkPlan/getBasicInfo?id='+id);
+    return this.http.get('http://localhost:24885/api/WorkPlan/GetBasicInfo?id='+id);
   }
 
   getHistoryState(id) {
-    return this.http.get('http://localhost:24885/api/WorkPlan/getHistory?id='+id);
+    return this.http.get('http://localhost:24885/api/WorkPlan/GetHistory?id='+id);
   }
 
   getAttachments(id){
-    return this.http.get('http://localhost:24885/api/WorkPlan/getAttachments?id='+id);
+    return this.http.get('http://localhost:24885/api/WorkPlan/GetAttachments?id='+id);
   }
   getSwitchingInstructionsWP(id) {
     return this.http.get('http://localhost:24885/api/WorkPlan/GetSwitchingInstructionsWP?id='+id);

@@ -1,3 +1,4 @@
+import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import Localbase from 'localbase';
@@ -14,14 +15,24 @@ export class WorkPlanFormComponent implements OnInit {
   db = new Localbase('db');
   wrapper: WorkPlanWrapper = new WorkPlanWrapper();
   editMode = false;
-
+  loggedUser: LoggedUser;
   constructor(private router: Router,private route: ActivatedRoute, private workPlanService: WorkPlanServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    sessionStorage.clear();
+    this.loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
+    if(sessionStorage.getItem("idDocReadOnly") === null)
+    {
+      sessionStorage.clear();
+    }
+    else{
+      this.editMode = true; // kad se vraca iz WR
+    }
+
+    sessionStorage.setItem('loggedUser', JSON.stringify(this.loggedUser));
+
     this.db.collection('images').delete();
 
-    let id = this.route.snapshot.paramMap.get('idparam');
+    let id = this.route.snapshot.paramMap.get('idparam'); 
     if(id !== null && id !== undefined){
       sessionStorage.setItem('idDoc', id);
       this.editMode = true;
@@ -46,7 +57,6 @@ export class WorkPlanFormComponent implements OnInit {
     this.workPlanService.postWorkRequest(this.wrapper).subscribe(
       res => {
         this.showToastrSuccess();
-        console.log(res);
       }
     );
 

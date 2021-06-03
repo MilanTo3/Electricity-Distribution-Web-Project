@@ -17,17 +17,26 @@ export class WorkRequestFormComponent implements OnInit {
   db = new Localbase('db');
   wrapper: WorkRequestWrapper = new WorkRequestWrapper();
   editMode = false;
+  readOnlyMode = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private workRequest: WorkRequestServiceService) { }
 
   ngOnInit(): void {
-    sessionStorage.clear();
-    this.db.collection('images').delete();
+    let readDocId = sessionStorage.getItem("idDocReadOnly");
+    if (readDocId!==null && readDocId.substring(0,2)=="WR")
+    {
+      this.readOnlyMode = true;
+    }
+    else
+    {
+      sessionStorage.clear();
+      this.db.collection('images').delete();
+      let id = this.route.snapshot.paramMap.get('idparam');
+      if(id !== null && id !== undefined){
+        sessionStorage.setItem('idDoc', id);
+        this.editMode = true;
+    }
 
-    let id = this.route.snapshot.paramMap.get('idparam');
-    if(id !== null && id !== undefined){
-      sessionStorage.setItem('idDoc', id);
-      this.editMode = true;
     }
     this.router.navigateByUrl('/workRequestForm/basicInformation');
   }

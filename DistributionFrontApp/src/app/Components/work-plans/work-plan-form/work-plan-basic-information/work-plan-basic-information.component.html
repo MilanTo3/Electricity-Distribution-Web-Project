@@ -23,7 +23,7 @@
                 <div class="unplanned" *ngIf="planBasicInfoForm.get('type').value=='Unplanned work'">
                     <div class="form-group row">
                         <label class="col-sm-6 col-form-label">Work request:</label>
-                        <input class="col-sm-6 " type="text" formControlName="workRequestId"  [matAutocomplete]="auto" />
+                        <input class="col-sm-6 " type="text" formControlName="workRequestId"  [matAutocomplete]="auto" (dblclick)=OpenWR()/>
                         <small *ngIf="planBasicInfoForm.get('workRequestId').invalid && planBasicInfoForm.get('workRequestId').touched" class="text-danger">Work request is required.</small>
                         <mat-autocomplete #auto="matAutocomplete">
                             <mat-option *ngFor="let request of filteredRequests | async" [value]="request">
