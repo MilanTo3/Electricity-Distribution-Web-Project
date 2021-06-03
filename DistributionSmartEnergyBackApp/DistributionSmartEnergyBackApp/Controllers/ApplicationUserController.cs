@@ -1,5 +1,6 @@
 ﻿using DistributionSmartEnergyBackApp.Models;
 using DistributionSmartEnergyBackApp.Models.EntityModels;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -48,11 +50,9 @@ namespace DistributionSmartEnergyBackApp.Controllers
         [HttpPut, DisableRequestSizeLimit]
         [Route("updateProfile")]
         //PUT : /api/ApplicationUser/UpdateProfile
-        public async Task<IActionResult> UpdateProfile([FromForm] UserModel userModel)
-        {
+        public async Task<IActionResult> UpdateProfile([FromForm] UserModel userModel) {
 
-            try
-            {
+            try {
                 string userId = User.Claims.First(c => c.Type == "UserID").Value;
                 var user = await _userManager.FindByIdAsync(userId);
 
@@ -67,19 +67,17 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 user.PhoneNumber = userModel.PhoneNumber;
                 var result = await _userManager.UpdateAsync(user);
 
-                if (result.Errors.Any())
-                {
+                if (result.Errors.Any()) {
                     var test = result.Errors.ToList();
                     return BadRequest("err" + test[0].Description);
                 }
                 var user1 = await _userManager.FindByIdAsync(userId);
 
-                if (userModel.FilePicture != null)
-                {
+                if (userModel.FilePicture != null) {
                     // saveImage(user, userModel.FilePicture); pozove se dispose ili se buni da dve stvari koriste isti kontekst pa je zato kopirana metoda ovde
-                                                              //taj problem se javlja kad se menja slika i u isto vreme neka druga polja, nisam htela da menjam metodu
-                    
-                    
+                    //taj problem se javlja kad se menja slika i u isto vreme neka druga polja, nisam htela da menjam metodu
+
+
                     var extension = Path.GetExtension(userModel.FilePicture.FileName);
                     string fileName = user.UserName + extension;
                     string folderName = Path.Combine("Resources", "UsersPics");
@@ -88,8 +86,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                     user.FilePicture = fileName;
                     //smestam sliku na lokaciju
                     var fullPath = Path.Combine(pathToSave, fileName);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
+                    using (var stream = new FileStream(fullPath, FileMode.Create)) {
                         userModel.FilePicture.CopyTo(stream);
                     }
 
@@ -99,8 +96,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
                 return Ok("ok");
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 throw e;
             }
         }
@@ -108,11 +104,9 @@ namespace DistributionSmartEnergyBackApp.Controllers
         [HttpPost]
         [Route("ChangePassword")]
         //PUT : /api/ApplicationUser/ChangePassword
-        public async Task<IActionResult> ChangePassword([FromBody] PasswordModel passes)
-        {
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordModel passes) {
 
-            try
-            {
+            try {
                 string userId = User.Claims.First(c => c.Type == "UserID").Value;
                 var user = await _userManager.FindByIdAsync(userId);
                 var result = await _userManager.ChangePasswordAsync(user, passes.Old, passes.New);
@@ -121,8 +115,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 else
                     return BadRequest("Incorrect password!");
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 throw e;
             }
         }
@@ -130,28 +123,24 @@ namespace DistributionSmartEnergyBackApp.Controllers
         [HttpDelete]
         [Route("DeleteProfile")]
         //DELETE : /api/ApplicationUser/DeleteProfile?username=
-        public async Task<IActionResult> DeleteProfile( string username)
-        {
+        public async Task<IActionResult> DeleteProfile(string username) {
 
-            try
-            {
-                var user =  _userManager.Users.FirstOrDefault(u=> u.UserName == username);
+            try {
+                var user = _userManager.Users.FirstOrDefault(u => u.UserName == username);
 
 
                 deleteImage(user);
 
                 var result = await _userManager.DeleteAsync(user);
 
-                if (result.Errors.Any())
-                {
+                if (result.Errors.Any()) {
                     var test = result.Errors.ToList();
                     return BadRequest("err" + test[0].Description);
                 }
-             
+
                 return Ok("ok");
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 throw e;
             }
 
@@ -188,7 +177,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpPost]
         [Route("approveOrDenyRequest")]
-        public async Task<IActionResult> approveOrDenyRequest([FromForm]string username, [FromForm]int op) {
+        public async Task<IActionResult> approveOrDenyRequest([FromForm] string username, [FromForm] int op) {
 
             var user = await _userManager.FindByNameAsync(username);
             if (user != null) {
@@ -200,16 +189,39 @@ namespace DistributionSmartEnergyBackApp.Controllers
                     user.RegState = RegistrationState.Denied;
                 }
                 await _userManager.UpdateAsync(user);
+
+                try {
+                    var message = new MimeMessage();
+                    message.From.Add(new MailboxAddress("mtomin367@gmail.com"));
+                    message.To.Add(new MailboxAddress(user.Email));
+
+                    message.Subject = "Account information about Registration state.";
+                    message.Body = new TextPart("plain") {
+                        Text = "Howdy! You account registration status has been reviewed. Your account is now " + user.RegState.ToString() + ".\n"
+                    };
+
+                    using(var client321 = new SmtpClient()) {
+                        client321.Connect("smtp.gmail.com", 587, false);
+                        client321.Authenticate("mtomin367@gmail.com", "spoonwithyourhomies");
+                        client321.Send(message);
+                        client321.Disconnect(true);
+                    }
+
+                }
+                catch {
+
+                }
+
                 return Ok();
             }
 
             return BadRequest();
         }
-        
+
         [HttpPost, DisableRequestSizeLimit]
         [Route("Register")]
         //Post: localhost:24885/api/ApplicationUser/Register
-        public async Task<Object> PostApplicationUser([FromForm]UserModel model) {
+        public async Task<Object> PostApplicationUser([FromForm] UserModel model) {
 
             ApplicationUser applicationUser = new ApplicationUser() {
 
@@ -258,27 +270,23 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
 
         }
-        public  void deleteImage(ApplicationUser user)
-        {
+        public void deleteImage(ApplicationUser user) {
 
             string folderName = Path.Combine("Resources", "UsersPics");
             string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
             //brisem sliku sa lokacije
             var fullPath = Path.Combine(pathToSave, user.FilePicture);
-            try
-            {
+            try {
                 // Check if file exists with its full path    
-                if (System.IO.File.Exists(fullPath))
-                {
+                if (System.IO.File.Exists(fullPath)) {
                     // If file found, delete it    
                     System.IO.File.Delete(fullPath);
                     Console.WriteLine("File deleted.");
                 }
                 else Console.WriteLine("File not found");
             }
-            catch (IOException ioExp)
-            {
+            catch (IOException ioExp) {
                 Console.WriteLine(ioExp.Message);
             }
         }
