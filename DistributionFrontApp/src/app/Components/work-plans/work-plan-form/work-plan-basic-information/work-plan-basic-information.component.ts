@@ -35,7 +35,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       documentId: [''],
       status: ['Draft', Validators.required],
       workRequestId: ['', Validators.required],
-      incidentId: ['', Validators.required],
+      incidentId: [''],
       street: [''],
       //locationId : [''],
       startDateTime: ['', Validators.required],
@@ -65,7 +65,6 @@ export class WorkPlanBasicInformationComponent implements OnInit {
 
     this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.planBasicInfoForm.get('user').setValue(this.loggedInUser.username);
-
 
     this.wr.getAllBasicInfo().subscribe(
       res => {

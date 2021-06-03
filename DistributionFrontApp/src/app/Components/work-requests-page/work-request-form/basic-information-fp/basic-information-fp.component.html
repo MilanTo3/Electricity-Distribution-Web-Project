@@ -20,17 +20,17 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">*Street:</label>
-                    <input class="col-sm-5 form-control" type="text" formControlName="street" [readonly]="readOnlyMode"/>
+                    <input class="col-sm-5 form-control" type="text" formControlName="street"/>
                     <small *ngIf="infoForm.get('street').invalid && infoForm.get('street').touched" class="text-danger">Street is required field.</small>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">*Start date/time:</label>
-                    <input class="col-sm-5 form-control" type="datetime-local" formControlName="startDate" [readonly]="readOnlyMode"/>
+                    <input class="col-sm-5 form-control" type="datetime-local" formControlName="startDate"/>
                     <small *ngIf="infoForm.get('startDate').invalid && infoForm.get('startDate').touched" class="text-danger">Start date is required.</small>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">*End date/time:</label>
-                    <input class="col-sm-5 form-control" type="datetime-local" formControlName="endDate" [readonly]="readOnlyMode"/>
+                    <input class="col-sm-5 form-control" type="datetime-local" formControlName="endDate"/>
                     <small *ngIf="infoForm.get('endDate').invalid && infoForm.get('endDate').touched" class="text-danger">End date is required.</small>
                     <small *ngIf="infoForm.hasError('dateError')" class="text-danger">End date cant be earlier than start date</small>
                 </div>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">*Company:</label>
-                    <input class="col-sm-5 form-control" type="text" formControlName="company" [readonly]="readOnlyMode"/>
+                    <input class="col-sm-5 form-control" type="text" formControlName="company"/>
                     <small *ngIf="infoForm.get('company').invalid && infoForm.get('company').touched" class="text-danger">Company is required.</small> 
                 </div>
                 <div class="form-group row">
@@ -55,30 +55,30 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">*Phone number:</label>
-                    <input class="col-sm-5 form-control" type="text" formControlName="phoneNumber" [readonly]="readOnlyMode"/>
+                    <input class="col-sm-5 form-control" type="text" formControlName="phoneNumber"/>
                     <small *ngIf="phoneNumber.invalid && phoneNumber.touched && !phoneNumber.errors.pattern" class="text-danger">Phone number is required.</small> 
                     <small *ngIf="phoneNumber.invalid &&  phoneNumber.errors.pattern" class="text-danger">Phone number contains only numbers</small>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Date created:</label>
-                    <input class="col-sm-5 form-control" type="datetime-local" formControlName="dateCreated" disabled [readonly]="readOnlyMode"/>
+                    <input class="col-sm-5 form-control" type="datetime-local" formControlName="dateCreated" disabled />
                 </div>
             </div>
         </div>
         <div class="row formRow">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">*Purpose:</label>
-                <input class="col-sm-10 form-control" type="text" formControlName="purpose" [readonly]="readOnlyMode"/>
+                <input class="col-sm-10 form-control" type="text" formControlName="purpose"/>
                 <small *ngIf="infoForm.get('purpose').invalid && infoForm.get('purpose').touched" class="text-danger">Purpose is required.</small> 
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">*Details:</label>
-                <input class="col-sm-10 form-control" type="text" formControlName="details" [readonly]="readOnlyMode"/>
+                <input class="col-sm-10 form-control" type="text" formControlName="details"/>
                 <small *ngIf="infoForm.get('details').invalid && infoForm.get('details').touched" class="text-danger">Details is required.</small> 
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Notes:</label>
-                <input class="col-sm-10 form-control" type="text" formControlName="notes" [readonly]="readOnlyMode"/>
+                <input class="col-sm-10 form-control" type="text" formControlName="notes"/>
             </div>
         </div>
     </form>

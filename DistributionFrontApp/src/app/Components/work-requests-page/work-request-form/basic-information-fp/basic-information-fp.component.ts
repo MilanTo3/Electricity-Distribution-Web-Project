@@ -45,6 +45,7 @@ export class BasicInformationFPComponent implements OnInit {
       {
         this.getAndFill(sessionStorage.getItem("idDocReadOnly"));
         this.readOnlyMode = true;
+        this.infoForm.disable();
       }
       else{
         this.getAndFill(sessionStorage.getItem("idDoc"));
