@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="Resources\WorkPlansMA\" />
     <Folder Include="Resources\UsersPics\" />
-    <Folder Include="Resources\WorkRequestsMA\" />
   </ItemGroup>
 
 
