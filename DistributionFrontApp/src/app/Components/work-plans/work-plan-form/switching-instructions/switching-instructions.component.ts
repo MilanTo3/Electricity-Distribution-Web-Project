@@ -1,9 +1,12 @@
+import { DeviceService } from 'src/app/Services/device.service';
 import { WorkPlanServiceService } from 'src/app/Services/work-plan-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl, FormArray, FormGroup } from '@angular/forms';
 import { customFormValidators } from '../../../../Models/customValidators';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-switching-instructions',
@@ -19,11 +22,19 @@ export class SwitchingInstructionsComponent implements OnInit {
   ];
   index = this.instructions.length +1;
   response :any;
+
+  devices : any;
+  addedDevices = [];
+  filteredDevices: Observable<string[]>;
+  WPStreet: string;
   WPSwitchingInstuctionsForm = this.formBuilder.group({
     items: this.formBuilder.array([]) //this.createInstruction()
   });
-
-  constructor(private formBuilder: FormBuilder, private wp: WorkPlanServiceService, private toastr: ToastrService ) {
+  ModalForm = this.formBuilder.group({
+    deviceName: [''],
+    deviceInstruction: ['']
+  });
+  constructor(private formBuilder: FormBuilder, private wp: WorkPlanServiceService, private toastr: ToastrService, private devicesService: DeviceService ) {
     this.instructionText="";
     this.instructionElement="";
    }
@@ -41,7 +52,31 @@ export class SwitchingInstructionsComponent implements OnInit {
       this.updateInstructionsArray(formdata.items);
       this.WPSwitchingInstuctionsForm.setValue(formdata);
     }
+    this.WPStreet = JSON.parse(sessionStorage.getItem("planBasicInfoForm")).street;
+
     this.onValueChanges();
+
+    this.devicesService.GetDevicesAtLocation(this.WPStreet).subscribe(
+      res => {
+        this.devices = res;
+        console.log(this.devices);
+        this.devices.forEach(element => {
+          this.addedDevices.push(element["name"]);
+        });
+      }
+    );
+    this.filteredDevices = this.ModalForm.get('deviceName').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterDevices(value))
+    ); 
+  }
+  private _filterDevices(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.addedDevices.filter(device => this._normalizeValue(device).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toString().toLowerCase().replace(/\s/g, '');
   }
   onValueChanges(): void {
     this.WPSwitchingInstuctionsForm.valueChanges.subscribe(val => {
@@ -91,7 +126,8 @@ export class SwitchingInstructionsComponent implements OnInit {
   //1. on click add new instruction 
   // ubacuju se tri kontrole, prva ima id izabranog device-a, druga tekst instrukcije, treca ima status
   createNewInstruction(){
-    let newInstruction = {deviceId: this.instructionElement, name: this.instructionText, status: "UNEXECUTED"}; // novi objekat sa tim poljima
+    //let newInstruction = {deviceId: this.instructionElement, name: this.instructionText, status: "UNEXECUTED"}; // novi objekat sa tim poljima
+    let newInstruction = {deviceId: this.ModalForm.get('deviceName').value, name: this.ModalForm.get('deviceInstruction').value, status: "UNEXECUTED"}; // novi objekat sa tim poljima
     this.instructions.push(newInstruction); // sacuvana instrukcija u obicnom nizu
     this.instructionsForm = this.WPSwitchingInstuctionsForm.get('items') as FormArray;
     this.instructionsForm.push(this.createInstruction()); // ubacuje u WPSwitchingInstuctionsForm -> items -> novi niz tj grupa kontrola
@@ -122,8 +158,8 @@ export class SwitchingInstructionsComponent implements OnInit {
   }
 
   resetModal(){
-    this.instructionElement = "";
-    this.instructionText = "";
+    this.ModalForm.get('deviceName').setValue('');
+    this.ModalForm.get('deviceInstruction').setValue('');
   }
 
   saveChanges(){

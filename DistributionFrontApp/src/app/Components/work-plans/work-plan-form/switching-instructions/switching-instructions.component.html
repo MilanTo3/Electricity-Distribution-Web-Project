@@ -27,8 +27,8 @@
                                 <input class="input-group-text" formControlName="deviceId" readonly/>
 
                                 </div>
-                                <input type="text" class="form-control"  aria-label="instruction" formControlName="name" readonly>
-
+                                <input type="text" class="form-control"  aria-label="instruction" formControlName="name"  readonly>
+                              
                                 <div class="input-group-append">
                                 <input class="input-group-text" formControlName="status" [ngStyle]="{'color': (item.value!=null && item.value.status=='EXECUTED')? 'var(--c-blue-100)' : 'var(--c-orange-100)'}" readonly/>
                               </div>
@@ -68,23 +68,26 @@
           </button>
         </div>
         <div class="modal-body">
+          <form  [formGroup]="ModalForm" >
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Element</label>
-                </div>
-                <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="instructionElement" >
-                  <option selected value="">Choose element...</option>
-                  <option value="BREAKER_ID">BREAKER_ID</option>
-                  <option value="FUSE_ID">FUSE_ID</option>
-                  <option value="TRANSFORMER_ID">TRANSFORMER_ID</option>
-                </select>
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Element</label>
               </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-1">Instruction</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Instuction text" aria-describedby="inputGroup-1" [(ngModel)]="instructionText">
+              <input type="text" class="form-control" id="inputGroupSelect01" formControlName="deviceName" [matAutocomplete]="auto" />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let device of filteredDevices | async" [value]="device">
+                  {{device}}
+                </mat-option>
+              </mat-autocomplete>       
+            </div>
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-1">Instruction</span>
               </div>
+              <input type="text" class="form-control" aria-label="Instuction text" aria-describedby="inputGroup-1"  formControlName="deviceInstruction" >
+            </div>
+          </form>
+           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary buttons" (click)="resetModal()" data-dismiss="modal">Close</button>
