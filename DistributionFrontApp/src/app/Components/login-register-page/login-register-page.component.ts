@@ -92,12 +92,11 @@ export class LoginRegisterPageComponent implements OnInit {
                 this.toastr.error('Eh? Seems like there\'s been an error sending data to server.', 'Error');
               }
             );
-            this.toastr.success('Yay! Thanks for joining Smart Energy.', 'Account registered');
           }
         );
       }
       else {
-        this.toastr.error('Eh? Seems like there\'s been an error sending data to server.', 'Error');
+        this.toastr.error('Eh? Seems like there\'s been an error getting account info.', 'Error');
       }
     });
 
