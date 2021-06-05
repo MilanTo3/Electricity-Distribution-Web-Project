@@ -15,6 +15,8 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
         public string username { get; set; }
         public string birthday { get; set; }
         public string address { get; set; }
+        public string phone { get; set; }
+
 
         public ReturnUserModel(string name, string lastname, string email, string role, string username, string birthday, string address) {
 

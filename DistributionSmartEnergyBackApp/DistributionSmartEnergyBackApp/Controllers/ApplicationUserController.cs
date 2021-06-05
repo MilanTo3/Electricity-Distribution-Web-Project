@@ -49,7 +49,16 @@ namespace DistributionSmartEnergyBackApp.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             return user;
         }
-
+        [HttpGet]
+        [Route("GetUser")]
+        //GET : /api/UserProfile
+        public async Task<ReturnUserModel> GetUser(string username)
+        {
+            var user = await _userManager.Users.Where(u => u.UserName == username).FirstOrDefaultAsync();
+            ReturnUserModel u = new ReturnUserModel(user.Name, user.Lastname, user.Email, user.UserType.ToString(), user.UserName, user.Birthday.ToString(), user.Address);
+            u.phone = user.PhoneNumber;
+            return u;
+        }
         [HttpPut, DisableRequestSizeLimit]
         [Route("updateProfile")]
         //PUT : /api/ApplicationUser/UpdateProfile

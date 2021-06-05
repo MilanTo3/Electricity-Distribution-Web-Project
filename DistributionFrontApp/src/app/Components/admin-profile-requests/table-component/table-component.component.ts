@@ -89,7 +89,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     } else if (this.tableid === 9) {
       this.loadAllConsumers();
     } else if (this.tableid === 10) {
-      this.loadRoleRequests();
+      await this.loadRoleRequests();
     }
 
   }
@@ -102,13 +102,20 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
-  async approveOrDenyRegistration(username, op){
+  async approveOrDenyRegistration(username,role, op){
 
-    let formdata: FormData = new FormData();
-    formdata.append('username', username);
-    formdata.append('op', op);
-    await this.registrattionService.approveOrDenyRequest(formdata).toPromise();
-    this.loadProfileRequests();
+    if((role!='Consumer') || op==1) //bilo koji se odbija svakako, ako je consumer i odobrava se onda redirekt
+    {
+      let formdata: FormData = new FormData();
+      formdata.append('username', username);
+      formdata.append('op', op);
+      await this.registrattionService.approveOrDenyRequest(formdata).toPromise();
+      this.loadProfileRequests();
+    }
+    else
+    {
+      this.router.navigate(['/new-consumer',  username ]);
+    }
 
   }
 
@@ -121,7 +128,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.enableView();
   }
   async ApproveOrDenyRoleRequest(username, op){
-
+    
     let formdata: FormData = new FormData();
     formdata.append('username', username);
     formdata.append('op', op);

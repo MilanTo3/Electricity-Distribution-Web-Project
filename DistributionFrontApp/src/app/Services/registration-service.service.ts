@@ -61,6 +61,9 @@ export class UserService {
   }
   approveOrDenyRoleRequest(formdata){
     return this.http.post('http://localhost:24885/api/ApplicationUser/ApproveOrDenyRole', formdata);
-
+  }
+  getUser(username)
+  {
+    return this.http.get('http://localhost:24885/api/ApplicationUser/GetUser?username='+ username);
   }
 }

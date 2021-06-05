@@ -102,7 +102,7 @@ const routes: Routes = [
   { path: "editTeam/:teamId", component: EditTeamComponent },
   { path: "viewTeam/:teamId", component: ViewTeamComponent },
   { path: "consumers", component: ConsumersComponent },
-  { path: "new-consumer", component: NewConsumerComponent},
+  { path: "new-consumer/:username", component: NewConsumerComponent},
   { path: "adminPanel", component: AdminPanelComponent, canActivate: [AuthGuard], children: [
     { path: "addStreet", component: AddStreetComponent },
     { path: "adminProfileRequests", component: AdminProfileRequestsComponent},
