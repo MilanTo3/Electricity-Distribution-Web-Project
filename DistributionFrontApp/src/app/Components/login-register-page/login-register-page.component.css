@@ -19,6 +19,15 @@ body{
 	margin-left: 47px;
 }
 
+.socialPic{
+	opacity:0.83;
+}
+
+.socialPic:hover{
+	opacity: 1;
+
+}
+
 .formsClass {
     border: 1px solid black;
     border-radius: 4px;
