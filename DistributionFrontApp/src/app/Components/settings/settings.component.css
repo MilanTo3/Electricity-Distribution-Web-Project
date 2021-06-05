@@ -8,30 +8,7 @@
     background: var(--c-orange-200);
     border-color: var(--c-orange-200);
 } 
-.icon-img-wrapper {
-  overflow: hidden;
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-  background: var(--c-gray-1000);
-  border-radius: 50%;
-  margin: auto;
-  position: relative;
-  cursor: pointer;
-}
-.icon-img-wrapper > img {
-  object-fit: contain;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  transition: 0.33s ease-in-out;
-}
-.icon-img-wrapper > img:hover {
-  transform: translate(-50%, -50%) scale(1.2);
-  filter: brightness(110%);
-}
+
 
 .form-check{
   color: #699FA1;
@@ -56,6 +33,59 @@
 .text-danger{
   font-weight: bold;
   animation: fadein 0.3s;
+}
+
+
+
+/**********************
+ * Manage Icons 
+***********************/
+
+.settings .icons .col > label{
+  cursor: pointer;
+  position: relative;
+}
+
+.settings .icons label img{
+  display: block;
+  height: 100px;
+}
+
+.settings .icons label img[src=""]{
+  display: none;
+}
+
+.settings .icons label:hover img{
+  border-color: var(--c-blue-100) !important;
+}
+
+.settings .icons :checked ~ img{
+  border-color: var(--c-orange-200) !important;
+}
+
+.settings .icon-img-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  background: var(--c-gray-1000);
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  cursor: pointer;
+}
+.settings .icon-img-wrapper > img {
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  transition: 0.33s ease-in-out;
+}
+.settings .icon-img-wrapper > img:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  filter: brightness(110%);
 }
 
 @keyframes fadein{

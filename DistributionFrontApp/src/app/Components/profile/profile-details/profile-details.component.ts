@@ -18,7 +18,7 @@ export class ProfileDetailsComponent implements OnInit {
   registrationState;
 
   currentImg: any;
-  rolesOptions = ["Administrator", "Dispatcher", "TeamMember", "Consumer", "DataAnalyst"];
+  rolesOptions = ["Administrator", "Dispatcher", "DataAnalyst", "TeamMember", "Consumer"];
   selectedRole: string;
   profileForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -31,7 +31,7 @@ export class ProfileDetailsComponent implements OnInit {
     //role: ['', Validators.required],
     userType: ['', Validators.required],
     //profileImg: ['', Validators.required],
-    filePicture: ['', Validators.required],
+    filePicture: [''],
     teamId: [''],
     phoneNumber: [''],
     password: ['']
@@ -66,7 +66,7 @@ export class ProfileDetailsComponent implements OnInit {
         this.profileForm.get('userName').setValue(res["userName"]);
         this.profileForm.get('birthday').setValue(moment(res["birthday"]).format('YYYY-MM-DD'));
         this.profileForm.get('address').setValue(res["address"]);
-        this.profileForm.get('userType').setValue(res["userType"]);
+        this.profileForm.get('userType').setValue(this.rolesOptions[res["userType"]]);
         this.profileForm.get('email').setValue(res["email"]);
         this.profileForm.get('teamId').setValue(res["teamId"]);
         this.profileForm.get('phoneNumber').setValue(res["phoneNumber"]);

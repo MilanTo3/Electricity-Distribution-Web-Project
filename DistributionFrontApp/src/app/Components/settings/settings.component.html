@@ -174,7 +174,7 @@
                 formControlName="New"                  
             />
             <small *ngIf="settingsForm.get('New').invalid && settingsForm.get('New').touched" class="form-text text-danger">
-                    New password is required.
+                New password is required.
             </small>
     </div>
     <button class="btn btn-success float-right" type="submit">Change password</button>
@@ -187,20 +187,20 @@
                 <h2 class="label">Select visible notifications</h2>  
             </header>     
             <div class="form-check">
-                <input type="checkbox" id="checkbox_notification_info" class="form-check-input">
-                <label class="form-check-label" for="checkbox_notification_info"  formControlName="infoCheck">Info</label>
+                <input type="checkbox" id="checkbox_notification_info" class="form-check-input" formControlName="infoCheck">
+                <label class="form-check-label" for="checkbox_notification_info"  >Info</label>
             </div>
             <div class="form-check">
-                <input type="checkbox" id="checkbox_notification_warnings" class="form-check-input" >
-                <label class="form-check-label" for="checkbox_notification_warnings"  formControlName="warningCheck">Warnings</label>			
+                <input type="checkbox" id="checkbox_notification_warnings" class="form-check-input"  formControlName="warningCheck">
+                <label class="form-check-label" for="checkbox_notification_warnings" >Warnings</label>			
             </div>
             <div class="form-check">
-                <input type="checkbox" id="checkbox_notification_success" class="form-check-input" >
-                <label class="form-check-label" for="checkbox_notification_success" formControlName="successCheck">Success</label>			
+                <input type="checkbox" id="checkbox_notification_success" class="form-check-input" formControlName="successCheck">
+                <label class="form-check-label" for="checkbox_notification_success" >Success</label>			
             </div> 
             <div class="form-check">
-                <input type="checkbox" id="checkbox_notification_errors" class="form-check-input" >
-                <label class="form-check-label" for="checkbox_notification_errors" formControlName="errorCheck">Errors</label>	
+                <input type="checkbox" id="checkbox_notification_errors" class="form-check-input" formControlName="errorCheck" >
+                <label class="form-check-label" for="checkbox_notification_errors" >Errors</label>	
             </div> 	
         </fieldset>
 
@@ -208,69 +208,28 @@
             <header class="mt-2 mb-4">
                 <h2 class="label">Manage icons</h2>  
             </header> 
-            <div class="row">
-                <div class="col col-md-3 icon-img-browse">
-                        <div class="p-3 border rounded">
-                        <h5 class="label mb-5">Calls icon</h5>
-                        <div class="row">
-                            <div class="col ">
-                                <div class="form-group">
-                                    <label class="row mb-4 icon-img-wrapper" for="call-photo-btn">
-                                        <img [src]="callIcon" formControlName="iconCall" *ngIf="callIcon" class="icon-img" >                            
-                                    </label> 
-                                                                                    
-                                    <div class='row'>
-                                        <label class="btn btn-primary mx-auto">
-                                            Browse
-                                            <input type="file" id="call-photo-btn" (change)="onFileChanged($event , 1)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
-                                        </label>
-                                    </div>
-                                </div>                   
-                            </div> 
-                        </div>
-                    </div>
+            <div class="row align-items-center" *ngFor="let item of icons | keyvalue ; let i = index;">
+                <div class="col col-md-2">
+                    <h4 class="label">{{item.key}}</h4>
                 </div>
-                <div class="col col-md-3 icon-img-browse">
-                    <div class="p-3 border rounded">
-                        <h5 class="mb-5 section-title">Incidents icon</h5>
-                        <div class="row">
-                            <div class="col ">
-                                <div class="form-group">
-                                    <label class="row mb-4 icon-img-wrapper" for="incident-photo-btn">
-                                        <img [src]="incidentIcon" formControlName="iconIncident" *ngIf="incidentIcon" class="icon-img" >                            
-                                    </label> 
-                                                                                        
-                                    <div class='row'>
-                                        <label class="btn btn-primary mx-auto">
-                                            Browse
-                                            <input type="file" id="incident-photo-btn" (change)="onFileChanged($event , 2)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
-                                        </label>
-                                    </div>
-                                </div>                   
-                            </div> 
-                        </div>
-                    </div>
-                </div>            
-                <div class="col col-md-3 icon-img-browse">
-                    <div class="p-3 border rounded">
-                        <h5 class="mb-5 section-title">Crews icon</h5>
-                        <div class="row">
-                            <div class="col ">
-                                <div class="form-group">
-                                    <label class="row mb-4 icon-img-wrapper" for="crew-photo-btn">
-                                        <img [src]="crewIcon" formControlName="iconCrew" *ngIf="crewIcon" class="icon-img" >                            
-                                    </label> 
-                                                                                    
-                                    <div class='row'>
-                                        <label class="btn btn-primary mx-auto">
-                                            Browse
-                                            <input type="file" id="crew-photo-btn" (change)="onFileChanged($event , 3)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
-                                        </label>
-                                    </div>
-                                </div>                   
-                            </div> 
-                            </div>
-                    </div>
+                <div class="col col-md-2" *ngFor="let arrayItem of item.value; let j = index;">
+                    <label> 
+                        <input hidden type="radio" name="radio-group-{{item.key}}" [value]="arrayItem" [checked]="offeredIcons[i][j]" (change)="iconOnSelect(item.key, arrayItem)"/>
+                        <img [src]="arrayItem" class="p-3 border rounded"/>                   
+                    </label>
+                </div> 
+                             
+                <div class="col col-md-2" *ngIf="sources[i]!=''" >
+                    <label> 
+                        <input hidden type="radio" name="radio-group-{{item.key}}" [checked]="uploadedCustom[i]"/>
+                        <img [src]="sources[i]"  class="p-3 border rounded"/>
+                    </label>
+                </div>
+                <div class="col col-md-2" >
+                    <label class="btn btn-primary mx-auto">
+                        Browse
+                        <input type="file" id="{{item.key}}-photo-btn" (change)="onFileChanged($event , item.key)" name="DocumentPicture" #DocumentPicture accept="image/*" style="display: none;">
+                    </label>
                 </div>
             </div>
         </fieldset>
@@ -280,12 +239,12 @@
                 <h2 class="label">Other settings</h2>  
             </header> 
             <div class="form-check">
-                <input type="checkbox" id="checkbox_other_settings__mandatory_fields" class="form-check-input">
-                <label class="form-check-label" for="checkbox_other_settings__mandatory_fields" formControlName="mandatoryCheck">Show only mandatory fields</label>
+                <input type="checkbox" id="checkbox_other_settings__mandatory_fields" class="form-check-input" formControlName="mandatoryCheck">
+                <label class="form-check-label" for="checkbox_other_settings__mandatory_fields" >Show only mandatory fields</label>
             </div>
             <div class="form-check">
-                <input type="checkbox" id="checkbox_other_settings__reset_settings" class="form-check-input">
-                <label class="form-check-label" for="checkbox_other_settings__reset_settings" formControlName="resetCheck">Reset all settings</label>
+                <input type="checkbox" id="checkbox_other_settings__reset_settings" class="form-check-input" formControlName="resetCheck">
+                <label class="form-check-label" for="checkbox_other_settings__reset_settings" >Reset all settings</label>
             </div>
         </fieldset>  
         <button class="btn btn-success float-right" type="submit">Save changes</button>
