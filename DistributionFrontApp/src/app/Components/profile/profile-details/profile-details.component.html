@@ -63,13 +63,7 @@
                                 </div>
                                 <small *ngIf="profileForm.get('address').invalid && profileForm.get('address').touched" class="text-danger">Address is required.</small>
                             </div>
-                            <div class="form-group">
-                                <label for="role"><h5>Change role:</h5></label>
-                                <select  class="form-control" id="role" formControlName="userType">
-                                    <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
-                                </select>
-                                <small *ngIf="profileForm.get('userType').invalid && profileForm.get('userType').touched" class="text-danger">Role is required.</small>
-                            </div> 
+                            
 
 						</div>
 						<div class="col ">
@@ -170,6 +164,36 @@
           </div>
         </div>
       </div>
+    </form>
+
+    <form class="profile-settings" [formGroup]="roleForm"  (ngSubmit)="onSubmitRole()">
+        <div class="container">
+            <div class= "row">
+                <div class= "col col-md-6 p-5">
+                    <h2 class="h3 border-bottom pb-3 mb-5 section-title">Change role ({{ registrationState }})</h2>
+                                
+                        <div class="row">
+                            <div class="col ">
+                                <div class="form-group">
+                                    <label for="role"><h5>Cureent role:</h5></label>
+                                    <select  class="form-control" id="role" formControlName="userType">
+                                        <option *ngFor="let option of rolesOptions" [value]="option" >{{ option }}</option> 
+                                    </select>
+                                    <small *ngIf="roleForm.get('userType').invalid && roleForm.get('userType').touched" class="text-danger">Role is required.</small>
+                                 </div> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col pt-3">
+                                <button class="btn btn-success overflow-hidden" type="submit">
+                                    Request role change
+                                </button>
+                            </div>   
+                        </div>    
+                </div>
+            </div>
+        </div>
+        
     </form>
     
   

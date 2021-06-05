@@ -64,9 +64,10 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 user.Lastname = userModel.Lastname;
                 user.Email = userModel.Email;
                 user.Birthday = userModel.Birthday;
-                user.Address = userModel.Address;
-                user.UserType = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), userModel.UserType);
-                user.RegState = ApplicationUser.RegistrationState.Pending;
+                user.Address = userModel.Address; 
+                // izmesteno u ChangeRole
+               // user.UserType = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), userModel.UserType);
+               // user.RegState = ApplicationUser.RegistrationState.Pending;
                 user.PhoneNumber = userModel.PhoneNumber;
                 var result = await _userManager.UpdateAsync(user);
 
@@ -177,6 +178,116 @@ namespace DistributionSmartEnergyBackApp.Controllers
             else
                 return BadRequest("errUsername or password is incorrect.");
         }
+       
+        [HttpGet]
+        [Route("GetRoleRequests")]
+        //GET : /api/ApplicationUser/GetAllRequests
+        public async Task<ActionResult<IEnumerable<ReturnUserModel>>> GetRoleRequests()
+        {
+
+            var pendingUsers = await _userManager.Users.Where(u => (u.RegState == ApplicationUser.RegistrationState.Pending) && (u.UserType != u.RoleRequest)).ToListAsync();
+
+            List<ReturnUserModel> returnUsersModelList = new List<ReturnUserModel>();
+
+            foreach (ApplicationUser user in pendingUsers)
+            {
+                returnUsersModelList.Add(new ReturnUserModel(user.Name, user.Lastname, user.Email, user.RoleRequest.ToString(), user.UserName, user.Birthday.ToString(), user.Address));
+            }
+
+            return returnUsersModelList;
+        }
+
+        [HttpGet]
+        [Route("ChangeRole")]
+        //GET : /api/ApplicationUser/ChangeRole
+        public async Task<IActionResult> ChangeRole(string role)
+        {
+            //moze da menja ako je vec profil odobren &&
+            // ako trazi drugaciju rolu
+            // ako su role (roleRequest i userType) a state je pending znaci da je tek registrovan i ceka odobrenje profila
+            // samo ako je approved profil onda moze da trazi promenu profila
+            try
+            {
+                string userId = User.Claims.First(c => c.Type == "UserID").Value;
+                var user = await _userManager.FindByIdAsync(userId);
+                var rolereq = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), role);
+                if (rolereq != user.UserType && user.RegState==RegistrationState.Approved)
+                {
+                    user.RoleRequest = rolereq;
+                    user.RegState = RegistrationState.Pending;
+                }
+                else
+                {
+                    return BadRequest("Wait for your profile to be approved first!");
+
+                }
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    return BadRequest(test[0].Description);
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        [HttpPost]
+        [Route("ApproveOrDenyRole")]
+        public async Task<IActionResult> ApproveOrDenyRole([FromForm] string username, [FromForm] int op)
+        {
+
+            var user = await _userManager.FindByNameAsync(username);
+            if (user != null)
+            {
+
+                if (op == 0)
+                {
+                    user.UserType = user.RoleRequest;
+                    user.RegState = RegistrationState.Approved;
+                }
+                else
+                {
+                    user.RoleRequest = user.UserType;
+                    user.RegState = RegistrationState.Denied;
+                }
+                await _userManager.UpdateAsync(user);
+
+                try
+                {
+                    var message = new MimeMessage();
+                    message.From.Add(new MailboxAddress("mtomin367@gmail.com"));
+                    message.To.Add(new MailboxAddress(user.Email));
+
+                    message.Subject = "Account information about role state.";
+                    message.Body = new TextPart("plain")
+                    {
+                        Text = "Howdy! You role change request has been reviewed. Your role request has been " + user.RegState.ToString() + ".\n"
+                    };
+
+                    using (var client321 = new SmtpClient())
+                    {
+                        client321.Connect("smtp.gmail.com", 587, false);
+                        client321.Authenticate("mtomin367@gmail.com", "spoonwithyourhomies");
+                        client321.Send(message);
+                        client321.Disconnect(true);
+                    }
+
+                }
+                catch
+                {
+
+                }
+
+                return Ok();
+            }
+
+            return BadRequest();
+        }
 
         [HttpPost]
         [Route("approveOrDenyRequest")]
@@ -238,6 +349,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 Birthday = new DateTime(1998, 10, 1),
                 Address = "address",
                 UserType = UserTypeEnumeration.Consumer,
+                RoleRequest = UserTypeEnumeration.Consumer,
                 TeamId = "none",
                 RegState = ApplicationUser.RegistrationState.Pending,
                 PhoneNumber = "1233",
@@ -287,6 +399,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 Birthday = model.Birthday,
                 Address = model.Address,
                 UserType = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), model.UserType),
+                RoleRequest = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), model.UserType),
                 TeamId = model.TeamId,
                 RegState = ApplicationUser.RegistrationState.Pending,
                 PhoneNumber = model.PhoneNumber,
@@ -385,7 +498,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
         [Route("getPendingUsers")]
         public async Task<ActionResult<IEnumerable<ReturnUserModel>>> getPendingUsers() {
 
-            var pendingUsers = await _userManager.Users.Where(x => x.RegState == ApplicationUser.RegistrationState.Pending).ToListAsync();
+            var pendingUsers = await _userManager.Users.Where(x =>( x.RegState == ApplicationUser.RegistrationState.Pending) && (x.UserType==x.RoleRequest)).ToListAsync();
             List<ReturnUserModel> returnUsersModelList = new List<ReturnUserModel>();
 
             foreach (ApplicationUser user in pendingUsers) {

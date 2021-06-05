@@ -19,6 +19,7 @@ namespace DistributionSmartEnergyBackApp.Models
         private string filePicture;
         private string teamid;
         private RegistrationState state;
+        private UserTypeEnumeration roleRequest;
 
         [Column]
         public string Name {
@@ -80,6 +81,14 @@ namespace DistributionSmartEnergyBackApp.Models
 
             get { return teamid; }
             set { teamid = value; }
+        }
+
+        [Column]
+        public UserTypeEnumeration RoleRequest
+        {
+
+            get { return roleRequest; }
+            set { roleRequest = value; }
         }
     }
 }

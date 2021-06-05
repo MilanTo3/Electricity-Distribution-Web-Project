@@ -29,13 +29,16 @@ export class ProfileDetailsComponent implements OnInit {
     birthday: ['', Validators.required],
     address: ['', Validators.required],
     //role: ['', Validators.required],
-    userType: ['', Validators.required],
+    //userType: ['', Validators.required],
     //profileImg: ['', Validators.required],
     filePicture: [''],
     teamId: [''],
     phoneNumber: [''],
     password: ['']
   });
+  roleForm = this.formBuilder.group({
+    userType: ['', Validators.required]
+  })
   oldpass: string;
   newpass: string;
 
@@ -49,7 +52,7 @@ export class ProfileDetailsComponent implements OnInit {
     this.formdata.append('Email', this.profileForm.get('email').value);
     this.formdata.append('Birthday', this.profileForm.get('birthday').value);
     this.formdata.append('Address', this.profileForm.get('address').value);
-    this.formdata.append('UserType', this.profileForm.get('userType').value);
+    this.formdata.append('UserType', this.roleForm.get('userType').value);
     this.formdata.append('Password', this.profileForm.get('password').value);
     this.formdata.append('TeamId', this.profileForm.get('teamId').value);
     this.formdata.append('PhoneNumber', this.profileForm.get('phoneNumber').value);
@@ -66,7 +69,7 @@ export class ProfileDetailsComponent implements OnInit {
         this.profileForm.get('userName').setValue(res["userName"]);
         this.profileForm.get('birthday').setValue(moment(res["birthday"]).format('YYYY-MM-DD'));
         this.profileForm.get('address').setValue(res["address"]);
-        this.profileForm.get('userType').setValue(this.rolesOptions[res["userType"]]);
+        this.roleForm.get('userType').setValue(this.rolesOptions[res["userType"]]);
         this.profileForm.get('email').setValue(res["email"]);
         this.profileForm.get('teamId').setValue(res["teamId"]);
         this.profileForm.get('phoneNumber').setValue(res["phoneNumber"]);
@@ -116,7 +119,7 @@ export class ProfileDetailsComponent implements OnInit {
         },
         (err) => {
           if (err.status == 400)
-            this.toastr.error(err.error.substring(3), 'Login Error');
+            this.toastr.error(err.error.substring(3), 'Profile update error');
           else
             this.toastr.error('Seems like our servers are down, our hamster mechanic is on it. Please try again later.', 'Server Error');
         }
@@ -125,6 +128,27 @@ export class ProfileDetailsComponent implements OnInit {
       this.showToastrError();
     }
 
+  }
+  onSubmitRole(){
+    if (this.roleForm.valid) {
+      console.log(this.roleForm.value);
+
+      this.userService.updateUserRole(this.roleForm.get('userType').value).subscribe(
+        (response: any) => {
+          this.toastr.success('Role request sent!', 'Yas!');
+          this.toastr.info('Please wait while our admins review your request', 'Info');
+
+        },
+        (err) => {
+          if (err.status == 400)
+            this.toastr.error(err.error, 'Role change error');
+          else
+            this.toastr.error('Seems like our servers are down, our hamster mechanic is on it. Please try again later.', 'Server Error');
+        }
+      );
+    } else {
+      this.showToastrError();
+    }
   }
   showToastrSuccess() {
     this.toastr.success('Your profile change has been sent.', 'Form successfuly sent.');

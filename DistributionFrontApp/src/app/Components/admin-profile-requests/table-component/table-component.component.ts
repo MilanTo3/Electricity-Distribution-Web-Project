@@ -112,13 +112,22 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
-  loadRoleRequests() {
-    let user1 = new changeRoleRequest("Erik", "Dispatcher", "Administrator");
-    let user2 = new changeRoleRequest("Rukia", "Dispatcher", "Dispatcher");
-    let user3 = new changeRoleRequest("Jordan", "Consumer", "Administrator");
+  async loadRoleRequests() {
 
-    this.dataToPrint.push(user1, user2, user3);
-    this.keyNames = Object.getOwnPropertyNames(user3);
+    let res = await this.registrattionService.getRoleRequests().toPromise();
+    this.dataToPrint = res;
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(res[0]);
+    this.enableView();
+  }
+  async ApproveOrDenyRoleRequest(username, op){
+
+    let formdata: FormData = new FormData();
+    formdata.append('username', username);
+    formdata.append('op', op);
+    await this.registrattionService.approveOrDenyRoleRequest(formdata).toPromise();
+    this.loadRoleRequests();
+
   }
 
   async loadTeams() {

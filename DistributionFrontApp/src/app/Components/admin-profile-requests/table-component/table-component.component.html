@@ -44,8 +44,8 @@
             <button [hidden]="hideElement" routerLink="/delete-consumer" class="consumer-buttons btn btn-info"><i class="fas fa-trash"></i> Delete</button>
           </div>
           <div *ngIf="tableid===10">
-            <button mat-button class="adminButton btn btn-success">Approve</button>
-            <button mat-button class="adminButton btn btn-danger">Deny</button>
+            <button mat-button class="adminButton btn btn-success" (click)="ApproveOrDenyRoleRequest(row.username, 0)">Approve</button>
+            <button mat-button class="adminButton btn btn-danger" (click)="ApproveOrDenyRoleRequest(row.username, 1)">Deny</button>
           </div>
         </mat-cell>
       </ng-container>

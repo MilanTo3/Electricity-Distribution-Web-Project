@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post('http://localhost:24885/api/ApplicationUser/approveOrDenyRequest', formdata);
   }
 
+  updateUserRole(role)
+  {
+    return this.http.get('http://localhost:24885/api/ApplicationUser/ChangeRole?role='+ role);
+  }
   getPendingUsers() {
     return this.http.get<User[]>('http://localhost:24885/api/ApplicationUser/getPendingUsers');
   }
@@ -50,5 +54,13 @@ export class UserService {
   getUserData(accessToken){
     return this.http.get(`http://graph.facebook.com/me?fields=name,location,picture,birthday,email&access_token=${accessToken}`);
   }
+  getRoleRequests()
+  {
+    return this.http.get<User[]>('http://localhost:24885/api/ApplicationUser/GetRoleRequests');
 
+  }
+  approveOrDenyRoleRequest(formdata){
+    return this.http.post('http://localhost:24885/api/ApplicationUser/ApproveOrDenyRole', formdata);
+
+  }
 }
