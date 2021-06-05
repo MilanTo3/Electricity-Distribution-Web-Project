@@ -44,5 +44,11 @@ export class UserService {
     
     return this.http.get('http://localhost:24885/api/ApplicationUser/getProfileImg?username='+username, {reportProgress: true, responseType: 'blob'});
   }
+  registerSocialMedia(formdata){
+    return this.http.post('http://localhost:24885/api/ApplicationUser/registerSocialMedia', formdata);
+  }
+  getUserData(accessToken){
+    return this.http.get(`http://graph.facebook.com/me?fields=name,location,picture,birthday,email&access_token=${accessToken}`);
+  }
 
 }

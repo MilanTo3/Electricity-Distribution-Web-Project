@@ -98,6 +98,10 @@
               "target": "Package",
               "version": "[3.1.5, )"
             },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[6.11.0, )"

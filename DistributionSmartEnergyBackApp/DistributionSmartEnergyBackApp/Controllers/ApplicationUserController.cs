@@ -17,10 +17,13 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using static DistributionSmartEnergyBackApp.Models.ApplicationUser;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace DistributionSmartEnergyBackApp.Controllers
 {
@@ -216,6 +219,58 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("registerSocialMedia")]
+        public async Task<IActionResult> registerBySocialMedia([FromForm] string fullname, [FromForm] string email, [FromForm] string imageUrl) {
+
+            if (email == null) {
+                email = "popunjeno";
+            }
+
+            ApplicationUser applicationUser = new ApplicationUser() {
+
+                UserName = fullname.Replace(" ", ""),
+                Name = fullname.Split(' ')[0],
+                Lastname = fullname.Split(' ')[1],
+                Email = email,
+                Birthday = new DateTime(1998, 10, 1),
+                Address = "address",
+                UserType = UserTypeEnumeration.Consumer,
+                TeamId = "none",
+                RegState = ApplicationUser.RegistrationState.Pending,
+                PhoneNumber = "1233",
+                FilePicture = fullname
+            };
+
+            try {
+                var result = await _userManager.CreateAsync(applicationUser, "password");
+                if (result.Errors.Any()) {
+                    var test = result.Errors.ToList();
+                    return BadRequest("err" + test[0].Description);
+                }
+                if (imageUrl != null) {
+
+                    using (WebClient webClient = new WebClient()) {
+                        byte[] data = webClient.DownloadData(imageUrl);
+
+                        using (MemoryStream mem = new MemoryStream(data)) {
+                            using (var yourImage = Image.FromStream(mem)) {
+                                // If you want it as Png
+                                string folderName = Path.Combine("Resources", "UsersPics");
+                                string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                                yourImage.Save(Path.Combine(pathToSave, fullname.Replace(" ", "")) + ".png", ImageFormat.Png);
+                            }
+                        }
+
+                    }
+                }
+                return Ok("ok");
+            }
+            catch (Exception e) {
+                throw e;
+            }
         }
 
         [HttpPost, DisableRequestSizeLimit]
