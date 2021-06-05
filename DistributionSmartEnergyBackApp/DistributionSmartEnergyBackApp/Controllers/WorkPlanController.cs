@@ -123,7 +123,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 files[i] = Newtonsoft.Json.JsonConvert.DeserializeObject<pictureModel>(stringPicModels[i]);
             }
 
-            string folderName = Path.Combine("Resources", "WorkRequestsMA");
+            string folderName = Path.Combine("Resources", "WorkPlansMA");
             string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             var filePath = Path.Combine(pathToRead, id);
 

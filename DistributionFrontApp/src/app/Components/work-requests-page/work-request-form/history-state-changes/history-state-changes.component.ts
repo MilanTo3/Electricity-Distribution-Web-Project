@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { WorkPlanServiceService } from './../../../../Services/work-plan-service.service';
 import { Component, OnInit, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableComponentComponent } from 'src/app/Components/admin-profile-requests/table-component/table-component.component';
@@ -15,7 +17,7 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   stateArray: HistoryStateChange[] = [];
   editMode = false;
 
-  constructor(private wr: WorkRequestServiceService) { }
+  constructor(private wr: WorkRequestServiceService, private wp: WorkPlanServiceService, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
 
@@ -33,11 +35,23 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   saveChanges(){
 
     let id = sessionStorage.getItem("idDoc");
-    this.wr.updateHistoryState(this.stateArray, id).subscribe(
-      res => {
-        console.log(res);
-      }
-    );
+    if(id.startsWith('WR'))
+    {
+      this.wr.updateHistoryState(this.stateArray, id).subscribe(
+        res => {
+          this.toastr.success('Updated history of the document', 'Yas!');
+          console.log(res);
+        }
+      );
+    }
+    else if(id.startsWith('WP'))
+    {
+      this.wp.updateHistoryState(this.stateArray, id).subscribe(
+        res => {
+          this.toastr.success('Updated history of the document', 'Yas!');
+        }
+      );
+    }
   }
 
   addState(state: number) {

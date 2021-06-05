@@ -1,3 +1,4 @@
+import { WorkPlanServiceService } from './../../../../Services/work-plan-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Localbase from 'localbase'
@@ -17,7 +18,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
   db = new Localbase('db');
   editMode = false;
 
-  constructor(private wr: WorkRequestServiceService, private toastr: ToastrService) { }
+  constructor(private wr: WorkRequestServiceService, private toastr: ToastrService, private wp: WorkPlanServiceService) { }
 
   ngOnInit(): void {
 
@@ -36,6 +37,8 @@ export class MultimediaAttachmentsComponent implements OnInit {
   }
 
   getAndFill(id) {
+    if(id.startsWith('WR'))
+    {
     this.wr.getAttachments(id).subscribe(
       res => {
         let i;
@@ -45,6 +48,19 @@ export class MultimediaAttachmentsComponent implements OnInit {
           this.filePaths.push(pic);
         }
       });
+    }
+    else if(id.startsWith('WP'))
+    {
+      this.wp.getAttachments(id).subscribe(
+        res => {
+          let i;
+          let pic;
+          for (i = 0; i < res["length"]; i++) {
+            pic = new pictureModel(res[i]["name"], res[i]["picture"]);
+            this.filePaths.push(pic);
+          }
+        });
+    }
   }
 
   downloadImage(index){
@@ -89,7 +105,11 @@ export class MultimediaAttachmentsComponent implements OnInit {
   async updateAttachments() {
 
     let formdata = await this.makeFormData();
-    this.wr.updateAttachments(formdata).subscribe(
+    let id  = sessionStorage.getItem('idDoc');
+
+    if(id.startsWith('WR'))
+    {
+     this.wr.updateAttachments(formdata).subscribe(
       res => {
         this.toastr.success('Yay! Attachment update successfull.', 'Attachments updated.');
       },
@@ -97,6 +117,19 @@ export class MultimediaAttachmentsComponent implements OnInit {
         this.toastr.error('Ooops, seems like theres an error uploading your files.', 'Attachments error.');
       }
     );
+    }
+    else if(id.startsWith('WP'))
+    {
+      this.wp.updateAttachments(formdata).subscribe(
+        res => {
+          this.toastr.success('Yay! Attachment update successfull.', 'Attachments updated.');
+        },
+        err => {
+          this.toastr.error('Ooops, seems like theres an error uploading your files.', 'Attachments error.');
+        }
+      );
+    }
+
 
   }
 
