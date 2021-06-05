@@ -42,7 +42,7 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
             }
             set
             {
-                name = type.Substring(0, 3).ToUpper() + id;
+                name = value;
             }
         }
 

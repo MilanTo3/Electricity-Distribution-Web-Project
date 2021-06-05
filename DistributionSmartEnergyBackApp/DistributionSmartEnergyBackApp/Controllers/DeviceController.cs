@@ -2,6 +2,7 @@
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Math.EC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,14 +31,39 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 await _context.AddDevice(device);
                 return Ok();
             }
-            catch
+            catch(Exception e)
             {
-                return BadRequest();
+                throw  e;
             }
             
         }
-   
 
+        // GET: api/Device/GetDevice
+        [HttpGet]
+        [Route("GetDevice")]
+        public async Task<DeviceModel> GetDevice(long id)
+        {
+           
+            return await _context.GetDevice(id);
+
+        }
+        // GET: api/Device/GetDevices
+        [HttpGet]
+        [Route("GetDevices")]
+        public async Task<IEnumerable<DeviceModel>> GetDevices()
+        {
+           return  await _context.GetDevices();       
+        }
+        // GET: api/Device/GetDevicesAtLocation
+        [HttpGet]
+        [Route("GetDevicesAtLocation")]
+        public async Task<IEnumerable<DeviceModel>> GetDevicesAtLocation(string location)
+        {
+           
+            return await _context.GetDevicesAtLocation(location);
+           
+
+        }
 
     }
 }
