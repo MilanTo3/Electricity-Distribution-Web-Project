@@ -17,8 +17,13 @@
 				<div class="overlay">
 					<div class="overlay-panel overlay-left" [ngClass]="{loginAnimation: show===false}">
 						<h1 class="text">Welcome Back!</h1>
-						<p class="text">To keep connected with us please login with your personal info</p>
+						<p class="text">To keep connected with us please login with your personal info.</p>
 						<button class="ghost" (click)="toggleForms()" id="signIn">Sign In</button>
+						<p style="margin-top: 33px;" class="text">Or register with social media:</p>
+						<div>
+							<img class="socialPic" src="/assets/Images/fbSignIn.png" width="170" (click)="registerFacebook()" />
+							<img class="socialPic" src="/assets/Images/googleSignIn.png" width="170" #googleRef/>
+						</div>
 					</div>
 					<div class="overlay-panel overlay-right" [ngClass]="{registerAnimation: show===false}">
 						<h1 class="text">Welcome,</h1>

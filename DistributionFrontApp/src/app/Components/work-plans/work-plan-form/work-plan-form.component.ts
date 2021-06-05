@@ -16,15 +16,21 @@ export class WorkPlanFormComponent implements OnInit {
   wrapper: WorkPlanWrapper = new WorkPlanWrapper();
   editMode = false;
   loggedUser: LoggedUser;
-  constructor(private router: Router,private route: ActivatedRoute, private workPlanService: WorkPlanServiceService, private toastr: ToastrService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private workPlanService: WorkPlanServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
-    if(sessionStorage.getItem("idDocReadOnly") === null)
-    {
-      sessionStorage.clear();
+
+    for (var i in sessionStorage) {
+      if (i !== "loggedUser") {
+        sessionStorage.removeItem(i);
+      }
     }
-    else{
+
+    if (sessionStorage.getItem("idDocReadOnly") === null) {
+      //sessionStorage.clear();
+    }
+    else {
       this.editMode = true; // kad se vraca iz WR
     }
 
@@ -32,18 +38,18 @@ export class WorkPlanFormComponent implements OnInit {
 
     this.db.collection('images').delete();
 
-    let id = this.route.snapshot.paramMap.get('idparam'); 
-    if(id !== null && id !== undefined){
+    let id = this.route.snapshot.paramMap.get('idparam');
+    if (id !== null && id !== undefined) {
       sessionStorage.setItem('idDoc', id);
       this.editMode = true;
     }
     this.router.navigateByUrl('/newWorkPlan/basic-information');
   }
 
- async onSubmit() {
+  async onSubmit() {
 
     let check = JSON.parse(sessionStorage.getItem("planBasicInfoFormValid"));
-    if(check === false || check === null){
+    if (check === false || check === null) {
       this.router.navigateByUrl('/newWorkPlan/basic-information');
       this.showToastrWarning();
       return;
@@ -64,25 +70,25 @@ export class WorkPlanFormComponent implements OnInit {
 
   }
 
-  showToastrSuccess(){   
+  showToastrSuccess() {
     this.toastr.success('Your work plan has been successfuly sent.', 'Form successfuly sent.');
   }
 
-  showToastrWarning(){
+  showToastrWarning() {
     this.toastr.warning('Seems like theres an error with basic information form input. Please check again.', 'Ooops!');
   }
 
-  setInfoForm(){
+  setInfoForm() {
     let formdata = JSON.parse(sessionStorage.getItem("planBasicInfoForm"));
     this.wrapper.basicInformationForm = formdata;
   }
 
-  setHistoryForm(){
+  setHistoryForm() {
     let formdata = JSON.parse(sessionStorage.getItem("historyStateForm"));
     this.wrapper.historyForm = formdata;
   }
 
-  setMediaForm(){
+  setMediaForm() {
     this.wrapper.mediaForm = [];
     this.db.collection('images').get().then(x => {
       let i;
@@ -92,7 +98,7 @@ export class WorkPlanFormComponent implements OnInit {
 
     });
   }
-  setInstructionsForm(){
+  setInstructionsForm() {
     let formdata = JSON.parse(sessionStorage.getItem("WPSwitchingInstuctionsForm"));
     this.wrapper.switchingInstructionsForm = formdata;
   }

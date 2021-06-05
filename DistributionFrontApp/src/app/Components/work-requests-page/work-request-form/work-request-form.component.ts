@@ -22,6 +22,13 @@ export class WorkRequestFormComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private workRequest: WorkRequestServiceService) { }
 
   ngOnInit(): void {
+    
+    for (var i in sessionStorage) {
+      if (i !== "loggedUser") {
+        sessionStorage.removeItem(i);
+      }
+    }
+
     let readDocId = sessionStorage.getItem("idDocReadOnly");
     if (readDocId!==null && readDocId.substring(0,2)=="WR")
     {
@@ -29,7 +36,6 @@ export class WorkRequestFormComponent implements OnInit {
     }
     else
     {
-      sessionStorage.clear();
       this.db.collection('images').delete();
       let id = this.route.snapshot.paramMap.get('idparam');
       if(id !== null && id !== undefined){

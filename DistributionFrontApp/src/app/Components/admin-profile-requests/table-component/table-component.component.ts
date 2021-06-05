@@ -157,6 +157,33 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
+  async loadWorkPlans() {
+    this.baseLink = "/newWorkPlan";
+    let res;
+    const data = [];
+
+    if(this.showMine){
+      res = await this.workPlanService.getMineBasicInfo().toPromise();
+    }
+    else{
+      res = await this.workPlanService.getAllBasicInfo().toPromise();
+    }
+
+    if(res){
+      let i;
+      let wp;
+      for (i = 0; i < res["length"]; i++) {
+        wp = new WorkPlan(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')).toLocaleDateString(), res[i]["phoneNumber"], res[i]["status"], res[i]["street"]);
+        data.push(wp);
+      }
+      this.dataToPrint = data;
+      this.dataBind = new MatTableDataSource(this.dataToPrint);
+      this.keyNames = Object.getOwnPropertyNames(wp);
+  
+    }
+   
+  }
+
   loadMyIncidents() {
     let myIncident1 = new MyIncidents('WR-1', new Date(2021, 9, 1, 5, 5, 4, 22), "3989-434-343", "Executing", "Koste Racina 23");
     let myIncident2 = new MyIncidents('WR-1', new Date(2021, 10, 1, 11, 5, 4, 22), "3989-434-343", "Draft", "Cankareva 5");
@@ -194,33 +221,6 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
     this.dataToPrint.push(device1, device2, device3, device4);
     this.keyNames = Object.getOwnPropertyNames(device3);
-  }
-
-  async loadWorkPlans() {
-    this.baseLink = "/newWorkPlan";
-    let res;
-    const data = [];
-
-    if(this.showMine){
-      res = await this.workPlanService.getMineBasicInfo().toPromise();
-    }
-    else{
-      res = await this.workPlanService.getAllBasicInfo().toPromise();
-    }
-
-    if(res){
-      let i;
-      let wp;
-      for (i = 0; i < res["length"]; i++) {
-        wp = new WorkPlan(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')).toLocaleDateString(), res[i]["phoneNumber"], res[i]["status"], res[i]["street"]);
-        data.push(wp);
-      }
-      this.dataToPrint = data;
-      this.dataBind = new MatTableDataSource(this.dataToPrint);
-      this.keyNames = Object.getOwnPropertyNames(wp);
-  
-    }
-   
   }
 
   loadCalls() {
