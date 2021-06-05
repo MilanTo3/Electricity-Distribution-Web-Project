@@ -26,6 +26,7 @@ export class LoginRegisterPageComponent implements OnInit {
 
     this.toggleFormsVisibility = !this.toggleFormsVisibility;
     this.show = !this.show;
+    this.googleInitialize();
  
   }
 
@@ -52,12 +53,14 @@ export class LoginRegisterPageComponent implements OnInit {
   prepareRegister(){
 
     let name;
+    let formdata = new FormData();
     this.auth2.attachClickHandler(this.regEl.nativeElement, {},
       (googleUser) => {
         let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
         console.log(profile);
         this.show = true;
+        formdata.append('fullname', profile["Ve"]);
+        formdata.append('email', profile["ku"]);
 
       }, (error) => {
         this.toastr.error('Eh? Seems like there\'s been an error getting account info.', 'Error');
