@@ -50,4 +50,7 @@ export class WorkRequestServiceService {
   getStatus(idDoc){
     return this.http.get('http://localhost:24885/api/WorkRequest/getDocStatus?id='+idDoc);
   }
+  getCreator(idDoc){
+    return this.http.get('http://localhost:24885/api/WorkRequest/getCreator?id='+idDoc, {responseType:'text'});
+  }
 }

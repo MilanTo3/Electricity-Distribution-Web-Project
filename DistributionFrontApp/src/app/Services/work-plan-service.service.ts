@@ -61,4 +61,7 @@ export class WorkPlanServiceService {
     return this.http.get('http://localhost:24885/api/WorkPlan/getDocStatus?id='+idDoc);
   }
 
+  getCreator(idDoc){
+    return this.http.get('http://localhost:24885/api/WorkPlan/getCreator?id='+idDoc, {responseType:'text'});
+  }
 }

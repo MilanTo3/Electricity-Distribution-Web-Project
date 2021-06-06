@@ -36,6 +36,9 @@ export class BasicInformationFPComponent implements OnInit {
   constructor(private fb: FormBuilder, private wr: WorkRequestServiceService) { }
 
   ngOnInit(): void {
+    
+    let loggedInUser = JSON.parse(sessionStorage.getItem('loggedUser'));
+    this.infoForm.get('user').setValue(loggedInUser.username);
     if(sessionStorage.getItem("infoForm") !== null) {
       let formdata = JSON.parse(sessionStorage.getItem("infoForm"));
       this.infoForm.setValue(formdata);

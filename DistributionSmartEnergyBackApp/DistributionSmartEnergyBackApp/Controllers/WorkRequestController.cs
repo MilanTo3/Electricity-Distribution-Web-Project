@@ -227,5 +227,17 @@ namespace DistributionSmartEnergyBackApp.Controllers
             return await _context.GetMyBasicInfo(user.UserName);
         }
 
+        [HttpGet]
+        [Route("getCreator")]
+        public async Task<string> getCreator(string id) {
+            BasicInformationWR info = await _context.GetBasicInfo(id);
+            if (info == null) {
+                return null;
+            }
+            string user = info.User;
+
+            return user;
+        }
+
     }
 }

@@ -24,27 +24,40 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
     
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
 
     let id = sessionStorage.getItem('idDoc');
+    let creator;
+
     if (id !== null) {
-      this.editMode = true;
-      if (id.startsWith('WR')) {
-        this.wr.getStatus(id).subscribe(
-          res => {
-            if (res !== null) {
-              this.current = res["status"];
+
+      if(id.startsWith('WR')){
+        creator = await this.wr.getCreator(id).toPromise();
+      }else if(id.startsWith('WP')){
+        creator = await this.wp.getCreator(id).toPromise();
+      }
+
+      let username = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
+      console.log(creator, username);
+      if(creator !== username){
+        this.editMode = true;
+        if (id.startsWith('WR')) {
+          this.wr.getStatus(id).subscribe(
+            res => {
+              if (res !== null) {
+                this.current = res["status"];
+              }
             }
-          }
-        );
-      } else if (id.startsWith('WP')) {
-        this.wp.getStatus(id).subscribe(
-          res => {
-            if (res !== null) {
-              this.current = res["status"];
+          );
+        } else if (id.startsWith('WP')) {
+          this.wp.getStatus(id).subscribe(
+            res => {
+              if (res !== null) {
+                this.current = res["status"];
+              }
             }
-          }
-        );
+          );
+        }
       }
 
     }
