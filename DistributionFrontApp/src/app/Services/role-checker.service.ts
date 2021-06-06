@@ -9,8 +9,21 @@ export class RoleCheckerService {
 
   roles = ["Administrator", "Dispatcher", "DataAnalyst", "TeamMember", "Consumer", "Guest"]
   routeMap: Map<string, string[]> = new Map<string, string[]>([
-    ["/dashboard", this.roles.slice(0, 5)],
+    ["/dashboard", this.roles.slice(0, 4)],
     ["/profile", this.roles.slice(0, 5)],
+    ["/myIncidents", this.roles.slice(0, 4)],
+    ["/mySafetyDocs", this.roles.slice(0, 4)],
+    ["/workRequests", this.roles.slice(0, 4)],
+    ["/workRequestForm", this.roles.slice(0, 4)],
+    ["/newIncident", this.roles.slice(0, 4)],
+    ["/workPlans", this.roles.slice(0, 4)],
+    ["/newWorkPlan", this.roles.slice(0, 4)],
+    ["/teamsPage", ["Administrator"]],
+    ["/createTeam", ["Administrator"]],
+    ["/adminPanel", ["Administrator"]],
+    ["/notifications", ["Guest"]],
+    ["/consumers", ["Administrator"]],
+    
   ]);
 
   constructor(private router: Router) { }
