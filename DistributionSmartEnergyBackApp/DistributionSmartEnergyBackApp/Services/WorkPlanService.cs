@@ -115,7 +115,17 @@ namespace DistributionSmartEnergyBackApp.Services
 
         public async Task UpdateHistory(HistoryOfStateChanges[] changes)
         {
+            if (changes.Length == 0) {
+                return;
+            }
             await _context.HistoryChanges.AddRangeAsync(changes);
+
+            string docId = changes[0].DocumentId;
+            BasicInformationWP basicInfo = await _context.BasicInformationsWP.FirstOrDefaultAsync(x => x.DocumentId == docId);
+            basicInfo.Status = changes[changes.Length - 1].Details.Split(' ')[changes[changes.Length - 1].Details.Split(' ').Length - 1].Replace(".", "");
+            basicInfo.Status = basicInfo.Status.Substring(0, 1).ToUpper() + basicInfo.Status.Substring(1);
+            _context.BasicInformationsWP.Update(basicInfo);
+
             await _context.SaveChangesAsync();
         }
 

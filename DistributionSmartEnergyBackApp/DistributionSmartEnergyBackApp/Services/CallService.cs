@@ -57,5 +57,6 @@ namespace DistributionSmartEnergyBackApp.Services
                 await _context.SaveChangesAsync();
             }
         }
+
     }
 }
