@@ -21,6 +21,7 @@ import { TeamsServiceService } from '../../../Services/teams-service.service';
 import { UserService } from '../../../Services/registration-service.service';
 import * as moment from 'moment';
 import { LoggedUser } from 'src/app/Models/LoggedUser.model';
+import { ConsumerService } from 'src/app/Services/consumer.service';
 
 @Component({
   selector: 'app-table-component',
@@ -48,7 +49,9 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.emitter.next(id);
   }
 
-  constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService, private workPlanService: WorkPlanServiceService, private registrattionService: UserService) {
+  constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService,
+     private workPlanService: WorkPlanServiceService, private registrattionService: UserService,
+     private consumerService: ConsumerService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
@@ -87,7 +90,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     } else if (this.tableid === 8) {
       this.loadMySafetyDocs();
     } else if (this.tableid === 9) {
-      this.loadAllConsumers();
+      await this.loadAllConsumers();
     } else if (this.tableid === 10) {
       await this.loadRoleRequests();
     }
@@ -258,20 +261,18 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.dataToPrint.push(doc1, doc2, doc3);
     this.keyNames = Object.getOwnPropertyNames(doc3);
   }
-  loadAllConsumers() {
-    let consumer1 = new Consumer("Erik", "Hoffstad", "grad, ulica i broj", "high", "065454215", "id naloga", "residential");
-    let consumer2 = new Consumer("Rukia", "Kuchiki", "grad, ulica i broj", "low", "065454215", "id naloga", "residential");
-    let consumer3 = new Consumer("Jordan", "Peterson", "grad, ulica i broj", "low", "065454215", "id naloga", "commertial");
-    let consumer4 = new Consumer("Petar", "Bojovic", "grad, ulica i broj", "high", "065454215", "id naloga", "commertial");
-
-    this.dataToPrint.push(consumer1, consumer2, consumer3, consumer4);
-    this.keyNames = Object.getOwnPropertyNames(consumer4);
+  async loadAllConsumers() {
+    let res = await this.consumerService.GetConsumers().toPromise();
+    this.dataToPrint = res;
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(res[0]);
+    this.enableView();
   }
 
   async ngOnInit(): Promise<void> {
     await this.addMockRequests();
     this.copyArray(this.keyNames, this.headerToPrint);
-    if (this.tableid === 0 || this.tableid === 7 || this.tableid === 9 || this.tableid === 10 || this.tableid === 4) {
+    if (this.tableid === 0 || this.tableid === 7 || this.tableid === 10 || this.tableid === 4) {
       this.headerToPrint.push("What to do?");
     }
     this.dataBind.data = this.dataToPrint;

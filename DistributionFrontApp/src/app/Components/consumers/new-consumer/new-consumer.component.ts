@@ -1,3 +1,4 @@
+import { ConsumerService } from './../../../Services/consumer.service';
 import { Consumer } from './../../../Models/Consumer.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -25,7 +26,9 @@ export class NewConsumerComponent implements OnInit {
     type: [this.consumer.type, Validators.required],
 
   });
-  constructor(private routerActivate: ActivatedRoute, private router: Router,private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService) { }
+  formdata: FormData;
+  constructor(private routerActivate: ActivatedRoute, private router: Router,private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService,
+    private consumerService: ConsumerService) { }
 
   async ngOnInit(): Promise<void>  {
 
@@ -40,15 +43,43 @@ export class NewConsumerComponent implements OnInit {
     this.consumerForm.get('phone').setValue(user["phone"]);
     
   }
+  fillFormData(){
+    this.formdata = new FormData();
+    this.formdata.append('Username', this.consumerForm.get('accountId').value);
+    this.formdata.append('Type', this.consumerForm.get('type').value);
+    this.formdata.append('Priority', this.consumerForm.get('priority').value);
+    
+  }
   onSubmit(){
     // Process checkout data here
-    if (this.consumerForm.valid) {
-      this.showToastrSuccess();
+    if (this.consumerForm.valid) {     
+      this.fillFormData();
+
+       this.consumerService.AddConsumer(this.formdata).subscribe(
+        (response: any) => {
+          this.toastr.success('Added a new consumer!', 'Yas!');
+          this.updateUserRole();
+        },
+        (err) => {
+          if (err.status == 400)
+            this.toastr.error(err.error, 'Consumer not added!');
+          else
+            this.toastr.error('Seems like our servers are down, our hamster mechanic is on it. Please try again later.', 'Server Error');
+        }
+      ); 
     } else {
       this.showToastrError();
     }
   }
 
+  async updateUserRole()
+  {
+    let formDataApprove: FormData = new FormData();
+    formDataApprove.append('username', this.consumerForm.get('accountId').value);
+    formDataApprove.append('op', '1');
+    await this.userService.approveOrDenyRequest(formDataApprove).toPromise();
+    this.router.navigate(['/adminPanel/adminProfileRequests']);
+  }
   showToastrSuccess(){  
 
     this.toastr.success('Consumer added!', 'Form successfuly sent.');

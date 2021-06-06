@@ -38,11 +38,7 @@
             <button [hidden]="hideElement" [routerLink]="['/viewTeam', row.id]" class="teamButtons btn btn-primary">View Team</button>
             <button [hidden]="hideElement" [routerLink]="['/editTeam', row.id]" class="teamButtons btn btn-info"><i class="fas fa-edit"></i> Edit</button>
             <button [hidden]="choose" class="teamButtons btn btn-primary" (click)="emitId(row.id)" >Choose</button>
-          </div>
-          <div *ngIf="tableid===9">
-            <button [hidden]="hideElement" routerLink="/edit-consumer" class="consumer-buttons btn btn-primary"><i class="fas fa-edit"></i>Edit</button>
-            <button [hidden]="hideElement" routerLink="/delete-consumer" class="consumer-buttons btn btn-info"><i class="fas fa-trash"></i> Delete</button>
-          </div>
+          </div>       
           <div *ngIf="tableid===10">
             <button mat-button class="adminButton btn btn-success" (click)="ApproveOrDenyRoleRequest(row.username, 0)">Approve</button>
             <button mat-button class="adminButton btn btn-danger" (click)="ApproveOrDenyRoleRequest(row.username, 1)">Deny</button>
