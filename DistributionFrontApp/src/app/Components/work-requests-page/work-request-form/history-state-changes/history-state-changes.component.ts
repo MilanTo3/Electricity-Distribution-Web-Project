@@ -16,8 +16,9 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   @ViewChild(TableComponentComponent, { static: false }) table: TableComponentComponent;
   stateArray: HistoryStateChange[] = [];
   editMode = false;
+  current: string;
 
-  constructor(private wr: WorkRequestServiceService, private wp: WorkPlanServiceService, private toastr: ToastrService ) { }
+  constructor(private wr: WorkRequestServiceService, private wp: WorkPlanServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -25,18 +26,36 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    if (sessionStorage.getItem('idDoc') !== null) {
+    let id = sessionStorage.getItem('idDoc');
+    if (id !== null) {
       this.editMode = true;
+      if (id.startsWith('WR')) {
+        this.wr.getStatus(id).subscribe(
+          res => {
+            if (res !== null) {
+              this.current = res["status"];
+            }
+          }
+        );
+      } else if (id.startsWith('WP')) {
+        this.wp.getStatus(id).subscribe(
+          res => {
+            if (res !== null) {
+              this.current = res["status"];
+            }
+          }
+        );
+      }
+
     }
     this.stateArray = this.table.dataToPrint;
 
   }
 
-  saveChanges(){
+  saveChanges() {
 
     let id = sessionStorage.getItem("idDoc");
-    if(id.startsWith('WR'))
-    {
+    if (id.startsWith('WR')) {
       this.wr.updateHistoryState(this.stateArray, id).subscribe(
         res => {
           this.toastr.success('Updated history of the document', 'Yas!');
@@ -44,8 +63,7 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
         }
       );
     }
-    else if(id.startsWith('WP'))
-    {
+    else if (id.startsWith('WP')) {
       this.wp.updateHistoryState(this.stateArray, id).subscribe(
         res => {
           this.toastr.success('Updated history of the document', 'Yas!');
@@ -56,13 +74,21 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
 
   addState(state: number) {
 
+    if (this.current === "Canceled" || this.current === "Approved") {
+      this.toastr.warning("The document state cant be changed further.", "Cant change further.");
+      return;
+    }
+
     let item;
     if (state === 0) {
       item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to canceled.');
+      this.current = "Canceled";
     } else if (state === 1) {
       item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to denied.');
+      this.current = "Denied";
     } else {
-      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to approved');
+      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to approved.');
+      this.current = "Approved";
     }
 
     this.stateArray.push(item);

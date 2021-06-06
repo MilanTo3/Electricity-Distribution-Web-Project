@@ -64,11 +64,15 @@ export class WorkRequestFormComponent implements OnInit {
     
     this.workRequest.postWorkRequest(this.wrapper).subscribe(
       res => {
-        this.toastr.success('Yay! Form Successfully submitted.', 'Work Request submitted.');
+        if(res === 0){
+          this.toastr.success('Yay! Form Successfully submitted.', 'Work Request submitted.');
+        }else{
+          this.toastr.warning('Form submitted, but attachments with viruses have not been saved.', 'Work Request submitted.');
+        }
+        this.router.navigateByUrl('/workRequests');
       }
     );
 
-    this.router.navigateByUrl('/workRequests');
   }
 
   showToastrSuccess(){

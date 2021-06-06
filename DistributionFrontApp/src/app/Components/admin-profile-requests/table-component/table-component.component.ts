@@ -170,6 +170,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
     this.dataBind = new MatTableDataSource(this.dataToPrint);
     this.keyNames = Object.getOwnPropertyNames(wr);
+    this.enableView();
 
   }
 

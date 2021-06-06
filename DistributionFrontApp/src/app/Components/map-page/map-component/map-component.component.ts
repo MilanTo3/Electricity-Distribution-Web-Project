@@ -17,6 +17,7 @@ import Source from 'ol/source/Source';
 import { Overlay } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import { transform } from 'ol/proj';
+import { CallService } from 'src/app/Services/call.service';
 
 @Component({
   selector: 'app-map-component',
@@ -34,12 +35,14 @@ export class MapComponentComponent implements OnInit {
   overlayPopup = new Overlay({ element: document.getElementById('tooltip') });
   @Output() emitValues = new EventEmitter<[number, number]>();
 
-  constructor() { }
+  constructor(private callsGetter: CallService) { }
 
-  addPoint(lat: number, lon: number) {
+  async addPoint(lat: number, lon: number) {
 
     let newPoint = new Feature({ geometry: new Point(fromLonLat([lon, lat])) });
     newPoint.set('teamid', '1');
+
+    let calls = await this.callsGetter.GetCalls().toPromise();
 
     newPoint.setStyle(new Style({
       image: new Icon(({
