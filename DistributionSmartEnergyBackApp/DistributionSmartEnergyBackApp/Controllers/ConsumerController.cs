@@ -59,5 +59,22 @@ namespace DistributionSmartEnergyBackApp.Controllers
             return await _context.GetConsumers();
         }
 
+        // GET: api/Consumer/UpdateConsumer
+        [HttpPost]
+        [Route("UpdateConsumer")]
+        public async Task<IActionResult> UpdateConsumer([FromForm]ConsumerModel consumer)
+        {
+            try
+            {
+                await _context.UpdateConsumer(consumer);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

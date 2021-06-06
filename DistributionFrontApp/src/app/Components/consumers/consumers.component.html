@@ -2,24 +2,8 @@
     <div class="container mt-5">
         <div class="row">
             <h2 class="title">Consumers</h2>
-            <label class="labela" >Here are listed all consumers. The table down is in experimental phase.</label>
-        </div>
-        <div class="row">
-            <div class="col col-lg-2">
-                <button class="btn btn-primary" (click)="createNewConsumer()">
-                    <i class="fa fa-file" ></i>
-                    New
-                </button>
-            </div>
-            
-            <div class="col col-lg-2 ml-auto">
-                <button class="btn btn-primary float-right"> 
-                    <i class="fa fa-filter"></i>
-                    Filter
-                </button>
-            </div>           
-        </div>
-        
+            <label class="labela" >Here are listed all consumers.</label>
+        </div>             
         <div class="row">
             <app-table-component [tableType]='9'></app-table-component>
         </div>

@@ -20,7 +20,7 @@ export class ConsumerService {
   }
 
   UpdateConsumer(formdata) {
-    return this.http.post('http://localhost:24885/api/Consumer/Update', formdata);
+    return this.http.post('http://localhost:24885/api/Consumer/UpdateConsumer', formdata);
   }
 
   GetConsumers() {
