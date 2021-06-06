@@ -80,14 +80,16 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
     }
 
     let item;
+    let username = JSON.parse(sessionStorage.getItem('loggedUser')).username;
+    let id = sessionStorage.getItem("idDoc");
     if (state === 0) {
-      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to canceled.');
+      item = new HistoryStateChange(id, username, new Date(), 'State changed to canceled.');
       this.current = "Canceled";
     } else if (state === 1) {
-      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to denied.');
+      item = new HistoryStateChange(id, username, new Date(), 'State changed to denied.');
       this.current = "Denied";
     } else {
-      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to approved.');
+      item = new HistoryStateChange(id, username, new Date(), 'State changed to approved.');
       this.current = "Approved";
     }
 
