@@ -36,5 +36,8 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<DeviceModel> Devices { get; set; }
 
         public DbSet<SettingsModel> Settings { get; set; }
+
+        public DbSet<ConsumerModel> Consumers { get; set; }
+
     }
 }

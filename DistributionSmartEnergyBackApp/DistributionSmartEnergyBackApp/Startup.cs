@@ -47,6 +47,7 @@ namespace DistributionSmartEnergyBackApp
             services.AddScoped<ICall, CallService>();
             services.AddScoped<IDevice, DeviceService>();
             services.AddScoped<ISettings, SettingsService>();
+            services.AddScoped<IConsumer, ConsumerService>();
 
 
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
