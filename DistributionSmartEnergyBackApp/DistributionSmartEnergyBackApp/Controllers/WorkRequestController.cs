@@ -1,4 +1,5 @@
 ﻿using DistributionSmartEnergyBackApp.Models;
+using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
@@ -149,9 +150,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
 
             // save files.
+            int res = 0;
             foreach (pictureModel file in files) {
                 string fullPath = Path.Combine(id, Path.Combine(filePath, file.name));
                 saveImage(file.picture, fullPath);
+                try {
+                    res += await checkVirusScan(fullPath);
+                }
+                catch { }
             }
 
             DirectoryInfo d = new DirectoryInfo(filePath);
@@ -192,6 +198,21 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 return BadRequest();
             }
 
+        }
+
+        [HttpGet]
+        [Route("getDocStatus")]
+        public async Task<ReturnStatusModel> getStatus(string id) {
+
+            BasicInformationWR info = await _context.GetBasicInfo(id);
+            if (info == null) {
+                return null;
+            }
+            string status = info.Status;
+            string user = info.User;
+            ReturnStatusModel rsm = new ReturnStatusModel(status, user);
+
+            return rsm;
         }
 
     }

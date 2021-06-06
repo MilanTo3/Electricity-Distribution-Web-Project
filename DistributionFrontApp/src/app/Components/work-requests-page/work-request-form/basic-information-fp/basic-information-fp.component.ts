@@ -18,6 +18,7 @@ export class BasicInformationFPComponent implements OnInit {
     documentId: [''],
     user: [''],
     street: ['', Validators.required],
+    status: ['Draft'],
     startDate: ['2001-11-01', Validators.required],
     dateCreated: ['2021-11-01'],
     endDate: ['2001-11-05', Validators.required],
@@ -83,6 +84,7 @@ export class BasicInformationFPComponent implements OnInit {
         this.infoForm.get('street').setValue(res["street"]);
         this.infoForm.get('startDate').setValue(moment(res["startDate"]).format('YYYY-MM-DDTHH:mm'));
         this.infoForm.get('user').setValue(res["user"]);
+        this.infoForm.get('status').setValue(res["status"]);
         this.infoForm.get('dateCreated').setValue(moment(res["dateCreated"]).format('YYYY-MM-DDTHH:mm'));
         this.infoForm.get('endDate').setValue(moment(res["endDate"]).format('YYYY-MM-DDTHH:mm'));
         this.infoForm.get('emergency').setValue(res["emergency"]);

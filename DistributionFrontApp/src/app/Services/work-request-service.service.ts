@@ -43,4 +43,8 @@ export class WorkRequestServiceService {
   updateAttachments(formdata){
     return this.http.post('http://localhost:24885/api/WorkRequest/UpdateAttachments', formdata);
   }
+
+  getStatus(idDoc){
+    return this.http.get('http://localhost:24885/api/WorkRequest/getDocStatus?id='+idDoc);
+  }
 }
