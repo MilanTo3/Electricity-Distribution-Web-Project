@@ -83,5 +83,11 @@ namespace DistributionSmartEnergyBackApp.Services
         public async Task Save() {
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<BasicInformationWR>> GetMyBasicInfo(string username) {
+
+            return await _context.BasicInformationsWR.Where(x => x.User == username).ToListAsync();
+        }
+
     }
 }

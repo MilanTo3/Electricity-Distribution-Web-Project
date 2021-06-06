@@ -18,7 +18,10 @@ export class WorkRequestServiceService {
     
     return this.http.get('http://localhost:24885/api/WorkRequest/getAllBasicInfo');
   }
+  getMineBasicInfo(){
+    return this.http.get('http://localhost:24885/api/WorkRequest/getMyBasicInfo');
 
+  }
   getBasicInformation(id) {
     return this.http.get('http://localhost:24885/api/WorkRequest/getBasicInfo?id='+id);
   }

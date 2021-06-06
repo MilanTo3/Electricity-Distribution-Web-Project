@@ -11,6 +11,7 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
     public interface IWorkRequest
     {
         Task<long> AddWorkRequest(WorkRequestViewModel wrapper);
+        Task<IEnumerable<BasicInformationWR>> GetMyBasicInfo(string username);
 
         Task<IEnumerable<BasicInformationWR>> GetAllBasicInfo();
         Task<BasicInformationWR> GetBasicInfo(string id);

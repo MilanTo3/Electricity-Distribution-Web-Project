@@ -50,8 +50,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   }
 
   constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService,
-     private workPlanService: WorkPlanServiceService, private registrattionService: UserService,
-     private consumerService: ConsumerService) {
+    private workPlanService: WorkPlanServiceService, private registrattionService: UserService,
+    private consumerService: ConsumerService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
@@ -101,13 +101,13 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     //Write your code here
     if (this.tableid === 6) {
       await this.loadWorkPlans();
-    }   
+    }
 
   }
 
-  async approveOrDenyRegistration(username,role, op){
+  async approveOrDenyRegistration(username, role, op) {
 
-    if((role!='Consumer') || op==1) //bilo koji se odbija svakako, ako je consumer i odobrava se onda redirekt
+    if ((role != 'Consumer') || op == 1) //bilo koji se odbija svakako, ako je consumer i odobrava se onda redirekt
     {
       let formdata: FormData = new FormData();
       formdata.append('username', username);
@@ -115,9 +115,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
       await this.registrattionService.approveOrDenyRequest(formdata).toPromise();
       this.loadProfileRequests();
     }
-    else
-    {
-      this.router.navigate(['/new-consumer',  username ]);
+    else {
+      this.router.navigate(['/new-consumer', username]);
     }
 
   }
@@ -130,8 +129,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(res[0]);
     this.enableView();
   }
-  async ApproveOrDenyRoleRequest(username, op){
-    
+  async ApproveOrDenyRoleRequest(username, op) {
+
     let formdata: FormData = new FormData();
     formdata.append('username', username);
     formdata.append('op', op);
@@ -162,19 +161,27 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   async loadWorkRequests() {
 
     this.baseLink = "/workRequestForm";
-    let res = await this.workRequestService.getAllBasicInfo().toPromise();
+    let res;
 
-    let i;
-    let wr;
-    for (i = 0; i < res["length"]; i++) {
-      wr = new WorkRequest(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], "Draft", res[i]["street"]);
-      this.dataToPrint.push(wr);
+    if (this.showMine) {
+      res = await this.workRequestService.getMineBasicInfo().toPromise();
+    }
+    else {
+      res = await this.workRequestService.getAllBasicInfo().toPromise();
     }
 
-    this.dataBind = new MatTableDataSource(this.dataToPrint);
-    this.keyNames = Object.getOwnPropertyNames(wr);
-    this.enableView();
+    if (res) {
+      let i;
+      let wr;
+      for (i = 0; i < res["length"]; i++) {
+        wr = new WorkRequest(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], "Draft", res[i]["street"]);
+        this.dataToPrint.push(wr);
+      }
 
+      this.dataBind = new MatTableDataSource(this.dataToPrint);
+      this.keyNames = Object.getOwnPropertyNames(wr);
+      this.enableView();
+    }
   }
 
   async loadWorkPlans() {
@@ -182,14 +189,14 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     let res;
     const data = [];
 
-    if(this.showMine){
+    if (this.showMine) {
       res = await this.workPlanService.getMineBasicInfo().toPromise();
     }
-    else{
+    else {
       res = await this.workPlanService.getAllBasicInfo().toPromise();
     }
 
-    if(res){
+    if (res) {
       let i;
       let wp;
       for (i = 0; i < res["length"]; i++) {
@@ -199,9 +206,9 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
       this.dataToPrint = data;
       this.dataBind = new MatTableDataSource(this.dataToPrint);
       this.keyNames = Object.getOwnPropertyNames(wp);
-  
+
     }
-   
+
   }
 
   loadMyIncidents() {
@@ -288,10 +295,9 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   callMethod(id) {
     this.router.navigate([this.baseLink, { idparam: id }]);
   }
-  callMethodUser(user)
-  {
+  callMethodUser(user) {
     sessionStorage.setItem('consumer', user);
-    this.router.navigate([this.baseLink,  user ]);
+    this.router.navigate([this.baseLink, user]);
   }
   enableView() {
     this.copyArray(this.keyNames, this.headerToPrint);

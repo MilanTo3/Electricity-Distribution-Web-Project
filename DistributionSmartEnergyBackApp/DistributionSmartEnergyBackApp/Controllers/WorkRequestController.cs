@@ -4,6 +4,7 @@ using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using nClam;
 using System;
@@ -24,7 +25,10 @@ namespace DistributionSmartEnergyBackApp.Controllers
     {
 
         private readonly IWorkRequest _context;
-        public WorkRequestController(IWorkRequest context) {
+        private UserManager<ApplicationUser> _userManager;
+
+        public WorkRequestController(UserManager<ApplicationUser> userManager, IWorkRequest context) {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -213,6 +217,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
             ReturnStatusModel rsm = new ReturnStatusModel(status, user);
 
             return rsm;
+        }
+
+        [HttpGet]
+        [Route("getMyBasicInfo")]
+        public async Task<IEnumerable<BasicInformationWR>> GetMyBasicInformations() {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            return await _context.GetMyBasicInfo(user.UserName);
         }
 
     }
