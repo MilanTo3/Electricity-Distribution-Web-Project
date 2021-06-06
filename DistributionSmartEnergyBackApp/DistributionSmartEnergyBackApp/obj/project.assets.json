@@ -1269,6 +1269,15 @@
           "lib/netstandard2.1/MimeKit.dll": {}
         }
       },
+      "nClam/5.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/nClam.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/nClam.dll": {}
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -3082,6 +3091,18 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "VirusTotalNet/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/VirusTotalNet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/VirusTotalNet.dll": {}
+        }
       }
     }
   },
@@ -3218,7 +3239,7 @@
       ]
     },
     "Microsoft.AspNetCore.Cors/2.2.0": {
-      "sha512": "4Qkq7Wpe+TFsd8KSjKgztzrHGkGZrB+Zrm7j2W0np7p0xD/uNdYQJzmuNziTrLIaWjQ54Z2MUliDgn6gxo09Hg==",
+      "sha512": "LFlTM3ThS3ZCILuKnjy8HyK9/IlDh3opogdbCVx6tMGyDzTQBgMPXLjGDLtMk5QmLDCcP3l1TO3z/+1viA8GUg==",
       "type": "package",
       "path": "microsoft.aspnetcore.cors/2.2.0",
       "files": [
@@ -5030,6 +5051,18 @@
         "lib/netstandard2.1/MimeKit.xml",
         "mimekit.2.12.0.nupkg.sha512",
         "mimekit.nuspec"
+      ]
+    },
+    "nClam/5.0.1": {
+      "sha512": "j5c8mZMGE1QWXRoVt2JjUn8fPx0senIXhXeXeBLj1LPSu58v44lBaIGqXA7b18ScAljl8RUkHWGhHReC8F5rIw==",
+      "type": "package",
+      "path": "nclam/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/nClam.dll",
+        "nclam.5.0.1.nupkg.sha512",
+        "nclam.nuspec"
       ]
     },
     "NETStandard.Library/1.6.1": {
@@ -9711,6 +9744,19 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "VirusTotalNet/2.0.0": {
+      "sha512": "/qQFfWreWU/TNcvkFMLBBFW8/87T5IfqmNfA0gitRiKmMViN33v+rHhUwMJlAU7uQlqzH+Bco+E2Maeh58wa2A==",
+      "type": "package",
+      "path": "virustotalnet/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/netstandard2.0/VirusTotalNet.dll",
+        "virustotalnet.2.0.0.nupkg.sha512",
+        "virustotalnet.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -9729,27 +9775,29 @@
       "Microsoft.IdentityModel.Tokens >= 6.11.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5",
       "System.Drawing.Common >= 5.0.2",
-      "System.IdentityModel.Tokens.Jwt >= 6.11.0"
+      "System.IdentityModel.Tokens.Jwt >= 6.11.0",
+      "VirusTotalNet >= 2.0.0",
+      "nClam >= 5.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\maja\\.nuget\\packages\\": {},
+    "C:\\Users\\TOMIN\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maja\\Desktop\\UNI\\4\\VIII\\web2\\projekat\\glavni\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
+      "projectUniqueName": "E:\\clonedAngularProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
       "projectName": "DistributionSmartEnergyBackApp",
-      "projectPath": "C:\\Users\\maja\\Desktop\\UNI\\4\\VIII\\web2\\projekat\\glavni\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
-      "packagesPath": "C:\\Users\\maja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maja\\Desktop\\UNI\\4\\VIII\\web2\\projekat\\glavni\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\obj\\",
+      "projectPath": "E:\\clonedAngularProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
+      "packagesPath": "C:\\Users\\TOMIN\\.nuget\\packages\\",
+      "outputPath": "E:\\clonedAngularProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\maja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TOMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9757,10 +9805,12 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\.NET SDK\\v2.9\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9772,6 +9822,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MailKit": {
             "target": "Package",
@@ -9834,6 +9885,14 @@
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
             "version": "[6.11.0, )"
+          },
+          "VirusTotalNet": {
+            "target": "Package",
+            "version": "[2.0.0, )"
+          },
+          "nClam": {
+            "target": "Package",
+            "version": "[5.0.1, )"
           }
         },
         "imports": [
@@ -9854,7 +9913,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
