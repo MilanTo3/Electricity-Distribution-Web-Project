@@ -1,4 +1,5 @@
 ﻿using DistributionSmartEnergyBackApp.Models;
+using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
@@ -244,6 +245,21 @@ namespace DistributionSmartEnergyBackApp.Controllers
             //smestam sliku na lokaciju
             byte[] imageBytes = Convert.FromBase64String(picture.Split(',')[1]);
             System.IO.File.WriteAllBytes(fullpath, imageBytes);
+        }
+
+        [HttpGet]
+        [Route("getDocStatus")]
+        public async Task<ReturnStatusModel> getStatus(string id) {
+
+            BasicInformationWP info = await _context.GetBasicInfo(id);
+            if (info == null) {
+                return null;
+            }
+            string status = info.Status;
+            string user = info.user;
+            ReturnStatusModel rsm = new ReturnStatusModel(status, user);
+
+            return rsm;
         }
 
     }

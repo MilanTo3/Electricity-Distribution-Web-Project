@@ -26,17 +26,27 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    if (sessionStorage.getItem('idDoc') !== null) {
+    let id = sessionStorage.getItem('idDoc');
+    if (id !== null) {
       this.editMode = true;
-      this.wr.getStatus(sessionStorage.getItem('idDoc')).subscribe(
-        res => {
-          console.log(res);
-          if (res !== null) {
-            this.current = res["status"];
+      if (id.startsWith('WR')) {
+        this.wr.getStatus(id).subscribe(
+          res => {
+            if (res !== null) {
+              this.current = res["status"];
+            }
           }
-        }
-      );
-      
+        );
+      } else if (id.startsWith('WP')) {
+        this.wp.getStatus(id).subscribe(
+          res => {
+            if (res !== null) {
+              this.current = res["status"];
+            }
+          }
+        );
+      }
+
     }
     this.stateArray = this.table.dataToPrint;
 

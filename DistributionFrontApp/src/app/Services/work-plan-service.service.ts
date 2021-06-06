@@ -57,5 +57,8 @@ export class WorkPlanServiceService {
     return this.http.post('http://localhost:24885/api/WorkPlan/UpdateInstructions', formdata);
   }
   
+  getStatus(idDoc){
+    return this.http.get('http://localhost:24885/api/WorkPlan/getDocStatus?id='+idDoc);
+  }
 
 }
