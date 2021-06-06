@@ -18,6 +18,7 @@ import { Overlay } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import { transform } from 'ol/proj';
 import { CallService } from 'src/app/Services/call.service';
+import { LocationService } from 'src/app/Services/location.service';
 
 @Component({
   selector: 'app-map-component',
@@ -35,14 +36,12 @@ export class MapComponentComponent implements OnInit {
   overlayPopup = new Overlay({ element: document.getElementById('tooltip') });
   @Output() emitValues = new EventEmitter<[number, number]>();
 
-  constructor(private callsGetter: CallService) { }
+  constructor(private callsGetter: CallService, private locationGetter: LocationService) { }
 
-  async addPoint(lat: number, lon: number) {
+  addPoint(lat: number, lon: number, additionalInfo: string) {
 
     let newPoint = new Feature({ geometry: new Point(fromLonLat([lon, lat])) });
-    newPoint.set('teamid', '1');
-
-    let calls = await this.callsGetter.GetCalls().toPromise();
+    newPoint.set('addInfo', additionalInfo);
 
     newPoint.setStyle(new Style({
       image: new Icon(({
@@ -67,7 +66,7 @@ export class MapComponentComponent implements OnInit {
     this.map.removeLayer(this.vectorLayer);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     let mapElement = document.getElementById("map")!;
     mapElement.style.width = this.width.toString() + "px";
@@ -99,8 +98,15 @@ export class MapComponentComponent implements OnInit {
     });
 
     this.map.addLayer(this.vectorLayer);
-    this.addPoint(45.2396, 19.8227);
-    this.addPoint(45.2396, 19.9227);
+    this.addPoint(45.2396, 19.8227, "");
+    this.addPoint(45.2396, 19.9227, "");
+    let calls = await this.callsGetter.GetCalls().toPromise();
+    let i;
+    for(i = 0; i < calls["Length"]; i++){
+      let location = await this.locationGetter.GetLocation(calls[i]["id"]);
+      console.log(location);
+      this.addPoint(location["latitude"], location["longitude"], calls[i]["reason"]);
+    }
     
     this.overlayPopup.setElement(document.getElementById('tooltip'));
 
@@ -112,8 +118,10 @@ export class MapComponentComponent implements OnInit {
         function (ft, layer) { return ft; }
       );
       if (feature) {
+        let info = feature.get('addInfo');
         this.overlayPopup.setPosition(evt.coordinate);
         item.hidden = false;
+        item.innerHTML = "<p>"+ info +"</p>";
       }else{
         item.hidden = true;
         this.overlayPopup.setPosition(undefined);

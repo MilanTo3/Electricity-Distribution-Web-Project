@@ -1,7 +1,2 @@
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csprojAssemblyReference.cache
-E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.AssemblyInfoInputs.cache
-E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.AssemblyInfo.cs
-E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csproj.CoreCompileInputs.cache
-E:\clonedAngularProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.MvcApplicationPartsAssemblyInfo.cache
