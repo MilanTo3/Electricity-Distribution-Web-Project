@@ -262,6 +262,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(doc3);
   }
   async loadAllConsumers() {
+    this.baseLink = "/new-consumer";
     let res = await this.consumerService.GetConsumers().toPromise();
     this.dataToPrint = res;
     this.dataBind = new MatTableDataSource(this.dataToPrint);
@@ -287,7 +288,11 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   callMethod(id) {
     this.router.navigate([this.baseLink, { idparam: id }]);
   }
-
+  callMethodUser(user)
+  {
+    sessionStorage.setItem('consumer', user);
+    this.router.navigate([this.baseLink,  user ]);
+  }
   enableView() {
     this.copyArray(this.keyNames, this.headerToPrint);
     this.dataBind.paginator = this.pagination;
