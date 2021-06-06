@@ -17,6 +17,7 @@ export class MultimediaAttachmentsComponent implements OnInit {
   filePaths: pictureModel[] = [];
   db = new Localbase('db');
   editMode = false;
+  selectedPicture: pictureModel;
 
   constructor(private wr: WorkRequestServiceService, private toastr: ToastrService, private wp: WorkPlanServiceService) { }
 
@@ -92,6 +93,10 @@ export class MultimediaAttachmentsComponent implements OnInit {
       }
     }
 
+  }
+
+  setSelected(item){
+    this.selectedPicture = item;
   }
 
   fileDelete(index: number) {

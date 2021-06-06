@@ -21,7 +21,7 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   constructor(private wr: WorkRequestServiceService, private wp: WorkPlanServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
+    
   }
 
   ngAfterViewInit() {
