@@ -78,7 +78,8 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     phoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     createdDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Purpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,7 +106,8 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Purpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,6 +128,19 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Calls", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Consumers",
+                columns: table => new
+                {
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Priority = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Consumers", x => x.Username);
                 });
 
             migrationBuilder.CreateTable(
@@ -424,6 +439,9 @@ namespace DistributionSmartEnergyBackApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Calls");
+
+            migrationBuilder.DropTable(
+                name: "Consumers");
 
             migrationBuilder.DropTable(
                 name: "Devices");

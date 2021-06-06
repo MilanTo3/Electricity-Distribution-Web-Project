@@ -75,9 +75,19 @@ namespace DistributionSmartEnergyBackApp.Services
         {
             return await _context.SwitchingInstructions.Where(x => x.DocumentId == id).ToListAsync();
         }
-        public async Task Save()
-        {
-            await _context.SaveChangesAsync();
+        public async Task DeleteBasicInfo(string id) {
+            BasicInformationWP info = await _context.BasicInformationsWP.FindAsync(id);
+            _context.BasicInformationsWP.Remove(info);
+            await Save();
+        }
+
+        public async Task Save() {
+            try {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException exception) {
+                Console.WriteLine("Update concurrency greska.");
+            }
         }
 
         public async Task UpdateBasicInfo(BasicInformationWP basicInfo)
@@ -109,7 +119,7 @@ namespace DistributionSmartEnergyBackApp.Services
                     info.incidentId = basicInfo.incidentId;
                 }
                 _context.BasicInformationsWP.Update(info);
-                await _context.SaveChangesAsync();
+                await Save();
             }
         }
 

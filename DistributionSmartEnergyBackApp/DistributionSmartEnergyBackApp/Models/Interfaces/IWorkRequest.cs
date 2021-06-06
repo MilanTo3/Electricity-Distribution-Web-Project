@@ -18,6 +18,7 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
         Task<IEnumerable<HistoryOfStateChanges>> GetHistory(string id);
 
         Task UpdateBasicInfo(BasicInformationWR basicInfo);
+        Task DeleteBasicInfo(string id);
         Task UpdateHistory(HistoryOfStateChanges[] changes);
 
         Task Save();

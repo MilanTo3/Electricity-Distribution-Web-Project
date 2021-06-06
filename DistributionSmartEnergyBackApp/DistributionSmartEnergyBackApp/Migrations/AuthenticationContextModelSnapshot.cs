@@ -150,6 +150,11 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.Property<string>("Purpose")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
@@ -221,6 +226,11 @@ namespace DistributionSmartEnergyBackApp.Migrations
 
                     b.Property<string>("Purpose")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
