@@ -24,6 +24,6 @@ export class ConsumerService {
   }
 
   GetConsumers() {
-    return this.http.get('http://localhost:24885/api/Consumer/GetLocations');
+    return this.http.get('http://localhost:24885/api/Consumer/GetConsumers');
   }
 }
