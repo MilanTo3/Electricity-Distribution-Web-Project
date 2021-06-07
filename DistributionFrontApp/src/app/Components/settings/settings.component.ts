@@ -64,7 +64,10 @@ export class SettingsComponent implements OnInit {
       mandatoryCheck:[this.defaultCheck]
 
     });
-    this.getSettings();
+    let role = (JSON.parse(sessionStorage.getItem('loggedUser'))).role;
+    if(role === "Administrator"){
+      this.getSettings();
+    }
   }
   
 
