@@ -19,10 +19,12 @@
     <mat-menu #menu="matMenu" >
       <app-notification *ngFor="let notification of notificationMessages" [type]="notification.type" [content]="notification.content" [seen]="notification.seen"></app-notification>
       <div *ngIf="notificationMessages?.length>0">
+        <button mat-menu-item (click)="refresh()">Refresh</button>
         <button mat-menu-item (click)="markAllAsRead()">Mark all as read</button>
         <button mat-menu-item (click)="redirectToNotifications()">See all</button>
       </div>
       <div *ngIf="notificationMessages?.length<=0">
+        <button mat-menu-item (click)="refresh()">Refresh</button>
         <p>No new notifications.</p>
       </div>
 

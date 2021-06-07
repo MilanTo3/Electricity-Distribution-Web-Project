@@ -1,3 +1,4 @@
+import { NotificationService } from 'src/app/Services/notifications/notification.service';
 
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
@@ -12,12 +13,12 @@ import { fader, slider, transformer } from './route-animations';
 export class AppComponent {
   title = 'DistributionFrontApp';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private notificationService: NotificationService) {}
 
-  //ngOnInit(){
-   // this.notificationService.startConnection();
-    //this.notificationService.addNotificationListener();
- // }
+  ngOnInit(){
+    this.notificationService.startConnection();
+    this.notificationService.addNotificationListener();
+  }
 
   checkPath(){
         

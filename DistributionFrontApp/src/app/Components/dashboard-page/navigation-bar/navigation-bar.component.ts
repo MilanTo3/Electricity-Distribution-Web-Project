@@ -36,14 +36,15 @@ export class NavigationBarComponent implements OnInit {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.formdata.append('username', this.user.username);
     await this.notificationService.getUnreadNotifications(this.user.username)
-      .subscribe(res => this.notificationMessages = res);
+      .subscribe( res=> {this.notificationMessages = res});
+    
   }
   async setMarkAsRead() {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.formdata.append('username', this.user.username);
     console.log(this.user.username);
     await this.notificationService.setMarkAsRead(this.formdata)
-      .subscribe();
+      .toPromise();
   }
   markAllAsRead() {
     this.hiddenBadge = true;
@@ -77,6 +78,10 @@ export class NavigationBarComponent implements OnInit {
     }
   }
 
+  refresh()
+  {
+    this.getNotifications();
+  }
   logOut() {
     sessionStorage.clear();
     this.router.navigateByUrl('/login-register');

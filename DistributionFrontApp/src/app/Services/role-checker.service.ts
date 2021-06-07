@@ -33,7 +33,6 @@ export class RoleCheckerService {
 
       let loggedUser: LoggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
       let requiredRoles = this.getRolesFromIndices(roleIndices);
-
       if (requiredRoles.includes(loggedUser.role)) {
         return true;
       }

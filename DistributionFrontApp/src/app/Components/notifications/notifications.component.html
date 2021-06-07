@@ -28,8 +28,8 @@
                         <div class="row" *ngIf="notificationMessages?.length<=0">
                             <label class="label">No notifications.</label>
                         </div>
-                        <div class="row " >
-                            <app-notification *ngFor="let notification of filter()" [type]='notification.type' 
+                        <div class="row " *ngIf="notificationMessages?.length>0" >
+                            <app-notification  *ngFor="let notification of notificationMessages" [type]='notification.type' 
                              [content]="notification.content" [seen]="notification.seen" ></app-notification>   
                         </div>
                     </div>             

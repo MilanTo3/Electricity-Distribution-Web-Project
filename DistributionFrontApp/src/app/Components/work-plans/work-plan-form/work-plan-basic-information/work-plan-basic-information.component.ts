@@ -34,7 +34,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       type: ['', Validators.required],
       documentId: [''],
       status: ['Draft', Validators.required],
-      workRequestId: [''],
+      workRequestId: ['', Validators.required],
       incidentId: [''],
       street: [''],
       //locationId : [''],
@@ -197,7 +197,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
 
   OpenWR(){
      let id = this.planBasicInfoForm.get('workRequestId').value;
-    if(id.length!==0 && id.trim())
+    if(id.length!==0 && id.trim() && this.workRequests.indexOf(id) > -1)
     {
       sessionStorage.setItem('idDocReadOnly', id);
       this.router.navigate(['/workRequestForm', { idparam: id}]);   

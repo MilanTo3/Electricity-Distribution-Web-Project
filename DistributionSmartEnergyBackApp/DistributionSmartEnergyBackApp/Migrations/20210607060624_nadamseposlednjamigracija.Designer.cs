@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DistributionSmartEnergyBackApp.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20210606163026_notifikacije")]
-    partial class notifikacije
+    [Migration("20210607060624_nadamseposlednjamigracija")]
+    partial class nadamseposlednjamigracija
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,7 +92,7 @@ namespace DistributionSmartEnergyBackApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Details")
+                    b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DocumentId")
@@ -182,6 +182,11 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.Property<string>("Purpose")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
@@ -253,6 +258,11 @@ namespace DistributionSmartEnergyBackApp.Migrations
 
                     b.Property<string>("Purpose")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
