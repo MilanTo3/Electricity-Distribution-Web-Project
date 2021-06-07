@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/Services/registration-service.service';
 import { ThrowStmt } from '@angular/compiler';
+import { RoleCheckerService } from 'src/app/Services/role-checker.service';
 
 @Component({
   selector: 'app-settings',
@@ -15,6 +16,7 @@ export class SettingsComponent implements OnInit {
   settingsFormAdmin: FormGroup;
   formdata: FormData;
   defaultCheck: false;
+  serviceRef;
 
   icons= {
     Call: [
@@ -40,8 +42,8 @@ export class SettingsComponent implements OnInit {
   offeredIcons = [[false,false,false],[false,false,false],[false,false,false]] ;
   
   
-  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService, private settingsService: SettingsService) {
-   
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private userService: UserService, private settingsService: SettingsService, private checker: RoleCheckerService) {
+    this.serviceRef = checker;
   }
 
   ngOnInit(): void {

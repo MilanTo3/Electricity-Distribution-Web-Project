@@ -4,6 +4,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { menuList } from './menuList';
 import { Notification } from 'src/app/Models/notification.model';
 import { NotificationService } from 'src/app/Services/notifications/notification.service';
+import { RoleCheckerService } from 'src/app/Services/role-checker.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -20,30 +21,31 @@ export class NavigationBarComponent implements OnInit {
   showFields = false;
   user: LoggedUser;
   formdata: FormData = new FormData();
-  notificationMessages : any;
+  notificationMessages: any;
+  serviceRef;
 
-  constructor(private router: Router, private notificationService: NotificationService) {
-  
-   }
+  constructor(private router: Router, private notificationService: NotificationService, private checker: RoleCheckerService) {
+    this.serviceRef = checker;
+  }
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
-     this.getNotifications();
+    this.getNotifications();
   }
 
   async getNotifications() {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.formdata.append('username', this.user.username);
     await this.notificationService.getUnreadNotifications(this.user.username)
-        .subscribe(res => this.notificationMessages = res);
+      .subscribe(res => this.notificationMessages = res);
   }
   async setMarkAsRead() {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.formdata.append('username', this.user.username);
     console.log(this.user.username);
     await this.notificationService.setMarkAsRead(this.formdata)
-        .subscribe();
+      .subscribe();
   }
-  markAllAsRead(){
+  markAllAsRead() {
     this.hiddenBadge = true;
     this.setMarkAsRead();
 
@@ -75,7 +77,7 @@ export class NavigationBarComponent implements OnInit {
     }
   }
 
-  logOut(){
+  logOut() {
     sessionStorage.clear();
     this.router.navigateByUrl('/login-register');
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoleCheckerService } from 'src/app/Services/role-checker.service';
 
 @Component({
   selector: 'app-work-requests-page',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkRequestsPageComponent implements OnInit {
 
-  constructor() { }
+  serviceRef;
+  constructor(private checker: RoleCheckerService) { this.serviceRef = checker; }
 
   ngOnInit(): void {
   }

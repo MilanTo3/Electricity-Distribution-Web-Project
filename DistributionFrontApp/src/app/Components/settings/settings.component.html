@@ -180,7 +180,7 @@
     <button class="btn btn-success float-right" type="submit">Change password</button>
 </form>
 
-<form class="settings container mt-5 mb-5 clearfix" [formGroup]="settingsFormAdmin" (ngSubmit)="onSubmitAdmin()">
+<form class="settings container mt-5 mb-5 clearfix" [formGroup]="settingsFormAdmin" (ngSubmit)="onSubmitAdmin()" *ngIf="serviceRef.checkRole[0]">
         <hr class="mt-5 mb-5"/>
         <fieldset class="notifications">     
             <header class="mt-2 mb-4">

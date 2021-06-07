@@ -11,7 +11,7 @@
     <div class="container requestsPage">
         <h2 class="title">My Safety Documents:</h2>
         <p class="labela">Here, users can see their safety documents.</p>
-        <button (click)="openNewMySafetyDoc()" class="btn newbtn"><i class="fas fa-file"></i>New</button>
+        <button (click)="openNewMySafetyDoc()" *ngIf="serviceRef.checkRole[1]" class="btn newbtn"><i class="fas fa-file"></i>New</button>
         
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn active radiobtn">

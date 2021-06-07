@@ -6,7 +6,7 @@
         </div>
         <div class="row">
             <div class="col col-lg-2">
-                <button class="btn btn-primary" (click)="createNewPlan()">
+                <button class="btn btn-primary" (click)="createNewPlan()" *ngIf="serviceRef.checkRole[1]">
                     <i class="fa fa-file" ></i>
                     New
                 </button>
