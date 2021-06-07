@@ -48,7 +48,8 @@ export class RegisterComponentComponent implements OnInit {
     TeamId: ['none']
   },
     {
-      validator: Validators.compose([customFormValidators.passwordConfirmCheck('Password', 'ConfirmedPassword', { 'confirmError': true })])
+      validator: Validators.compose([customFormValidators.passwordConfirmCheck('Password', 'ConfirmedPassword', { 'confirmError': true }),
+                                     customFormValidators.checkInclude(this.addedStreets, 'Address', { 'addressError': true })])
     }
   );
 
@@ -153,6 +154,9 @@ export class RegisterComponentComponent implements OnInit {
     this.formdata.append('Address', this.registerForm.get('Address').value);
     this.formdata.append('UserType', this.registerForm.get('UserType').value);
     this.formdata.append('Password', this.registerForm.get('Password').value);
+    if(this.registerForm.get('TeamId').value === ''){
+      this.registerForm.get('TeamId').setValue('none');
+    }
     this.formdata.append('TeamId', this.registerForm.get('TeamId').value);
     this.formdata.append('PhoneNumber', this.registerForm.get('PhoneNumber').value);
     if(this.fileToUpload !== null){

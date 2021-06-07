@@ -59,8 +59,9 @@
               <input class="inputpolja form-control" type="password" formControlName="ConfirmedPassword" />
             </div>
             <div class="sekcija">
-              <p class="labela">Address: <small *ngIf="registerForm.get('Address').errors?.required && registerForm.get('Address').touched" class="text-danger">Required.</small>
-                                         <small *ngIf="registerForm.get('Address').errors?.maxlength" class="text-danger">Too long.</small>
+              <p class="labela">Address: <small *ngIf="registerForm.get('Address').errors?.required && registerForm.get('Address').touched && !registerForm.hasError('addressError')" class="text-danger">Required.</small>
+                                         <small *ngIf="registerForm.get('Address').errors?.maxlength && !registerForm.hasError('addressError')" class="text-danger">Too long.</small>
+                                         <small *ngIf="registerForm.hasError('addressError')" class="text-danger">That street doesnt exist.</small>
 
               </p>
               <input class="inputpolja form-control" type="text" formControlName="Address" [matAutocomplete]="auto" />
@@ -95,6 +96,7 @@
                 {{team}}
               </mat-option>
             </mat-autocomplete>
+            <small *ngIf="registerForm.hasError('teamsError')" class="text-danger">That team doesnt exist.</small>
           </div>
         </div>
       </div>

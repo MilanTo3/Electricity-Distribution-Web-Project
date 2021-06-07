@@ -24,4 +24,16 @@ export class customFormValidators {
             return null;
         };
     }
+
+    static checkInclude(list: string[], element: string, validatorField: { [key: string]: boolean }): ValidatorFn {
+
+        return (form: AbstractControl): { [key: string]: boolean } | null => {
+            const pass1 = form.get(element).value;
+
+            if(!list.includes(pass1) && pass1 !== "" && pass1 !== null){
+                return validatorField;
+            }
+            return null;
+        };
+    }
 }

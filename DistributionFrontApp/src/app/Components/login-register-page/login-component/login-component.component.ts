@@ -29,11 +29,15 @@ export class LoginComponentComponent implements OnInit {
         (response: any) => {
           let user = new LoggedUser(response.token, response.username, response.roletype);
 
-         // this.notificationService.startConnection();
+          // this.notificationService.startConnection();
           //this.notificationService.addNotificationListener();
 
           sessionStorage.setItem('loggedUser', JSON.stringify(user));
-          this.router.navigateByUrl('/dashboard');
+          if (user.role !== 'Consumer') {
+            this.router.navigateByUrl('/dashboard');
+          } else {
+            this.router.navigateByUrl('/new-call');
+          }
         },
         (err) => {
           if (err.status == 400)
