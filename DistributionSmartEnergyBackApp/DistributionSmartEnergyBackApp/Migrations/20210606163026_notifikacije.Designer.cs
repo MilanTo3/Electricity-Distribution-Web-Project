@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DistributionSmartEnergyBackApp.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20210606024017_novaMigracija")]
-    partial class novaMigracija
+    [Migration("20210606163026_notifikacije")]
+    partial class notifikacije
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,22 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.ToTable("Calls");
                 });
 
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.ConsumerModel", b =>
+                {
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Priority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Username");
+
+                    b.ToTable("Consumers");
+                });
+
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.DeviceModel", b =>
                 {
                     b.Property<long>("Id")
@@ -67,6 +83,36 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.NotificationModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Seen")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.SettingsModel", b =>

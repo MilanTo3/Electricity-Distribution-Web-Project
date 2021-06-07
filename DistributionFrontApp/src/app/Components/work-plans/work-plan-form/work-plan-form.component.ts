@@ -63,10 +63,11 @@ export class WorkPlanFormComponent implements OnInit {
     this.workPlanService.postWorkRequest(this.wrapper).subscribe(
       res => {
         this.showToastrSuccess();
+        this.router.navigateByUrl('/workPlans');
+
       }
     );
 
-    this.router.navigateByUrl('/workPlans');
 
   }
 

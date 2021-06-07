@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { fader, slider, transformer } from './route-animations';
@@ -12,6 +13,11 @@ export class AppComponent {
   title = 'DistributionFrontApp';
 
   constructor(private router: Router) {}
+
+  //ngOnInit(){
+   // this.notificationService.startConnection();
+    //this.notificationService.addNotificationListener();
+ // }
 
   checkPath(){
         

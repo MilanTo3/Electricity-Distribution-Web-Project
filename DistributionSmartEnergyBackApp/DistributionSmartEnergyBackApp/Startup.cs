@@ -22,6 +22,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http.Features;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using DistributionSmartEnergyBackApp.Services;
+using DistributionSmartEnergyBackApp.Hubs;
 
 namespace DistributionSmartEnergyBackApp
 {
@@ -48,6 +49,7 @@ namespace DistributionSmartEnergyBackApp
             services.AddScoped<IDevice, DeviceService>();
             services.AddScoped<ISettings, SettingsService>();
             services.AddScoped<IConsumer, ConsumerService>();
+            services.AddScoped<INotification, NotificationService>();
 
 
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
@@ -66,7 +68,19 @@ namespace DistributionSmartEnergyBackApp
                 options.Password.RequiredLength = 5;
             });
 
-            services.AddCors();
+            //services.AddCors();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                .WithOrigins("http://localhost:4200") // the Angular app url
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
+
+
+            services.AddSignalR();
 
 
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"]);
@@ -88,6 +102,8 @@ namespace DistributionSmartEnergyBackApp
 
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,21 +112,26 @@ namespace DistributionSmartEnergyBackApp
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString()).AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder => builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString()).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions() {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
                 RequestPath = new PathString("/Resources")
             });
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllers();
+                endpoints.MapHub<NotificationHub>("/notifikacije");
+
             });
+
         }
     }
 }

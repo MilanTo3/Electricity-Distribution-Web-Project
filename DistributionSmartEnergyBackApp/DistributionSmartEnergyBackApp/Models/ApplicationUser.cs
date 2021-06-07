@@ -89,6 +89,6 @@ namespace DistributionSmartEnergyBackApp.Models
 
             get { return roleRequest; }
             set { roleRequest = value; }
-        }
+        }   
     }
 }
