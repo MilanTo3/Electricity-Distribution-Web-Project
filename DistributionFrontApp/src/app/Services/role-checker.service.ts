@@ -34,6 +34,8 @@ export class RoleCheckerService {
 
       let loggedUser: LoggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
       let requiredRoles = this.getRolesFromIndices(roleIndices);
+      console.log(requiredRoles);
+      console.log(loggedUser.role);
       if (requiredRoles.includes(loggedUser.role)) {
         return true;
       }
@@ -54,7 +56,7 @@ export class RoleCheckerService {
   }
 
   getRolesFromIndices(indexes: number[]) {
-    let requiredRoles: string[];
+    let requiredRoles: string[] = [];
     for (var i = 0; i < indexes.length; i++)
       requiredRoles.push(this.roles[i]);
 
