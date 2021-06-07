@@ -34,9 +34,30 @@ export class NotificationService {
   public addNotificationListener = () => {
      this.hubConnection.on('notif', (data) => {
        this.data = data;
-       console.log(this.data);
-       this.tostr.info(this.data.content, this.data.type);
-      this.notificationMessages.push({type: this.data.type, content: this.data.details, seen: this.data.seen});
+       switch(this.data.type)
+       {
+         case('Info'):
+         {
+            this.tostr.info(this.data.content, this.data.type);
+            break;
+         }
+         case('Success'):
+         {
+            this.tostr.success(this.data.content, this.data.type);
+            break;
+         }
+         case('Error'):
+         {
+            this.tostr.error(this.data.content, this.data.type);
+            break;
+         }
+         case('Warning'):
+         {
+            this.tostr.warning(this.data.content, this.data.type);
+            break;
+         }
+       }
+      //this.notificationMessages.push({type: this.data.type, content: this.data.details, seen: this.data.seen});
     });
   }
 

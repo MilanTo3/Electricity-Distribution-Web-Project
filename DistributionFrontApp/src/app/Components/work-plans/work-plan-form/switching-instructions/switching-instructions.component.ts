@@ -22,7 +22,7 @@ export class SwitchingInstructionsComponent implements OnInit {
   ];
   index = this.instructions.length +1;
   response :any;
-
+  current; //status
   devices : any;
   addedDevices = [];
   filteredDevices: Observable<string[]>;
@@ -141,10 +141,21 @@ export class SwitchingInstructionsComponent implements OnInit {
   executeInstruction(selectedIndex){
    let item = this.instructions[selectedIndex]; 
     if(item){
-      item.status = "EXECUTED";
-      this.instructionsForm.controls[selectedIndex].patchValue({ 
-        deviceId: item.deviceId, name: item.name, status: item.status
-      });
+      this.wp.getStatus(item.id).subscribe(
+        res => {
+          if (res !== null) {
+            this.current = res["status"];
+          }
+        }
+      );
+      if(this.current=="Approved")
+      {
+        item.status = "EXECUTED";
+        this.instructionsForm.controls[selectedIndex].patchValue({ 
+          deviceId: item.deviceId, name: item.name, status: item.status
+        });
+      }
+     
     }
   }
   deleteInstruction(selectedIndex){
