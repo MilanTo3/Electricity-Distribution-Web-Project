@@ -2,7 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Notification } from './../../Models/notification.model';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import * as signalR from "@microsoft/signalr";  // or from "@microsoft/signalr" if you are using a new library
+//import * as signalR from "@microsoft/signalr";  // or from "@microsoft/signalr" if you are using a new library
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NotificationService {
    data: any;
-   private hubConnection: signalR.HubConnection;
+   //private hubConnection: signalR.HubConnection;
    notificationMessages= [
     { type: "Success", content: 'Notification text', seen: true },
     { type: "Info", content: 'Notification text', seen: true },
