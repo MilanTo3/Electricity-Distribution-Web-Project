@@ -2,7 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Notification } from './../../Models/notification.model';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
-//import * as signalR from "@microsoft/signalr";  // or from "@microsoft/signalr" if you are using a new library
+import * as signalR from "@microsoft/signalr";  // or from "@microsoft/signalr" if you are using a new library
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NotificationService {
    data: any;
-   //private hubConnection: signalR.HubConnection;
+   private hubConnection: signalR.HubConnection;
    notificationMessages= [
    /*  { type: "Success", content: 'Notification text', seen: true },
     { type: "Info", content: 'Notification text', seen: true },
@@ -22,23 +22,23 @@ export class NotificationService {
   ];
   constructor(private tostr: ToastrService, private http: HttpClient) { 
   }
- // public startConnection = () => {
-    /* this.hubConnection = new signalR.HubConnectionBuilder()
+  public startConnection = () => {
+     this.hubConnection = new signalR.HubConnectionBuilder()
                             .withUrl('http://localhost:24885/notifikacije')
                             .build();
     this.hubConnection
       .start()
       .then(() => console.log('Connection started'))
-      .catch(err => console.log('Error while starting connection: ' + err)) */
- // }
-  //public addNotificationListener = () => {
-    // this.hubConnection.on('notif', (data) => {
-    //   this.data = data;
-    //   console.log(this.data);
-    //   this.tostr.info(this.data.content, this.data.type);
-      //this.notificationMessages.push({type: this.data.type, content: this.data.details, seen: this.data.seen});
-    //});
-  //}
+      .catch(err => console.log('Error while starting connection: ' + err)) 
+  }
+  public addNotificationListener = () => {
+     this.hubConnection.on('notif', (data) => {
+       this.data = data;
+       console.log(this.data);
+       this.tostr.info(this.data.content, this.data.type);
+      this.notificationMessages.push({type: this.data.type, content: this.data.details, seen: this.data.seen});
+    });
+  }
 
   GetUserNotifications(username){
     //const notifications = of(this.notificationMessages);

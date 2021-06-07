@@ -1,4 +1,6 @@
-﻿using DistributionSmartEnergyBackApp.Models;
+﻿using DistributionSmartEnergyBackApp.Hubs;
+using DistributionSmartEnergyBackApp.Models;
+using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
@@ -94,6 +96,7 @@ namespace DistributionSmartEnergyBackApp.Services
         {
             var info = await _context.BasicInformationsWP.FirstOrDefaultAsync(x => x.DocumentId == basicInfo.DocumentId);
 
+
             if (info != null)
             {
                 info.endDateTime = basicInfo.endDateTime;
@@ -118,8 +121,29 @@ namespace DistributionSmartEnergyBackApp.Services
                     info.workRequestId = basicInfo.workRequestId;
                     info.incidentId = basicInfo.incidentId;
                 }
-                _context.BasicInformationsWP.Update(info);
-                await Save();
+
+                NotificationModel notification = new NotificationModel()
+                {
+                    Username = info.user,
+                    Type = "Warning",
+                    Timestamp = DateTime.Now,
+                    Seen = false,
+                    Content = "Your work plan " + info.DocumentId + " has been changed."
+                };
+                _context.Notifications.Add(notification);
+
+                try
+                {
+                    _context.BasicInformationsWP.Update(info);
+                    await Save();
+                    NotificationHub.Notify(notification);
+                }
+                catch (Exception)
+                {
+                    
+                }
+
+
             }
         }
 
@@ -134,9 +158,30 @@ namespace DistributionSmartEnergyBackApp.Services
             BasicInformationWP basicInfo = await _context.BasicInformationsWP.FirstOrDefaultAsync(x => x.DocumentId == docId);
             basicInfo.Status = changes[changes.Length - 1].Details.Split(' ')[changes[changes.Length - 1].Details.Split(' ').Length - 1].Replace(".", "");
             basicInfo.Status = basicInfo.Status.Substring(0, 1).ToUpper() + basicInfo.Status.Substring(1);
-            _context.BasicInformationsWP.Update(basicInfo);
 
-            await _context.SaveChangesAsync();
+            NotificationModel notification = new NotificationModel()
+            {
+                Username = basicInfo.user,
+                Timestamp = DateTime.Now,
+                Type = basicInfo.Status == "Approved" ? "Success" : "Error",
+                Seen = false,
+                Content = "Status of your work plan" + basicInfo.DocumentId + " has been updated to " + basicInfo.Status
+            };
+          
+            _context.Notifications.Add(notification);
+
+            try
+            {
+
+                _context.BasicInformationsWP.Update(basicInfo);
+                await _context.SaveChangesAsync();
+                NotificationHub.Notify(notification);
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         public async Task UpdateSwitchingInstructions(SwitchingInstruction[] switchingInstructions)

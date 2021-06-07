@@ -29,8 +29,8 @@ export class LoginComponentComponent implements OnInit {
         (response: any) => {
           let user = new LoggedUser(response.token, response.username, response.roletype);
 
-          // this.notificationService.startConnection();
-          //this.notificationService.addNotificationListener();
+           this.notificationService.startConnection();
+          this.notificationService.addNotificationListener();
 
           sessionStorage.setItem('loggedUser', JSON.stringify(user));
           if (user.role !== 'Consumer') {

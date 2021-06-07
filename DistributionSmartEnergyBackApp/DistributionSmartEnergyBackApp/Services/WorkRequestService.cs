@@ -1,4 +1,6 @@
-﻿using DistributionSmartEnergyBackApp.Models;
+﻿using DistributionSmartEnergyBackApp.Hubs;
+using DistributionSmartEnergyBackApp.Models;
+using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
@@ -59,8 +61,29 @@ namespace DistributionSmartEnergyBackApp.Services
                 info.Status = basicInfo.Status;
                 info.Street = basicInfo.Street;
                 info.Type = basicInfo.Type;
-                _context.BasicInformationsWR.Update(info);
-                await Save();
+
+                NotificationModel notification = new NotificationModel()
+                {
+                    Username = info.User,
+                    Type = "Warning",
+                    Timestamp = DateTime.Now,
+                    Seen = false,
+                    Content = "Your work request " + info.DocumentId + " has been changed."
+                };
+                _context.Notifications.Add(notification);
+
+                try
+                {
+
+                    _context.BasicInformationsWR.Update(info);
+                    await Save(); 
+                    NotificationHub.Notify(notification);
+                }
+                catch (Exception)
+                {
+
+                }
+
             }
         }
 
@@ -75,9 +98,30 @@ namespace DistributionSmartEnergyBackApp.Services
             BasicInformationWR basicInfo = await _context.BasicInformationsWR.FirstOrDefaultAsync(x => x.DocumentId == docId);
             basicInfo.Status = changes[changes.Length - 1].Details.Split(' ')[changes[changes.Length - 1].Details.Split(' ').Length - 1].Replace(".", "");
             basicInfo.Status = basicInfo.Status.Substring(0, 1).ToUpper() + basicInfo.Status.Substring(1);
-            _context.BasicInformationsWR.Update(basicInfo);
 
-            await _context.SaveChangesAsync();
+            NotificationModel notification = new NotificationModel()
+            {
+                Username = basicInfo.User,
+                Type = basicInfo.Status == "Approved" ? "Success" : "Error",
+                Timestamp = DateTime.Now,
+                Seen = false,
+                Content = "Status of your work request " + basicInfo.DocumentId + " has been updated to " + basicInfo.Status
+            };
+            _context.Notifications.Add(notification);
+
+            try
+            {
+
+                _context.BasicInformationsWR.Update(basicInfo);
+                await _context.SaveChangesAsync();
+                NotificationHub.Notify(notification);
+            }
+            catch (Exception)
+            {
+
+            }
+
+
         }
 
         public async Task DeleteBasicInfo(string id) {

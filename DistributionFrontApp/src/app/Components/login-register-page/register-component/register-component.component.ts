@@ -122,8 +122,8 @@ export class RegisterComponentComponent implements OnInit {
           if (response === "ok") {
             this.toastr.success('Thank you for joining smart energy.', 'Registration successful :)');
             
-           // this.notificationService.startConnection();
-            //this.notificationService.addNotificationListener();
+            this.notificationService.startConnection();
+            this.notificationService.addNotificationListener();
             this.registerForm.reset();
             this.moveOverlay.emit();
             return;

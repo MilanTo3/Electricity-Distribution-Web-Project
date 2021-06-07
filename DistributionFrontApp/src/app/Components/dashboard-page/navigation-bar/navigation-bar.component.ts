@@ -35,9 +35,8 @@ export class NavigationBarComponent implements OnInit {
   async getNotifications() {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.formdata.append('username', this.user.username);
-    let res = await this.notificationService.GetUserNotifications(this.user.username)
-      .toPromise();
-    this.notificationMessages =  res;
+    await this.notificationService.getUnreadNotifications(this.user.username)
+      .subscribe( res=> {this.notificationMessages = res});
     
   }
   async setMarkAsRead() {
@@ -79,6 +78,10 @@ export class NavigationBarComponent implements OnInit {
     }
   }
 
+  refresh()
+  {
+    this.getNotifications();
+  }
   logOut() {
     sessionStorage.clear();
     this.router.navigateByUrl('/login-register');
