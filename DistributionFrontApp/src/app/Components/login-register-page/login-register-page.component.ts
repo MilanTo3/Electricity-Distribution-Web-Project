@@ -1,3 +1,4 @@
+import { NotificationService } from 'src/app/Services/notifications/notification.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +22,7 @@ export class LoginRegisterPageComponent implements OnInit {
   ngOnInit(): void {
     if (sessionStorage.getItem('loggedUser') != null) {
       this.router.navigateByUrl('/dashboard');
+       
     }
     this.googleInitialize();
     this.facebookInitialize();

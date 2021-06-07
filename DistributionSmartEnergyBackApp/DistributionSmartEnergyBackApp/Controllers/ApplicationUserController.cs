@@ -24,6 +24,9 @@ using System.Threading.Tasks;
 using static DistributionSmartEnergyBackApp.Models.ApplicationUser;
 using System.Drawing;
 using System.Drawing.Imaging;
+using DistributionSmartEnergyBackApp.Hubs;
+using Microsoft.AspNetCore.SignalR;
+using DistributionSmartEnergyBackApp.Models.Interfaces;
 
 namespace DistributionSmartEnergyBackApp.Controllers
 {
@@ -34,10 +37,13 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         private UserManager<ApplicationUser> _userManager;
         private readonly ApplicationSettings _appSettings;
-
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, IOptions<ApplicationSettings> appSettings) {
+        private  NotificationHub _hubContext;
+        private AuthenticationContext _context;
+        public ApplicationUserController(UserManager<ApplicationUser> userManager, IOptions<ApplicationSettings> appSettings,
+            AuthenticationContext context) {
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
 
         [HttpGet]
@@ -79,7 +85,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                // user.RegState = ApplicationUser.RegistrationState.Pending;
                 user.PhoneNumber = userModel.PhoneNumber;
                 var result = await _userManager.UpdateAsync(user);
-
+                
                 if (result.Errors.Any()) {
                     var test = result.Errors.ToList();
                     return BadRequest("err" + test[0].Description);
@@ -249,11 +255,11 @@ namespace DistributionSmartEnergyBackApp.Controllers
         [Route("ApproveOrDenyRole")]
         public async Task<IActionResult> ApproveOrDenyRole([FromForm] string username, [FromForm] int op)
         {
-
+           
             var user = await _userManager.FindByNameAsync(username);
             if (user != null)
             {
-
+               
                 if (op == 0)
                 {
                     user.UserType = user.RoleRequest;
@@ -265,6 +271,26 @@ namespace DistributionSmartEnergyBackApp.Controllers
                     user.RegState = RegistrationState.Denied;
                 }
                 await _userManager.UpdateAsync(user);
+
+                NotificationModel notification = new NotificationModel()
+                {
+                    Username = user.UserName,
+                    Type = "Info",
+                    Timestamp = DateTime.Now,
+                    Seen = false,
+                    Content = "Role request has been reviewed."
+                };
+                _context.Notifications.Add(notification);
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    NotificationHub.Notify(notification);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
 
                 try
                 {
@@ -312,6 +338,27 @@ namespace DistributionSmartEnergyBackApp.Controllers
                     user.RegState = RegistrationState.Denied;
                 }
                 await _userManager.UpdateAsync(user);
+
+                NotificationModel notification = new NotificationModel()
+                {
+                    Username = user.UserName,
+                    Type = "Info",
+                    Timestamp = DateTime.Now,
+                    Seen = false,
+                    Content = "Profile has been reviewed."
+                };
+                _context.Notifications.Add(notification);
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    NotificationHub.Notify(notification);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+
 
                 try {
                     var message = new MimeMessage();
@@ -411,7 +458,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 RoleRequest = (UserTypeEnumeration)Enum.Parse(typeof(UserTypeEnumeration), model.UserType),
                 TeamId = model.TeamId,
                 RegState = ApplicationUser.RegistrationState.Pending,
-                PhoneNumber = model.PhoneNumber,
+                PhoneNumber = model.PhoneNumber
             };
 
             try {

@@ -1,3 +1,4 @@
+import { NotificationService } from 'src/app/Services/notifications/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -17,7 +18,7 @@ export class LoginComponentComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(private router: Router, private fb: FormBuilder, private logService: UserService, private toastr: ToastrService) { }
+  constructor(private router: Router, private fb: FormBuilder, private logService: UserService, private toastr: ToastrService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
   }
@@ -27,9 +28,11 @@ export class LoginComponentComponent implements OnInit {
       this.logService.login(this.loginForm.value).subscribe(
         (response: any) => {
           let user = new LoggedUser(response.token, response.username, response.roletype);
-          
+
+         // this.notificationService.startConnection();
+          //this.notificationService.addNotificationListener();
+
           sessionStorage.setItem('loggedUser', JSON.stringify(user));
-          console.log(user);
           this.router.navigateByUrl('/dashboard');
         },
         (err) => {

@@ -1,3 +1,4 @@
+import { LoggedUser } from './../../../Models/LoggedUser.model';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { menuList } from './menuList';
@@ -17,22 +18,30 @@ export class NavigationBarComponent implements OnInit {
   opened: boolean = true;
   expand = false;
   showFields = false;
+  user: LoggedUser;
+  formdata: FormData = new FormData();
+  notificationMessages : any;
 
-  notificationMessages: Notification[] = [];
-
-  constructor(private router: Router, private notificationService: NotificationService) { }
-
+  constructor(private router: Router, private notificationService: NotificationService) {
+  
+   }
   ngOnInit(): void {
-    this.getNotifications();
+    this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
+     this.getNotifications();
   }
 
-  getNotifications(): void {
-    this.notificationService.getUnreadNotifications()
-        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
+  async getNotifications() {
+    this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
+    this.formdata.append('username', this.user.username);
+    await this.notificationService.getUnreadNotifications(this.user.username)
+        .subscribe(res => this.notificationMessages = res);
   }
-  setMarkAsRead(): void {
-    this.notificationService.setMarkAsRead()
-        .subscribe(notificationMessages => this.notificationMessages = notificationMessages);
+  async setMarkAsRead() {
+    this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
+    this.formdata.append('username', this.user.username);
+    console.log(this.user.username);
+    await this.notificationService.setMarkAsRead(this.formdata)
+        .subscribe();
   }
   markAllAsRead(){
     this.hiddenBadge = true;

@@ -1,3 +1,4 @@
+import { NotificationService } from 'src/app/Services/notifications/notification.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -135,11 +136,12 @@ import { AuthInterceptor } from './Components/auth/auth.interceptor';
     ),
     NgxChartsModule
   ],
-  providers: [UserService, {
+  providers: 
+  [UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  }, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

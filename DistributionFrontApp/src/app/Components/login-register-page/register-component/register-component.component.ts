@@ -1,3 +1,4 @@
+import { NotificationService } from 'src/app/Services/notifications/notification.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { customFormValidators } from '../../../Models/customValidators';
@@ -38,7 +39,7 @@ export class RegisterComponentComponent implements OnInit {
     }
   );
 
-  constructor(private fb: FormBuilder, private registtration: UserService, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private registtration: UserService, private toastr: ToastrService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
   }
@@ -64,6 +65,9 @@ export class RegisterComponentComponent implements OnInit {
         (response: any) => {
           if (response === "ok") {
             this.toastr.success('Thank you for joining smart energy.', 'Registration successful :)');
+            
+           // this.notificationService.startConnection();
+            //this.notificationService.addNotificationListener();
             this.registerForm.reset();
             this.moveOverlay.emit();
             return;

@@ -39,5 +39,6 @@ namespace DistributionSmartEnergyBackApp.Models
 
         public DbSet<ConsumerModel> Consumers { get; set; }
 
+        public DbSet<NotificationModel> Notifications { get; set; }
     }
 }
