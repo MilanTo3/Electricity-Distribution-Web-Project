@@ -29,13 +29,10 @@ export class RoleCheckerService {
   constructor(private router: Router) { }
 
   checkRole(roleIndices: number[]) {
-
     if (sessionStorage.getItem('loggedUser') !== null) {
 
       let loggedUser: LoggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
       let requiredRoles = this.getRolesFromIndices(roleIndices);
-      console.log(requiredRoles);
-      console.log(loggedUser.role);
       if (requiredRoles.includes(loggedUser.role)) {
         return true;
       }

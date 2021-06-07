@@ -10,7 +10,7 @@
     <div class="container requestsPage">
         <h2 class="title">Work Requests:</h2>
         <p class="labela">Here, dispatchers can approve or disaprove work request drafts from other dispatchers. The table down is in experimental phase.</p>
-        <a href="/workRequestForm"><button class="btn newbtn" *ngIf="serviceRef.checkRole([1])"><i class="fas fa-file"></i>New</button></a>      
+        <a href="/workRequestForm" *ngIf="serviceRef.checkRole([1, 8])"><button class="btn newbtn"><i class="fas fa-file"></i>New</button></a>      
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn active radiobtn">
                 <input type="radio" name="options" id="option1" autocomplete="off" checked> All

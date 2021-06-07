@@ -5,8 +5,8 @@
             <label class="labela" >Here, employees can view work plans. The table down is in experimental phase.</label>
         </div>
         <div class="row">
-            <div class="col col-lg-2" *ngIf="serviceRef.checkRole([1])">
-                <button class="btn btn-primary" (click)="createNewPlan()" >
+            <div class="col col-lg-2" *ngIf="serviceRef.checkRole([1, 8])">
+                <button class="btn btn-primary" (click)="createNewPlan()">
                     <i class="fa fa-file" ></i>
                     New
                 </button>
