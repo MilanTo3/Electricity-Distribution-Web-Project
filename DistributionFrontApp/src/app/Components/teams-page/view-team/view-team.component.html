@@ -25,27 +25,24 @@
             </div>
             <button class="btn buttonClass" style="margin-top: 24px; width: 200px;" [routerLink]="['/editTeam', parameter]">Edit team</button>
         </div>
-        <div class="col-md-6" style="margin-top: 34px;">
-            <div class="form-group">
-                <label class="col title1">Team members:</label>
+        <div class="example-container" style="text-align: center;">
+            <h5 class="title">This teams members ({{usedMem.length}}):</h5>
+            <div class="form-inline" style="margin-top: 23px;">
+                <input class="form-control col-md-8 inputPolja" type="text" />
+                <button class="btn buttonClass col-md-4"><i class="fas fa-search"></i> Search</button>
             </div>
-            <div class="form-inline" style="margin-top: 21px; margin-bottom: 2px;">
-                <input class="form-control col-md-9 inputPolja" type="text"/>
-                <button class="btn buttonClass col-md-3"><i class="fas fa-search"></i> Search</button>
+
+            <div cdkDropList [cdkDropListData]="usedMem" class="example-list">
+                <cdk-virtual-scroll-viewport class="scrollbar" style="height: 350px" itemSize="3">
+                    <div class="example-box" *ngFor="let item of usedMem" cdkDrag>
+                        <div class="userItem">
+                            <img src="{{item.profileImg}}" style="width:40px; border-radius:50%" />
+                            <img *ngIf="item.profileImg === undefined" src="/assets/Images/defimage3.jpg" class="defaultImageStyling">
+                            <span> {{item.name}} {{item.lastname}} @{{item.username}}</span>
+                        </div>
+                    </div>
+                </cdk-virtual-scroll-viewport>
             </div>
-            <cdk-virtual-scroll-viewport style="height: 300px" itemSize="3">
-                <div class="listContainer">
-                <div class="example-box" *ngFor="let item of usedMem">
-                    <mat-card class="example-card">
-                        <img mat-card-image src="{{item.profileImg}}" style="border-radius: 50%; width: 50%;">
-                        <mat-card-content>
-                            <p>@{{item.username}}</p>
-                            <p>{{item.name}} {{item.lastname}}</p>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-                </div>
-            </cdk-virtual-scroll-viewport>
         </div>
     </div>
 </div>
