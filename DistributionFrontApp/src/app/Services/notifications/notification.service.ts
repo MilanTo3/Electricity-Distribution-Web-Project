@@ -12,13 +12,13 @@ export class NotificationService {
    data: any;
    //private hubConnection: signalR.HubConnection;
    notificationMessages= [
-    { type: "Success", content: 'Notification text', seen: true },
+   /*  { type: "Success", content: 'Notification text', seen: true },
     { type: "Info", content: 'Notification text', seen: true },
     { type: "Warning", content: 'Notification text' , seen: true},
     { type: "Error", content: 'Notification text', seen: true },
     { type: "Error", content: 'Notification text', seen: false },
     { type: "Info", content: 'Notification text', seen: false },
-    { type: "Success", content: 'Notification text', seen: false}
+    { type: "Success", content: 'Notification text', seen: false} */
   ];
   constructor(private tostr: ToastrService, private http: HttpClient) { 
   }
@@ -45,10 +45,10 @@ export class NotificationService {
    // return notifications;
    return this.http.get('http://localhost:24885/api/Notification/GetUserNotifications?username=' + username);
   }
-  getUnreadNotifications(username){
+   getUnreadNotifications(username){
     return this.http.get('http://localhost:24885/api/Notification/GetUnreadNotifications?username=' + username);
 
-  }
+  } 
   setMarkAsRead(username){
     /*var unreadNotifications = this.notificationMessages.filter(i => i.seen == false);
     for (var notification of unreadNotifications) 

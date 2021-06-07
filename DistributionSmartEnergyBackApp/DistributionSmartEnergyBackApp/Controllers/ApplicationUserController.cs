@@ -37,7 +37,6 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         private UserManager<ApplicationUser> _userManager;
         private readonly ApplicationSettings _appSettings;
-        private  NotificationHub _hubContext;
         private AuthenticationContext _context;
         public ApplicationUserController(UserManager<ApplicationUser> userManager, IOptions<ApplicationSettings> appSettings,
             AuthenticationContext context) {

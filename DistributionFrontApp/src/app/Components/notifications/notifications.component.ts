@@ -28,32 +28,29 @@ export class NotificationsComponent implements OnInit {
   }
   async getUnreadNotifications() {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
-    //this.formdata.append('username', this.user.username);
-    await this.notificationService.getUnreadNotifications(this.user.username).subscribe(res => {this.notificationMessages = res});
+    await this.notificationService.getUnreadNotifications(this.user.username).subscribe(res=>{this.notificationMessages = res});
   }
   async setMarkAsRead() {
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
     let formdata = new FormData();
     formdata.append('username', this.user.username);    
-    await this.notificationService.setMarkAsRead(formdata).subscribe(res => {this.notificationMessages = res});
+    await this.notificationService.setMarkAsRead(formdata).toPromise();
   }
   markAsRead(){
     this.setMarkAsRead();
   }
   async getAllNotifications(){
     this.user = JSON.parse(sessionStorage.getItem('loggedUser'));
-    //this.formdata.append('username', this.user.username);
-    
-   this.notificationService.GetUserNotifications(this.user.username).subscribe(res => {this.notificationMessages = res});
-   console.log(this.notificationMessages);
+   await this.notificationService.GetUserNotifications(this.user.username).subscribe(res => {this.notificationMessages = res});
   }
 
   onClick(filter:string){
     this.selectedFilter = filter;
-    this.filter();
+    this.filterFunction();
   }
 
-   filter(){
+   filterFunction(){
+     console.log(this.selectedFilter);
     switch(this.selectedFilter){
       case 'Success': 
       {
@@ -77,10 +74,10 @@ export class NotificationsComponent implements OnInit {
       }
       case 'Unread': 
       {        
-         this.getAllNotifications();
-        return this.notificationMessages.filter(i => i.seen == false);
+         this.getUnreadNotifications();
+        return this.notificationMessages;
       }
-      case 'All notifications': 
+      default: 
       {        
          this.getAllNotifications();
         return this.notificationMessages;
@@ -94,6 +91,6 @@ export class NotificationsComponent implements OnInit {
     let formdata = new FormData();
     formdata.append('username', this.user.username);    
     await this.notificationService.clearAll(formdata)
-        .subscribe();
+        .toPromise();
   }
 }

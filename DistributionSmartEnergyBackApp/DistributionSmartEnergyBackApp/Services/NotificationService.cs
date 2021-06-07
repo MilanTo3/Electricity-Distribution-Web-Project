@@ -54,7 +54,7 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.Notifications.ToListAsync();
         }
 
-        public async Task<IEnumerable<NotificationModel>> GetUnreadNotifications(string username)
+        public async Task<IEnumerable<NotificationModel>> GetUnreadNotif(string username)
         {
             return await _context.Notifications.Where(n => (n.Username == username) && (n.Seen == false)).ToListAsync();
         }

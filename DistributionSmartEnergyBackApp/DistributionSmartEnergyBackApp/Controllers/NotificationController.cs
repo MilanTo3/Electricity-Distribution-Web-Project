@@ -41,7 +41,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
         // GET: api/Notification/GetUserNotifications
         [HttpGet]
         [Route("GetUserNotifications")]
-        public async Task<IEnumerable<NotificationModel>> GetUserNotifications(string username)
+        public async Task<IEnumerable<NotificationModel>> GetUserNotify(string username)
         {
             count++;
             Console.WriteLine(count);
@@ -59,19 +59,20 @@ namespace DistributionSmartEnergyBackApp.Controllers
         // GET: api/Notification/GetUnreadNotifications
         [HttpGet]
         [Route("GetUnreadNotifications")]
-        public async Task<IEnumerable<NotificationModel>> GetUnreadNotifications( string username)
+        public async Task<IEnumerable<NotificationModel>> GetUnreadNotify(string username)
         {
             count++;
             Console.WriteLine(count);
             try
             {
-                return await _context.GetUnreadNotifications(username);
+                return await _context.GetUnreadNotif(username);
             }
             catch (Exception e)
             {
                 throw e;
             }
         }
+
         // POST: api/Notification/AddNotification
         [HttpPost]
         [Route("AddNotification")]

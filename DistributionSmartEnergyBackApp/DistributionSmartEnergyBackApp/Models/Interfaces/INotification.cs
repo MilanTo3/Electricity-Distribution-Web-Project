@@ -21,7 +21,7 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
 
         Task ClearAllNotifications(string username);
 
-        Task <IEnumerable<NotificationModel>> GetUnreadNotifications(string username);
+        Task <IEnumerable<NotificationModel>> GetUnreadNotif(string username);
 
 
     }
