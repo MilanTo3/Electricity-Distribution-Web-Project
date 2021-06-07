@@ -20,7 +20,7 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
 
         Task UpdateBasicInfo(BasicInformationWP basicInfo);
         Task UpdateHistory(HistoryOfStateChanges[] changes);
-
+        Task DeleteBasicInfo(string id);
         Task<IEnumerable<SwitchingInstruction>> GetAllSwitchingInstructions();
 
         Task UpdateSwitchingInstructions(SwitchingInstruction[] switchingInstructions);

@@ -60,7 +60,7 @@ namespace DistributionSmartEnergyBackApp.Services
                 info.Street = basicInfo.Street;
                 info.Type = basicInfo.Type;
                 _context.BasicInformationsWR.Update(info);
-                await _context.SaveChangesAsync();
+                await Save();
             }
         }
 
@@ -80,8 +80,25 @@ namespace DistributionSmartEnergyBackApp.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task Save() {
-            await _context.SaveChangesAsync();
+        public async Task DeleteBasicInfo(string id) {
+            BasicInformationWR info = await _context.BasicInformationsWR.FindAsync(id);
+            _context.BasicInformationsWR.Remove(info);
+            await Save();
         }
+
+        public async Task Save() {
+            try {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException exception) {
+                Console.WriteLine("Update concurrency greska.");
+            }
+        }
+
+        public async Task<IEnumerable<BasicInformationWR>> GetMyBasicInfo(string username) {
+
+            return await _context.BasicInformationsWR.Where(x => x.User == username).ToListAsync();
+        }
+
     }
 }

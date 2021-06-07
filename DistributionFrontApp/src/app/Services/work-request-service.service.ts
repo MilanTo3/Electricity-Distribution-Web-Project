@@ -18,7 +18,10 @@ export class WorkRequestServiceService {
     
     return this.http.get('http://localhost:24885/api/WorkRequest/getAllBasicInfo');
   }
+  getMineBasicInfo(){
+    return this.http.get('http://localhost:24885/api/WorkRequest/getMyBasicInfo');
 
+  }
   getBasicInformation(id) {
     return this.http.get('http://localhost:24885/api/WorkRequest/getBasicInfo?id='+id);
   }
@@ -46,5 +49,8 @@ export class WorkRequestServiceService {
 
   getStatus(idDoc){
     return this.http.get('http://localhost:24885/api/WorkRequest/getDocStatus?id='+idDoc);
+  }
+  getCreator(idDoc){
+    return this.http.get('http://localhost:24885/api/WorkRequest/getCreator?id='+idDoc, {responseType:'text'});
   }
 }

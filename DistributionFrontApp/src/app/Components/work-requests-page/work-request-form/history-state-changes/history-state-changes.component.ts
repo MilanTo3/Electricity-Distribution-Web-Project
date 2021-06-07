@@ -21,30 +21,43 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   constructor(private wr: WorkRequestServiceService, private wp: WorkPlanServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
+    
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
 
     let id = sessionStorage.getItem('idDoc');
+    let creator;
+
     if (id !== null) {
-      this.editMode = true;
-      if (id.startsWith('WR')) {
-        this.wr.getStatus(id).subscribe(
-          res => {
-            if (res !== null) {
-              this.current = res["status"];
+
+      if(id.startsWith('WR')){
+        creator = await this.wr.getCreator(id).toPromise();
+      }else if(id.startsWith('WP')){
+        creator = await this.wp.getCreator(id).toPromise();
+      }
+
+      let username = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
+      console.log(creator, username);
+      if(creator !== username){
+        this.editMode = true;
+        if (id.startsWith('WR')) {
+          this.wr.getStatus(id).subscribe(
+            res => {
+              if (res !== null) {
+                this.current = res["status"];
+              }
             }
-          }
-        );
-      } else if (id.startsWith('WP')) {
-        this.wp.getStatus(id).subscribe(
-          res => {
-            if (res !== null) {
-              this.current = res["status"];
+          );
+        } else if (id.startsWith('WP')) {
+          this.wp.getStatus(id).subscribe(
+            res => {
+              if (res !== null) {
+                this.current = res["status"];
+              }
             }
-          }
-        );
+          );
+        }
       }
 
     }
@@ -80,14 +93,16 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
     }
 
     let item;
+    let username = JSON.parse(sessionStorage.getItem('loggedUser')).username;
+    let id = sessionStorage.getItem("idDoc");
     if (state === 0) {
-      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to canceled.');
+      item = new HistoryStateChange(id, username, new Date(), 'State changed to canceled.');
       this.current = "Canceled";
     } else if (state === 1) {
-      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to denied.');
+      item = new HistoryStateChange(id, username, new Date(), 'State changed to denied.');
       this.current = "Denied";
     } else {
-      item = new HistoryStateChange('Pera', 'Peric', new Date(), 'State changed to approved.');
+      item = new HistoryStateChange(id, username, new Date(), 'State changed to approved.');
       this.current = "Approved";
     }
 

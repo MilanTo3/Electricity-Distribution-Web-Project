@@ -2,14 +2,13 @@ export class HistoryStateChange{
 
     documentId: string;
     name: string;
-    lastname: string;
     dateChanged: string;
     details: string;
 
-    constructor(firstname: string, lastname: string, date: Date, details: string){
+    constructor(id: string, name: string, date: Date, details: string){
         
-        this.name = firstname;
-        this.lastname = lastname;
+        this.documentId = id;
+        this.name = name;
         this.dateChanged = date.toLocaleString();
         this.details = details;
 

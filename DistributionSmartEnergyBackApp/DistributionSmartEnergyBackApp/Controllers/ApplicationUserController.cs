@@ -398,7 +398,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
             ApplicationUser applicationUser = new ApplicationUser() {
 
-                UserName = fullname.Replace(" ", ""),
+                UserName = fullname.Replace(" ", "") + ".png",
                 Name = fullname.Split(' ')[0],
                 Lastname = fullname.Split(' ')[1],
                 Email = email,
