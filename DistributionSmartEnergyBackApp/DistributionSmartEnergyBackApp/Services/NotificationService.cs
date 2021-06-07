@@ -2,9 +2,11 @@
 using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace DistributionSmartEnergyBackApp.Services
@@ -56,12 +58,34 @@ namespace DistributionSmartEnergyBackApp.Services
 
         public async Task<IEnumerable<NotificationModel>> GetUnreadNotif(string username)
         {
-            return await _context.Notifications.Where(n => (n.Username == username) && (n.Seen == false)).ToListAsync();
+            var currentSettings = await _context.Settings.OrderBy(x => x.Id).LastOrDefaultAsync();
+            List<string> approvedNotifications = new List<string>();
+            if (currentSettings.ErrorCheck == true)
+                approvedNotifications.Add("Error");
+            if (currentSettings.InfoCheck == true)
+                approvedNotifications.Add("Info");
+            if (currentSettings.SuccessCheck == true)
+                approvedNotifications.Add("Success");
+            if (currentSettings.WarningCheck == true)
+                approvedNotifications.Add("Warning");
+
+            return await _context.Notifications.Where(n => (n.Username == username) && (n.Seen == false) && (approvedNotifications.Contains(n.Type))).ToListAsync();
         }
 
         public async Task<IEnumerable<NotificationModel>> GetUserNotif(string username)
         {
-            return  await _context.Notifications.Where(n => n.Username == username).ToListAsync();                  
+            var currentSettings = await _context.Settings.OrderBy(x => x.Id).LastOrDefaultAsync();
+            List<string> approvedNotifications = new List<string>();
+            if (currentSettings.ErrorCheck == true)
+                approvedNotifications.Add("Error");
+            if (currentSettings.InfoCheck == true)
+                approvedNotifications.Add("Info");
+            if (currentSettings.SuccessCheck == true)
+                approvedNotifications.Add("Success");
+            if (currentSettings.WarningCheck == true)
+                approvedNotifications.Add("Warning");
+
+            return  await _context.Notifications.Where(n => (n.Username == username) && (approvedNotifications.Contains(n.Type))).ToListAsync();                  
         }
 
         public async Task MarkAsSeen(string username)
