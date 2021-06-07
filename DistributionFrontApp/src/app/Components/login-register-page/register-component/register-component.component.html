@@ -63,7 +63,12 @@
                                          <small *ngIf="registerForm.get('Address').errors?.maxlength" class="text-danger">Too long.</small>
 
               </p>
-              <input class="inputpolja form-control" type="text" formControlName="Address" />
+              <input class="inputpolja form-control" type="text" formControlName="Address" [matAutocomplete]="auto" />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                  {{street}}
+                </mat-option>
+              </mat-autocomplete>
             </div>
           </div>
           <div class="sekcija">
@@ -84,7 +89,12 @@
           </div>
           <div class="sekcija teamSection" *ngIf="teamSelected">
             <p class="labela">Team:</p>
-            <input class="inputpolja form-control" type="text" fromControlName="TeamId" />
+            <input class="inputpolja form-control" type="text" fromControlName="TeamId" [matAutocomplete]="auto"/>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let team of filteredTeams | async" [value]="team">
+                {{team}}
+              </mat-option>
+            </mat-autocomplete>
           </div>
         </div>
       </div>

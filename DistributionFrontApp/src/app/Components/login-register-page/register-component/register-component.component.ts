@@ -5,6 +5,11 @@ import { customFormValidators } from '../../../Models/customValidators';
 import { pictureModel } from '../../../Models/pictureModel.model';
 import { UserService } from '../../../Services/registration-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { LocationService } from 'src/app/Services/location.service';
+import { startWith } from 'rxjs/internal/operators/startWith';
+import { map } from 'rxjs/internal/operators/map';
+import { TeamsServiceService } from 'src/app/Services/teams-service.service';
 
 @Component({
   selector: 'app-register-component',
@@ -20,6 +25,14 @@ export class RegisterComponentComponent implements OnInit {
   defpicurl = '/assets/Images/defimage3.jpg';
   picurl: any = this.defpicurl;
   formdata: FormData = new FormData();
+  filteredRequests: Observable<string[]>;
+  locations : any;
+  teams: any;
+  addedStreets = [];
+  addedTeams = [];
+  filteredStreets: Observable<string[]>;
+  filteredTeams: Observable<string[]>;
+
   registerForm = this.fb.group({
     Name: ['', [Validators.required, Validators.maxLength(100)]],
     Lastname: ['', [Validators.required, Validators.maxLength(100)]],
@@ -39,9 +52,51 @@ export class RegisterComponentComponent implements OnInit {
     }
   );
 
-  constructor(private fb: FormBuilder, private registtration: UserService, private toastr: ToastrService, private notificationService: NotificationService) { }
+  constructor(private fb: FormBuilder, private registtration: UserService, private toastr: ToastrService, private notificationService: NotificationService, private locationService: LocationService, private teamsService: TeamsServiceService) { }
 
   ngOnInit(): void {
+
+    this.locationService.GetLocations().subscribe(
+      res => {
+        this.locations = res;
+        this.locations.forEach(element => {
+          this.addedStreets.push(element["street"]);
+        });
+      }
+    );
+
+    this.teamsService.getAllTeams().subscribe(
+      res => {
+        this.teams = res;
+        this.teams.forEach(element => {
+          this.addedTeams.push(element["name"]);
+        });
+      }
+    );
+
+    this.filteredStreets = this.registerForm.get('Address').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterStreets(value))
+    );
+
+    this.filteredTeams = this.registerForm.get('TeamId').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterTeams(value))
+    );
+  }
+
+  private _filterStreets(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.addedStreets.filter(street => this._normalizeValue(street).includes(filterValue));
+  }
+
+  private _filterTeams(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.addedTeams.filter(street => this._normalizeValue(street).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toString().toLowerCase().replace(/\s/g, '');
   }
 
   onFileChanged(event: any) {
