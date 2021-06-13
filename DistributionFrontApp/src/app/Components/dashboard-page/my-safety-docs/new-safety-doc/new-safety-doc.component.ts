@@ -47,15 +47,10 @@ export class NewSafetyDocComponent implements OnInit {
     }
     console.log(check);
     this.setInfoForm();
-    console.log('stuff');
     this.setHistoryForm();
-    console.log('stuff');
     this.setCheckListForm();
-    console.log('stuff');
     await this.setMediaForm();
-    console.log('stuff');
     console.log(this.wrapper);
-    console.log('stuff');
 
     this.safetyDocs.postWorkRequest(this.wrapper).subscribe(res => {
       if(res === 0){
