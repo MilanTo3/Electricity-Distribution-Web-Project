@@ -1,4 +1,4 @@
-import { getLocaleDateTimeFormat } from '@angular/common';
+import { formatDate, getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -14,11 +14,11 @@ export class BasicInformationMysfdocComponent implements OnInit {
     type: ['Planned work'],
     documentId: [''],
     user: [''],
-    crew: [''],
+    crew: [0],
     details: ['', Validators.required],
     notes: [''],
     phoneNumber: ['', [Validators.required, Validators.pattern('^[- +0-9]+$')]],
-    dateCreated: [new Date().getUTCDate()]
+    dateCreated: [formatDate(new Date(), "yyyy-MM-dd", "en").toString()]
   });
 
   constructor(private fb: FormBuilder) { }

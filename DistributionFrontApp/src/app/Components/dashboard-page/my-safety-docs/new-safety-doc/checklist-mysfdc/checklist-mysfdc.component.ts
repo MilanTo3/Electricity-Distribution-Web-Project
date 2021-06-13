@@ -9,10 +9,10 @@ import { FormBuilder } from '@angular/forms';
 export class ChecklistMysfdcComponent implements OnInit {
 
   checkListForm = this.fb.group({
-    firstCheck: [''],
-    secondCheck: [''],
-    thirdCheck: [''],
-    fourthCheck: ['']
+    firstCheck: [false],
+    secondCheck: [false],
+    thirdCheck: [false],
+    fourthCheck: [false]
   });
 
   constructor(private fb: FormBuilder) { }
