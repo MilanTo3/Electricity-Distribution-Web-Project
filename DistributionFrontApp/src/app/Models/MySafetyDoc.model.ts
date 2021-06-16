@@ -1,6 +1,6 @@
 export class MySafetyDoc{
 
-    id: string;
+    //id: string;
     documentId: string;
     startDate: string;
     phoneNumber: string;
@@ -9,7 +9,7 @@ export class MySafetyDoc{
 
     constructor(id: string, startingDate: string, phone: string, state: string, workLocation: string){
 
-        this.id = id;
+        this.documentId = id;
         this.startDate = startingDate;
         this.phoneNumber = phone;
         this.status = state;

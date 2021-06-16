@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TableComponentComponent } from 'src/app/Components/admin-profile-requests/table-component/table-component.component';
 import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { HistoryStateChange } from '../../../../Models/HistoryStateChange.model';
+import { SafetyDocumentServiceService } from 'src/app/Services/safety-document-service.service';
 
 @Component({
   selector: 'app-history-state-changes',
@@ -18,7 +19,7 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
   editMode = false;
   current: string;
 
-  constructor(private wr: WorkRequestServiceService, private wp: WorkPlanServiceService, private toastr: ToastrService) { }
+  constructor(private wr: WorkRequestServiceService, private wp: WorkPlanServiceService, private sd: SafetyDocumentServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     
@@ -34,6 +35,8 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
       if(id.startsWith('WR')){
         creator = await this.wr.getCreator(id).toPromise();
       }else if(id.startsWith('WP')){
+        creator = await this.wp.getCreator(id).toPromise();
+      }else if(id.startsWith('SD')){
         creator = await this.wp.getCreator(id).toPromise();
       }
 
@@ -57,9 +60,16 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
               }
             }
           );
-        }
+        } else if (id.startsWith('SD')) {
+          this.sd.getStatus(id).subscribe(
+            res => {
+              if (res !== null) {
+                this.current = res["status"];
+              }
+            }
+          );
       }
-
+    }
     }
     this.stateArray = this.table.dataToPrint;
 
@@ -78,6 +88,13 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
     }
     else if (id.startsWith('WP')) {
       this.wp.updateHistoryState(this.stateArray, id).subscribe(
+        res => {
+          this.toastr.success('Updated history of the document', 'Yas!');
+        }
+      );
+    }
+    else if (id.startsWith('SD')) {
+      this.sd.updateHistoryState(this.stateArray, id).subscribe(
         res => {
           this.toastr.success('Updated history of the document', 'Yas!');
         }

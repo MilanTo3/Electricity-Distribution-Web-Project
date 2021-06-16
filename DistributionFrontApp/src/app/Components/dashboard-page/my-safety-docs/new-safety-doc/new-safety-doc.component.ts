@@ -52,7 +52,7 @@ export class NewSafetyDocComponent implements OnInit {
     await this.setMediaForm();
     console.log(this.wrapper);
 
-    this.safetyDocs.postWorkRequest(this.wrapper).subscribe(res => {
+    this.safetyDocs.postSafetyDoc(this.wrapper).subscribe(res => {
       if(res === 0){
         this.toastr.success('Yay! Form Successfully submitted.', 'Safety Document submitted.');
       }else{

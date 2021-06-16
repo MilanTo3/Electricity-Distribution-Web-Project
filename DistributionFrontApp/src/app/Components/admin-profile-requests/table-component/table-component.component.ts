@@ -22,6 +22,7 @@ import { UserService } from '../../../Services/registration-service.service';
 import * as moment from 'moment';
 import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 import { ConsumerService } from 'src/app/Services/consumer.service';
+import { SafetyDocumentServiceService } from 'src/app/Services/safety-document-service.service';
 
 @Component({
   selector: 'app-table-component',
@@ -50,7 +51,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   }
 
   constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService,
-    private workPlanService: WorkPlanServiceService, private registrattionService: UserService,
+    private workPlanService: WorkPlanServiceService, private safetyDocService: SafetyDocumentServiceService,
+    private registrattionService: UserService,
     private consumerService: ConsumerService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -101,6 +103,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     //Write your code here
     if (this.tableid === 6) {
       await this.loadWorkPlans();
+    } else if(this.tableid === 8) {
+      await this.loadMySafetyDocs();
     }
 
   }
@@ -211,6 +215,32 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
+  async loadMySafetyDocs() {
+    this.baseLink = "/newMySafetyDoc";
+    let res;
+    const data = [];
+
+    if (this.showMine) {
+      res = await this.safetyDocService.getMineBasicInfo().toPromise();
+    }
+    else {
+      res = await this.safetyDocService.getAllBasicInfo().toPromise();
+    }
+
+    if (res) {
+      let i;
+      let sd;
+      for (i = 0; i < res["length"]; i++) {
+        sd = new MySafetyDoc(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')).toLocaleDateString(), res[i]["phoneNumber"], res[i]["status"], res[i]["address"]);
+        data.push(sd);
+      }
+      this.dataToPrint = data;
+      this.dataBind = new MatTableDataSource(this.dataToPrint);
+      this.keyNames = Object.getOwnPropertyNames(sd);
+    }
+
+  }
+
   loadMyIncidents() {
     let myIncident1 = new MyIncidents('WR-1', new Date(2021, 9, 1, 5, 5, 4, 22), "3989-434-343", "Executing", "Koste Racina 23");
     let myIncident2 = new MyIncidents('WR-1', new Date(2021, 10, 1, 11, 5, 4, 22), "3989-434-343", "Draft", "Cankareva 5");
@@ -260,14 +290,15 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
-  loadMySafetyDocs() {
+  /*loadMySafetyDocs() {
     let doc1 = new MySafetyDoc('WR-1', "2019-01-16", "3989-434-343", "Draft", "Jevrejska 12a");
     let doc2 = new MySafetyDoc("WR-2", "2019-01-16", "323-35345-2343", "Draft", "Marka Kraljevica 15");
     let doc3 = new MySafetyDoc("WR-3", "2019-01-16", "349-553-855-12", "Draft", "Dragana Torbice 3");
 
     this.dataToPrint.push(doc1, doc2, doc3);
     this.keyNames = Object.getOwnPropertyNames(doc3);
-  }
+  }*/
+
   async loadAllConsumers() {
     this.baseLink = "/new-consumer";
     let res = await this.consumerService.GetConsumers().toPromise();
