@@ -33,6 +33,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
             try
             {
                 await _context.AddSafetyDoc(wrapper);
+                await _context.Save();
                 return Ok();
             }
             catch (Exception e)
@@ -40,6 +41,38 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 throw e;
             }
         }
+
+        [HttpGet]
+        [Route("GetCheckList")]
+        public async Task<CheckList> GetCheckListController(string id)
+        {
+            return await _context.GetCheckList(id);
+        }
+        
+        [HttpGet]
+        [Route("GetAllBasicInfo")]
+
+        public async Task<IEnumerable<BasicInformationSD>> GetAllBasicInfoController()
+        {
+            return await _context.GetAllBasicInfo();
+        }
+
+        [HttpGet]
+        [Route("GetMyBasicInfo")]
+        public async Task<IEnumerable<BasicInformationSD>> GetMyBasicInformationController()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            return await _context.GetMyBasicInfo(user.UserName);
+        }
+
+        [HttpGet]
+        [Route("GetBasicInfo")]
+        public async Task<BasicInformationSD> GetBasicInformationController(string id)
+        {
+            return await _context.GetBasicInfo(id);
+        }
+
 
     }
 }

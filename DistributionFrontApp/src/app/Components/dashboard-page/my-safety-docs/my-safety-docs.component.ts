@@ -8,7 +8,7 @@ import { RoleCheckerService } from 'src/app/Services/role-checker.service';
   styleUrls: ['./my-safety-docs.component.css']
 })
 export class MySafetyDocsComponent implements OnInit {
-
+  option = false;
   serviceRef;
   constructor(private router: Router, private checker: RoleCheckerService) { this.serviceRef = checker; }
 
@@ -17,6 +17,13 @@ export class MySafetyDocsComponent implements OnInit {
 
   openNewMySafetyDoc() {
     this.router.navigate(['/newMySafetyDoc']);
+  }
+
+  changeOption(op){
+    if(op=='All')
+      this.option= false;
+    else
+      this.option=true; //show mine
   }
 
 }

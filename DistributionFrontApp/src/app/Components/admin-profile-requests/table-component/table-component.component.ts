@@ -216,7 +216,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   }
 
   async loadMySafetyDocs() {
-    this.baseLink = "/newMySafetyDoc";
+    this.baseLink = "/mySafetyDocs";
     let res;
     const data = [];
 

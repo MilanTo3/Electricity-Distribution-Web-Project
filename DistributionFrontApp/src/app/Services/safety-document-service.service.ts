@@ -20,7 +20,7 @@ export class SafetyDocumentServiceService {
   }
 
   getBasicInformation(id) {
-    return this.http.get('http://localhost:24885/api/SafetyDocs/getBasicInfo?id=' + id);
+    return this.http.get('http://localhost:24885/api/SafetyDocs/GetBasicInfo?id=' + id);
   }
 
   getCreator(idDoc){

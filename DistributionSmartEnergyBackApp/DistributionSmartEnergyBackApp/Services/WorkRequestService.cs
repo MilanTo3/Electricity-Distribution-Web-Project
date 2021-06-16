@@ -29,6 +29,7 @@ namespace DistributionSmartEnergyBackApp.Services
             wrapper.infoForm.DocumentId = "WR"+wr.Id;
             wrapper.infoForm.DateCreated = DateTime.Now;
             _context.BasicInformationsWR.Add(wrapper.infoForm);
+            
 
             return wr.Id;
         }

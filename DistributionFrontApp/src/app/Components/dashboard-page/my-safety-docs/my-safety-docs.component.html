@@ -13,15 +13,19 @@
         <p class="labela">Here, users can see their safety documents.</p>
         <button (click)="openNewMySafetyDoc()" *ngIf="serviceRef.checkRole([1, 8])" class="btn newbtn"><i class="fas fa-file"></i>New</button>
         
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn active radiobtn">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> All
-            </label>
-            <label class="btn radiobtn">
-                <input type="radio" name="options" id="option2" autocomplete="off"> Mine
-            </label>
+        <div class="col col-lg-2">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn radiobtn">
+                    <input type="radio" name="optionAll" id="optionAll" autocomplete="off" value="All"  (click)="changeOption('All')"> All
+                </label>
+                <label class="btn radiobtn">
+                    <input type="radio" name="optionMine" id="optionMine" autocomplete="off" value="Mine" (click)="changeOption('Mine')"> Mine
+                </label>
+            </div>
+        </div> 
+        <div class="row">
+            <app-table-component [tableType]='8' [showMine]="option"></app-table-component>
         </div>
-        <app-table-component [tableType]='8'></app-table-component>
     </div>
 </body>
 

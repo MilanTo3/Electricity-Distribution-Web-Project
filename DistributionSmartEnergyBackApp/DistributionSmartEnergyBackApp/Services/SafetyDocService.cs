@@ -26,9 +26,35 @@ namespace DistributionSmartEnergyBackApp.Services
 
             wrapper.infoForm.DocumentId = "SD" + sd.Id;
             wrapper.infoForm.DateCreated = DateTime.Now;
-            _context.BasicInformationSD.Add(wrapper.infoForm);
+            wrapper.checkListForm.DocumentId = "SD" + sd.Id;
 
-            throw new NotImplementedException();
+            _context.BasicInformationSD.Add(wrapper.infoForm);
+            _context.CheckListSD.Add(wrapper.checkListForm);
+
+            await Save();
+
+            return sd.Id;
+        }
+
+        public async Task<IEnumerable<BasicInformationSD>> GetAllBasicInfo()
+        {
+            return await _context.BasicInformationSD.ToListAsync();
+        }
+
+        public async Task<BasicInformationSD> GetBasicInfo(string id)
+        {
+            return await _context.BasicInformationSD.FirstOrDefaultAsync(x => x.DocumentId == id);
+        }
+
+        public async Task<CheckList> GetCheckList(string id)
+        {
+            return await _context.CheckListSD.FirstOrDefaultAsync(x => x.DocumentId == id);
+        }
+
+
+        public async Task<IEnumerable<BasicInformationSD>> GetMyBasicInfo(string username)
+        {
+            return await _context.BasicInformationSD.Where(x => x.User == username).ToListAsync();
         }
 
         public async Task Save()

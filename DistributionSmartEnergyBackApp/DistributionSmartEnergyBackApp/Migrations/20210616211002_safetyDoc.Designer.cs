@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DistributionSmartEnergyBackApp.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20210607060624_nadamseposlednjamigracija")]
-    partial class nadamseposlednjamigracija
+    [Migration("20210616211002_safetyDoc")]
+    partial class safetyDoc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,6 +113,18 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.SafetyDocumentModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SafetyDocuments");
                 });
 
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.SettingsModel", b =>
@@ -238,6 +250,69 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HistoryChanges");
+                });
+
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument.BasicInformationSD", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("Crew")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BasicInformationSD");
+                });
+
+            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument.CheckList", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DocumentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("FirstCheck")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FourthCheck")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("SecondCheck")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ThirdCheck")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheckListSD");
                 });
 
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan.BasicInformationWP", b =>

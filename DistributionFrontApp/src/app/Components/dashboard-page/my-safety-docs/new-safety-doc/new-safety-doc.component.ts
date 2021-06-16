@@ -58,7 +58,7 @@ export class NewSafetyDocComponent implements OnInit {
       }else{
         this.toastr.warning('Form submitted, but attachments with viruses have not been saved.', 'Safety Document submitted.');
       }
-      this.router.navigateByUrl('/newMySafetyDoc');
+      this.router.navigateByUrl('/mySafetyDocs');
     });
 
   }
