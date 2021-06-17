@@ -90,7 +90,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     } else if (this.tableid === 7) {
       await this.loadTeams();
     } else if (this.tableid === 8) {
-      this.loadMySafetyDocs();
+       await this.loadMySafetyDocs();  
     } else if (this.tableid === 9) {
       await this.loadAllConsumers();
     } else if (this.tableid === 10) {
@@ -210,13 +210,13 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
       this.dataToPrint = data;
       this.dataBind = new MatTableDataSource(this.dataToPrint);
       this.keyNames = Object.getOwnPropertyNames(wp);
-
+      this.enableView();
     }
 
   }
 
   async loadMySafetyDocs() {
-    this.baseLink = "/mySafetyDocs";
+    this.baseLink = "/newMySafetyDoc";
     let res;
     const data = [];
 
@@ -231,12 +231,14 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
       let i;
       let sd;
       for (i = 0; i < res["length"]; i++) {
-        sd = new MySafetyDoc(res[i]["documentId"], new Date(moment(res[i]["startDate"]).format('YYYY-MM-DD')).toLocaleDateString(), res[i]["phoneNumber"], res[i]["status"], res[i]["address"]);
+        sd = new MySafetyDoc(res[i]["documentId"], new Date(moment(res[i]["dateCreated"]).format('YYYY-MM-DD')), res[i]["phoneNumber"], res[i]["type"]);
         data.push(sd);
       }
       this.dataToPrint = data;
       this.dataBind = new MatTableDataSource(this.dataToPrint);
       this.keyNames = Object.getOwnPropertyNames(sd);
+
+      this.enableView();
     }
 
   }
@@ -289,15 +291,6 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     this.keyNames = Object.getOwnPropertyNames(call3);
 
   }
-
-  /*loadMySafetyDocs() {
-    let doc1 = new MySafetyDoc('WR-1', "2019-01-16", "3989-434-343", "Draft", "Jevrejska 12a");
-    let doc2 = new MySafetyDoc("WR-2", "2019-01-16", "323-35345-2343", "Draft", "Marka Kraljevica 15");
-    let doc3 = new MySafetyDoc("WR-3", "2019-01-16", "349-553-855-12", "Draft", "Dragana Torbice 3");
-
-    this.dataToPrint.push(doc1, doc2, doc3);
-    this.keyNames = Object.getOwnPropertyNames(doc3);
-  }*/
 
   async loadAllConsumers() {
     this.baseLink = "/new-consumer";

@@ -42,18 +42,18 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Phone Number:</label>
-                <input class="col-sm-2 form-control" type="text" formControlName="phoneNumber"/>
+                <input class="col-sm-4 form-control" type="text" formControlName="phoneNumber"/>
                 <small *ngIf="phoneNumber.invalid && phoneNumber.touched && !phoneNumber.errors.pattern" class="text-danger">Phone number is required.</small> 
                 <small *ngIf="phoneNumber.invalid && phoneNumber.errors.pattern" class="text-danger">Phone number contains only numbers</small>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Date/time created:</label>
-                <input class="col-sm-2 form-control" type="datetime-local" formControlName="dateCreated" disabled/>
+                <input class="col-sm-4 form-control" type="datetime-local" formControlName="dateCreated" disabled/>
             </div>        
         
  
              </div>
         </div>
     </form>
-    <button class="btn" *ngIf="editMode" (click)="saveChanges()">Save Changes</button>
+    <button class="btn-primary" *ngIf="editMode" (click)="saveChanges()">Save Changes</button>
 </div>

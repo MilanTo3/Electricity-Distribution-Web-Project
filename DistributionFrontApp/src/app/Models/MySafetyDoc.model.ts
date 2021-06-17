@@ -2,19 +2,16 @@ export class MySafetyDoc{
 
     //id: string;
     documentId: string;
-    startDate: string;
+    dateCreated: string;
     phoneNumber: string;
-    status: string;
-    address: string;
+    type: string;
 
-    constructor(id: string, startingDate: string, phone: string, state: string, workLocation: string){
+    constructor(id: string, dateCreated: Date, phone: string, type: string){
 
         this.documentId = id;
-        this.startDate = startingDate;
+        this.dateCreated = dateCreated.toUTCString();;
         this.phoneNumber = phone;
-        this.status = state;
-        this.address = workLocation;
-
+        this.type = type;
     }
 
 }
