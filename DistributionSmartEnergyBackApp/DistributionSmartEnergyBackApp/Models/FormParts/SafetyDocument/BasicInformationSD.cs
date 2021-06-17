@@ -10,6 +10,8 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument
         public long Id { get; set; }
         public string Type { get; set; }
         public string DocumentId { get; set; } // SD1
+
+        public string WorkPlanId { get; set; } // WP1
         public string User { get; set; }
         public long Crew { get; set; }
         public string Details { get; set; }

@@ -18,7 +18,13 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-4">Work plan:</label>
-                <button class="col-sm-2"><b>WP1</b></button>
+                <input class="col-sm-2" type="text" formControlName="workPlanId"  [matAutocomplete]="auto" (dblclick)=OpenWP()/>
+
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let workPlan of filteredWorkPlans | async" [value]="workPlan">
+                      {{workPlan}}
+                    </mat-option>
+                  </mat-autocomplete> 
             </div>
             <div class="form-group row">
                 <label class="col-sm-4">Created By:</label>

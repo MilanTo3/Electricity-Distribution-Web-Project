@@ -98,7 +98,7 @@ namespace DistributionSmartEnergyBackApp.Services
                 Type = "Warning",
                 Timestamp = DateTime.Now,
                 Seen = false,
-                Content = "Your work request " + info.DocumentId + " has been changed."
+                Content = "Your safety document " + info.DocumentId + " has been changed."
             };
             _context.Notifications.Add(notification);
 
@@ -131,7 +131,7 @@ namespace DistributionSmartEnergyBackApp.Services
                     Type = "Warning",
                     Timestamp = DateTime.Now,
                     Seen = false,
-                    Content = "Your work request " + info.DocumentId + " has been changed."
+                    Content = "Your safety document " + info.DocumentId + " has been changed."
                 };
                 _context.Notifications.Add(notification);
 
