@@ -53,10 +53,14 @@ export class SafetyDocumentServiceService {
     return this.http.get('http://localhost:24885/api/SafetyDocs/GetCheckList?id='+id);
   }
 
-  updateCheckList(formdata : MySafetyDoc[], sdId)
+  updateCheckList(formdata)
   {
-    formdata.forEach(x => x.documentId = sdId);
-    return this.http.post('http://localhost:24885/api/SafetyDocs/UpdateCheckList', formdata);
+
+    return this.http.post('http://localhost:24885/api/SafetyDocs/updateCheckList', formdata);
+  }
+
+  updateAttachments(formdata){
+    return this.http.post('http://localhost:24885/api/SafetyDocs/UpdateAttachments', formdata);
   }
 
 }

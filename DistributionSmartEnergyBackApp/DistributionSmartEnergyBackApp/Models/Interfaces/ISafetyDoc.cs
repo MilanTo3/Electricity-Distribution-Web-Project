@@ -1,4 +1,5 @@
 ﻿using DistributionSmartEnergyBackApp.Models.EntityModels;
+using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,15 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
 
         Task<BasicInformationSD> GetBasicInfo(string id);
         Task<CheckList> GetCheckList(string id);
+
+        // update
+
+        Task UpdateBasicInfo(BasicInformationSD basicInfo);
+        Task DeleteBasicInfo(string id);
+
+        Task UpdateHistory(HistoryOfStateChanges[] changes);
+
+        Task UpdateCheckList(CheckList ch);
+
     }
 }

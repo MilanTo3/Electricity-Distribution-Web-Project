@@ -47,7 +47,7 @@ export class ChecklistMysfdcComponent implements OnInit {
         this.checkListForm.get('firstCheck').setValue(res["firstCheck"]);
         this.checkListForm.get('secondCheck').setValue(res["secondCheck"]);
         this.checkListForm.get('thirdCheck').setValue(res["thirdCheck"]);
-        this.checkListForm.get('firsfourthChecktCheck').setValue(res["fourthCheck"]);
+        this.checkListForm.get('fourthCheck').setValue(res["fourthCheck"]);
       }
     );
  
@@ -57,8 +57,9 @@ export class ChecklistMysfdcComponent implements OnInit {
 
     let id = sessionStorage.getItem("idDoc");
     this.checkListForm.get('documentId').setValue(id);
-    this.sd.updateCheckList(this.checkListForm.value, id).subscribe(
+    this.sd.updateCheckList(this.checkListForm.value).subscribe(
       res => {
+        console.log(res);
         this.showToastrSuccess();
       }
     );
