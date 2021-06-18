@@ -12,6 +12,7 @@ import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import { stringify } from '@angular/compiler/src/util';
 import { ToastrService } from 'ngx-toastr';
+import { TeamsServiceService } from 'src/app/Services/teams-service.service';
 
 @Component({
   selector: 'app-work-plan-basic-information',
@@ -20,7 +21,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class WorkPlanBasicInformationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private wp: WorkPlanServiceService, private wr: WorkRequestServiceService, private locationService: LocationService,
+    private tm: TeamsServiceService,
     private router: Router, private toastr: ToastrService) { }
+
   editMode = false;
   loggedInUser: LoggedUser;
   workRequests : any;
@@ -29,6 +32,10 @@ export class WorkPlanBasicInformationComponent implements OnInit {
   locations : any;
   addedStreets = [];
   filteredStreets: Observable<string[]>;
+
+  teams: any;
+  addedTeams = [];
+  filteredTeams: Observable<string[]>;
 
   planBasicInfoForm  = this.formBuilder.group({
       type: ['', Validators.required],
@@ -40,7 +47,8 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       //locationId : [''],
       startDateTime: ['', Validators.required],
       endDateTime: ['', Validators.required],
-      crewId: [0, Validators.required],
+      //crewId: [''],
+      crewName: [''],
       user: ['', Validators.required],
       company: ['', Validators.required],
       phoneNumber: ['',  [Validators.required, Validators.pattern('^[- +0-9]+$')]],
@@ -62,6 +70,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
     }
     this.onValueChanges();
     this.onWRChanges();
+ 
 
     this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     this.planBasicInfoForm.get('user').setValue(this.loggedInUser.username);
@@ -74,9 +83,24 @@ export class WorkPlanBasicInformationComponent implements OnInit {
         });
       }
     );
+
     this.filteredRequests = this.planBasicInfoForm.get('workRequestId').valueChanges.pipe(
       startWith(''),
       map(value => this._filterWRs(value))
+    );
+
+    this.tm.getAllTeams().subscribe(    //teams
+      res => {
+        this.teams = res;
+        this.teams.array.forEach(element => {
+          this.addedTeams.push(element["name"]) //uzimam imena od timova i upisujem ih addedTeams
+        });
+      }
+    );
+
+    this.filteredTeams = this.planBasicInfoForm.get('crewName').valueChanges.pipe(    //teams
+      startWith(''),
+      map(value => this._filterTeams(value))
     );
 
     this.locationService.GetLocations().subscribe(
@@ -87,11 +111,13 @@ export class WorkPlanBasicInformationComponent implements OnInit {
         });
       }
     );
+
     this.filteredStreets = this.planBasicInfoForm.get('street').valueChanges.pipe(
       startWith(''),
       map(value => this._filterStreets(value))
     ); 
     }
+
   private _filterStreets(value: string): string[] {
     const filterValue = this._normalizeValue(value);
     return this.addedStreets.filter(street => this._normalizeValue(street).includes(filterValue));
@@ -99,6 +125,11 @@ export class WorkPlanBasicInformationComponent implements OnInit {
   private _filterWRs(value: string): string[] {
     const filterValue = this._normalizeValue(value);
     return this.addedWRs.filter(req => this._normalizeValue(req).includes(filterValue));
+  }
+
+  private _filterTeams(value: string): string[] {   //teams
+    const filterValue = this._normalizeValue(value);
+    return this.addedTeams.filter(crew => this._normalizeValue(crew).includes(filterValue));
   }
 
   private _normalizeValue(value: string): string {
@@ -120,6 +151,9 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       }
     )
   }
+
+
+
   getStreet(wrDocumentId):string
   {
     let index = this.addedWRs.indexOf(wrDocumentId); 
@@ -136,6 +170,9 @@ export class WorkPlanBasicInformationComponent implements OnInit {
     else
       return "Work request does not have a incident.";
   }
+
+
+
   getAndFill(id){
     if(sessionStorage.getItem("idDocReadOnly")!=null)
     {
@@ -161,7 +198,8 @@ export class WorkPlanBasicInformationComponent implements OnInit {
           this.planBasicInfoForm.get('purpose').setValue(res["purpose"]);
           this.planBasicInfoForm.get('notes').setValue(res["notes"]);
           //this.planBasicInfoForm.get('locationId').setValue(res["locationId"]);
-          this.planBasicInfoForm.get('crewId').setValue(res["crewId"]);
+          //this.planBasicInfoForm.get('crewId').setValue(res["crewid"]);
+          this.planBasicInfoForm.get('crewName').setValue(res["crewName"]);
           this.planBasicInfoForm.get('company').setValue(res["company"]);
         }
   

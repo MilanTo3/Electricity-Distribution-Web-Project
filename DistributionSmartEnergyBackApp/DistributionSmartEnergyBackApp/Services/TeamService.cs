@@ -51,6 +51,7 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.DispatchTeams.ToListAsync();
         }
 
+    
         public async Task UpdateTeam(long id, string name, string[] usernames) {
             var team = await _context.DispatchTeams.FindAsync(id);
 

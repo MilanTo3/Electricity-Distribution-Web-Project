@@ -47,7 +47,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
 
         }
-
+        
         [HttpGet]
         [Route("getTeam")]
         public async Task<IActionResult> getTeam(long id) {

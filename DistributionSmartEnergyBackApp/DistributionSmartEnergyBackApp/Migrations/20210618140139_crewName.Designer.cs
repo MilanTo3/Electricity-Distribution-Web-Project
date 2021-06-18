@@ -4,14 +4,16 @@ using DistributionSmartEnergyBackApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DistributionSmartEnergyBackApp.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20210618140139_crewName")]
+    partial class crewName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,8 +354,8 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.Property<DateTime>("createdDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("crewId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("crewId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("crewName")
                         .HasColumnType("nvarchar(max)");
