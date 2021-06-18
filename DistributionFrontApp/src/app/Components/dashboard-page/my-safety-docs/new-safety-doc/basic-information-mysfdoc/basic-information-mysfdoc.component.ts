@@ -130,7 +130,7 @@ export class BasicInformationMysfdocComponent implements OnInit {
 
   OpenWP(){
     let id = this.infoForm.get('workPlanId').value;
-   if(id.length!==0 && id.trim() && this.workPlans.indexOf(id) > -1)
+   if(id.length!==0 && id.trim() && this.addedWPs.indexOf(id) > -1)
    {
      sessionStorage.setItem('idDocReadOnly', id);
      this.router.navigate(['/newWorkPlan', { idparam: id}]);   

@@ -61,11 +61,11 @@
                 </div>
             </div>
             <div class="col">
-                <div  class="form-group row">
+                <div class="form-group row">
                     <label class="col-sm-6 col-form-label">Field crew:</label>
-                    <input class="col-sm-6 " type="text" formControlName="crewName" [matAutocomplete]="auto"/>
+                    <input class="col-sm-6 " type="text" formControlName="crewName" [matAutocomplete]="autoTeam"/>
                     <small *ngIf="planBasicInfoForm.get('crewName').invalid && planBasicInfoForm.get('crewName').touched" class="text-danger">Crew is required.</small>
-                    <mat-autocomplete #auto="matAutocomplete">
+                    <mat-autocomplete #autoTeam="matAutocomplete">
                         <mat-option *ngFor="let team of filteredTeams | async" [value]="team">
                           {{team}}
                         </mat-option>

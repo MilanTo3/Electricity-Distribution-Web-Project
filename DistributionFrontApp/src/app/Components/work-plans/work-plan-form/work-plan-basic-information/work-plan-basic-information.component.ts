@@ -92,7 +92,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
     this.tm.getAllTeams().subscribe(    //teams
       res => {
         this.teams = res;
-        this.teams.array.forEach(element => {
+        this.teams.forEach(element => {
           this.addedTeams.push(element["name"]) //uzimam imena od timova i upisujem ih addedTeams
         });
       }
@@ -235,7 +235,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
 
   OpenWR(){
      let id = this.planBasicInfoForm.get('workRequestId').value;
-    if(id.length!==0 && id.trim() && this.workRequests.indexOf(id) > -1)
+    if(id.length!==0 && id.trim() && this.addedWRs.indexOf(id) > -1)
     {
       sessionStorage.setItem('idDocReadOnly', id);
       this.router.navigate(['/workRequestForm', { idparam: id}]);   
