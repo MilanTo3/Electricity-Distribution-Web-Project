@@ -23,6 +23,7 @@ import * as moment from 'moment';
 import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 import { ConsumerService } from 'src/app/Services/consumer.service';
 import { SafetyDocumentServiceService } from 'src/app/Services/safety-document-service.service';
+import { DeviceService } from 'src/app/Services/device.service';
 
 @Component({
   selector: 'app-table-component',
@@ -52,7 +53,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService,
     private workPlanService: WorkPlanServiceService, private safetyDocService: SafetyDocumentServiceService,
-    private registrattionService: UserService,
+    private registrattionService: UserService, private deviceService: DeviceService,
     private consumerService: ConsumerService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -82,7 +83,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     } else if (this.tableid === 3) {
       await this.loadHistoryStateChanges();
     } else if (this.tableid === 4) {
-      this.loadDevices();
+      await this.loadDevices();
     } else if (this.tableid === 5) {
       this.loadCalls();
     } else if (this.tableid === 6) {
@@ -141,6 +142,17 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     await this.registrattionService.approveOrDenyRoleRequest(formdata).toPromise();
     this.loadRoleRequests();
 
+  }
+
+  
+  async loadDevices() {
+   
+    let res = await this.deviceService.GetDevices().toPromise();
+    this.dataToPrint = res;
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(res[0]);
+    this.enableView();
+    
   }
 
   async loadTeams() {
@@ -272,15 +284,6 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
-  loadDevices() {
-    let device1 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
-    let device2 = new Device(4442, "BRE_1", "Breaker", "11°24'12.2 N 1°23'25.5 E", "Turgenjeva 2");
-    let device3 = new Device(5131, "DIS_0", "Disconnector", "5°11'13.2 N 5°11'45.5 E", "Puskinova 17");
-    let device4 = new Device(1321, "BRE_0", "Breaker", "41°24'12.2 N 2°10'26.5 E", "Cankareva 23");
-
-    this.dataToPrint.push(device1, device2, device3, device4);
-    this.keyNames = Object.getOwnPropertyNames(device3);
-  }
 
   loadCalls() {
     let call1 = new Call(2412421, "No electricity for...", "Strong wind", "");

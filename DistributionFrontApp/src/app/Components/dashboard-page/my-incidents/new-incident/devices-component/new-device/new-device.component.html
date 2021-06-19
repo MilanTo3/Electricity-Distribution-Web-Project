@@ -16,23 +16,26 @@
                     </select>
                     <small *ngIf="deviceForm.get('type').invalid && deviceForm.get('type').touched" class="text-danger">Type is required field.</small>                    
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">ID:</label>
-                    <input class="col-sm-1" formControlName="id" disabled/>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-4">Name:</label>
-                    <input id="deviceName" class="col-sm-2 form-control" formControlName="name" disabled/>
-                </div>
+              
+            
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Address:</label>
-                    <input class="col-sm-2 form-control" type="text" formControlName="address"/>
+                    <input class="col-sm-2 form-control" type="text" formControlName="address" [matAutocomplete]="autoTwo"/>
                     <small *ngIf="deviceForm.get('address').invalid && deviceForm.get('address').touched" class="text-danger">Street is required field.</small>
+                    <mat-autocomplete #autoTwo="matAutocomplete">
+                        <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                            {{street}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Coordinates:</label>
-                    <input class="col-sm-2 form-control"/>
+                    <label class="col-sm-4 col-form-label">Longitude:</label>
+                    <input class="col-sm-2 form-control" formControlName="longitude"/>
                 </div>   
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Latitude:</label>
+                    <input class="col-sm-2 form-control" formControlName="latitude"/>
+                </div> 
                      
             </div>            
         </div>

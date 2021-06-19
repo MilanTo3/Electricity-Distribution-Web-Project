@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DeviceService } from 'src/app/Services/device.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LocationService } from 'src/app/Services/location.service';
+import { map, startWith } from 'rxjs/operators';
 
-declare var $: any;
+
 
 @Component({
   selector: 'app-new-device',
@@ -12,23 +16,55 @@ declare var $: any;
 })
 export class NewDeviceComponent implements OnInit {
 
+  locations: any;
+  addedStreets = [];
+  filteredStreets: Observable<string[]>;
+
   deviceForm = this.fb.group({
     type: ['', Validators.required],
     address: ['', Validators.required],
-    name: [''],
-    id: ['']
+    longitude: [''],
+    latitude: ['']
+   //name: [''],
+   //id: ['']
   });
 
   //
   formData = new FormData();
+
   //
-  constructor(private fb: FormBuilder, private deviceService: DeviceService, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private router: Router, private deviceService: DeviceService, 
+    private locationService: LocationService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
+    this.locationService.GetLocations().subscribe(
+      res => {
+        this.locations = res;
+        this.locations.forEach(element => {
+          this.addedStreets.push(element["street"]);
+          //console.log(this.addedStreets);
+        });
+      }
+    );
+
+    this.filteredStreets = this.deviceForm.get('address').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterStreets(value))
+    ); 
+
+  }
+
+  private _filterStreets(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.addedStreets.filter(street => this._normalizeValue(street).includes(filterValue));
+  }
+  
+  private _normalizeValue(value: string): string {
+    return value.toString().toLowerCase().replace(/\s/g, '');
   }
 
   async onSubmit() {
-
   }
 
   fillFormData() {
@@ -37,9 +73,8 @@ export class NewDeviceComponent implements OnInit {
     //this.formData.append('id', this.deviceForm.get('id').value);  //nije neophodno jer se generise automatski u bazi po pravilu iz spec
     //this.formData.append('name', this.deviceForm.get('name').value);  //nije neophodno jer se generise automatski u bazi po pravilu iz spec
     this.formData.append('address', this.deviceForm.get('address').value);
-
-    this.formData.append('coordinates', '0'); //da li se generise na osnovu adrese?
-    
+    this.formData.append('longitude', this.deviceForm.get('longitude').value); 
+    this.formData.append('latitude', this.deviceForm.get('latitude').value);
   }
 
   submitForm() {
@@ -57,6 +92,7 @@ export class NewDeviceComponent implements OnInit {
     } else {
       this.showToastrError();
     }
+    this.router.navigateByUrl('/adminPanel/devices');   
   }
 
   showToastrSuccess() {
@@ -70,23 +106,3 @@ export class NewDeviceComponent implements OnInit {
  
 }
 
- /*$(function() {
-  
-  $('#deviceSelect').change(function(){
-      changeValues(this.value);
-  });
-}); 
-
-//Get the value from selected option 
-//Convert it to string to get substring after
-function changeValues(selectedValue) {
-  var allSelects = $('select');
-  $.each(allSelects, function(index, dropDown) {
-      $('#' + dropDown.id).val(selectedValue);
-  });
-  
-  var selectString = $("#deviceSelect option:selected").text();
-  var sub = (selectString.substring(0, 3)).toUpperCase(); 
-  //var upp = sub.toUpperCase();
-  $('#deviceName').val(sub + '+id');
-} */
