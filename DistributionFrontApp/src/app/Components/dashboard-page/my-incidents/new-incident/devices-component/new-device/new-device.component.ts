@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LocationService } from 'src/app/Services/location.service';
 import { map, startWith } from 'rxjs/operators';
+import { ThrowStmt } from '@angular/compiler';
 
 
 
@@ -38,21 +39,28 @@ export class NewDeviceComponent implements OnInit {
 
   ngOnInit(): void {
 
+  
+
+    this.onValueChanges();
+    this.onStreetChanges();
+    
     this.locationService.GetLocations().subscribe(
       res => {
         this.locations = res;
         this.locations.forEach(element => {
-          this.addedStreets.push(element["street"]);
-          //console.log(this.addedStreets);
+          this.addedStreets.push(element["street"]);      
         });
       }
     );
+  
 
     this.filteredStreets = this.deviceForm.get('address').valueChanges.pipe(
       startWith(''),
-      map(value => this._filterStreets(value))
+      map(value => this._filterStreets(value))    
     ); 
 
+     
+    
   }
 
   private _filterStreets(value: string): string[] {
@@ -102,7 +110,42 @@ export class NewDeviceComponent implements OnInit {
   showToastrError() {
     this.toastr.error('Please check all the fields are filled out correctly.', 'Form not sent.');
   }
+
+  onValueChanges(): void {
+    this.deviceForm.valueChanges.subscribe(val => {
+      sessionStorage.setItem("deviceForm", JSON.stringify(this.deviceForm.value));
+      sessionStorage.setItem("deviceFormValid", JSON.stringify(this.deviceForm.valid));
+    })
+  }
   
+  onStreetChanges(): void {
+    
+    this.deviceForm.get('address').valueChanges.subscribe(val =>
+      {       
+        //console.log(this.locations);
+        this.deviceForm.get('longitude').setValue(this.getLongitude(this.deviceForm.get('address').value));
+        this.deviceForm.get('latitude').setValue(this.getLatitude(this.deviceForm.get('address').value));
+      }    
+    )
+  }
+
+  getLongitude(street):string
+  {
+    let index = this.addedStreets.indexOf(street);
+    if (this.locations[index]["longitude"] != undefined)
+      return this.locations[index]["longitude"];
+    else
+      return "Street does not have longitude value."
+  }
+
+  getLatitude(street):string
+  {
+    let index = this.addedStreets.indexOf(street);
+    if (this.locations[index]["latitude"] != undefined)
+      return this.locations[index]["latitude"];
+    else
+      return "Street does not have latitude value."
+  }
  
 }
 
