@@ -342,4 +342,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
+  reloadCurrentPage() {
+    window.location.reload();
+   }
+
 }

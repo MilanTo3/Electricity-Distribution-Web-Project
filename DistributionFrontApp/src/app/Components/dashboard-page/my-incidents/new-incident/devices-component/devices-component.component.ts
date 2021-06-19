@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Call } from 'src/app/Models/Call.model';
 import { DeviceService } from 'src/app/Services/device.service';
 import { Device } from 'src/app/Models/Device.model';
@@ -16,7 +16,28 @@ export class DevicesComponentComponent implements OnInit {
   incidentDevices: Device[] = [];
   deviceIds: number[] = [];
 
-  constructor(private router: Router, private devices: DeviceService) { }
+  chooseOption = false;
+  deleteOption = false;
+
+  constructor(public router: Router, private devices: DeviceService) {
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/newIncident/devices') {
+          this.deleteOption = true;
+        } else {
+          this.deleteOption = false;
+        }
+        if ((event.url === '/adminPanel/devices')) {
+          this.chooseOption = true;
+        } else {
+          this.chooseOption = false;
+        }
+
+      }
+    });
+
+   }
 
   async ngOnInit(): Promise<void> {
 

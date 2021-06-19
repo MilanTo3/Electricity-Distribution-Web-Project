@@ -11,7 +11,7 @@ export class AdminPanelComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.router.navigateByUrl('adminPanel/addStreet');
+    this.router.navigateByUrl('adminPanel/devices');
   }
 
 }

@@ -12,7 +12,7 @@
         <h2 class="title">Devices:</h2>
         <p class="labela">Here, all or filtered devices in the system are shown.</p>
 
-        <div cdkDropListGroup class="row">
+        <div [hidden]="chooseOption" cdkDropListGroup class="row">
             <div class="col">
                 <div class="example-container" style="text-align: center;">
                     <h5 class="title">Existing Devices ({{ availableDevices.length }}):</h5>
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <app-table-component (emitter)="deleteDeviceId($event)" [tableType] = "4"></app-table-component>
+        <app-table-component [hidden]="deleteOption" (emitter)="deleteDeviceId($event)" [tableType] = "4"></app-table-component>
     </div>
    
 </body>

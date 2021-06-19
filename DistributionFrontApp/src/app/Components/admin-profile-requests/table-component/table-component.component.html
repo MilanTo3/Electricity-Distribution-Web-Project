@@ -37,7 +37,7 @@
             <button mat-button class="adminButton btn btn-danger" (click)="approveOrDenyRegistration(row.username,row.role, 1)">Block</button>
           </div>
           <div *ngIf="tableid===4"> 
-            <button mat-button class="adminButton btn btn-danger" (click)="emitId(row.id)">Delete</button>
+            <button mat-button class="adminButton btn btn-danger" (click)="emitId(row.id)" (click)="reloadCurrentPage()">Delete</button>
           </div>
           <div *ngIf="tableid===7">
             <button [hidden]="hideElement" [routerLink]="['/viewTeam', row.id]" class="teamButtons btn btn-primary">View Team</button>
