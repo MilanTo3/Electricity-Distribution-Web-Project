@@ -25,6 +25,7 @@ namespace DistributionSmartEnergyBackApp.Services
             novi.Address = device.Address;
             novi.Longitude = device.Longitude;
             novi.Latitude = device.Latitude;
+            novi.documentId = "none";
 
             var prethodni = await _context.Devices.OrderBy(x=> x.Id).Where(d => d.Type == device.Type).LastOrDefaultAsync();
 

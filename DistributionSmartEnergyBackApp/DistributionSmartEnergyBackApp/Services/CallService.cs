@@ -20,6 +20,7 @@ namespace DistributionSmartEnergyBackApp.Services
         }
         public async Task AddNewCall(CallModel call)
         {
+            call.documentId = "none";
             _context.Calls.Add(call);
             await _context.SaveChangesAsync(true);
         }

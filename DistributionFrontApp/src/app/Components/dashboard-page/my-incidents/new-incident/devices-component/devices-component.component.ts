@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class DevicesComponentComponent implements OnInit {
 
+  panelOpenState = false;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {

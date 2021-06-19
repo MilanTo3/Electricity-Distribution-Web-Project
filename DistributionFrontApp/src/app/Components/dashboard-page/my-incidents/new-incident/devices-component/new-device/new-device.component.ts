@@ -103,6 +103,10 @@ export class NewDeviceComponent implements OnInit {
     this.toastr.error('Please check all the fields are filled out correctly.', 'Form not sent.');
   }
   
- 
+  setValues(event){
+    this.deviceForm.get('longitude').setValue(event[0]);
+    this.deviceForm.get('latitude').setValue(event[1]);
+  }
+
 }
 

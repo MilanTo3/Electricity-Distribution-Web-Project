@@ -8,7 +8,7 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Type:</label>
-                    <select id="deviceSelect" name="deviceSelect" class="col-sm-2 form-control" formControlName="type">
+                    <select id="deviceSelect" name="deviceSelect" class="col-sm-5 form-control" formControlName="type">
                         <option>Disconnector</option>
                         <option>Transformator</option>
                         <option>Breaker</option>
@@ -20,7 +20,7 @@
             
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Address:</label>
-                    <input class="col-sm-2 form-control" type="text" formControlName="address" [matAutocomplete]="autoTwo"/>
+                    <input class="col-sm-5 form-control" type="text" formControlName="address" [matAutocomplete]="autoTwo"/>
                     <small *ngIf="deviceForm.get('address').invalid && deviceForm.get('address').touched" class="text-danger">Street is required field.</small>
                     <mat-autocomplete #autoTwo="matAutocomplete">
                         <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
@@ -30,14 +30,17 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Longitude:</label>
-                    <input class="col-sm-2 form-control" formControlName="longitude"/>
+                    <input class="col-sm-5 form-control" formControlName="longitude"/>
                 </div>   
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Latitude:</label>
-                    <input class="col-sm-2 form-control" formControlName="latitude"/>
+                    <input class="col-sm-5 form-control" formControlName="latitude"/>
                 </div> 
                      
-            </div>            
+            </div>         
+            <div class="col">
+                <app-map-component width='500' height='240' (emitValues)="setValues($event)"></app-map-component>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Add Device</button>   
     </form>

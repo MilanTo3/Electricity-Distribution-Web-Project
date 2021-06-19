@@ -14,10 +14,10 @@ namespace DistributionSmartEnergyBackApp.Models.FormParts.Incident
         public string Type { get; set; }
         public bool emergency { get; set; }
         public bool confirmed { get; set; }
-        public TimeSpan ETA { get; set; }
+        public DateTime ETA { get; set; }
         public DateTime ATA { get; set; }
         public DateTime incidentTime { get; set; }
-        public TimeSpan ETR { get; set; }
+        public DateTime ETR { get; set; }
         public int affectedCustoms { get; set; }
         public int callNum { get; set; }
         public int voltage { get; set; }
