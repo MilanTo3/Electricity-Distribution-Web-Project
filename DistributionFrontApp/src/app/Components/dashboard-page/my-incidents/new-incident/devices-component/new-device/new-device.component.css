@@ -1,5 +1,4 @@
 .formRow{
-    margin-top: 21px;
     padding-right: 100px;
 }
 
@@ -18,7 +17,7 @@ label{
 }
 
 .title{
-    margin-top: 10%;
+    margin-top: 21px;
     font-family: 'Roboto';
     font-weight: bold;
     color: #ec7729;

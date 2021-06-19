@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class CallsComponent implements OnInit {
 
+  panelOpenState = false;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {

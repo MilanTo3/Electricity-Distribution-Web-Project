@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DistributionSmartEnergyBackApp.Migrations
 {
-    public partial class safetyDoc : Migration
+    public partial class newMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,6 +65,7 @@ namespace DistributionSmartEnergyBackApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DocumentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WorkPlanId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     User = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Crew = table.Column<long>(type: "bigint", nullable: false),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -75,6 +76,33 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BasicInformationSD", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BasicInformationsIN",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    emergency = table.Column<bool>(type: "bit", nullable: false),
+                    confirmed = table.Column<bool>(type: "bit", nullable: false),
+                    ETA = table.Column<TimeSpan>(type: "time", nullable: false),
+                    ATA = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    incidentTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ETR = table.Column<TimeSpan>(type: "time", nullable: false),
+                    affectedCustoms = table.Column<int>(type: "int", nullable: false),
+                    callNum = table.Column<int>(type: "int", nullable: false),
+                    voltage = table.Column<int>(type: "int", nullable: false),
+                    scheduledTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    dispatcher = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    teamId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasicInformationsIN", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,9 +118,10 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     incidentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     locationId = table.Column<long>(type: "bigint", nullable: false),
+                    crewId = table.Column<long>(type: "bigint", nullable: false),
+                    crewName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     startDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     endDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    crewId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     user = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     phoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -143,7 +172,8 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Hazzard = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LocationId = table.Column<long>(type: "bigint", nullable: false)
+                    LocationId = table.Column<long>(type: "bigint", nullable: false),
+                    documentId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -186,10 +216,12 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    documentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Coordinates = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Longitude = table.Column<long>(type: "bigint", nullable: false),
+                    Latitude = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -228,6 +260,18 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Incidents",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Incidents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
@@ -260,6 +304,23 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Notifications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Resolutions",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    documentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cause = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    subcause = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    constructionType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    material = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Resolutions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -502,6 +563,9 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 name: "BasicInformationSD");
 
             migrationBuilder.DropTable(
+                name: "BasicInformationsIN");
+
+            migrationBuilder.DropTable(
                 name: "BasicInformationsWP");
 
             migrationBuilder.DropTable(
@@ -526,10 +590,16 @@ namespace DistributionSmartEnergyBackApp.Migrations
                 name: "HistoryChanges");
 
             migrationBuilder.DropTable(
+                name: "Incidents");
+
+            migrationBuilder.DropTable(
                 name: "Locations");
 
             migrationBuilder.DropTable(
                 name: "Notifications");
+
+            migrationBuilder.DropTable(
+                name: "Resolutions");
 
             migrationBuilder.DropTable(
                 name: "SafetyDocuments");
