@@ -10007,23 +10007,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tamara\\.nuget\\packages\\": {},
+    "C:\\Users\\TOMIN\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
+      "projectUniqueName": "E:\\clonedAngularWebProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
       "projectName": "DistributionSmartEnergyBackApp",
-      "projectPath": "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
-      "packagesPath": "C:\\Users\\Tamara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\obj\\",
+      "projectPath": "E:\\clonedAngularWebProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp.csproj",
+      "packagesPath": "C:\\Users\\TOMIN\\.nuget\\packages\\",
+      "outputPath": "E:\\clonedAngularWebProject\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyBackApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tamara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TOMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10147,7 +10147,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -51,7 +51,7 @@ namespace DistributionSmartEnergyBackApp
             services.AddScoped<IConsumer, ConsumerService>();
             services.AddScoped<INotification, NotificationService>();
             services.AddScoped<ISafetyDoc, SafetyDocService>();
-
+            services.AddScoped<IIncident, IncidentService>();
 
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
 
