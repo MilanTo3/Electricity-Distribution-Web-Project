@@ -17,7 +17,7 @@
                     <small *ngIf="deviceForm.get('type').invalid && deviceForm.get('type').touched" class="text-danger">Type is required field.</small>                    
                 </div>
               
-            
+            <div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Address:</label>
                     <input class="col-sm-5 form-control" type="text" formControlName="address" [matAutocomplete]="autoTwo"/>
@@ -34,13 +34,11 @@
                 </div>   
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Latitude:</label>
-                    <input class="col-sm-5 form-control" formControlName="latitude"/>
-                </div> 
-                     
-            </div>         
-            <div class="col">
-                <app-map-component width='500' height='240' (emitValues)="setValues($event)"></app-map-component>
+                    <input class="col-sm-2 form-control" formControlName="latitude"/>
+                </div>  
             </div>
+                         
+            </div>            
         </div>
         <button type="submit" class="btn btn-primary">Add Device</button>   
     </form>
