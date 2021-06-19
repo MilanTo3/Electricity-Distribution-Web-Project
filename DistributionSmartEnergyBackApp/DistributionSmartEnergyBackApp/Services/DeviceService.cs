@@ -22,25 +22,31 @@ namespace DistributionSmartEnergyBackApp.Services
         {
             DeviceModel novi = new DeviceModel();
             novi.Type = device.Type;
-            novi.Address = device.Address;
+            novi.Address = device.Address;        
             novi.Longitude = device.Longitude;
             novi.Latitude = device.Latitude;
-            novi.documentId = "none";
+            
 
             var prethodni = await _context.Devices.OrderBy(x=> x.Id).Where(d => d.Type == device.Type).LastOrDefaultAsync();
+            var prethodniId = await _context.Devices.OrderBy(x => x.Id).Where(d => d.Id == device.Id).LastOrDefaultAsync();
 
-            if(prethodni == null)
+            if (prethodni == null)
             {
                 novi.Name = device.Type.ToString().Substring(0,3).ToUpper() + "0";
+                novi.documentId = "DEV" + prethodni.Id;
             }
             else
             {
                 int broj = Int32.Parse(prethodni.Name.Substring(3)) +1;
                 string name = device.Type.ToString().Substring(0, 3).ToUpper();
                 novi.Name = name + broj;
+                novi.documentId = "DEV" + prethodni.Id;
             }
 
+            
             _context.Devices.Add(novi);
+           
+
             await _context.SaveChangesAsync(true);
         }
 

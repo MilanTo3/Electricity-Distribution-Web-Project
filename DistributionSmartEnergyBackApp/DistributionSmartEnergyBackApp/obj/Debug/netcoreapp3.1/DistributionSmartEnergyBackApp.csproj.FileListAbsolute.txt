@@ -157,7 +157,6 @@ C:\Users\maja\Desktop\UNI\4\VIII\web2\projekat\glavni\Web2-Project\DistributionS
 C:\Users\maja\Desktop\UNI\4\VIII\web2\projekat\glavni\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.dll
 C:\Users\maja\Desktop\UNI\4\VIII\web2\projekat\glavni\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.pdb
 C:\Users\maja\Desktop\UNI\4\VIII\web2\projekat\glavni\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.genruntimeconfig.cache
-C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csprojAssemblyReference.cache
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.AssemblyInfoInputs.cache
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.AssemblyInfo.cs
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csproj.CoreCompileInputs.cache
@@ -312,3 +311,4 @@ C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\Distr
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.dll
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.pdb
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.genruntimeconfig.cache
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csprojAssemblyReference.cache

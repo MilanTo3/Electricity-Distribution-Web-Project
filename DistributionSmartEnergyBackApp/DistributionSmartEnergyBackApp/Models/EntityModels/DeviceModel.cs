@@ -11,8 +11,8 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
         private string type;
         private long id;
         private string address;
-        private long longitude;
-        private long latitude;
+        private double longitude;
+        private double latitude;
         public string documentId { get; set; }
 
         public long Id

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DistributionSmartEnergyBackApp.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20210619125538_newMigration")]
-    partial class newMigration
+    [Migration("20210619151211_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,11 +74,11 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Latitude")
-                        .HasColumnType("bigint");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
 
-                    b.Property<long>("Longitude")
-                        .HasColumnType("bigint");
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -92,18 +92,6 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Devices");
-                });
-
-            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.IncidentModel", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Incidents");
                 });
 
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.NotificationModel", b =>
@@ -271,90 +259,6 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HistoryChanges");
-                });
-
-            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.Incident.BasicInformationIN", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("ATA")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DocumentId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("ETA")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("ETR")
-                        .HasColumnType("time");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("affectedCustoms")
-                        .HasColumnType("int");
-
-                    b.Property<int>("callNum")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("confirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("dispatcher")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("emergency")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("incidentTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("scheduledTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("teamId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("voltage")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BasicInformationsIN");
-                });
-
-            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.Incident.Resolution", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("cause")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("constructionType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("documentId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("material")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("subcause")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Resolutions");
                 });
 
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument.BasicInformationSD", b =>
