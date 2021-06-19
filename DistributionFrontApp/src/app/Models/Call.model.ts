@@ -1,16 +1,20 @@
 export class Call{
 
-    callId: number;
+    id: number;
     reason: string;
     hazard: string;
     comment: string;
+    street: string;
+    priority: string;
 
-    constructor(callId: number, reason: string, hazard: string, comment: string){
+    constructor(id: number, reason: string, hazard: string, comment: string, street: string, priority: string){
         
-        this.callId = callId;
+        this.id = id;
         this.reason = reason;
         this.hazard = hazard;
         this.comment = comment;
+        this.street = street;
+        this.priority = priority;
     }
 
 }

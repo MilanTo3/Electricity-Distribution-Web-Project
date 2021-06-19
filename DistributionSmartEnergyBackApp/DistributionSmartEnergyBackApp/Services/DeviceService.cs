@@ -50,6 +50,15 @@ namespace DistributionSmartEnergyBackApp.Services
             await _context.SaveChangesAsync(true);
         }
 
+        public async Task DeleteDevice(long id)
+        {
+            var device = await _context.Devices.FindAsync(id);
+
+            _context.Devices.Remove(device);
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<DeviceModel> GetDevice(long id)
         {
             return await _context.Devices.FindAsync(id);

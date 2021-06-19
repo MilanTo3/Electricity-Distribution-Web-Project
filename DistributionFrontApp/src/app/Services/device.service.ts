@@ -20,6 +20,11 @@ export class DeviceService {
     GetDevicesAtLocation(street) {
       return this.http.get('http://localhost:24885/api/Device/GetDevicesAtLocation?location=' + street);
     }
+    DeleteDevice(id) {
+      return this.http.post('http://localhost:24885/api/Device/DeleteDevice', id);
+    }
+
+
 
     
 }

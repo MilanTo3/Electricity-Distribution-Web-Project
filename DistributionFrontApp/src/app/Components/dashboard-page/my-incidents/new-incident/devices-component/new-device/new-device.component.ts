@@ -21,24 +21,13 @@ export class NewDeviceComponent implements OnInit {
   addedStreets = [];
   filteredStreets: Observable<string[]>;
 
-  //longitude
-  longitudes: any;
-  addedLongitudes = [];
-  filteredLongitudes: Observable<string[]>;
-
-  //latitude
-  latitudes: any;
-  addedLatitudes = [];
-  filteredLatitudes: Observable<string[]>;
-
-
   deviceForm = this.fb.group({
     type: ['', Validators.required],
     address: ['', Validators.required],
     longitude: [''],
-    latitude: [''],
-    //name: [''],
-    //id: ['']
+    latitude: ['']
+   //name: [''],
+   //id: ['']
   });
 
   //
@@ -52,8 +41,8 @@ export class NewDeviceComponent implements OnInit {
 
   
 
-    //this.onValueChanges();
-    //this.onStreetChanges();
+    this.onValueChanges();
+    this.onStreetChanges();
     
     this.locationService.GetLocations().subscribe(
       res => {
@@ -64,43 +53,11 @@ export class NewDeviceComponent implements OnInit {
       }
     );
   
-    this.locationService.GetLocations().subscribe (
-      res => {
-        this.longitudes = res;
-        this.longitudes.forEach(element => {
-          this.addedLongitudes.push(element["longitude"]);
-          console.log(this.longitudes);
-
-        });
-      }
-    );
-
-    this.locationService.GetLocations().subscribe (
-      res => {
-        this.latitudes = res;
-        this.latitudes.forEach(element => {
-          this.addedLatitudes.push(element["latitude"]);
-          console.log(this.latitudes);
-
-        });
-      }
-    );
 
     this.filteredStreets = this.deviceForm.get('address').valueChanges.pipe(
       startWith(''),
       map(value => this._filterStreets(value))    
     ); 
-
-    this.filteredLongitudes = this.deviceForm.get('longitude').valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterLongitudes(value)) 
-    );
-
-    this.filteredLatitudes = this.deviceForm.get('latitude').valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterLatitudes(value)) 
-    );
-
 
      
     
@@ -111,17 +68,6 @@ export class NewDeviceComponent implements OnInit {
     return this.addedStreets.filter(street => this._normalizeValue(street).includes(filterValue));
   }
   
-  private _filterLongitudes(value: string): string[] {
-    const filterValue = this._normalizeValue(value);
-    return this.addedLongitudes.filter(long => this._normalizeValue(long).includes(filterValue));
-  }
-
-  private _filterLatitudes(value: string): string[] {
-    const filterValue = this._normalizeValue(value);
-    return this.addedLatitudes.filter(lat => this._normalizeValue(lat).includes(filterValue));
-  }
-
-
   private _normalizeValue(value: string): string {
     return value.toString().toLowerCase().replace(/\s/g, '');
   }
@@ -137,7 +83,6 @@ export class NewDeviceComponent implements OnInit {
     this.formData.append('address', this.deviceForm.get('address').value);
     this.formData.append('longitude', this.deviceForm.get('longitude').value); 
     this.formData.append('latitude', this.deviceForm.get('latitude').value);
-   
   }
 
   submitForm() {
@@ -173,7 +118,7 @@ export class NewDeviceComponent implements OnInit {
     })
   }
   
- /* onStreetChanges(): void {
+  onStreetChanges(): void {
     
     this.deviceForm.get('address').valueChanges.subscribe(val =>
       {       
@@ -182,9 +127,9 @@ export class NewDeviceComponent implements OnInit {
         this.deviceForm.get('latitude').setValue(this.getLatitude(this.deviceForm.get('address').value));
       }    
     )
-  } */
+  }
 
-  /*getLongitude(street):string
+  getLongitude(street):string
   {
     let index = this.addedStreets.indexOf(street);
     if (this.locations[index]["longitude"] != undefined)
@@ -200,7 +145,7 @@ export class NewDeviceComponent implements OnInit {
       return this.locations[index]["latitude"];
     else
       return "Street does not have latitude value."
-  }*/
+  }
  
 }
 

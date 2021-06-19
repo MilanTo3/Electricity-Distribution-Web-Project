@@ -8,7 +8,7 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Type:</label>
-                    <select id="deviceSelect" name="deviceSelect" class="col-sm-2 form-control" formControlName="type">
+                    <select id="deviceSelect" name="deviceSelect" class="col-sm-5 form-control" formControlName="type">
                         <option>Disconnector</option>
                         <option>Transformator</option>
                         <option>Breaker</option>
@@ -16,10 +16,11 @@
                     </select>
                     <small *ngIf="deviceForm.get('type').invalid && deviceForm.get('type').touched" class="text-danger">Type is required field.</small>                    
                 </div>
-                          
+              
+            <div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Address:</label>
-                    <input class="col-sm-2 form-control" type="text" formControlName="address" [matAutocomplete]="autoTwo"/>
+                    <input class="col-sm-5 form-control" type="text" formControlName="address" [matAutocomplete]="autoTwo"/>
                     <small *ngIf="deviceForm.get('address').invalid && deviceForm.get('address').touched" class="text-danger">Street is required field.</small>
                     <mat-autocomplete #autoTwo="matAutocomplete">
                         <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
@@ -29,23 +30,13 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Longitude:</label>
-                    <input class="col-sm-2 form-control" formControlName="longitude" [matAutocomplete]="autoLon"/>
-                    <mat-autocomplete #autoLon="matAutocomplete">
-                        <mat-option *ngFor="let lon of filteredLongitudes | async" [value]="lon">
-                            {{lon}}
-                        </mat-option>
-                    </mat-autocomplete>
+                    <input class="col-sm-5 form-control" formControlName="longitude"/>
                 </div>   
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Latitude:</label>
-                    <input class="col-sm-2 form-control" formControlName="latitude" [matAutocomplete]="autoLat"/>
-                    <mat-autocomplete #autoLat="matAutocomplete">
-                        <mat-option *ngFor="let lat of filteredLatitudes | async" [value]="lat">
-                            {{lat}}
-                        </mat-option>
-                    </mat-autocomplete>
+                    <input class="col-sm-2 form-control" formControlName="latitude"/>
                 </div>  
-            
+            </div>
                          
             </div>            
         </div>

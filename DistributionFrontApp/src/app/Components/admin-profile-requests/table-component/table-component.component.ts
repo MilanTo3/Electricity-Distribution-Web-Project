@@ -24,6 +24,7 @@ import { LoggedUser } from 'src/app/Models/LoggedUser.model';
 import { ConsumerService } from 'src/app/Services/consumer.service';
 import { SafetyDocumentServiceService } from 'src/app/Services/safety-document-service.service';
 import { DeviceService } from 'src/app/Services/device.service';
+import { CallService } from 'src/app/Services/call.service';
 
 @Component({
   selector: 'app-table-component',
@@ -53,7 +54,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService,
     private workPlanService: WorkPlanServiceService, private safetyDocService: SafetyDocumentServiceService,
-    private registrattionService: UserService, private deviceService: DeviceService,
+    private registrattionService: UserService, private deviceService: DeviceService, private callService: CallService,
     private consumerService: ConsumerService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -285,13 +286,8 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   }
 
 
-  loadCalls() {
-    let call1 = new Call(2412421, "No electricity for...", "Strong wind", "");
-    let call2 = new Call(5555555, "No electricity for...", "Strong wind", "");
-    let call3 = new Call(1112334, "No electricity for...", "Strong wind", "");
+  async loadCalls() {
 
-    this.dataToPrint.push(call1, call2, call3);
-    this.keyNames = Object.getOwnPropertyNames(call3);
 
   }
 

@@ -10,7 +10,71 @@
     <div class="container requestsPage">
         <h2 class="title">Calls:</h2>
         <p class="labela">Received calls for specific devices.</p>
-        <app-table-component [tableType]='5'></app-table-component>
+
+        <div cdkDropListGroup class="row">
+            <div class="col">
+                <div class="example-container" style="text-align: center;">
+                    <h5 class="title">Existing Calls ({{ availableCalls.length }}):</h5>
+
+                    <cdk-virtual-scroll-viewport class="scrollbar" style="height: 500px" itemSize="3">
+                        <div cdkDropList [cdkDropListData]="availableCalls" class="example-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="example-box" *ngFor="let item of availableCalls" cdkDrag>
+                                <div class="row" style="text-align:left">
+                                    <div class="row"
+                                        style="background-color: #ec7729; border-top-right-radius: 24px; border-bottom-right-radius: 24px; width: 100%;">
+                                        <p style="margin-top: 12px; text-align: center;"><i class="fas fa-phone-alt"></i> Call id:
+                                            {{item.id}}
+                                        </p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Reason: {{item.reason}}</p>
+                                        <p>Hazard: {{item.hazard}}</p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Comment: {{item.comment}}</p>
+                                        <p>Priority: {{item.priority}}</p>
+                                        <p>Location: {{item.location}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </cdk-virtual-scroll-viewport>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="example-container" style="text-align: center;">
+                    <h5 class="title">Incident Calls: ({{ incidentCalls.length }})</h5>
+
+                    <div cdkDropList [cdkDropListData]="incidentCalls" class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <cdk-virtual-scroll-viewport class="scrollbar" style="height: 500px" itemSize="3">
+                            <div class="example-box" *ngFor="let item of incidentCalls" cdkDrag>
+                                <div class="row" style="text-align:left">
+                                    <div class="row"
+                                        style="background-color: #ec7729; border-top-right-radius: 24px; border-bottom-right-radius: 24px;">
+                                        <p style="margin-top: 12px; text-align: center;"><i class="fas fa-phone-alt"></i> Call id:
+                                            {{item.id}}
+                                        </p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Reason: {{item.reason}}</p>
+                                        <p>Hazard: {{item.hazard}}</p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Comment: {{item.comment}}</p>
+                                        <p>Priority: {{item.priority}}</p>
+                                        <p>Location: {{item.location}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </cdk-virtual-scroll-viewport>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

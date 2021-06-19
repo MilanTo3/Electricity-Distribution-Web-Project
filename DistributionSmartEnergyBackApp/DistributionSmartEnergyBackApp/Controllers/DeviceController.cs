@@ -65,5 +65,20 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         }
 
+        [HttpPost]
+        [Route("DeleteDevice")]
+        
+        public async Task DeleteDevice([FromBody] long id)
+        {
+            try
+            {
+                await _context.DeleteDevice(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error while deleting a device. [{e.Message}]");
+            }
+        }
+
     }
 }

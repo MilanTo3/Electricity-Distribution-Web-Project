@@ -11,8 +11,74 @@
     <div class="container requestsPage">
         <h2 class="title">Devices:</h2>
         <p class="labela">Here, all or filtered devices in the system are shown.</p>
-        <app-table-component [tableType]='4'></app-table-component>
+
+        <div cdkDropListGroup class="row">
+            <div class="col">
+                <div class="example-container" style="text-align: center;">
+                    <h5 class="title">Existing Devices ({{ availableDevices.length }}):</h5>
+
+                    <cdk-virtual-scroll-viewport class="scrollbar" style="height: 500px" itemSize="3">
+                        <div cdkDropList [cdkDropListData]="availableDevices" class="example-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="example-box" *ngFor="let item of availableDevices" cdkDrag>
+                                <div class="row" style="text-align:left">
+                                    <div class="row"
+                                        style="background-color: #ec7729; border-top-right-radius: 24px; border-bottom-right-radius: 24px; width: 97%;">
+                                        <p style="margin-top: 12px; text-align: center;"><i class="fas fa-phone-alt"></i> Device id:
+                                            {{item.id}}
+                                        </p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Name: {{item.name}}</p>
+                                        <p>Type: {{item.type}}</p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Longitude: {{item.longitude}}</p>
+                                        <p>Latitude: {{item.latitude}}</p>
+                                        <p>Address: {{item.address}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </cdk-virtual-scroll-viewport>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="example-container" style="text-align: center;">
+                    <h5 class="title">Incident Devices: ({{ incidentDevices.length }})</h5>
+
+                    <div cdkDropList [cdkDropListData]="incidentDevices" class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <cdk-virtual-scroll-viewport class="scrollbar" style="height: 500px" itemSize="5">
+                            <div class="example-box" *ngFor="let item of incidentDevices" cdkDrag>
+                                <div class="row" style="text-align:left">
+                                    <div class="row"
+                                        style="background-color: #ec7729; border-top-right-radius: 24px; border-bottom-right-radius: 24px;">
+                                        <p style="margin-top: 12px; text-align: center;"><i class="fas fa-phone-alt"></i> Device id:
+                                            {{item.id}}
+                                        </p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Name: {{item.name}}</p>
+                                        <p>Type: {{item.type}}</p>
+                                    </div>
+                                    <div class="col" style="margin-top: 23px;">
+                                        <p>Longitude: {{item.longitude}}</p>
+                                        <p>Latitude: {{item.latitude}}</p>
+                                        <p>Address: {{item.address}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </cdk-virtual-scroll-viewport>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <app-table-component (emitter)="deleteDeviceId($event)" [tableType] = "4"></app-table-component>
     </div>
+   
 </body>
 
 </html> 
