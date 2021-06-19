@@ -35,7 +35,6 @@ namespace DistributionSmartEnergyBackApp.Controllers
             try
             {
                 await _context.AddNewConsumer(consumer);
-                      
                 return Ok();
             }
             catch (Exception e)
