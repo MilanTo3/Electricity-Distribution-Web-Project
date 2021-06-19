@@ -1,6 +1,5 @@
 ﻿using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
-using DistributionSmartEnergyBackApp.Models.FormParts.Incident;
 using DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -35,8 +34,5 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<SettingsModel> Settings { get; set; }
         public DbSet<ConsumerModel> Consumers { get; set; }
         public DbSet<NotificationModel> Notifications { get; set; }
-        public DbSet<IncidentModel> Incidents { get; set; }
-        public DbSet<BasicInformationIN> BasicInformationsIN { get; set; }
-        public DbSet<Resolution> Resolutions { get; set; }
     }
 }

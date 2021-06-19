@@ -11,8 +11,8 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
         private string type;
         private long id;
         private string address;
-        private long longitude;
-        private long latitude;
+        private double longitude;
+        private double latitude;
         public long Id
         {
             get
@@ -61,7 +61,7 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
             }
         }
 
-        public long Longitude
+        public double Longitude
         {
             get
             {
@@ -74,7 +74,7 @@ namespace DistributionSmartEnergyBackApp.Models.EntityModels
 
         }
 
-        public long Latitude
+        public double Latitude
         {
             get
             {

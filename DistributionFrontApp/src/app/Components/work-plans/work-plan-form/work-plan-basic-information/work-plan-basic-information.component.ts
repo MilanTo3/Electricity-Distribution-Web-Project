@@ -79,7 +79,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       res => {
         this.workRequests = res;
         this.workRequests.forEach(element => {
-          this.addedWRs.push(element["documentId"]);
+          this.addedWRs.push(element["documentId"]);        
         });
       }
     );
@@ -145,7 +145,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
   }
   onWRChanges(): void{
     this.planBasicInfoForm.get('workRequestId').valueChanges.subscribe(val=>
-      {
+      {       
         this.planBasicInfoForm.get('street').setValue(this.getStreet(this.planBasicInfoForm.get('workRequestId').value));
         this.planBasicInfoForm.get('incidentId').setValue(this.getIncident(this.planBasicInfoForm.get('workRequestId').value)); 
       }
@@ -156,12 +156,16 @@ export class WorkPlanBasicInformationComponent implements OnInit {
 
   getStreet(wrDocumentId):string
   {
-    let index = this.addedWRs.indexOf(wrDocumentId); 
+    let index = this.addedWRs.indexOf(wrDocumentId);     
     if (this.workRequests[index]["street"]!= undefined)
+    
       return this.workRequests[index]["street"];
     else
       return "Work request does not have a street.";
   }
+ 
+  
+
   getIncident(wrDocumentId):string
   {
     let index = this.addedWRs.indexOf(wrDocumentId); 

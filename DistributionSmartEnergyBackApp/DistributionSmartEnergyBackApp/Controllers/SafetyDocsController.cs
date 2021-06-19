@@ -48,7 +48,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
                 return BadRequest();
             }
         }
-   
+    
+
         [HttpGet]
         [Route("GetCheckList")]
         public async Task<CheckList> GetCheckListController(string id)
@@ -116,6 +117,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpPost]
         [Route("updateCheckList")]
+
         public async Task<IActionResult> updateCheckList([FromBody] CheckList ch)
         {
 
@@ -130,6 +132,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
 
         }
+
+
 
         private async Task<int> uploadAttachments(pictureModel[] mediaForm, long id)
         {
@@ -258,6 +262,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
             return Ok();
         }
+
 
     }
 }
