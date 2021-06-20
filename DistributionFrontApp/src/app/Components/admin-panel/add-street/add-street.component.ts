@@ -30,8 +30,8 @@ export class AddStreetComponent implements OnInit {
     this.formdata.append('name', this.locationForm.get('name').value);
     this.formdata.append('street', this.locationForm.get('street').value);
     this.formdata.append('priority', this.locationForm.get('priority').value);
-    this.formdata.append('longitude', String(this.locationForm.get('longitude').value).replace('.', ','));
-    this.formdata.append('latitude', String(this.locationForm.get('latitude').value).replace('.', ','));
+    this.formdata.append('longitude', String(this.locationForm.get('longitude').value));
+    this.formdata.append('latitude', String(this.locationForm.get('latitude').value));
     this.formdata.append('id', '0');
   }
   setValues(event){

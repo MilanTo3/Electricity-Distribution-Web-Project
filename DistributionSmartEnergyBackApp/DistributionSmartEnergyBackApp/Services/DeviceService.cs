@@ -33,14 +33,14 @@ namespace DistributionSmartEnergyBackApp.Services
             if (prethodni == null)
             {
                 novi.Name = device.Type.ToString().Substring(0,3).ToUpper() + "0";
-                novi.documentId = "DEV" + prethodni.Id;
+               
             }
             else
             {
                 int broj = Int32.Parse(prethodni.Name.Substring(3)) +1;
                 string name = device.Type.ToString().Substring(0, 3).ToUpper();
                 novi.Name = name + broj;
-                novi.documentId = "DEV" + prethodni.Id;
+                
             }
 
             

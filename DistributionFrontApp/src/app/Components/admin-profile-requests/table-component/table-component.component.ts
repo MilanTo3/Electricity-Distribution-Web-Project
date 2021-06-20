@@ -284,7 +284,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
         let i;
         let inc;
         for (i = 0; i < res["length"]; i++) {
-          inc = new MyIncidents(res[i]["documentId"], new Date(moment(res[i]["incidentTime"]).format('YYYY-MM-DD')), res[i]["type"], res[i]["status"], res[i]["callNum"]);
+          inc = new MyIncidents(res[i]["documentId"], new Date(moment(res[i]["incidentTime"]).format('YYYY-MM-DDTHH:mm')), res[i]["type"], res[i]["status"], res[i]["callNum"]);
           data.push(inc);
         }
         this.dataToPrint = data;

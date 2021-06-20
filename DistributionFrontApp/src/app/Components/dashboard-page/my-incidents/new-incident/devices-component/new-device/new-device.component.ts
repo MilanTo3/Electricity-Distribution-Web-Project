@@ -39,11 +39,6 @@ export class NewDeviceComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
-
-    this.onValueChanges();
-    this.onStreetChanges();
-    
     this.locationService.GetLocations().subscribe(
       res => {
         this.locations = res;
@@ -53,18 +48,16 @@ export class NewDeviceComponent implements OnInit {
       }
     );
   
-
     this.filteredStreets = this.deviceForm.get('address').valueChanges.pipe(
       startWith(''),
       map(value => this._filterStreets(value))    
-    ); 
+    );  
 
-     
-    
   }
 
   private _filterStreets(value: string): string[] {
     const filterValue = this._normalizeValue(value);
+    this.onStreetChanges(value);
     return this.addedStreets.filter(street => this._normalizeValue(street).includes(filterValue));
   }
   
@@ -118,15 +111,12 @@ export class NewDeviceComponent implements OnInit {
     })
   }
   
-  onStreetChanges(): void {
-    
-    this.deviceForm.get('address').valueChanges.subscribe(val =>
-      {       
-        //console.log(this.locations);
-        this.deviceForm.get('longitude').setValue(this.getLongitude(this.deviceForm.get('address').value));
-        this.deviceForm.get('latitude').setValue(this.getLatitude(this.deviceForm.get('address').value));
-      }    
-    )
+  onStreetChanges(value): void {
+
+    if(this.addedStreets.includes(value)){
+      this.deviceForm.get('longitude').setValue(this.getLongitude(value));
+      this.deviceForm.get('latitude').setValue(this.getLatitude(value));
+    }
   }
 
   getLongitude(street):string
