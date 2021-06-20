@@ -46,6 +46,24 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("GetAllBasicInfo")]
+
+        public async Task<IEnumerable<BasicInformationIN>> GetAllBasicInfoController()
+        {
+            return await _context.GetAllBasicInfo();
+        }
+
+        [HttpGet]
+        [Route("GetMyBasicInfo")]
+        public async Task<IEnumerable<BasicInformationIN>> GetMyBasicInformationController()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            return await _context.GetMyBasicInfo(user.UserName);
+        }
+
         private async Task<int> uploadAttachments(pictureModel[] mediaForm, long id)
         {
 

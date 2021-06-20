@@ -13,4 +13,13 @@ export class IncidentService {
         return this.http.post('http://localhost:24885/api/Incident/postIncident', formdata);
     }
 
+    getAllBasicInfo() {   
+        return this.http.get('http://localhost:24885/api/Incident/GetAllBasicInfo');
+    }
+
+    getMineBasicInfo() {
+        return this.http.get('http://localhost:24885/api/Incident/GetMyBasicInfo');
+    }
+
+
 }

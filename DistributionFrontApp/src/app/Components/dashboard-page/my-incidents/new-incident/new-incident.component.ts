@@ -28,6 +28,8 @@ export class NewIncidentComponent implements OnInit {
       }
     }
 
+    this.router.navigateByUrl('/newIncident/basicInformation');
+
   }
 
   async onSubmit() {
@@ -48,7 +50,7 @@ export class NewIncidentComponent implements OnInit {
     this.incidentService.postIncident(this.wrapper).subscribe(
       res => {
         this.showToastrSuccess();
-        this.router.navigateByUrl('/myIncidents');
+        this.router.navigateByUrl('/incidents');
       },
       err => {
         this.showToastrWarning();

@@ -3,19 +3,19 @@ export class MyIncidents{
 
     //id: string;
     documentId: string;
-    startDate: string;
-    phoneNumber: string;
+    incidentTime: string;
+    type: string;
     status: string;
-    address: string;
+    callNum: number;
 
-    constructor(documentId: string, startingDate: Date, phone: string, state: string, workLocation: string)
+    constructor(documentId: string, incidentTime: Date, type: string, state: string, callNum: number)
     {
 
         this.documentId = documentId;
-        this.startDate = startingDate.toUTCString();
-        this.phoneNumber = phone;
+        this.incidentTime = incidentTime.toUTCString();
+        this.type = type;
         this.status = state;
-        this.address = workLocation;
+        this.callNum = callNum;
 
     }
 }

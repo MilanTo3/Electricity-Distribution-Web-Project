@@ -25,6 +25,7 @@ import { ConsumerService } from 'src/app/Services/consumer.service';
 import { SafetyDocumentServiceService } from 'src/app/Services/safety-document-service.service';
 import { DeviceService } from 'src/app/Services/device.service';
 import { CallService } from 'src/app/Services/call.service';
+import { IncidentService } from 'src/app/Services/incident.service';
 
 @Component({
   selector: 'app-table-component',
@@ -54,7 +55,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService,
     private workPlanService: WorkPlanServiceService, private safetyDocService: SafetyDocumentServiceService,
-    private registrattionService: UserService, private deviceService: DeviceService, private callService: CallService,
+    private registrattionService: UserService, private deviceService: DeviceService, private callService: CallService, private incidentService: IncidentService,
     private consumerService: ConsumerService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -80,7 +81,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
     } else if (this.tableid === 1) {
       await this.loadWorkRequests();
     } else if (this.tableid === 2) {
-      this.loadMyIncidents();
+      await this.loadIncidents();
     } else if (this.tableid === 3) {
       await this.loadHistoryStateChanges();
     } else if (this.tableid === 4) {
@@ -256,13 +257,32 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   }
 
-  loadMyIncidents() {
-    let myIncident1 = new MyIncidents('WR-1', new Date(2021, 9, 1, 5, 5, 4, 22), "3989-434-343", "Executing", "Koste Racina 23");
-    let myIncident2 = new MyIncidents('WR-1', new Date(2021, 10, 1, 11, 5, 4, 22), "3989-434-343", "Draft", "Cankareva 5");
-    let myIncident3 = new MyIncidents("WR-3", new Date(2021, 4, 23, 15, 50, 33), "349-553-855-12", "Draft", "Dragana Torbice 3");
+   async loadIncidents() {
 
-    this.dataToPrint.push(myIncident1, myIncident2, myIncident3);
-    this.keyNames = Object.getOwnPropertyNames(myIncident3);
+      this.baseLink = "/newIncident";
+      let res;
+      const data = [];
+
+      if (this.showMine) {
+        res = await this.incidentService.getMineBasicInfo().toPromise();
+      }
+      else {
+        res = await this.incidentService.getAllBasicInfo().toPromise();
+      }
+
+      if (res) {
+        let i;
+        let inc;
+        for (i = 0; i < res["length"]; i++) {
+          inc = new MyIncidents(res[i]["documentId"], new Date(moment(res[i]["incidentTime"]).format('YYYY-MM-DD')), res[i]["type"], res[i]["status"], res[i]["callNum"]);
+          data.push(inc);
+        }
+        this.dataToPrint = data;
+        this.dataBind = new MatTableDataSource(this.dataToPrint);
+        this.keyNames = Object.getOwnPropertyNames(inc);
+
+        this.enableView();
+    }
   }
 
   async loadHistoryStateChanges() {

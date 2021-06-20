@@ -11,5 +11,9 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
         Task<long> AddIncident(IncidentViewModel wrapper);
 
         Task Save();
+
+        Task<IEnumerable<BasicInformationIN>> GetMyBasicInfo(string username);
+        Task<IEnumerable<BasicInformationIN>> GetAllBasicInfo();
+
     }
 }

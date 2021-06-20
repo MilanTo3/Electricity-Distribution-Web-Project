@@ -60,6 +60,16 @@ namespace DistributionSmartEnergyBackApp.Services
 
         }
 
+        public async Task<IEnumerable<BasicInformationIN>> GetAllBasicInfo()
+        {
+            return await _context.BasicInformationIN.ToListAsync();
+        }
+
+        public async Task<IEnumerable<BasicInformationIN>> GetMyBasicInfo(string username)
+        {
+            return await _context.BasicInformationIN.Where(x => x.dispatcher == username).ToListAsync();
+        }
+
         public async Task Save()
         {
             try
