@@ -1,17 +1,17 @@
 
 export class MyIncidents{
 
-    id: string;
+    //id: string;
     documentId: string;
     startDate: string;
     phoneNumber: string;
     status: string;
     address: string;
 
-    constructor(id: string, startingDate: Date, phone: string, state: string, workLocation: string)
+    constructor(documentId: string, startingDate: Date, phone: string, state: string, workLocation: string)
     {
 
-        this.id = id;
+        this.documentId = documentId;
         this.startDate = startingDate.toUTCString();
         this.phoneNumber = phone;
         this.status = state;

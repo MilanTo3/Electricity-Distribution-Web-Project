@@ -1,5 +1,6 @@
 ﻿using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
+using DistributionSmartEnergyBackApp.Models.FormParts.Incident;
 using DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkPlan;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -30,6 +31,9 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<SafetyDocumentModel> SafetyDocuments { get; set; }
         public DbSet<BasicInformationSD> BasicInformationSD { get; set; }
         public DbSet<CheckList> CheckListSD { get; set; }
+        public DbSet<IncidentModel> Incidents { get; set; }
+        public DbSet<BasicInformationIN> BasicInformationIN { get; set; }
+        public DbSet<Resolution> ResolutionIN { get; set; }
         public DbSet<DeviceModel> Devices { get; set; }
         public DbSet<SettingsModel> Settings { get; set; }
         public DbSet<ConsumerModel> Consumers { get; set; }
