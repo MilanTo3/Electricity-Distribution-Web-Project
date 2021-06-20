@@ -51,7 +51,7 @@ const routes: Routes = [
       { path: "mySafetyDocs", component: MySafetyDocsComponent}
     ]*/
   },
-  { path: "myIncidents", component: MyIncidentsComponent},
+  { path: "incidents", component: MyIncidentsComponent},
   { path: "mySafetyDocs", component: MySafetyDocsComponent},
   { path: "workRequests", component: WorkRequestsPageComponent },
   { path: "workRequestForm", component: WorkRequestFormComponent,

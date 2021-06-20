@@ -37,7 +37,7 @@ export class HistoryStateChangesComponent implements OnInit, AfterViewInit {
       }else if(id.startsWith('WP')){
         creator = await this.wp.getCreator(id).toPromise();
       }else if(id.startsWith('SD')){
-        creator = await this.wp.getCreator(id).toPromise();
+        creator = await this.sd.getCreator(id).toPromise();
       }
 
       let username = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;

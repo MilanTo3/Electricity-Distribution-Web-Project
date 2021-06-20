@@ -19,6 +19,7 @@ export class MyIncidentWrapper{
 
     infoForm: any;
     teamId: number;
+    callIds: number[];
     devicesIds: number[];
     mediaForm: pictureModel[] = [];
     resolutionForm: any;

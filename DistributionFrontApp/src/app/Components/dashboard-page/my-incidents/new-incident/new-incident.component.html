@@ -11,6 +11,30 @@
         <app-side-navbar [sidebarType]='1'></app-side-navbar>
         <router-outlet></router-outlet>
     </div>
+    <div *ngIf="!editMode && !readOnlyMode" class="dugmad">
+        <button class="btn" data-toggle="modal" data-target="#exampleModalCenter" >Save</button>
+        <button class="btn ml-3" routerLink="/incidents">Cancel</button>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title title" id="exampleModalLongTitle">Send incident?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body labela">
+              Are you sure you've entered all the required information?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+              <button type="button" (click)="onSubmit()" data-dismiss="modal" class="btn ml-3">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>
