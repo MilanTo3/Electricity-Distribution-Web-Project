@@ -85,5 +85,24 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.Devices.Where(d=> d.Address == address).ToListAsync();
         }
 
+        public async Task<IEnumerable<DeviceModel>> SearchDevices(string address, string type)
+        {
+            var devices = await _context.Devices.ToListAsync();
+            if (String.Equals(type, "Any") || type == null)
+            {
+
+            }
+            else
+            {
+                devices = devices.Where(d => d.Type == type).ToList();
+            }
+
+            if (!String.IsNullOrEmpty(address))
+            {
+                devices = devices.Where(d => d.Address.Contains(address)).ToList();
+            }
+
+            return devices;
+        }
     }
 }

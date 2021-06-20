@@ -74,8 +74,7 @@ namespace DistributionSmartEnergyBackApp.Controllers
         }
 
         [HttpPost]
-        [Route("DeleteDevice")]
-        
+        [Route("DeleteDevice")]      
         public async Task DeleteDevice([FromBody] long id)
         {
             try
@@ -88,5 +87,15 @@ namespace DistributionSmartEnergyBackApp.Controllers
             }
         }
 
+        // GET: api/Device/SearchDevices
+        [HttpGet]
+        [Route("SearchDevices")]
+        public async Task<IEnumerable<DeviceModel>> SearchDevices(string address, string type)
+        {
+
+            return await _context.SearchDevices(address, type);
+
+
+        }
     }
 }

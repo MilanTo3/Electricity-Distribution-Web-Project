@@ -15,7 +15,7 @@ export class CardDashboardComponent implements OnInit {
   }
 
   openMyIncidentsTable() {
-    this.router.navigate(['/myIncidents'])
+    this.router.navigate(['/incidents'])
   }
 
   openMySafetyDocsTable() {

@@ -26,6 +26,7 @@ import { SafetyDocumentServiceService } from 'src/app/Services/safety-document-s
 import { DeviceService } from 'src/app/Services/device.service';
 import { CallService } from 'src/app/Services/call.service';
 import { IncidentService } from 'src/app/Services/incident.service';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-table-component',
@@ -46,6 +47,10 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   baseLink: string;
   @Output() emitter = new EventEmitter<string>();
 
+  searchDeviceForm : FormGroup;
+  deviceTypeFormControl = new FormControl('Any');
+  deviceAddressFormControl = new FormControl('');
+
   hideElement = false;
   choose = false;
 
@@ -56,7 +61,7 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
   constructor(public router: Router, private workRequestService: WorkRequestServiceService, private teamsService: TeamsServiceService,
     private workPlanService: WorkPlanServiceService, private safetyDocService: SafetyDocumentServiceService,
     private registrattionService: UserService, private deviceService: DeviceService, private callService: CallService, private incidentService: IncidentService,
-    private consumerService: ConsumerService) {
+    private consumerService: ConsumerService, private formBuilder: FormBuilder) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/newIncident/crew') {
@@ -69,8 +74,13 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
         } else {
           this.choose = false;
         }
-
       }
+       this.searchDeviceForm = formBuilder.group(
+        {
+          deviceTypeFormControl: this.deviceTypeFormControl,
+          deviceAddressFormControl : this.deviceAddressFormControl
+        }
+      )
     });
   }
 
@@ -364,6 +374,18 @@ export class TableComponentComponent implements OnInit, AfterViewInit {
 
   reloadCurrentPage() {
     window.location.reload();
+   }
+
+
+  async seachDevices() {   
+    let address = this.searchDeviceForm.get('deviceAddressFormControl').value;
+    let type = this.searchDeviceForm.get('deviceTypeFormControl').value;
+    
+    let res = await this.deviceService.SearchDevices(address, type).toPromise();
+    this.dataToPrint = res;
+    this.dataBind = new MatTableDataSource(this.dataToPrint);
+    this.keyNames = Object.getOwnPropertyNames(res[0]);
+    this.enableView();
    }
 
 }

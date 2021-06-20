@@ -13,6 +13,37 @@
   <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Enter here">
 </mat-form-field>
 
+<div class="search-containter" *ngIf="tableid===4">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Search</mat-panel-title>
+    </mat-expansion-panel-header>
+  <form [formGroup]="searchDeviceForm" (ngSubmit)="seachDevices()">
+    <mat-radio-group [formControl]="deviceTypeFormControl" >
+      <label>Type: </label>
+      <mat-radio-button value="Any">Any</mat-radio-button>
+      <mat-radio-button value="Disconnector">Disconnector</mat-radio-button>
+      <mat-radio-button value="Transformator">Transformator</mat-radio-button>
+      <mat-radio-button value="Breaker">Breaker</mat-radio-button>
+      <mat-radio-button value="Fuse">Fuse</mat-radio-button>
+    </mat-radio-group><br/>
+    <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <input matInput [formControl]="deviceAddressFormControl">
+    </mat-form-field>
+   
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button mat-button type="submit" class="btn btn-primary">Search</button>
+        <button mat-button type="reset" (click)="loadDevices()" class="btn btn-danger">Clear search</button>
+
+      </div>
+    </div>    
+  </form>
+  </mat-expansion-panel>
+</div>
+
+
 <body>
   <div class="mat-elevation-z8 table">
 

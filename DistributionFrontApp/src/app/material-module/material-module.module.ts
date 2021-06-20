@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
 
 const MaterialComponents = [
   MatButtonToggleModule,
@@ -46,7 +47,8 @@ const MaterialComponents = [
   HttpClientModule,
   MatAutocompleteModule,
   MatDialogModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatRadioModule
 ];
 
 @NgModule({

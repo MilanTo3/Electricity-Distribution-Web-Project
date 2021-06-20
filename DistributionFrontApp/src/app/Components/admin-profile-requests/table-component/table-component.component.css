@@ -123,3 +123,21 @@
     scrollbar-color: #ec7729 #c3e5e7;   /* scroll thumb and track */
     scrollbar-darkshadow-color: #dd612c;
 }
+
+.search-containter .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+.search-containter .mat-form-field {
+    width: 220px;
+  }
+.search-containter form {
+    margin-bottom: 20px;
+  }
+.search-containter form > * {
+    margin: 5px 0;
+  }
+  
+.search-containter .mat-radio-button {
+    margin: 0 12px;
+  }

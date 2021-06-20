@@ -23,8 +23,11 @@ export class DeviceService {
     DeleteDevice(id) {
       return this.http.post('http://localhost:24885/api/Device/DeleteDevice', id);
     }
-     GetConnectedDevices(documentId) {
+    GetConnectedDevices(documentId) {
       return this.http.get('http://localhost:24885/api/Device/GetConnectedDevices?documentId=' + documentId);
+    }
+    SearchDevices(address, type) {
+      return this.http.get('http://localhost:24885/api/Device/SearchDevices?address=' + address + '&type=' + type);
     }
 
 
