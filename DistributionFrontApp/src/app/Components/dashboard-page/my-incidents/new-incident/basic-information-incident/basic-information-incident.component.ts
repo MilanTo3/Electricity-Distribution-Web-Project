@@ -95,4 +95,21 @@ export class BasicInformationIncidentComponent implements OnInit {
     );
   }
 
+  saveChanges(){
+ 
+    let id = sessionStorage.getItem("idDoc");
+    this.infoForm.get('documentId').setValue(id);
+    this.inc.updateBasicInfo(this.infoForm.value).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+  }
+
+  setDispatcher(){
+ 
+    let username = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
+    this.infoForm.get('dispatcher').setValue(username);
+  }
+
 }

@@ -92,9 +92,47 @@ namespace DistributionSmartEnergyBackApp.Services
             }
         }
 
-        public Task UpdateResolutionList(Resolution res)
+        public async Task UpdateBasicInformation(BasicInformationIN basicInfo)
         {
-            throw new NotImplementedException();
+            var incidentInfo = await _context.BasicInformationIN.FirstOrDefaultAsync(x => x.DocumentId == basicInfo.DocumentId);
+
+            if (incidentInfo != null)
+            {
+                incidentInfo.Type = basicInfo.Type;
+                incidentInfo.dispatcher = basicInfo.dispatcher;
+                incidentInfo.Status = basicInfo.Status;
+                incidentInfo.emergency = basicInfo.emergency;
+                incidentInfo.confirmed = basicInfo.confirmed;
+                incidentInfo.ETA = basicInfo.ETA;
+                incidentInfo.ATA = basicInfo.ATA;
+                incidentInfo.incidentTime = basicInfo.incidentTime;
+                incidentInfo.ETR = basicInfo.ETR;
+                incidentInfo.affectedCustoms = basicInfo.affectedCustoms;
+                incidentInfo.callNum = basicInfo.callNum;
+                incidentInfo.voltage = basicInfo.voltage;
+                incidentInfo.scheduledTime = basicInfo.scheduledTime;
+
+                _context.BasicInformationIN.Update(incidentInfo);
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task UpdateResolutionList(Resolution resolution)
+        {
+            var resolutionInfo = await _context.ResolutionIN.FirstOrDefaultAsync(x => x.documentId == resolution.documentId);
+
+            if (resolutionInfo != null)
+            {
+                resolutionInfo.cause = resolution.cause;
+                resolutionInfo.subcause = resolution.subcause;
+                resolutionInfo.constructionType = resolution.constructionType;
+                resolutionInfo.material = resolution.material;
+
+                _context.ResolutionIN.Update(resolutionInfo);
+                await _context.SaveChangesAsync();
+
+            }
         }
     }
 }

@@ -80,7 +80,24 @@ namespace DistributionSmartEnergyBackApp.Controllers
             return await _context.GetResolutionList(id);
         }
 
-        [HttpGet]
+
+        [HttpPost]
+        [Route("UpdateBasicInfo")]
+        public async Task<IActionResult> updateBasicInfo([FromBody] BasicInformationIN basicInfo)
+        {
+            try
+            {
+                await _context.UpdateBasicInformation(basicInfo);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpPost]
         [Route("UpdateResolutionList")]
         public async Task<IActionResult> UpdateResolutionListController([FromBody] Resolution res)
         {

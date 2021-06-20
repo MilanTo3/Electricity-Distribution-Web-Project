@@ -41,7 +41,9 @@ export class IncidentService {
         return this.http.post('http://localhost:24885/api/Incident/UpdateResolutionList', formdata);
     }
 
-
+    updateBasicInfo(formdata){
+        return this.http.post('http://localhost:24885/api/Incident/UpdateBasicInfo', formdata);
+    }
 
 
 }

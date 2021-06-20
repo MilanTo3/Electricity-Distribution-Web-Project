@@ -18,6 +18,11 @@
                 <input type="text" class="searchInput form-control mr-1 col-md-8"/>
                 <button class="btn buttonClass"><i class="fas fa-search"></i> Search</button>
             </div>
+
+            <div>
+                <label>Chosen team: {{chosenId}}</label>
+            </div>
+
             <div>
                 <app-table-component [tableType]='7' (emitter)="setTeamId($event)"></app-table-component>
             </div>

@@ -19,6 +19,9 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
 
 
         Task<Resolution> GetResolutionList(string id);
+
         Task UpdateResolutionList(Resolution res);
+        Task UpdateBasicInformation(BasicInformationIN basicInfo);
+        
     }
 }

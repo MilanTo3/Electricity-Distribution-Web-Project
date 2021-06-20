@@ -14,6 +14,7 @@ export class ResolutionComponent implements OnInit {
   editMode = false;
   readOnlyMode = false;
   resolutionForm = this.fb.group({
+    documentId: [''],
     cause: [''],
     subcause: [''],
     constructionType: [''],
@@ -48,6 +49,7 @@ export class ResolutionComponent implements OnInit {
   getAndFill(id) {
     this.inc.getResolutionList(id).subscribe (
       res => {
+        this.resolutionForm.get('documentId').setValue(res["documentId"]);
         this.resolutionForm.get('cause').setValue(res["cause"]);
         this.resolutionForm.get('subcause').setValue(res["subcause"]);
         this.resolutionForm.get('constructionType').setValue(res["constructionType"]);
@@ -60,4 +62,14 @@ export class ResolutionComponent implements OnInit {
     this.toastr.success('Your changes are successfuly sent.', 'Yay.');
   }
 
+  saveChanges(){
+ 
+    let id = sessionStorage.getItem("idDoc");
+    this.resolutionForm.get('documentId').setValue(id);
+    this.inc.updateResolutionList(this.resolutionForm.value).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+  }
 }
