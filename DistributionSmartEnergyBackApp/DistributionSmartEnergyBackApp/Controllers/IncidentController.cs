@@ -56,6 +56,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
         }
 
         [HttpGet]
+        [Route("GetBasicInfo")]
+        public async Task<BasicInformationIN> GetBasicInformationController(string id)
+        {
+            return await _context.GetBasicInfo(id);
+        }
+
+
+        [HttpGet]
         [Route("GetMyBasicInfo")]
         public async Task<IEnumerable<BasicInformationIN>> GetMyBasicInformationController()
         {
@@ -64,12 +72,109 @@ namespace DistributionSmartEnergyBackApp.Controllers
             return await _context.GetMyBasicInfo(user.UserName);
         }
 
+
+        [HttpGet]
+        [Route("GetResolutionList")]
+        public async Task<Resolution> GetResolutionListController(string id)
+        {
+            return await _context.GetResolutionList(id);
+        }
+
+        [HttpGet]
+        [Route("UpdateResolutionList")]
+        public async Task<IActionResult> UpdateResolutionListController([FromBody] Resolution res)
+        {
+            try
+            {
+                await _context.UpdateResolutionList(res);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpGet]
+        [Route("GetAttachments")]
+        public async Task<IActionResult> GetAttachments(string id)
+        {
+
+            string folderName = Path.Combine("Resources", "IncidentsMA");
+            string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            var filePath = Path.Combine(pathToRead, id);
+            if (!System.IO.Directory.Exists(filePath))
+                return NotFound();
+
+            DirectoryInfo d = new DirectoryInfo(filePath);
+            FileInfo[] Files = d.GetFiles();
+
+            List<pictureModel> pc = new List<pictureModel>();
+            foreach (FileInfo file in Files)
+            {
+                pc.Add(new pictureModel(file.Name, "data:image/png;base64," + Convert.ToBase64String(System.IO.File.ReadAllBytes(Path.Combine(filePath, file.Name)))));
+            }
+
+            return Ok(pc);
+        }
+
+        [HttpPost]
+        [Route("UpdateAttachments")]
+        public async Task<IActionResult> updateAttachments([FromForm] string[] stringPicModels, [FromForm] string[] currentFileList, [FromForm] string id)
+        {
+
+            int i;
+            pictureModel[] files = new pictureModel[stringPicModels.Length];
+
+            for (i = 0; i < stringPicModels.Length; i++)
+            {
+                files[i] = Newtonsoft.Json.JsonConvert.DeserializeObject<pictureModel>(stringPicModels[i]);
+            }
+
+            string folderName = Path.Combine("Resources", "IncidentsMA");
+            string pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            var filePath = Path.Combine(pathToRead, id);
+
+            if (!System.IO.Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+
+            // save files.
+            int res = 0;
+            foreach (pictureModel file in files)
+            {
+                string fullPath = Path.Combine(id, Path.Combine(filePath, file.name));
+                saveImage(file.picture, fullPath);
+                try
+                {
+                    res += await checkVirusScan(fullPath);
+                }
+                catch { }
+            }
+
+            DirectoryInfo d = new DirectoryInfo(filePath);
+            FileInfo[] dirFiles = d.GetFiles();
+
+            foreach (FileInfo directoryFile in dirFiles)
+            {
+                if (currentFileList.ToList().Exists(x => x == directoryFile.Name) == false)
+                {
+                    System.IO.File.Delete(directoryFile.FullName);
+                }
+            }
+
+            return Ok();
+        }
+
         private async Task<int> uploadAttachments(pictureModel[] mediaForm, long id)
         {
 
-            string folderName = Path.Combine("Resources", "SafetyDocsMA");
+            string folderName = Path.Combine("Resources", "IncidentsMA");
             string requestsDir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-            string SDDir = Path.Combine(requestsDir, "SD" + id.ToString());
+            string SDDir = Path.Combine(requestsDir, "IN" + id.ToString());
             Directory.CreateDirectory(SDDir);
 
             int i;

@@ -12,6 +12,8 @@ import { LocationService } from 'src/app/Services/location.service';
 })
 export class CallsComponent implements OnInit {
 
+  editMode = false;
+  readOnlyMode = false;
   availableCalls: Call[] = [];
   incidentCalls: Call[] = [];
   callIds: number[] = [];
@@ -19,6 +21,22 @@ export class CallsComponent implements OnInit {
   constructor(private router: Router, private calls: CallService, private locationServ: LocationService) { }
 
   async ngOnInit(): Promise<void> {
+
+    if(sessionStorage.getItem("idDoc") !== null){
+      let readDocId = sessionStorage.getItem("idDocReadOnly");
+      if (readDocId!==null && readDocId.substring(0,2)=="IN")
+      {
+        await this.getAndFill(sessionStorage.getItem("idDocReadOnly"));
+        this.readOnlyMode = true;
+      }
+      else{
+        await this.getAndFill(sessionStorage.getItem("idDoc"));
+        this.editMode = true;
+      }
+
+    }
+
+
 
     let calls: any = await this.calls.GetCalls().toPromise();
     
@@ -58,6 +76,14 @@ export class CallsComponent implements OnInit {
                         this.callIds = this.incidentCalls.map(a => a.id);
                         sessionStorage.setItem('calls', JSON.stringify(this.callIds));
     }
+  }
+
+  async getAndFill(id) {
+    
+    let res = await this.calls.GetConnectedCalls(id).toPromise();
+    sessionStorage.setItem('calls', JSON.stringify(res));
+    console.log(res);
+    
   }
 
 }

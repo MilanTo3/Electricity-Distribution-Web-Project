@@ -16,5 +16,7 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
         Task UpdateCall(CallModel call);
 
         Task<IEnumerable<CallModel>> GetCalls();
+
+        Task<IEnumerable<long>> GetConnectedCalls(string documentId);
     }
 }

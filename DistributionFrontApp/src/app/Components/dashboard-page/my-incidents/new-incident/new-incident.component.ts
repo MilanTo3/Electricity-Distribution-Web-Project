@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { MyIncidentWrapper } from 'src/app/Models/formWrappers';
 import Localbase from 'localbase';
 import { ToastrService } from 'ngx-toastr';
@@ -18,7 +18,7 @@ export class NewIncidentComponent implements OnInit {
   editMode = false;
   readOnlyMode = false;
 
-  constructor(private toastr: ToastrService, private router: Router, private incidentService: IncidentService) { }
+  constructor(private toastr: ToastrService, private router: Router, private route: ActivatedRoute, private incidentService: IncidentService) { }
 
   ngOnInit(): void {
 
@@ -26,6 +26,14 @@ export class NewIncidentComponent implements OnInit {
       if (i !== "loggedUser") {
         sessionStorage.removeItem(i);
       }
+    }
+
+     this.db.collection('images').delete();
+    
+    let id = this.route.snapshot.paramMap.get('idparam');
+    if (id !== null && id !== undefined) {
+      sessionStorage.setItem('idDoc', id);
+      this.editMode = true;
     }
 
     this.router.navigateByUrl('/newIncident/basicInformation');

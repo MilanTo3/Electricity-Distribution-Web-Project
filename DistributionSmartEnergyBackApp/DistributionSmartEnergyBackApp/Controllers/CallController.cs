@@ -20,6 +20,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        [Route("GetConnectedCalls")]
+
+        public async Task<IEnumerable<long>> GetConnectedCalls(string documentId)
+        {
+            return await _context.GetConnectedCalls(documentId);
+        }
+
         [HttpGet("{id}")]
         [Route("GetCall")]
         public async Task<CallModel> GetCall(long id)

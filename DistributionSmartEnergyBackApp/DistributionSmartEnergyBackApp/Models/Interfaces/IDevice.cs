@@ -15,5 +15,7 @@ namespace DistributionSmartEnergyBackApp.Models.Interfaces
         Task<IEnumerable<DeviceModel>> GetDevicesAtLocation(string address);
 
         Task DeleteDevice(long id);
+
+        Task<IEnumerable<long>> GetConnectedDevices(string documentId);
     }
 }

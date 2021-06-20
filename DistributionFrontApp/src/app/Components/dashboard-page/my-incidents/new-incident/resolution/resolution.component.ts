@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { IncidentService } from 'src/app/Services/incident.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-resolution',
@@ -19,9 +21,15 @@ export class ResolutionComponent implements OnInit {
   });
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private inc: IncidentService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
+     if(sessionStorage.getItem("idDoc") !== null){
+      this.getAndFill(sessionStorage.getItem("idDoc"));
+      this.editMode = true;
+    }
+
     if(sessionStorage.getItem("resolutionForm") !== null) {
       let formdata = JSON.parse(sessionStorage.getItem("resolutionForm"));
       this.resolutionForm.setValue(formdata);
@@ -35,6 +43,21 @@ export class ResolutionComponent implements OnInit {
       sessionStorage.setItem("resolutionValid", JSON.stringify(this.resolutionForm.valid));
       
     })
+  }
+
+  getAndFill(id) {
+    this.inc.getResolutionList(id).subscribe (
+      res => {
+        this.resolutionForm.get('cause').setValue(res["cause"]);
+        this.resolutionForm.get('subcause').setValue(res["subcause"]);
+        this.resolutionForm.get('constructionType').setValue(res["constructionType"]);
+        this.resolutionForm.get('material').setValue(res["material"]);
+      }
+    );
+  }
+
+  showToastrSuccess(){   
+    this.toastr.success('Your changes are successfuly sent.', 'Yay.');
   }
 
 }

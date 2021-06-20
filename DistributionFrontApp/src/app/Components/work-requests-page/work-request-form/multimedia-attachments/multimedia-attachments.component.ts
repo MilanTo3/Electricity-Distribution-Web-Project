@@ -7,6 +7,7 @@ import { isObservable } from 'rxjs';
 import { WorkRequestServiceService } from 'src/app/Services/work-request-service.service';
 import { pictureModel } from '../../../../Models/pictureModel.model';
 import { SafetyDocumentServiceService } from 'src/app/Services/safety-document-service.service';
+import { IncidentService } from 'src/app/Services/incident.service';
 
 @Component({
   selector: 'app-multimedia-attachments',
@@ -20,7 +21,8 @@ export class MultimediaAttachmentsComponent implements OnInit {
   editMode = false;
   selectedPicture: pictureModel;
 
-  constructor(private wr: WorkRequestServiceService, private sd: SafetyDocumentServiceService, private toastr: ToastrService, private wp: WorkPlanServiceService) { }
+  constructor(private wr: WorkRequestServiceService, private sd: SafetyDocumentServiceService, private toastr: ToastrService, private wp: WorkPlanServiceService,
+  private inc: IncidentService) { }
 
   ngOnInit(): void {
 
@@ -66,6 +68,18 @@ export class MultimediaAttachmentsComponent implements OnInit {
     else if(id.startsWith('SD'))
     {
       this.sd.getAttachments(id).subscribe(
+        res => {
+          let i;
+          let pic;
+          for (i = 0; i < res["length"]; i++) {
+            pic = new pictureModel(res[i]["name"], res[i]["picture"]);
+            this.filePaths.push(pic);
+          }
+        });
+    }
+    else if(id.startsWith('IN'))
+    {
+      this.inc.getAttachments(id).subscribe(
         res => {
           let i;
           let pic;
@@ -149,7 +163,18 @@ export class MultimediaAttachmentsComponent implements OnInit {
     }
     else if(id.startsWith('SD'))
     {
-      this.wp.updateAttachments(formdata).subscribe(
+      this.sd.updateAttachments(formdata).subscribe(
+        res => {
+          this.toastr.success('Yay! Attachment update successfull.', 'Attachments updated.');
+        },
+        err => {
+          this.toastr.error('Ooops, seems like theres an error uploading your files.', 'Attachments error.');
+        }
+      );
+    }
+     else if(id.startsWith('IN'))
+    {
+      this.inc.updateAttachments(formdata).subscribe(
         res => {
           this.toastr.success('Yay! Attachment update successfull.', 'Attachments updated.');
         },

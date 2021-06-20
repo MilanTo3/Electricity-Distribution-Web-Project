@@ -38,6 +38,14 @@ namespace DistributionSmartEnergyBackApp.Controllers
             
         }
 
+        [HttpGet]
+        [Route("GetConnectedDevices")]
+
+        public async Task<IEnumerable<long>> GetConnectedDevices(string documentId)
+        {
+            return await _context.GetConnectedDevices(documentId);
+        }
+
         // GET: api/Device/GetDevice
         [HttpGet]
         [Route("GetDevice")]

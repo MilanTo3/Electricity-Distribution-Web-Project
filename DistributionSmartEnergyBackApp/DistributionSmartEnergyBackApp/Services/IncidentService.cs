@@ -65,9 +65,19 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.BasicInformationIN.ToListAsync();
         }
 
+        public async Task<BasicInformationIN> GetBasicInfo(string id)
+        {
+            return await _context.BasicInformationIN.FirstOrDefaultAsync(x => x.DocumentId == id);
+        }
+
         public async Task<IEnumerable<BasicInformationIN>> GetMyBasicInfo(string username)
         {
             return await _context.BasicInformationIN.Where(x => x.dispatcher == username).ToListAsync();
+        }
+
+        public async Task<Resolution> GetResolutionList(string id)
+        {
+            return await _context.ResolutionIN.FirstOrDefaultAsync(x => x.documentId == id);
         }
 
         public async Task Save()
@@ -80,6 +90,11 @@ namespace DistributionSmartEnergyBackApp.Services
             {
                 Console.WriteLine("Update concurrency greska.");
             }
+        }
+
+        public Task UpdateResolutionList(Resolution res)
+        {
+            throw new NotImplementedException();
         }
     }
 }

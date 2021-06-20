@@ -26,4 +26,8 @@ export class CallService {
   GetCalls() {
     return this.http.get('http://localhost:24885/api/Call/GetCalls');
   }
+
+  GetConnectedCalls(documentId) {
+    return this.http.get('http://localhost:24885/api/Call/GetConnectedCalls?documentId=' + documentId);
+  }
 }

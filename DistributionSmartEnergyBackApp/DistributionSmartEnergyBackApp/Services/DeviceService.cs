@@ -59,6 +59,18 @@ namespace DistributionSmartEnergyBackApp.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<long>> GetConnectedDevices(string documentId)
+        {
+            var deviceList = await _context.Devices.Where(x => x.documentId == documentId).ToListAsync();
+
+            if (deviceList != null)
+            {
+                return deviceList.Select(x => x.Id).ToList();
+            }
+
+            return null;
+        }
+
         public async Task<DeviceModel> GetDevice(long id)
         {
             return await _context.Devices.FindAsync(id);

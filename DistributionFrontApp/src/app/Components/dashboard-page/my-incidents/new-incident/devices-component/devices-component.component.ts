@@ -19,6 +19,9 @@ export class DevicesComponentComponent implements OnInit {
   chooseOption = false;
   deleteOption = false;
 
+  editMode = false;
+  readOnlyMode = false;
+
   constructor(public router: Router, private devices: DeviceService) {
 
     this.router.events.subscribe((event) => {
@@ -40,6 +43,20 @@ export class DevicesComponentComponent implements OnInit {
    }
 
   async ngOnInit(): Promise<void> {
+
+    if(sessionStorage.getItem("idDoc") !== null){
+      let readDocId = sessionStorage.getItem("idDocReadOnly");
+      if (readDocId!==null && readDocId.substring(0,2)=="IN")
+      {
+        await this.getAndFill(sessionStorage.getItem("idDocReadOnly"));
+        this.readOnlyMode = true;
+      }
+      else{
+        await this.getAndFill(sessionStorage.getItem("idDoc"));
+        this.editMode = true;
+      }
+
+    }
 
     let calls: any = await this.devices.GetDevices().toPromise();
     
@@ -81,6 +98,14 @@ export class DevicesComponentComponent implements OnInit {
 
   deleteDeviceId(event){    
     this.devices.DeleteDevice(event).subscribe();
+  }
+
+  async getAndFill(id) {
+    
+    let res = await this.devices.GetConnectedDevices(id).toPromise();
+    sessionStorage.setItem('devices', JSON.stringify(res));
+    console.log(res);
+    
   }
 
 }

@@ -44,6 +44,19 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.Calls.ToListAsync();
         }
 
+        public async Task<IEnumerable<long>> GetConnectedCalls(string documentID)
+        {
+            var callList = await _context.Calls.Where(x => x.documentId == documentID).ToListAsync();
+
+            if (callList != null)
+            {
+                return callList.Select(x => x.Id).ToList();              
+            }
+
+            return null;
+            
+        }
+
         public async Task UpdateCall(CallModel c)
         {
             var call = await _context.Calls.FindAsync(c.Id);
