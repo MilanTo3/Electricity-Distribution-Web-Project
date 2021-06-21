@@ -63,14 +63,14 @@
                 </div>
                 <div class="form-group row last">
                     <label class="col-md-6 col-form-label">Take control of the incident?</label>
-                    <button class="col-md-4 btn btn-primary" (click)="setDispatcher()">Accept</button>
+                    <button class="col-md-4 btn btn-success" (click)="setDispatcher()">Accept</button>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label">Dispatcher:</label>
-                    <input class="col-md-5 form-control" type="text" formControlName="dispatcher" disabled/>
+                    <label class="col-md-6 col-form-label">Dispatcher:</label>
+                    <input class="col-md-4 form-control" type="text" formControlName="dispatcher" disabled/>
                 </div>
             </div>
         </div>
     </form>
-    <button class="btn-primary" *ngIf="editMode" (click)="saveChanges()">Save Changes</button>
+    <button class="btn btn-primary" *ngIf="editMode" (click)="saveChanges()">Save Changes</button>
 </div>
