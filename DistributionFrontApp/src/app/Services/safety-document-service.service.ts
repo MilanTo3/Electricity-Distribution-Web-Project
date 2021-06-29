@@ -42,7 +42,8 @@ export class SafetyDocumentServiceService {
   }
 
   getMineBasicInfo(){
-    return this.http.get('http://localhost:24885/api/SafetyDocs/GetMyBasicInfo');
+    let username: string = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
+    return this.http.get('http://localhost:24885/api/SafetyDocs/GetMyBasicInfo?username='+username);
   }
 
   getAttachments(id){

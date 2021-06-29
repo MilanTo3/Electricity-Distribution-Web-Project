@@ -15,30 +15,25 @@ namespace DistributionSmartEnergyBackApp.Services
     {
         private readonly AuthenticationContext _context;
 
-        public NotificationService(AuthenticationContext context)
-        {
+        public NotificationService(AuthenticationContext context) {
             _context = context;
         }
-        public async Task AddNotification(NotificationModel notification)
-        {
+        public async Task AddNotification(NotificationModel notification) {
             _context.Notifications.Add(notification);
             await _context.SaveChangesAsync(true);
         }
 
-        public async Task ClearAllNotifications(string username)
-        {
+        public async Task ClearAllNotifications(string username) {
             var notifications = await _context.Notifications.Where(n => n.Username == username).ToListAsync();
 
-            foreach (NotificationModel n in notifications)
-            {
-                 _context.Notifications.Remove(n);
+            foreach (NotificationModel n in notifications) {
+                _context.Notifications.Remove(n);
             }
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteNotification(int id)
-        {
+        public async Task DeleteNotification(int id) {
             var notification = await _context.Notifications.FindAsync(id);
 
             _context.Notifications.Remove(notification);
@@ -46,18 +41,15 @@ namespace DistributionSmartEnergyBackApp.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<NotificationModel> GetNotification(int id)
-        {
+        public async Task<NotificationModel> GetNotification(int id) {
             return await _context.Notifications.FindAsync(id);
         }
 
-        public async Task<IEnumerable<NotificationModel>> GetNotifications()
-        {
+        public async Task<IEnumerable<NotificationModel>> GetNotifications() {
             return await _context.Notifications.ToListAsync();
         }
 
-        public async Task<IEnumerable<NotificationModel>> GetUnreadNotif(string username)
-        {
+        public async Task<IEnumerable<NotificationModel>> GetUnreadNotif(string username) {
             var currentSettings = await _context.Settings.OrderBy(x => x.Id).LastOrDefaultAsync();
             List<string> approvedNotifications = new List<string>();
             if (currentSettings.ErrorCheck == true)
@@ -72,8 +64,7 @@ namespace DistributionSmartEnergyBackApp.Services
             return await _context.Notifications.Where(n => (n.Username == username) && (n.Seen == false) && (approvedNotifications.Contains(n.Type))).ToListAsync();
         }
 
-        public async Task<IEnumerable<NotificationModel>> GetUserNotif(string username)
-        {
+        public async Task<IEnumerable<NotificationModel>> GetUserNotif(string username) {
             var currentSettings = await _context.Settings.OrderBy(x => x.Id).LastOrDefaultAsync();
             List<string> approvedNotifications = new List<string>();
             if (currentSettings.ErrorCheck == true)
@@ -85,15 +76,13 @@ namespace DistributionSmartEnergyBackApp.Services
             if (currentSettings.WarningCheck == true)
                 approvedNotifications.Add("Warning");
 
-            return  await _context.Notifications.Where(n => (n.Username == username) && (approvedNotifications.Contains(n.Type))).ToListAsync();                  
+            return await _context.Notifications.Where(n => (n.Username == username) && (approvedNotifications.Contains(n.Type))).ToListAsync();
         }
 
-        public async Task MarkAsSeen(string username)
-        {
+        public async Task MarkAsSeen(string username) {
             var notifications = await _context.Notifications.Where(n => n.Username == username).ToListAsync();
 
-            foreach(NotificationModel n in notifications)
-            {
+            foreach (NotificationModel n in notifications) {
                 n.Seen = true;
                 _context.Notifications.Update(n);
             }

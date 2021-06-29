@@ -18,7 +18,8 @@ export class IncidentService {
     }
 
     getMineBasicInfo() {
-        return this.http.get('http://localhost:24885/api/Incident/GetMyBasicInfo');
+        let username: string = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
+        return this.http.get('http://localhost:24885/api/Incident/GetMyBasicInfo?username='+username);
     }
 
     getBasicInformation(id) {

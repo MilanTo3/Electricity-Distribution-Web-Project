@@ -54,9 +54,12 @@ export class RoleCheckerService {
 
   getRolesFromIndices(indexes: number[]) {
     let requiredRoles: string[] = [];
-    for (var i = 0; i < indexes.length; i++)
-      requiredRoles.push(this.roles[i]);
-
+    for (var i = 0; i < indexes.length; i++){
+      if(this.roles.length > indexes[i]){
+        requiredRoles.push(this.roles[i]);
+      }
+    }
+    
     return requiredRoles;
   }
 

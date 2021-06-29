@@ -21,7 +21,8 @@ export class WorkPlanServiceService {
     return this.http.get('http://localhost:24885/api/WorkPlan/GetAllBasicInfo');
   }
   getMineBasicInfo(){
-    return this.http.get('http://localhost:24885/api/WorkPlan/GetMyBasicInfo');
+    let username: string = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
+    return this.http.get('http://localhost:24885/api/WorkPlan/GetMyBasicInfo?username='+username);
 
   }
   getBasicInformation(id) {

@@ -312,3 +312,5 @@ C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\Distr
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.pdb
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.genruntimeconfig.cache
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csprojAssemblyReference.cache
+E:\projectMicroservices\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+E:\projectMicroservices\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll

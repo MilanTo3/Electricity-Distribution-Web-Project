@@ -25,10 +25,8 @@ namespace DistributionSmartEnergyBackApp.Controllers
     {
 
         private readonly IWorkRequest _context;
-        private UserManager<ApplicationUser> _userManager;
 
-        public WorkRequestController(UserManager<ApplicationUser> userManager, IWorkRequest context) {
-            _userManager = userManager;
+        public WorkRequestController(IWorkRequest context) {
             _context = context;
         }
 
@@ -221,10 +219,9 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpGet]
         [Route("getMyBasicInfo")]
-        public async Task<IEnumerable<BasicInformationWR>> GetMyBasicInformations() {
-            string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(userId);
-            return await _context.GetMyBasicInfo(user.UserName);
+        public async Task<IEnumerable<BasicInformationWR>> GetMyBasicInformations(string username) {
+            
+            return await _context.GetMyBasicInfo(username);
         }
 
         [HttpGet]

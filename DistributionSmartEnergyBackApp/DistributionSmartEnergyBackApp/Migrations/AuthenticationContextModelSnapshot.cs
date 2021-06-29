@@ -46,22 +46,6 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.ToTable("Calls");
                 });
 
-            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.ConsumerModel", b =>
-                {
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Priority")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Username");
-
-                    b.ToTable("Consumers");
-                });
-
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.EntityModels.DeviceModel", b =>
                 {
                     b.Property<long>("Id")
@@ -540,27 +524,6 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.TeamModel", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("dateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("incidentId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DispatchTeams");
-                });
-
             modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.WorkPlanModel", b =>
                 {
                     b.Property<long>("Id")
@@ -648,10 +611,6 @@ namespace DistributionSmartEnergyBackApp.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -703,8 +662,6 @@ namespace DistributionSmartEnergyBackApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -785,43 +742,6 @@ namespace DistributionSmartEnergyBackApp.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("DistributionSmartEnergyBackApp.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FilePicture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lastname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RegState")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleRequest")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Teams")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserType")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

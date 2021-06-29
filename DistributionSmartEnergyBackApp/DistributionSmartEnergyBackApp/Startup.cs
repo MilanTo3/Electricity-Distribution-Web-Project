@@ -43,18 +43,14 @@ namespace DistributionSmartEnergyBackApp
             //add services here
             services.AddScoped<ILocation, LocationService>();
             services.AddScoped<IWorkRequest, WorkRequestService>();
-            services.AddScoped<ITeam, TeamService>();
             services.AddScoped<IWorkPlan, WorkPlanService>();
             services.AddScoped<ICall, CallService>();
             services.AddScoped<IDevice, DeviceService>();
             services.AddScoped<ISettings, SettingsService>();
-            services.AddScoped<IConsumer, ConsumerService>();
             services.AddScoped<INotification, NotificationService>();
             services.AddScoped<ISafetyDoc, SafetyDocService>();
             services.AddScoped<IIncident, IncidentService>();
 
-
-            services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
 
             services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
@@ -83,28 +79,6 @@ namespace DistributionSmartEnergyBackApp
 
 
             services.AddSignalR();
-
-
-            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"]);
-
-            services.AddAuthentication(x => {
-                //x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                //x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x => {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = false;
-                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateAudience = false,
-                    ValidateIssuer = false,
-                };
-            });
-
-            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
-
-
 
         }
 

@@ -23,11 +23,9 @@ namespace DistributionSmartEnergyBackApp.Controllers
     {
 
         private readonly ISafetyDoc _context;
-        private UserManager<ApplicationUser> _userManager;
 
-        public SafetyDocsController(UserManager<ApplicationUser> userManager, ISafetyDoc context)
+        public SafetyDocsController(ISafetyDoc context)
         {
-            _userManager = userManager;
             _context = context;
         }
 
@@ -67,11 +65,9 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
         [HttpGet]
         [Route("GetMyBasicInfo")]
-        public async Task<IEnumerable<BasicInformationSD>> GetMyBasicInformationController()
+        public async Task<IEnumerable<BasicInformationSD>> GetMyBasicInformationController(string username)
         {
-            string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(userId);
-            return await _context.GetMyBasicInfo(user.UserName);
+            return await _context.GetMyBasicInfo(username);
         }
 
         [HttpGet]
