@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistributionSmartEnergyUser
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DocumentsMicroservice", "DocumentsMicroservice", "{C67D5C15-7D84-44D5-8AFA-E2809CED79A2}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{4231A309-12B4-4940-8BA5-DAE1F2F49D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4231A309-12B4-4940-8BA5-DAE1F2F49D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4231A309-12B4-4940-8BA5-DAE1F2F49D4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

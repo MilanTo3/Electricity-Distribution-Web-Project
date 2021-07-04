@@ -1,0 +1,57 @@
+version: '3.4'
+
+services:
+  distributionsmartenergybackapp:
+    image: distributionsmartenergybackapp:dev
+    container_name: DistributionSmartEnergyBackApp
+    build:
+      target: base
+      labels:
+        com.microsoft.created-by: "visual-studio"
+        com.microsoft.visual-studio.project-name: "DistributionSmartEnergyBackApp"
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_distributionsmartenergybackapp$
+    volumes:
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp:/app
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
+#$nuget_volume_mapping_distributionsmartenergybackapp$
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_distributionsmartenergybackapp$ \"/app/bin/Debug/netcoreapp3.1/DistributionSmartEnergyBackApp.dll\""
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
+    tty: true
+  distributionsmartenergyusermicroservice:
+    image: distributionsmartenergyusermicroservice:dev
+    container_name: DistributionSmartEnergyUserMicroservice
+    build:
+      target: base
+      labels:
+        com.microsoft.created-by: "visual-studio"
+        com.microsoft.visual-studio.project-name: "DistributionSmartEnergyUserMicroservice"
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_distributionsmartenergyusermicroservice$
+    volumes:
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice:/app
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
+#$nuget_volume_mapping_distributionsmartenergyusermicroservice$
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_distributionsmartenergyusermicroservice$ \"/app/bin/Debug/netcoreapp3.1/DistributionSmartEnergyUserMicroservice.dll\""
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
+    tty: true

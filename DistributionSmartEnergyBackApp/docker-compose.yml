@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Password1!"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+
+  distributionsmartenergybackapp:
+    image: ${DOCKER_REGISTRY-}distributionsmartenergybackapp
+    build:
+      context: .
+      dockerfile: DistributionSmartEnergyBackApp/Dockerfile
+    environment:
+      DatabaseServer: "mssql-server"
+      DatabasePort: "1433"
+      DatabaseUser: "SA"
+      DatabasePassword: "Password1!"
+      DatabaseName: "DocumentDB"
+    ports:
+      - "24885:80"
+
+  distributionsmartenergyusermicroservice:
+    image: ${DOCKER_REGISTRY-}distributionsmartenergyusermicroservice
+    build:
+      context: .
+      dockerfile: DistributionSmartEnergyUserMicroservice/Dockerfile
+    environment:
+      DatabaseServer: "mssql-server"
+      DatabasePort: "1433"
+      DatabaseUser: "SA"
+      DatabasePassword: "Password1!"
+      DatabaseName: "UserDB"
+    ports:
+      - "28543:80"
+

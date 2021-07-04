@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  distributionsmartenergybackapp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+  distributionsmartenergyusermicroservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

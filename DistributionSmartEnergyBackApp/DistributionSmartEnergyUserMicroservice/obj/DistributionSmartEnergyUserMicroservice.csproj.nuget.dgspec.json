@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\projectMicroservices\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj": {}
+    "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj": {}
   },
   "projects": {
-    "E:\\projectMicroservices\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj": {
+    "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\projectMicroservices\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj",
+        "projectUniqueName": "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj",
         "projectName": "DistributionSmartEnergyUserMicroservice",
-        "projectPath": "E:\\projectMicroservices\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj",
-        "packagesPath": "C:\\Users\\TOMIN\\.nuget\\packages\\",
-        "outputPath": "E:\\projectMicroservices\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\obj\\",
+        "projectPath": "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\DistributionSmartEnergyUserMicroservice.csproj",
+        "packagesPath": "C:\\Users\\Tamara\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tamara\\Desktop\\GitHub\\Web2-Project\\DistributionSmartEnergyBackApp\\DistributionSmartEnergyUserMicroservice\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\TOMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tamara\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -145,7 +145,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

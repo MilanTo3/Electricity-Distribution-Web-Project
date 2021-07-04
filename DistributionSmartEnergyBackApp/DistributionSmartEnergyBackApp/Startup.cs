@@ -38,8 +38,16 @@ namespace DistributionSmartEnergyBackApp
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers().AddNewtonsoftJson();
 
-            services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
-            
+            //services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+
+            var server = Configuration["DatabaseServer"] ?? "mssql-server";
+            var port = Configuration["DatabasePort"] ?? "1433"; // Default SQL Server port
+            var user = Configuration["DatabaseUser"] ?? "SA"; // Warning do not use the SA account
+            var password = Configuration["DatabasePassword"] ?? "Password1!";
+            var database = Configuration["DatabaseName"] ?? "DocumentDB";
+
+            services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer($"Server={server}, {port};Initial Catalog={database};User ID={user};Password={password}"));
+
             //add services here
             services.AddScoped<ILocation, LocationService>();
             services.AddScoped<IWorkRequest, WorkRequestService>();
@@ -84,6 +92,9 @@ namespace DistributionSmartEnergyBackApp
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+
+            DatabaseManagementService.MigrationInitialization(app);
+
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
