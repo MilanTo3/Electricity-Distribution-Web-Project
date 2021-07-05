@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DocumentsMicroservice", "Do
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API gateway", "API gateway", "{13F9E20E-F7CA-4FDE-8A29-F5DBB7ECDC7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API gateway", "..\API gateway\API gateway.csproj", "{34416FF7-F48B-4D80-B567-5A6E7404498E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEEEB338-AB61-4FD7-841B-2D8267B6AEE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34416FF7-F48B-4D80-B567-5A6E7404498E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34416FF7-F48B-4D80-B567-5A6E7404498E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34416FF7-F48B-4D80-B567-5A6E7404498E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34416FF7-F48B-4D80-B567-5A6E7404498E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8ABC546F-AB18-4FD5-A2D6-2B96E066697D} = {C67D5C15-7D84-44D5-8AFA-E2809CED79A2}
 		{4231A309-12B4-4940-8BA5-DAE1F2F49D4A} = {7FFB90A0-D3A5-40B5-8417-7DAC60480355}
+		{34416FF7-F48B-4D80-B567-5A6E7404498E} = {13F9E20E-F7CA-4FDE-8A29-F5DBB7ECDC7C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA89F90-24B0-472B-B646-C16F64097224}

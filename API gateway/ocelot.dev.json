@@ -1,0 +1,32 @@
+{
+	"GlobalConfiguration": {
+		"BaseUrl": "https://localhost:4335"
+	},
+	"Routes": [
+		{
+			"UpstreamPathTemplate": "/DocApp/{everything}", //Upstream Api request routing rules
+			"DownstreamPathTemplate": "/api/{everything}", //The gateway forwards to downstream routing rules
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //Upstream and downstream support request method
+			"DownstreamScheme": "http", //Downstream service configuration
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost", //Downstream address
+					"Port": 24885 //Downstream port number
+				}
+			]
+		},
+		// second api
+		{
+			"UpstreamPathTemplate": "/UserApp/{everything}",
+			"DownstreamPathTemplate": "/api/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 28543
+				}
+			]
+		}
+	]
+}
