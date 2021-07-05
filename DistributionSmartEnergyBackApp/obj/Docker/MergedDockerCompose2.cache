@@ -3,80 +3,34 @@ services:
     build:
       context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: DistributionSmartEnergyBackApp/Dockerfile
-      labels:
-        com.microsoft.created-by: visual-studio
-        com.microsoft.visual-studio.project-name: DistributionSmartEnergyBackApp
-      target: base
-    container_name: DistributionSmartEnergyBackApp
-    entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
-      DOTNET_USE_POLLING_FILE_WATCHER: '1'
       DatabaseName: DocumentDB
       DatabasePassword: Password1!
       DatabasePort: '1433'
       DatabaseServer: mssql-server
       DatabaseUser: SA
-      NUGET_FALLBACK_PACKAGES: ''
-    image: distributionsmartenergybackapp:dev
-    labels:
-      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/netcoreapp3.1/DistributionSmartEnergyBackApp.dll"'
-      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
-        dotnet); then kill $$PID; fi"
-      com.microsoft.visualstudio.debuggee.program: dotnet
-      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    image: distributionsmartenergybackapp
     ports:
     - published: 24885
       target: 80
     - target: 80
-    tty: true
-    volumes:
-    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp:/app:rw
-    - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
-    - C:\Users\wishm\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
-    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
-    - C:\Users\wishm\.nuget\packages:/root/.nuget/packages:ro
-    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src:rw
   distributionsmartenergyusermicroservice:
     build:
       context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: DistributionSmartEnergyUserMicroservice/Dockerfile
-      labels:
-        com.microsoft.created-by: visual-studio
-        com.microsoft.visual-studio.project-name: DistributionSmartEnergyUserMicroservice
-      target: base
-    container_name: DistributionSmartEnergyUserMicroservice
-    entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
-      DOTNET_USE_POLLING_FILE_WATCHER: '1'
       DatabaseName: UserDB
       DatabasePassword: Password1!
       DatabasePort: '1433'
       DatabaseServer: mssql-server
       DatabaseUser: SA
-      NUGET_FALLBACK_PACKAGES: ''
-    image: distributionsmartenergyusermicroservice:dev
-    labels:
-      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/netcoreapp3.1/DistributionSmartEnergyUserMicroservice.dll"'
-      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
-        dotnet); then kill $$PID; fi"
-      com.microsoft.visualstudio.debuggee.program: dotnet
-      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    image: distributionsmartenergyusermicroservice
     ports:
     - published: 28543
       target: 80
     - target: 80
-    tty: true
-    volumes:
-    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice:/app:rw
-    - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
-    - C:\Users\wishm\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
-    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
-    - C:\Users\wishm\.nuget\packages:/root/.nuget/packages:ro
-    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src:rw
   mssql-server:
     environment:
       ACCEPT_EULA: "Y"
@@ -86,4 +40,13 @@ services:
     ports:
     - published: 1433
       target: 1433
+  notificationmicroservice:
+    build:
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      dockerfile: NotificationMicroservice/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: notificationmicroservice
+    ports:
+    - target: 80
 version: '3.4'

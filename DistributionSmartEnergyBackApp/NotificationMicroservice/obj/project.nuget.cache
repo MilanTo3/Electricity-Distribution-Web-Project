@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "o2zZIZy3vZqs0oGSmo+JciHhcs9/zPTtEIArFaao/FQs24qM+FBeSjAhvBqh3SVPXZTQnoi7WZo48G9hrSE5GQ==",
+  "success": true,
+  "projectFilePath": "E:\\clonedProject\\Web2-Project\\DistributionSmartEnergyBackApp\\NotificationMicroservice\\NotificationMicroservice.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wishm\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.14\\microsoft.visualstudio.azure.containers.tools.targets.1.10.14.nupkg.sha512"
+  ],
+  "logs": []
+}

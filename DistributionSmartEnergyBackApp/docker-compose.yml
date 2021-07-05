@@ -38,3 +38,16 @@ services:
     ports:
       - "28543:80"
 
+  notificationmicroservice:
+    image: ${DOCKER_REGISTRY-}notificationmicroservice
+    build:
+      context: .
+      dockerfile: NotificationMicroservice/Dockerfile
+    environment:
+      DatabaseServer: "mssql-server"
+      DatabasePort: "1433"
+      DatabaseUser: "SA"
+      DatabasePassword: "Password1!"
+      DatabaseName: "NotificationDB"
+    ports:
+      - "35827:80"
