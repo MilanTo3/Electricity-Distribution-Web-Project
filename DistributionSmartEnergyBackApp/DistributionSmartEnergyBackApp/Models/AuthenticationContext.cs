@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DistributionSmartEnergyBackApp.Models
 {
-    public class AuthenticationContext : IdentityDbContext
+    public class AuthenticationContext : DbContext
     {
 
         public AuthenticationContext(DbContextOptions options) : base(options) {
@@ -33,7 +33,5 @@ namespace DistributionSmartEnergyBackApp.Models
         public DbSet<BasicInformationIN> BasicInformationIN { get; set; }
         public DbSet<Resolution> ResolutionIN { get; set; }
         public DbSet<DeviceModel> Devices { get; set; }
-        public DbSet<SettingsModel> Settings { get; set; }
-        public DbSet<NotificationModel> Notifications { get; set; }
     }
 }

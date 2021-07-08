@@ -1,4 +1,3 @@
-using DistributionSmartEnergyUserMicroservice.Hubs;
 using DistributionSmartEnergyUserMicroservice.Models;
 using DistributionSmartEnergyUserMicroservice.Models.Interfaces;
 using DistributionSmartEnergyUserMicroservice.Services;
@@ -50,8 +49,6 @@ namespace DistributionSmartEnergyUserMicroservice
 
             services.AddScoped<ITeam, TeamService>();
             services.AddScoped<IConsumer, ConsumerService>();
-            services.AddScoped<ISettings, SettingsService>();
-            services.AddScoped<INotification, NotificationService>();
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
 
             services.Configure<FormOptions>(o => {
@@ -123,7 +120,6 @@ namespace DistributionSmartEnergyUserMicroservice
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
-                endpoints.MapHub<NotificationHub>("/notifikacije");
 
             });
         }

@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using MailKit.Net.Smtp;
-
 using static DistributionSmartEnergyUserMicroservice.Models.ApplicationUser;
 
 namespace DistributionSmartEnergyUserMicroservice.Controllers

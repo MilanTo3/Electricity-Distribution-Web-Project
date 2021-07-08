@@ -1,6 +1,6 @@
-﻿using DistributionSmartEnergyBackApp.Models;
-using DistributionSmartEnergyBackApp.Models.EntityModels;
-using DistributionSmartEnergyBackApp.Models.Interfaces;
+﻿using NotificationMicroservice.Models;
+using NotificationMicroservice.Models.EntityModels;
+using NotificationMicroservice.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Asn1;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace DistributionSmartEnergyBackApp.Services
+namespace NotificationMicroservice.Services
 {
     public class NotificationService : INotification
     {

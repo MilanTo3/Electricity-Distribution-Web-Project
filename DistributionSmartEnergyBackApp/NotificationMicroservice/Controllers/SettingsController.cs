@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DistributionSmartEnergyUserMicroservice.Models.EntityModels;
-using DistributionSmartEnergyUserMicroservice.Models.Interfaces;
+using NotificationMicroservice.Models.EntityModels;
+using NotificationMicroservice.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DistributionSmartEnergyUserMicroservice.Controllers
+namespace NotificationMicroservice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

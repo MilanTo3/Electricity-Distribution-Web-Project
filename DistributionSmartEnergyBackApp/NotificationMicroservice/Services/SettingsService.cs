@@ -1,6 +1,6 @@
-﻿using DistributionSmartEnergyUserMicroservice.Models;
-using DistributionSmartEnergyUserMicroservice.Models.EntityModels;
-using DistributionSmartEnergyUserMicroservice.Models.Interfaces;
+﻿using NotificationMicroservice.Models;
+using NotificationMicroservice.Models.EntityModels;
+using NotificationMicroservice.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DistributionSmartEnergyUserMicroservice.Services
+namespace NotificationMicroservice.Services
 {
     public class SettingsService : ISettings
     {

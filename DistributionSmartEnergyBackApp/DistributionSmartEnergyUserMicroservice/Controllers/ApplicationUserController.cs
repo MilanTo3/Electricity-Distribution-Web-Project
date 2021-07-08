@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 using static DistributionSmartEnergyUserMicroservice.Models.ApplicationUser;
 using System.Drawing;
 using System.Drawing.Imaging;
-using DistributionSmartEnergyUserMicroservice.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using DistributionSmartEnergyUserMicroservice.Models.Interfaces;
 using DistributionSmartEnergyUserMicroservice.EntityModels;
@@ -287,12 +286,12 @@ namespace DistributionSmartEnergyUserMicroservice.Controllers
                     Seen = false,
                     Content = "Role request has been reviewed."
                 };
-                _context.Notifications.Add(notification);
+                //_context.Notifications.Add(notification);
 
                 try
                 {
                     await _context.SaveChangesAsync();
-                    NotificationHub.Notify(notification);
+                    //NotificationHub.Notify(notification);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -354,12 +353,12 @@ namespace DistributionSmartEnergyUserMicroservice.Controllers
                     Seen = false,
                     Content = "Profile has been reviewed."
                 };
-                _context.Notifications.Add(notification);
+                //_context.Notifications.Add(notification);
 
                 try
                 {
                     await _context.SaveChangesAsync();
-                    NotificationHub.Notify(notification);
+                    //NotificationHub.Notify(notification);
                 }
                 catch (DbUpdateConcurrencyException)
                 {

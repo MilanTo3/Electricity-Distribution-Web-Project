@@ -16,7 +16,5 @@ namespace DistributionSmartEnergyUserMicroservice.Models
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<ConsumerModel> Consumers { get; set; }
         public DbSet<TeamModel> DispatchTeams { get; set; }
-        public DbSet<SettingsModel> Settings { get; set; }
-        public DbSet<NotificationModel> Notifications { get; set; }
     }
 }

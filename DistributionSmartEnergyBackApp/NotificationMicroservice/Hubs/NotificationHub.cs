@@ -1,5 +1,5 @@
-﻿using DistributionSmartEnergyBackApp.Models.EntityModels;
-using DistributionSmartEnergyBackApp.Models.Interfaces;
+﻿using NotificationMicroservice.Models.EntityModels;
+using NotificationMicroservice.Models.Interfaces;
 using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace DistributionSmartEnergyBackApp.Hubs
+namespace NotificationMicroservice.Hubs
 {
 
     public  class NotificationHub : Hub

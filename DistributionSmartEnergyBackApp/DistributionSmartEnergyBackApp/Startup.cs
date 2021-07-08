@@ -22,7 +22,6 @@ using System.IO;
 using Microsoft.AspNetCore.Http.Features;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using DistributionSmartEnergyBackApp.Services;
-using DistributionSmartEnergyBackApp.Hubs;
 
 namespace DistributionSmartEnergyBackApp
 {
@@ -54,8 +53,6 @@ namespace DistributionSmartEnergyBackApp
             services.AddScoped<IWorkPlan, WorkPlanService>();
             services.AddScoped<ICall, CallService>();
             services.AddScoped<IDevice, DeviceService>();
-            services.AddScoped<ISettings, SettingsService>();
-            services.AddScoped<INotification, NotificationService>();
             services.AddScoped<ISafetyDoc, SafetyDocService>();
             services.AddScoped<IIncident, IncidentService>();
 
@@ -115,8 +112,6 @@ namespace DistributionSmartEnergyBackApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<NotificationHub>("/notifikacije");
-
             });
 
         }

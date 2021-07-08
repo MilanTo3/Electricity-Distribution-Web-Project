@@ -1,5 +1,4 @@
-﻿using DistributionSmartEnergyBackApp.Hubs;
-using DistributionSmartEnergyBackApp.Models;
+﻿using DistributionSmartEnergyBackApp.Models;
 using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument;
@@ -100,13 +99,13 @@ namespace DistributionSmartEnergyBackApp.Services
                 Seen = false,
                 Content = "Your safety document " + info.DocumentId + " has been changed."
             };
-            _context.Notifications.Add(notification);
+            //_context.Notifications.Add(notification);
 
             try
             {
                 _context.BasicInformationSD.Update(info);
                 await Save();
-                NotificationHub.Notify(notification);
+                //NotificationHub.Notify(notification);
             }
             catch (Exception)
             {
@@ -133,14 +132,14 @@ namespace DistributionSmartEnergyBackApp.Services
                     Seen = false,
                     Content = "Your safety document " + info.DocumentId + " has been changed."
                 };
-                _context.Notifications.Add(notification);
+                //_context.Notifications.Add(notification);
 
                 try
                 {
 
                     _context.CheckListSD.Update(info);
                     await Save();
-                    NotificationHub.Notify(notification);
+                    //NotificationHub.Notify(notification);
                 }
                 catch (Exception)
                 {
@@ -170,14 +169,14 @@ namespace DistributionSmartEnergyBackApp.Services
                 Seen = false,
                 //Content = "Status of your work request " + basicInfo.DocumentId + " has been updated to " + basicInfo.Status
             };
-            _context.Notifications.Add(notification);
+            //_context.Notifications.Add(notification);
 
             try
             {
 
                 _context.BasicInformationSD.Update(basicInfo);
                 await _context.SaveChangesAsync();
-                NotificationHub.Notify(notification);
+                //NotificationHub.Notify(notification);
             }
             catch (Exception)
             {

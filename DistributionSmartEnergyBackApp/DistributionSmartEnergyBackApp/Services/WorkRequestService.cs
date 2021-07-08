@@ -1,5 +1,4 @@
-﻿using DistributionSmartEnergyBackApp.Hubs;
-using DistributionSmartEnergyBackApp.Models;
+﻿using DistributionSmartEnergyBackApp.Models;
 using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
@@ -71,14 +70,14 @@ namespace DistributionSmartEnergyBackApp.Services
                     Seen = false,
                     Content = "Your work request " + info.DocumentId + " has been changed."
                 };
-                _context.Notifications.Add(notification);
+                //_context.Notifications.Add(notification);
 
                 try
                 {
 
                     _context.BasicInformationsWR.Update(info);
                     await Save(); 
-                    NotificationHub.Notify(notification);
+                    //NotificationHub.Notify(notification);
                 }
                 catch (Exception)
                 {
@@ -108,14 +107,14 @@ namespace DistributionSmartEnergyBackApp.Services
                 Seen = false,
                 Content = "Status of your work request " + basicInfo.DocumentId + " has been updated to " + basicInfo.Status
             };
-            _context.Notifications.Add(notification);
+            //_context.Notifications.Add(notification);
 
             try
             {
 
                 _context.BasicInformationsWR.Update(basicInfo);
                 await _context.SaveChangesAsync();
-                NotificationHub.Notify(notification);
+                //NotificationHub.Notify(notification);
             }
             catch (Exception)
             {
