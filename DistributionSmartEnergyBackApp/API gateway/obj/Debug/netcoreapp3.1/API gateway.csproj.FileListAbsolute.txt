@@ -1,0 +1,33 @@
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\appsettings.Development.json
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\appsettings.json
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\ocelot.dev.json
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\ocelot.json
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\API gateway.exe
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\API gateway.deps.json
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\API gateway.runtimeconfig.json
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\API gateway.runtimeconfig.dev.json
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\API gateway.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\API gateway.pdb
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\FluentValidation.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.MiddlewareAnalysis.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DiagnosticAdapter.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+E:\clonedProject\Web2-Project\API gateway\bin\Debug\netcoreapp3.1\Ocelot.dll
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.csproj.AssemblyReference.cache
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.AssemblyInfoInputs.cache
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.AssemblyInfo.cs
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.csproj.CoreCompileInputs.cache
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.MvcApplicationPartsAssemblyInfo.cs
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.MvcApplicationPartsAssemblyInfo.cache
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\staticwebassets\API gateway.StaticWebAssets.Manifest.cache
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\staticwebassets\API gateway.StaticWebAssets.xml
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\scopedcss\bundle\API gateway.styles.css
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.RazorTargetAssemblyInfo.cache
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.csproj.CopyComplete
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.dll
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.pdb
+E:\clonedProject\Web2-Project\API gateway\obj\Debug\netcoreapp3.1\API gateway.genruntimeconfig.cache

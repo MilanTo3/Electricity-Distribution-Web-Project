@@ -1,5 +1,11 @@
 version: '3.4'
 
+networks:
+  backNetwork:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+
 services:
   mssql-server:
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
@@ -9,6 +15,8 @@ services:
       MSSQL_PID: Express
     ports:
       - "1433:1433"
+    networks:
+      - backNetwork
 
   distributionsmartenergybackapp:
     image: ${DOCKER_REGISTRY-}distributionsmartenergybackapp
@@ -23,6 +31,8 @@ services:
       DatabaseName: "DocumentDB"
     ports:
       - "24885:80"
+    networks:
+      - backNetwork
 
   distributionsmartenergyusermicroservice:
     image: ${DOCKER_REGISTRY-}distributionsmartenergyusermicroservice
@@ -37,6 +47,8 @@ services:
       DatabaseName: "UserDB"
     ports:
       - "28543:80"
+    networks:
+      - backNetwork
 
   notificationmicroservice:
     image: ${DOCKER_REGISTRY-}notificationmicroservice
@@ -51,3 +63,15 @@ services:
       DatabaseName: "NotificationDB"
     ports:
       - "35827:80"
+    networks:
+      - backNetwork
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: API gateway/Dockerfile
+    ports:
+      - "24757:80"
+    networks:
+      - backNetwork

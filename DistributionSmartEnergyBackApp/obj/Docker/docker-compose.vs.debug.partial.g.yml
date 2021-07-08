@@ -1,6 +1,33 @@
 version: '3.4'
 
 services:
+  apigateway:
+    image: apigateway:dev
+    container_name: API_gateway
+    build:
+      target: base
+      labels:
+        com.microsoft.created-by: "visual-studio"
+        com.microsoft.visual-studio.project-name: "API gateway"
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_apigateway$
+    volumes:
+      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\API gateway:/app
+      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+#$nuget_volume_mapping_apigateway$
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_apigateway$ \"/app/bin/Debug/netcoreapp3.1/API gateway.dll\""
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
+    tty: true
   distributionsmartenergybackapp:
     image: distributionsmartenergybackapp:dev
     container_name: DistributionSmartEnergyBackApp
@@ -28,6 +55,7 @@ services:
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
+
   distributionsmartenergyusermicroservice:
     image: distributionsmartenergyusermicroservice:dev
     container_name: DistributionSmartEnergyUserMicroservice
@@ -52,6 +80,34 @@ services:
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
       #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_distributionsmartenergyusermicroservice$ \"/app/bin/Debug/netcoreapp3.1/DistributionSmartEnergyUserMicroservice.dll\""
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
+    tty: true
+
+  notificationmicroservice:
+    image: notificationmicroservice:dev
+    container_name: NotificationMicroservice
+    build:
+      target: base
+      labels:
+        com.microsoft.created-by: "visual-studio"
+        com.microsoft.visual-studio.project-name: "NotificationMicroservice"
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_notificationmicroservice$
+    volumes:
+      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\NotificationMicroservice:/app
+      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+#$nuget_volume_mapping_notificationmicroservice$
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_notificationmicroservice$ \"/app/bin/Debug/netcoreapp3.1/NotificationMicroservice.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true

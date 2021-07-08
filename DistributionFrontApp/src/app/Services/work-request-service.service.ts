@@ -11,47 +11,47 @@ export class WorkRequestServiceService {
 
   postWorkRequest(formdata){
     
-    return this.http.post('http://localhost:24885/api/WorkRequest/postRequest', formdata);
+    return this.http.post('http://localhost:24757/DocApp/WorkRequest/postRequest', formdata);
   }
 
   getAllBasicInfo(){
     
-    return this.http.get('http://localhost:24885/api/WorkRequest/getAllBasicInfo');
+    return this.http.get('http://localhost:24757/DocApp/WorkRequest/getAllBasicInfo');
   }
   getMineBasicInfo(){
     let username: string = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
-    return this.http.get('http://localhost:24885/api/WorkRequest/getMyBasicInfo?username='+username);
+    return this.http.get('http://localhost:24757/DocApp/WorkRequest/getMyBasicInfo?username='+username);
 
   }
   getBasicInformation(id) {
-    return this.http.get('http://localhost:24885/api/WorkRequest/getBasicInfo?id='+id);
+    return this.http.get('http://localhost:24757/DocApp/WorkRequest/getBasicInfo?id='+id);
   }
 
   getHistoryState(id) {
-    return this.http.get('http://localhost:24885/api/WorkRequest/getHistory?id='+id);
+    return this.http.get('http://localhost:24757/DocApp/WorkRequest/getHistory?id='+id);
   }
 
   getAttachments(id){
-    return this.http.get('http://localhost:24885/api/WorkRequest/getAttachments?id='+id);
+    return this.http.get('http://localhost:24757/DocApp/WorkRequest/getAttachments?id='+id);
   }
 
   updateBasicInfo(formdata){
-    return this.http.post('http://localhost:24885/api/WorkRequest/updateBasicInfo', formdata);
+    return this.http.post('http://localhost:24757/DocApp/WorkRequest/updateBasicInfo', formdata);
   }
 
   updateHistoryState(formdata: HistoryStateChange[], wrId){
     formdata.forEach(x => x.documentId = wrId);
-    return this.http.post('http://localhost:24885/api/WorkRequest/updateHistory', formdata);
+    return this.http.post('http://localhost:24757/DocApp/WorkRequest/updateHistory', formdata);
   }
 
   updateAttachments(formdata){
-    return this.http.post('http://localhost:24885/api/WorkRequest/UpdateAttachments', formdata);
+    return this.http.post('http://localhost:24757/DocApp/WorkRequest/UpdateAttachments', formdata);
   }
 
   getStatus(idDoc){
-    return this.http.get('http://localhost:24885/api/WorkRequest/getDocStatus?id='+idDoc);
+    return this.http.get('http://localhost:24757/DocApp/WorkRequest/getDocStatus?id='+idDoc);
   }
   getCreator(idDoc){
-    return this.http.get('http://localhost:24885/api/WorkRequest/getCreator?id='+idDoc, {responseType:'text'});
+    return this.http.get('http://localhost:24757/DocApp/WorkRequest/getCreator?id='+idDoc, {responseType:'text'});
   }
 }

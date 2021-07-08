@@ -9,25 +9,25 @@ export class CallService {
   constructor(private http: HttpClient) { }
 
   AddNewCall(formdata){   
-    return this.http.post('http://localhost:24885/api/Call/AddNewCall', formdata);
+    return this.http.post('http://localhost:24757/DocApp/Call/AddNewCall', formdata);
   }
 
   GetCall(id) {
-    return this.http.get('http://localhost:24885/api/Call/GetCall?id='+id);
+    return this.http.get('http://localhost:24757/DocApp/Call/GetCall?id='+id);
   }
   DeleteCall(id){   
-    return this.http.post('http://localhost:24885/api/Call/DeleteCall', id );
+    return this.http.post('http://localhost:24757/DocApp/Call/DeleteCall', id );
   }
 
   UpdateCall(formdata) {
-    return this.http.put('http://localhost:24885/api/Call/UpdateCall', formdata);
+    return this.http.put('http://localhost:24757/DocApp/Call/UpdateCall', formdata);
   }
 
   GetCalls() {
-    return this.http.get('http://localhost:24885/api/Call/GetCalls');
+    return this.http.get('http://localhost:24757/DocApp/Call/GetCalls');
   }
 
   GetConnectedCalls(documentId) {
-    return this.http.get('http://localhost:24885/api/Call/GetConnectedCalls?documentId=' + documentId);
+    return this.http.get('http://localhost:24757/DocApp/Call/GetConnectedCalls?documentId=' + documentId);
   }
 }

@@ -12,56 +12,56 @@ export class SafetyDocumentServiceService {
 
   postSafetyDoc(formdata){
     
-    return this.http.post('http://localhost:24885/api/SafetyDocs/postDoc', formdata);
+    return this.http.post('http://localhost:24757/DocApp/SafetyDocs/postDoc', formdata);
   }
 
   updateBasicInfo(formdata){
-    return this.http.post('http://localhost:24885/api/SafetyDocs/updateBasicInfo', formdata);
+    return this.http.post('http://localhost:24757/DocApp/SafetyDocs/updateBasicInfo', formdata);
   }
 
   getBasicInformation(id) {
-    return this.http.get('http://localhost:24885/api/SafetyDocs/GetBasicInfo?id=' + id);
+    return this.http.get('http://localhost:24757/DocApp/SafetyDocs/GetBasicInfo?id=' + id);
   }
 
   getCreator(idDoc){
-    return this.http.get('http://localhost:24885/api/SafetyDocs/getCreator?id='+idDoc, {responseType:'text'});
+    return this.http.get('http://localhost:24757/DocApp/SafetyDocs/getCreator?id='+idDoc, {responseType:'text'});
   }
 
   getStatus(idDoc){
-    return this.http.get('http://localhost:24885/api/SafetyDocs/getDocStatus?id='+idDoc);
+    return this.http.get('http://localhost:24757/DocApp/SafetyDocs/getDocStatus?id='+idDoc);
   }
 
   updateHistoryState(formdata: HistoryStateChange[], sdId){
     formdata.forEach(x => x.documentId = sdId);
-    return this.http.post('http://localhost:24885/api/SafetyDocs/updateHistory', formdata);
+    return this.http.post('http://localhost:24757/DocApp/SafetyDocs/updateHistory', formdata);
   }
 
   getAllBasicInfo(){
     
-    return this.http.get('http://localhost:24885/api/SafetyDocs/GetAllBasicInfo');
+    return this.http.get('http://localhost:24757/DocApp/SafetyDocs/GetAllBasicInfo');
   }
 
   getMineBasicInfo(){
     let username: string = (JSON.parse(sessionStorage.getItem('loggedUser'))).username;
-    return this.http.get('http://localhost:24885/api/SafetyDocs/GetMyBasicInfo?username='+username);
+    return this.http.get('http://localhost:24757/DocApp/SafetyDocs/GetMyBasicInfo?username='+username);
   }
 
   getAttachments(id){
-    return this.http.get('http://localhost:24885/api/SafetyDocs/GetAttachments?id='+id);
+    return this.http.get('http://localhost:24757/DocApp/SafetyDocs/GetAttachments?id='+id);
   }
 
   getCheckList(id) {
-    return this.http.get('http://localhost:24885/api/SafetyDocs/GetCheckList?id='+id);
+    return this.http.get('http://localhost:24757/DocApp/SafetyDocs/GetCheckList?id='+id);
   }
 
   updateCheckList(formdata)
   {
 
-    return this.http.post('http://localhost:24885/api/SafetyDocs/updateCheckList', formdata);
+    return this.http.post('http://localhost:24757/DocApp/SafetyDocs/updateCheckList', formdata);
   }
 
   updateAttachments(formdata){
-    return this.http.post('http://localhost:24885/api/SafetyDocs/UpdateAttachments', formdata);
+    return this.http.post('http://localhost:24757/DocApp/SafetyDocs/UpdateAttachments', formdata);
   }
 
 }
