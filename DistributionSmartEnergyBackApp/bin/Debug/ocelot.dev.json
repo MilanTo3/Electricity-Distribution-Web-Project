@@ -1,0 +1,44 @@
+{
+	"GlobalConfiguration": {
+		"BaseUrl": "http://localhost:4335"
+	},
+	"Routes": [
+		{
+			"UpstreamPathTemplate": "/DocApp/{everything}", //Upstream Api request routing rules
+			"DownstreamPathTemplate": "/api/{everything}", //The gateway forwards to downstream routing rules
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //Upstream and downstream support request method
+			"DownstreamScheme": "http", //Downstream service configuration
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "distributionsmartenergybackapp", //Downstream address
+					"Port": 80 //Downstream port number
+				}
+			]
+		},
+		//second api
+		{
+			"UpstreamPathTemplate": "/UserApp/{everything}", //Upstream Api request routing rules
+			"DownstreamPathTemplate": "/api/{everything}", //The gateway forwards to downstream routing rules
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //Upstream and downstream support request method
+			"DownstreamScheme": "http", //Downstream service configuration
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "distributionsmartenergyusermicroservice", //Downstream address
+					"Port": 80 //Downstream port number
+				}
+			]
+		},
+		{
+			"UpstreamPathTemplate": "/NotifApp/{everything}", //Upstream Api request routing rules
+			"DownstreamPathTemplate": "/api/{everything}", //The gateway forwards to downstream routing rules
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //Upstream and downstream support request method
+			"DownstreamScheme": "http", //Downstream service configuration
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "notificationmicroservice", //Downstream address
+					"Port": 80 //Downstream port number
+				}
+			]
+		}
+	]
+}

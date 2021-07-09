@@ -45,3 +45,22 @@ C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\D
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\obj\Debug\docker-compose.dcprojAssemblyReference.cache
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Ocelot.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.DiagnosticAdapter.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\FluentValidation.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.MiddlewareAnalysis.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.pdb
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Dapr.Client.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Google.Protobuf.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Grpc.Core.Api.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.Text.Json.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Grpc.Net.Client.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.Net.Http.Json.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Grpc.Net.Common.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.exe
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\ocelot.dev.json
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\ocelot.json
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.exe
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.pdb

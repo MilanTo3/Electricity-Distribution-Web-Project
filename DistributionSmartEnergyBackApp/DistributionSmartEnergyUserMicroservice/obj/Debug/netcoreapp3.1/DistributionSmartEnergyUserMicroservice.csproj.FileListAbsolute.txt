@@ -155,3 +155,14 @@ C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\Distr
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\obj\Debug\netcoreapp3.1\DistributionSmartEnergyUserMicroservice.dll
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\obj\Debug\netcoreapp3.1\DistributionSmartEnergyUserMicroservice.pdb
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\obj\Debug\netcoreapp3.1\DistributionSmartEnergyUserMicroservice.genruntimeconfig.cache
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\obj\Debug\netcoreapp3.1\DistributionSmartEnergyUserMicroservice.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\Dapr.AspNetCore.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\Dapr.Client.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\Google.Api.CommonProtos.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\Grpc.Core.Api.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\Grpc.Net.Client.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\Grpc.Net.Common.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice\bin\Debug\netcoreapp3.1\System.Text.Json.dll

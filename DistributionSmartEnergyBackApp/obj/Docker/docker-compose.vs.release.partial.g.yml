@@ -8,7 +8,7 @@ services:
         com.microsoft.created-by: "visual-studio"
         com.microsoft.visual-studio.project-name: "API gateway"
     volumes:
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
@@ -27,7 +27,7 @@ services:
         com.microsoft.created-by: "visual-studio"
         com.microsoft.visual-studio.project-name: "DistributionSmartEnergyBackApp"
     volumes:
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
@@ -47,7 +47,7 @@ services:
         com.microsoft.created-by: "visual-studio"
         com.microsoft.visual-studio.project-name: "DistributionSmartEnergyUserMicroservice"
     volumes:
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
@@ -67,7 +67,7 @@ services:
         com.microsoft.created-by: "visual-studio"
         com.microsoft.visual-studio.project-name: "NotificationMicroservice"
     volumes:
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 

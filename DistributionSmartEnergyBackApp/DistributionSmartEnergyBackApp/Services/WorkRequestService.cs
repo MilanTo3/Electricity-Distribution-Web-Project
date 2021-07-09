@@ -1,4 +1,5 @@
-﻿using DistributionSmartEnergyBackApp.Models;
+﻿using Dapr.Client;
+using DistributionSmartEnergyBackApp.Models;
 using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.WorkRequest;
@@ -71,6 +72,10 @@ namespace DistributionSmartEnergyBackApp.Services
                     Content = "Your work request " + info.DocumentId + " has been changed."
                 };
                 //_context.Notifications.Add(notification);
+                var daprClient = new DaprClientBuilder().Build();
+                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+                var response = await daprClient.InvokeMethodWithResponseAsync(request);
+                response.EnsureSuccessStatusCode();
 
                 try
                 {
@@ -108,6 +113,10 @@ namespace DistributionSmartEnergyBackApp.Services
                 Content = "Status of your work request " + basicInfo.DocumentId + " has been updated to " + basicInfo.Status
             };
             //_context.Notifications.Add(notification);
+            var daprClient = new DaprClientBuilder().Build();
+            var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+            var response = await daprClient.InvokeMethodWithResponseAsync(request);
+            response.EnsureSuccessStatusCode();
 
             try
             {

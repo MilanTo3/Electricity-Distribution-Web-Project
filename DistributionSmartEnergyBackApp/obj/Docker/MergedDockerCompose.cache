@@ -6,7 +6,7 @@ networks:
 services:
   apigateway:
     build:
-      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: API gateway/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -18,13 +18,14 @@ services:
       target: 80
     - target: 80
     volumes:
-    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\Tamara\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
   distributionsmartenergybackapp:
     build:
-      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: DistributionSmartEnergyBackApp/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DAPR_GRPC_PORT: '40001'
       DatabaseName: DocumentDB
       DatabasePassword: Password1!
       DatabasePort: '1433'
@@ -37,12 +38,29 @@ services:
     - published: 24885
       target: 80
     - target: 80
+    - published: 40001
+      target: 40001
+  distributionsmartenergybackapp-dapr:
+    command:
+    - ./daprd
+    - -app-id
+    - distributionsmartenergybackapp
+    - -app-port
+    - '80'
+    - -dapr-grpc-port
+    - '40001'
+    depends_on:
+      distributionsmartenergybackapp:
+        condition: service_started
+    image: daprio/daprd:latest
+    network_mode: service:distributionsmartenergybackapp
   distributionsmartenergyusermicroservice:
     build:
-      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: DistributionSmartEnergyUserMicroservice/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DAPR_GRPC_PORT: '40003'
       DatabaseName: UserDB
       DatabasePassword: Password1!
       DatabasePort: '1433'
@@ -55,6 +73,22 @@ services:
     - published: 28543
       target: 80
     - target: 80
+    - published: 40003
+      target: 40003
+  distributionsmartenergyusermicroservice-dapr:
+    command:
+    - ./daprd
+    - -app-id
+    - distributionsmartenergyusermicroservice
+    - -app-port
+    - '80'
+    - -dapr-grpc-port
+    - '40003'
+    depends_on:
+      distributionsmartenergyusermicroservice:
+        condition: service_started
+    image: daprio/daprd:latest
+    network_mode: service:distributionsmartenergyusermicroservice
   mssql-server:
     environment:
       ACCEPT_EULA: "Y"
@@ -68,10 +102,11 @@ services:
       target: 1433
   notificationmicroservice:
     build:
-      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: NotificationMicroservice/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DAPR_GRPC_PORT: '40005'
       DatabaseName: NotificationDB
       DatabasePassword: Password1!
       DatabasePort: '1433'
@@ -84,4 +119,20 @@ services:
     - published: 35827
       target: 80
     - target: 80
+    - published: 40005
+      target: 40005
+  notificationmicroservice-dapr:
+    command:
+    - ./daprd
+    - -app-id
+    - notificationmicroservice
+    - -app-port
+    - '80'
+    - -dapr-grpc-port
+    - '40005'
+    depends_on:
+      notificationmicroservice:
+        condition: service_started
+    image: daprio/daprd:latest
+    network_mode: service:notificationmicroservice
 version: '3.4'

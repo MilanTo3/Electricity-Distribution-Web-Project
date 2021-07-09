@@ -6,6 +6,7 @@ using NotificationMicroservice.Models.EntityModels;
 using NotificationMicroservice.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NotificationMicroservice.Hubs;
 
 namespace NotificationMicroservice.Controllers
 {
@@ -80,6 +81,7 @@ namespace NotificationMicroservice.Controllers
             try
             {
                 await _context.AddNotification(notification);
+                //NotificationHub.Notify(notification);
                 return Ok();
 
             }
@@ -87,6 +89,7 @@ namespace NotificationMicroservice.Controllers
             {
                 return BadRequest();
             }
+           
         }
 
         // POST: api/Notification/MarkAsSeen

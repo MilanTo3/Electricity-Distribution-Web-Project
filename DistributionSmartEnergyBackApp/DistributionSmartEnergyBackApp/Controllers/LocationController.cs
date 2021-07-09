@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Dapr.Client;
 using DistributionSmartEnergyBackApp.Models;
 using DistributionSmartEnergyBackApp.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -36,8 +38,10 @@ namespace DistributionSmartEnergyBackApp.Controllers
         [HttpGet]
         [Route("GetLocations")]
         public async Task<IEnumerable<LocationModel>> GetLocations()
-        { 
-             return await _context.GetLocations();
+        {
+            var daprClient = new DaprClientBuilder().Build();
+            await daprClient.InvokeMethodAsync(HttpMethod.Get, "distributionsmartenergyusermicroservice", "api/applicationUser/getPendingUsers");
+            return await _context.GetLocations();
         }
 
         // POST: api/Location/AddLocation

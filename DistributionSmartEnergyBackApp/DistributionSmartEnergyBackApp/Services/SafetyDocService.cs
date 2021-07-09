@@ -1,4 +1,5 @@
-﻿using DistributionSmartEnergyBackApp.Models;
+﻿using Dapr.Client;
+using DistributionSmartEnergyBackApp.Models;
 using DistributionSmartEnergyBackApp.Models.EntityModels;
 using DistributionSmartEnergyBackApp.Models.FormParts;
 using DistributionSmartEnergyBackApp.Models.FormParts.SafetyDocument;
@@ -100,12 +101,16 @@ namespace DistributionSmartEnergyBackApp.Services
                 Content = "Your safety document " + info.DocumentId + " has been changed."
             };
             //_context.Notifications.Add(notification);
+            var daprClient = new DaprClientBuilder().Build();
+            var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+            var response = await daprClient.InvokeMethodWithResponseAsync(request);
+            response.EnsureSuccessStatusCode();
 
             try
             {
                 _context.BasicInformationSD.Update(info);
                 await Save();
-                //NotificationHub.Notify(notification);
+                
             }
             catch (Exception)
             {
@@ -133,6 +138,10 @@ namespace DistributionSmartEnergyBackApp.Services
                     Content = "Your safety document " + info.DocumentId + " has been changed."
                 };
                 //_context.Notifications.Add(notification);
+                var daprClient = new DaprClientBuilder().Build();
+                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+                var response = await daprClient.InvokeMethodWithResponseAsync(request);
+                response.EnsureSuccessStatusCode();
 
                 try
                 {

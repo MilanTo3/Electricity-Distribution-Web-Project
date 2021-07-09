@@ -14,9 +14,9 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_apigateway$
     volumes:
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\API gateway:/app
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\API gateway:/app
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
 #$nuget_volume_mapping_apigateway$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -41,9 +41,9 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_distributionsmartenergybackapp$
     volumes:
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp:/app
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp:/app
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
 #$nuget_volume_mapping_distributionsmartenergybackapp$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -69,9 +69,9 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_distributionsmartenergyusermicroservice$
     volumes:
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice:/app
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice:/app
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
 #$nuget_volume_mapping_distributionsmartenergyusermicroservice$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -97,9 +97,9 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_notificationmicroservice$
     volumes:
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\NotificationMicroservice:/app
-      - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src
-      - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\NotificationMicroservice:/app
+      - C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp:/src
+      - C:\Users\Tamara\vsdbg\vs2017u5:/remote_debugger:rw
 #$nuget_volume_mapping_notificationmicroservice$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

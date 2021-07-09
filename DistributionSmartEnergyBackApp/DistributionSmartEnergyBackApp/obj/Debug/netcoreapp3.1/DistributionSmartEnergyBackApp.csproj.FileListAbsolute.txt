@@ -314,3 +314,14 @@ C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\Distr
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.csprojAssemblyReference.cache
 E:\projectMicroservices\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 E:\projectMicroservices\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Dapr.AspNetCore.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Dapr.Client.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Google.Api.CommonProtos.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Grpc.Core.Api.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Grpc.Net.Client.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\Grpc.Net.Common.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp\obj\Debug\netcoreapp3.1\DistributionSmartEnergyBackApp.MvcApplicationPartsAssemblyInfo.cs

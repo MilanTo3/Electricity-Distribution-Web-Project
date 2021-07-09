@@ -29,10 +29,21 @@ services:
       DatabaseUser: "SA"
       DatabasePassword: "Password1!"
       DatabaseName: "DocumentDB"
+      DAPR_GRPC_PORT: "40001"
     ports:
       - "24885:80"
+      - "40001:40001"
     networks:
       - backNetwork
+
+  distributionsmartenergybackapp-dapr:
+       image: "daprio/daprd:latest"
+       command: [ "./daprd", "-app-id", "distributionsmartenergybackapp", "-app-port", "80", "-dapr-grpc-port", "40001" ]
+       depends_on:
+        - distributionsmartenergybackapp
+       network_mode: "service:distributionsmartenergybackapp"
+
+
 
   distributionsmartenergyusermicroservice:
     image: ${DOCKER_REGISTRY-}distributionsmartenergyusermicroservice
@@ -45,10 +56,20 @@ services:
       DatabaseUser: "SA"
       DatabasePassword: "Password1!"
       DatabaseName: "UserDB"
+      DAPR_GRPC_PORT: "40003"
     ports:
       - "28543:80"
+      - "40003:40003"
     networks:
       - backNetwork
+
+  distributionsmartenergyusermicroservice-dapr:
+       image: "daprio/daprd:latest"
+       command: [ "./daprd", "-app-id", "distributionsmartenergyusermicroservice", "-app-port", "80", "-dapr-grpc-port", "40003" ]
+       depends_on:
+        - distributionsmartenergyusermicroservice
+       network_mode: "service:distributionsmartenergyusermicroservice"        
+  
 
   notificationmicroservice:
     image: ${DOCKER_REGISTRY-}notificationmicroservice
@@ -61,10 +82,20 @@ services:
       DatabaseUser: "SA"
       DatabasePassword: "Password1!"
       DatabaseName: "NotificationDB"
+      DAPR_GRPC_PORT: "40005"
     ports:
       - "35827:80"
+      - "40005:40005"
     networks:
       - backNetwork
+
+  notificationmicroservice-dapr:
+       image: "daprio/daprd:latest"
+       command: [ "./daprd", "-app-id", "notificationmicroservice", "-app-port", "80", "-dapr-grpc-port", "40005" ]
+       depends_on:
+        - notificationmicroservice
+       network_mode: "service:notificationmicroservice"    
+
 
   apigateway:
     image: ${DOCKER_REGISTRY-}apigateway

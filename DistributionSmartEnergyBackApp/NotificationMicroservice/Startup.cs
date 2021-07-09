@@ -39,12 +39,13 @@ namespace NotificationMicroservice
             var port = Configuration["DatabasePort"] ?? "1433"; // Default SQL Server port
             var user = Configuration["DatabaseUser"] ?? "SA"; // Warning do not use the SA account
             var password = Configuration["DatabasePassword"] ?? "Password1!";
-            var database = Configuration["DatabaseName"] ?? "NotificationDB";
+            var database = Configuration["DatabaseName"] ?? "NotificationDB"; 
 
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer($"Server={server}, {port};Initial Catalog={database};User ID={user};Password={password}"));
 
             services.AddScoped<INotification, NotificationService>();
             services.AddScoped<ISettings, SettingsService>();
+            
 
             services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
@@ -78,6 +79,8 @@ namespace NotificationMicroservice
             app.UseCors(builder => builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString()).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

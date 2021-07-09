@@ -26,6 +26,7 @@ using System.Drawing.Imaging;
 using Microsoft.AspNetCore.SignalR;
 using DistributionSmartEnergyUserMicroservice.Models.Interfaces;
 using DistributionSmartEnergyUserMicroservice.EntityModels;
+using Dapr.Client;
 
 namespace DistributionSmartEnergyUserMicroservice.Controllers
 {
@@ -287,6 +288,10 @@ namespace DistributionSmartEnergyUserMicroservice.Controllers
                     Content = "Role request has been reviewed."
                 };
                 //_context.Notifications.Add(notification);
+                var daprClient = new DaprClientBuilder().Build();
+                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+                var response = await daprClient.InvokeMethodWithResponseAsync(request);
+                response.EnsureSuccessStatusCode();
 
                 try
                 {
@@ -354,6 +359,10 @@ namespace DistributionSmartEnergyUserMicroservice.Controllers
                     Content = "Profile has been reviewed."
                 };
                 //_context.Notifications.Add(notification);
+                var daprClient = new DaprClientBuilder().Build();
+                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+                var response = await daprClient.InvokeMethodWithResponseAsync(request);
+                response.EnsureSuccessStatusCode();
 
                 try
                 {

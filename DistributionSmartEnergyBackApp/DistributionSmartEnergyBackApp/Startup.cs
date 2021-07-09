@@ -57,6 +57,7 @@ namespace DistributionSmartEnergyBackApp
             services.AddScoped<IIncident, IncidentService>();
 
 
+
             services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
