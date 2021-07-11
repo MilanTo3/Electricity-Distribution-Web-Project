@@ -27,6 +27,8 @@ using Microsoft.AspNetCore.SignalR;
 using DistributionSmartEnergyUserMicroservice.Models.Interfaces;
 using DistributionSmartEnergyUserMicroservice.EntityModels;
 using Dapr.Client;
+using System.Net.Http;
+using System.Net.Http.Json;
 
 namespace DistributionSmartEnergyUserMicroservice.Controllers
 {
@@ -289,7 +291,7 @@ namespace DistributionSmartEnergyUserMicroservice.Controllers
                 };
                 //_context.Notifications.Add(notification);
                 var daprClient = new DaprClientBuilder().Build();
-                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotificationDapr", notification);
                 var response = await daprClient.InvokeMethodWithResponseAsync(request);
                 response.EnsureSuccessStatusCode();
 
@@ -359,8 +361,10 @@ namespace DistributionSmartEnergyUserMicroservice.Controllers
                     Content = "Profile has been reviewed."
                 };
                 //_context.Notifications.Add(notification);
+                //var httpClient = DaprClient.CreateInvokeHttpClient("notificationmicroservice", "/api/Notification/AddNotification");
+                //await httpClient.PostAsJsonAsync("/api/Notification/AddNotification", notification);
                 var daprClient = new DaprClientBuilder().Build();
-                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotificationDapr", notification);
                 var response = await daprClient.InvokeMethodWithResponseAsync(request);
                 response.EnsureSuccessStatusCode();
 

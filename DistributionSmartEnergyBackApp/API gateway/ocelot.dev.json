@@ -19,7 +19,7 @@
 		{
 			"UpstreamPathTemplate": "/UserApp/{everything}", //Upstream Api request routing rules
 			"DownstreamPathTemplate": "/api/{everything}", //The gateway forwards to downstream routing rules
-			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //Upstream and downstream support request method
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT", "OPTIONS" ], //Upstream and downstream support request method
 			"DownstreamScheme": "http", //Downstream service configuration
 			"DownstreamHostAndPorts": [
 				{
@@ -31,7 +31,7 @@
 		{
 			"UpstreamPathTemplate": "/NotifApp/{everything}", //Upstream Api request routing rules
 			"DownstreamPathTemplate": "/api/{everything}", //The gateway forwards to downstream routing rules
-			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //Upstream and downstream support request method
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT", "OPTIONS" ], //Upstream and downstream support request method
 			"DownstreamScheme": "http", //Downstream service configuration
 			"DownstreamHostAndPorts": [
 				{

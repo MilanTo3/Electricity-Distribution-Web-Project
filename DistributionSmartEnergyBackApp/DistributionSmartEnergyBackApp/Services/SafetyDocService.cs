@@ -102,7 +102,7 @@ namespace DistributionSmartEnergyBackApp.Services
             };
             //_context.Notifications.Add(notification);
             var daprClient = new DaprClientBuilder().Build();
-            var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+            var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotificationDapr", notification);
             var response = await daprClient.InvokeMethodWithResponseAsync(request);
             response.EnsureSuccessStatusCode();
 
@@ -139,7 +139,7 @@ namespace DistributionSmartEnergyBackApp.Services
                 };
                 //_context.Notifications.Add(notification);
                 var daprClient = new DaprClientBuilder().Build();
-                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotification", notification);
+                var request = daprClient.CreateInvokeMethodRequest("notificationmicroservice", "/api/Notification/AddNotificationDapr", notification);
                 var response = await daprClient.InvokeMethodWithResponseAsync(request);
                 response.EnsureSuccessStatusCode();
 

@@ -1,0 +1,229 @@
+networks:
+  backNetwork:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+services:
+  apigateway:
+    build:
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      dockerfile: API gateway/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: API gateway
+      target: base
+    container_name: API_gateway
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: ''
+    image: apigateway:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/netcoreapp3.1/API
+        gateway.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      backNetwork: {}
+    ports:
+    - published: 24757
+      target: 80
+    - target: 80
+    tty: true
+    volumes:
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\API gateway:/app:rw
+    - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\wishm\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\wishm\.nuget\packages:/root/.nuget/packages:ro
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src:rw
+  distributionsmartenergybackapp:
+    build:
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      dockerfile: DistributionSmartEnergyBackApp/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: DistributionSmartEnergyBackApp
+      target: base
+    container_name: DistributionSmartEnergyBackApp
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DAPR_GRPC_PORT: '40001'
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseName: DocumentDB
+      DatabasePassword: Password1!
+      DatabasePort: '1433'
+      DatabaseServer: mssql-server
+      DatabaseUser: SA
+      NUGET_FALLBACK_PACKAGES: ''
+    image: distributionsmartenergybackapp:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/netcoreapp3.1/DistributionSmartEnergyBackApp.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      backNetwork: {}
+    ports:
+    - published: 24885
+      target: 80
+    - target: 80
+    - published: 40001
+      target: 40001
+    tty: true
+    volumes:
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyBackApp:/app:rw
+    - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\wishm\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\wishm\.nuget\packages:/root/.nuget/packages:ro
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src:rw
+  distributionsmartenergybackapp-dapr:
+    command:
+    - ./daprd
+    - -app-id
+    - distributionsmartenergybackapp
+    - -app-port
+    - '80'
+    - -dapr-grpc-port
+    - '40001'
+    depends_on:
+      distributionsmartenergybackapp:
+        condition: service_started
+    image: daprio/daprd:latest
+    network_mode: service:distributionsmartenergybackapp
+  distributionsmartenergyusermicroservice:
+    build:
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      dockerfile: DistributionSmartEnergyUserMicroservice/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: DistributionSmartEnergyUserMicroservice
+      target: base
+    container_name: DistributionSmartEnergyUserMicroservice
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DAPR_GRPC_PORT: '40003'
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseName: UserDB
+      DatabasePassword: Password1!
+      DatabasePort: '1433'
+      DatabaseServer: mssql-server
+      DatabaseUser: SA
+      NUGET_FALLBACK_PACKAGES: ''
+    image: distributionsmartenergyusermicroservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/netcoreapp3.1/DistributionSmartEnergyUserMicroservice.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      backNetwork: {}
+    ports:
+    - published: 28543
+      target: 80
+    - target: 80
+    - published: 40003
+      target: 40003
+    tty: true
+    volumes:
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\DistributionSmartEnergyUserMicroservice:/app:rw
+    - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\wishm\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\wishm\.nuget\packages:/root/.nuget/packages:ro
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src:rw
+  distributionsmartenergyusermicroservice-dapr:
+    command:
+    - ./daprd
+    - -app-id
+    - distributionsmartenergyusermicroservice
+    - -app-port
+    - '80'
+    - -dapr-grpc-port
+    - '40003'
+    depends_on:
+      distributionsmartenergyusermicroservice:
+        condition: service_started
+    image: daprio/daprd:latest
+    network_mode: service:distributionsmartenergyusermicroservice
+  mssql-server:
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+      MSSQL_SA_PASSWORD: Password1!
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    networks:
+      backNetwork: {}
+    ports:
+    - published: 1433
+      target: 1433
+  notificationmicroservice:
+    build:
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
+      dockerfile: NotificationMicroservice/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: NotificationMicroservice
+      target: base
+    container_name: NotificationMicroservice
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DAPR_GRPC_PORT: '40005'
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseName: NotificationDB
+      DatabasePassword: Password1!
+      DatabasePort: '1433'
+      DatabaseServer: mssql-server
+      DatabaseUser: SA
+      NUGET_FALLBACK_PACKAGES: ''
+    image: notificationmicroservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/netcoreapp3.1/NotificationMicroservice.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      backNetwork: {}
+    ports:
+    - published: 35827
+      target: 80
+    - target: 80
+    - published: 40005
+      target: 40005
+    tty: true
+    volumes:
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\NotificationMicroservice:/app:rw
+    - C:\Users\wishm\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\wishm\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\wishm\.nuget\packages:/root/.nuget/packages:ro
+    - E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp:/src:rw
+  notificationmicroservice-dapr:
+    command:
+    - ./daprd
+    - -app-id
+    - notificationmicroservice
+    - -app-port
+    - '80'
+    - -dapr-grpc-port
+    - '40005'
+    depends_on:
+      notificationmicroservice:
+        condition: service_started
+    image: daprio/daprd:latest
+    network_mode: service:notificationmicroservice
+version: '3.4'

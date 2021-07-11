@@ -46,7 +46,9 @@ export class NotificationsComponent implements OnInit {
 
   onClick(filter:string){
     this.selectedFilter = filter;
-    this.filterFunction();
+    this.notificationMessages = this.filterFunction();
+    console.log(this.notificationMessages);
+    console.log(this.selectedFilter);
   }
 
    filterFunction(){
@@ -65,6 +67,7 @@ export class NotificationsComponent implements OnInit {
       case 'Errors': 
       {
          this.getAllNotifications();
+         console.log('here');
         return this.notificationMessages.filter(i => i.type === 'Error');
       }
       case 'Warnings': 

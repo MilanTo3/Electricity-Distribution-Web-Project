@@ -92,6 +92,31 @@ namespace NotificationMicroservice.Controllers
            
         }
 
+        [HttpPost]
+        [Route("AddNotificationDapr")]
+        public async Task<IActionResult> AddNotificationDapr([FromBody] NotificationModel notification)
+        {
+            try
+            {
+                await _context.AddNotification(notification);
+                try
+                {
+                    NotificationHub.Notify(notification);
+                }
+                catch
+                {
+
+                }
+                return Ok();
+
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+        }
+
         // POST: api/Notification/MarkAsSeen
         [HttpPost]
         [Route("MarkAsSeen")]

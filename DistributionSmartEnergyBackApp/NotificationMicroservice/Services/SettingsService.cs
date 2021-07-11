@@ -71,7 +71,7 @@ namespace NotificationMicroservice.Services
             List<SettingsModel> all = await _context.Settings.ToListAsync();
             if (all.Count < 2)
             {
-                setDefaultSettings();
+                await setDefaultSettings();
             }
             var current = await _context.Settings.FindAsync(all[0].Id);
             return current;
@@ -82,7 +82,7 @@ namespace NotificationMicroservice.Services
             List<SettingsModel> all = await _context.Settings.ToListAsync();
             if (all.Count < 2)
             {
-                setDefaultSettings();
+                await setDefaultSettings();
             }
             var current = await _context.Settings.FindAsync(all[1].Id);
 

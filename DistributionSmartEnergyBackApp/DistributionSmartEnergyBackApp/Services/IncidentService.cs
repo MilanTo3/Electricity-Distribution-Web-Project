@@ -37,21 +37,27 @@ namespace DistributionSmartEnergyBackApp.Services
             wrapper.resolutionForm.documentId = "IN" + inc.Id;
             _context.ResolutionIN.Add(wrapper.resolutionForm);
 
-            foreach(long id in wrapper.callIds)
+            if (wrapper.callIds != null)
             {
-                var call = await _context.Calls.FindAsync(id);
-                if(call != null)
+                foreach (long id in wrapper.callIds)
                 {
-                    call.documentId = "IN" + inc.Id;
+                    var call = await _context.Calls.FindAsync(id);
+                    if (call != null)
+                    {
+                        call.documentId = "IN" + inc.Id;
+                    }
                 }
             }
 
-            foreach (long id in wrapper.devicesIds)
+            if (wrapper.devicesIds != null)
             {
-                var device = await _context.Devices.FindAsync(id);
-                if (device != null)
+                foreach (long id in wrapper.devicesIds)
                 {
-                    device.documentId = "IN" + inc.Id;
+                    var device = await _context.Devices.FindAsync(id);
+                    if (device != null)
+                    {
+                        device.documentId = "IN" + inc.Id;
+                    }
                 }
             }
 

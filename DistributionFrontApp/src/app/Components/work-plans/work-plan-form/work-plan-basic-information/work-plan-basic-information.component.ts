@@ -41,7 +41,7 @@ export class WorkPlanBasicInformationComponent implements OnInit {
       type: ['', Validators.required],
       documentId: [''],
       status: ['Draft', Validators.required],
-      workRequestId: ['', Validators.required],
+      workRequestId: [''],
       incidentId: [''],
       street: [''],
       //locationId : [''],

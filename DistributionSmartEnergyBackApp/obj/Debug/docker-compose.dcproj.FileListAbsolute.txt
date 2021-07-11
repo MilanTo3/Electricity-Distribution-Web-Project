@@ -64,3 +64,81 @@ C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\D
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\ocelot.json
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.exe
 C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.pdb
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyBackApp.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyUserMicroservice.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.EntityFrameworkCore.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Options.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Logging.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Ocelot.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Primitives.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.ComponentModel.Annotations.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.Collections.Immutable.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Newtonsoft.Json.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.JsonPatch.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Newtonsoft.Json.Bson.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Data.SqlClient.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.DiagnosticAdapter.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\FluentValidation.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.MiddlewareAnalysis.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.pdb
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.pdb
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyBackApp.deps.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyBackApp.runtimeconfig.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyBackApp.runtimeconfig.dev.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\appsettings.Development.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\appsettings.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyBackApp.exe
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyUserMicroservice.deps.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyUserMicroservice.runtimeconfig.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyUserMicroservice.runtimeconfig.dev.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyUserMicroservice.exe
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.deps.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.runtimeconfig.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.runtimeconfig.dev.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\NotificationMicroservice.exe
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.deps.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.runtimeconfig.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.runtimeconfig.dev.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\ocelot.dev.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\ocelot.json
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\API gateway.exe
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Identity.Core.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Dapr.Client.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\VirusTotalNet.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.Extensions.Identity.Stores.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\MimeKit.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\MailKit.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.Drawing.Common.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Google.Protobuf.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Grpc.Core.Api.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.Text.Json.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Grpc.Net.Client.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\System.Net.Http.Json.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.IdentityModel.Logging.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\BouncyCastle.Crypto.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\Grpc.Net.Common.dll
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyBackApp.pdb
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\bin\Debug\DistributionSmartEnergyUserMicroservice.pdb
+E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp\obj\Debug\docker-compose.dcproj.CopyComplete

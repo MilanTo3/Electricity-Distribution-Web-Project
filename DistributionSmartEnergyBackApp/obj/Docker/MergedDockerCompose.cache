@@ -6,7 +6,7 @@ networks:
 services:
   apigateway:
     build:
-      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: API gateway/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -18,10 +18,10 @@ services:
       target: 80
     - target: 80
     volumes:
-    - C:\Users\Tamara\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\wishm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
   distributionsmartenergybackapp:
     build:
-      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: DistributionSmartEnergyBackApp/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -56,7 +56,7 @@ services:
     network_mode: service:distributionsmartenergybackapp
   distributionsmartenergyusermicroservice:
     build:
-      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: DistributionSmartEnergyUserMicroservice/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -102,7 +102,7 @@ services:
       target: 1433
   notificationmicroservice:
     build:
-      context: C:\Users\Tamara\Desktop\GitHub\Web2-Project\DistributionSmartEnergyBackApp
+      context: E:\clonedProject\Web2-Project\DistributionSmartEnergyBackApp
       dockerfile: NotificationMicroservice/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development

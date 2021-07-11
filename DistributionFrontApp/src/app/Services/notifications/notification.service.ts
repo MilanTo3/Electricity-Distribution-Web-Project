@@ -24,7 +24,7 @@ export class NotificationService {
   }
   public startConnection = () => {
      this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('http://localhost:24885/notifikacije')
+                            .withUrl('http://localhost:35827/notifikacije')
                             .build();
     this.hubConnection
       .start()
@@ -64,10 +64,10 @@ export class NotificationService {
   GetUserNotifications(username){
     //const notifications = of(this.notificationMessages);
    // return notifications;
-   return this.http.get('http://localhost:24885/api/Notification/GetUserNotifications?username=' + username);
+   return this.http.get('http://localhost:24757/NotifApp/Notification/GetUserNotifications?username=' + username);
   }
    getUnreadNotifications(username){
-    return this.http.get('http://localhost:24885/api/Notification/GetUnreadNotifications?username=' + username);
+    return this.http.get('http://localhost:24757/NotifApp/Notification/GetUnreadNotifications?username=' + username);
 
   } 
   setMarkAsRead(username){
@@ -79,14 +79,14 @@ export class NotificationService {
     unreadNotifications = this.notificationMessages.filter(i => i.seen == false);
     const notifications = of(unreadNotifications);
     return notifications;*/
-    return this.http.post('http://localhost:24885/api/Notification/MarkAsSeen', username);
+    return this.http.post('http://localhost:24757/NotifApp/Notification/MarkAsSeen', username);
 
   }
   clearAll(username) {
     /*this.notificationMessages = [];
     const notifications = of(this.notificationMessages);
     return notifications;*/
-    return this.http.post('http://localhost:24885/api/Notification/ClearAllNotifications', username);
+    return this.http.post('http://localhost:24757/NotifApp/Notification/ClearAllNotifications', username);
 
   }
 } 

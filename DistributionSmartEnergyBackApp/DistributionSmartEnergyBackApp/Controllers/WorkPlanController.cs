@@ -31,7 +31,6 @@ namespace DistributionSmartEnergyBackApp.Controllers
 
             try
             {
-                string userId = User.Claims.First(c => c.Type == "UserID").Value;
                 long id = await _context.AddWorkPlan(wrapper);
                 uploadAttachments(wrapper.mediaForm, id);
                 await _context.Save();

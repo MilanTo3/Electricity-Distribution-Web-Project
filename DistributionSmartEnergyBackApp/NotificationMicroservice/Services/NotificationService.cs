@@ -14,9 +14,11 @@ namespace NotificationMicroservice.Services
     public class NotificationService : INotification
     {
         private readonly AuthenticationContext _context;
+        private readonly ISettings settingsContext;
 
-        public NotificationService(AuthenticationContext context) {
+        public NotificationService(AuthenticationContext context, ISettings settings) {
             _context = context;
+            settingsContext = settings;
         }
         public async Task AddNotification(NotificationModel notification) {
             _context.Notifications.Add(notification);
@@ -50,7 +52,8 @@ namespace NotificationMicroservice.Services
         }
 
         public async Task<IEnumerable<NotificationModel>> GetUnreadNotif(string username) {
-            var currentSettings = await _context.Settings.OrderBy(x => x.Id).LastOrDefaultAsync();
+            
+            var currentSettings = await settingsContext.GetCurrentSettings();
             List<string> approvedNotifications = new List<string>();
             if (currentSettings.ErrorCheck == true)
                 approvedNotifications.Add("Error");
@@ -65,7 +68,7 @@ namespace NotificationMicroservice.Services
         }
 
         public async Task<IEnumerable<NotificationModel>> GetUserNotif(string username) {
-            var currentSettings = await _context.Settings.OrderBy(x => x.Id).LastOrDefaultAsync();
+            var currentSettings = await settingsContext.GetCurrentSettings();
             List<string> approvedNotifications = new List<string>();
             if (currentSettings.ErrorCheck == true)
                 approvedNotifications.Add("Error");

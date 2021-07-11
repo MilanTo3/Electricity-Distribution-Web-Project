@@ -19,6 +19,14 @@ namespace API_gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOcelot();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                .WithOrigins("http://localhost:4200") // the Angular app url
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,6 +37,7 @@ namespace API_gateway
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

@@ -9,18 +9,18 @@ export class SettingsService {
   constructor(private http: HttpClient) { }
 
   getDefaultSettings(){
-    return this.http.get('http://localhost:24885/api/Settings/GetDefaultSettings');
+    return this.http.get('http://localhost:24757/NotifApp/Settings/GetDefaultSettings');
   }
   getCurrentSettings(){
-    return this.http.get('http://localhost:24885/api/Settings/GetCurrentSettings');
+    return this.http.get('http://localhost:24757/NotifApp/Settings/GetCurrentSettings');
   }
 
   updateSettings(formdata: FormData){
-    return this.http.post('http://localhost:24885/api/Settings/UpdateSettings',formdata);
+    return this.http.post('http://localhost:24757/NotifApp/Settings/UpdateSettings',formdata);
   }
 
   deleteSettings(id){
-    return this.http.post('http://localhost:24885/api/Settings/Delete',id);
+    return this.http.post('http://localhost:24757/NotifApp/Settings/Delete',id);
 
   }
 

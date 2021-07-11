@@ -10,7 +10,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(formdata: FormData) {
-    return this.http.post('http://localhost:24757/UserApp/ApplicationUser/Login', formdata);
+    return this.http.post('http://localhost:24757/UserApp/applicationUser/Login', formdata);
   }
 
   register(formdata: FormData) {
